@@ -1,0 +1,9 @@
+C:\Users\Christian\tools\MaNGOSDatabaseTool\MaNGOSDatabaseTool\bin\Debug\MaNGOSDatabaseTool.exe
+C:\Users\Christian\tools\MaNGOSDatabaseTool\MaNGOSDatabaseTool\bin\Debug\MaNGOSDatabaseTool.pdb
+C:\Users\Christian\tools\MaNGOSDatabaseTool\MaNGOSDatabaseTool\bin\Debug\MaNGOSDatabaseTool.xml
+C:\Users\Christian\tools\MaNGOSDatabaseTool\MaNGOSDatabaseTool\obj\x86\Debug\MaNGOSDatabaseTool.Form1.resources
+C:\Users\Christian\tools\MaNGOSDatabaseTool\MaNGOSDatabaseTool\obj\x86\Debug\MaNGOSDatabaseTool.Resources.resources
+C:\Users\Christian\tools\MaNGOSDatabaseTool\MaNGOSDatabaseTool\obj\x86\Debug\MaNGOSDatabaseTool.vbproj.GenerateResource.Cache
+C:\Users\Christian\tools\MaNGOSDatabaseTool\MaNGOSDatabaseTool\obj\x86\Debug\MaNGOSDatabaseTool.exe
+C:\Users\Christian\tools\MaNGOSDatabaseTool\MaNGOSDatabaseTool\obj\x86\Debug\MaNGOSDatabaseTool.xml
+C:\Users\Christian\tools\MaNGOSDatabaseTool\MaNGOSDatabaseTool\obj\x86\Debug\MaNGOSDatabaseTool.pdb
