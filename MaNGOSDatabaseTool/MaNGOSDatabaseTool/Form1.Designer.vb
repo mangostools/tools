@@ -100,6 +100,7 @@ Partial Class Form1
         Me.TextBox4.Location = New System.Drawing.Point(118, 147)
         Me.TextBox4.Multiline = True
         Me.TextBox4.Name = "TextBox4"
+        Me.TextBox4.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.TextBox4.Size = New System.Drawing.Size(162, 21)
         Me.TextBox4.TabIndex = 5
         Me.TextBox4.Text = "mangos"
