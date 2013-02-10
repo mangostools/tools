@@ -37,12 +37,13 @@ Namespace Framework.Database
         End Property
         Private m_RowCount As Integer
 
-        Public Sub Init(host As String, user As String, password As String, database As String, port As Integer)
+        Public Function Init(host As String, user As String, password As String, database As String, port As Integer) As Boolean
             ConnectionString = "Server=" & host & ";User Id=" & user & ";Port=" & port & ";" & "Password=" & password & ";Database=" & database & ";Allow Zero Datetime=True;" & "Min Pool Size = 25;Max Pool Size=150"
 
             Using Connection = New MySqlConnection(ConnectionString)
                 Try
                     Connection.Open()
+                    Return True
                     '                    Log.Message(LogType.NORMAL, "Successfully tested connection to {0}:{1}:{2}", host, port, database)
                 Catch ex As MySqlException
                     '                   Log.Message(LogType.[ERROR], "{0}", ex.Message)
@@ -52,9 +53,10 @@ Namespace Framework.Database
                     Thread.Sleep(5000)
 
                     Init(host, user, password, database, port)
+                    Return False
                 End Try
             End Using
-        End Sub
+        End Function
 
         Public Function Execute(sql As String, ParamArray args As Object()) As Boolean
             Dim sqlString As New StringBuilder()
@@ -67,7 +69,7 @@ Namespace Framework.Database
                 Using sqlCommand As New MySqlCommand(sqlString.ToString(), Connection)
                     Try
                         Dim mParams As New List(Of MySqlParameter)(args.Length)
-                        For Each a As String In args
+                        For Each a As object In args
                             mParams.Add(New MySqlParameter("", a))
                         Next
 
@@ -83,6 +85,42 @@ Namespace Framework.Database
             End Using
         End Function
 
+        Public Function [Select](sql As String, args As Dictionary(Of String, Int32)) As SQLResult
+            Dim sqlString As New StringBuilder()
+            ' Fix for floating point problems on some languages
+            sqlString.AppendFormat(CultureInfo.GetCultureInfo("en-US").NumberFormat, sql)
+
+            Using Connection = New MySqlConnection(ConnectionString)
+                Connection.Open()
+
+                Dim sqlCommand As New MySqlCommand(sqlString.ToString(), Connection)
+
+                Try
+                    Dim mParams As New List(Of MySqlParameter)(args.Count)
+
+                    For Each a As Object In args
+                        mParams.Add(New MySqlParameter(a.key.ToString(), a.value))
+                    Next
+
+                    sqlCommand.Parameters.AddRange(mParams.ToArray())
+
+                    Using SqlData = sqlCommand.ExecuteReader(CommandBehavior.[Default])
+                        Using retData = New SQLResult()
+                            retData.Load(SqlData)
+                            retData.Count = retData.Rows.Count
+
+                            Return retData
+                        End Using
+                    End Using
+                Catch ex As MySqlException
+                    '(LogType.[ERROR], "{0}", ex.Message)
+                End Try
+            End Using
+
+            Return Nothing
+        End Function
+
+
         Public Function [Select](sql As String, ParamArray args As Object()) As SQLResult
             Dim sqlString As New StringBuilder()
             ' Fix for floating point problems on some languages
@@ -96,7 +134,7 @@ Namespace Framework.Database
                 Try
                     Dim mParams As New List(Of MySqlParameter)(args.Length)
 
-                    For Each a As String In args
+                    For Each a As Object In args
                         mParams.Add(New MySqlParameter("", a))
                     Next
 

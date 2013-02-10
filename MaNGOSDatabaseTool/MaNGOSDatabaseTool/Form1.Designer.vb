@@ -49,7 +49,7 @@ Partial Class Form1
         Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
         '
-        ''MySQLConnect
+        'MySQLConnect
         '
         Me.MySQLConnect.Cursor = System.Windows.Forms.Cursors.Hand
         Me.MySQLConnect.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))

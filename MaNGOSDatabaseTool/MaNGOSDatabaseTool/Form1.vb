@@ -11,6 +11,15 @@ Public Class Form1
         'End If
         'DB.Characters.Init(WorldConfig.CharDBHost, WorldConfig.CharDBUser, WorldConfig.CharDBPassword, WorldConfig.CharDBDataBase, WorldConfig.CharDBPort);
         'DB.Realms.Init(RealmConfig.RealmDBHost, RealmConfig.RealmDBUser, RealmConfig.RealmDBPassword, RealmConfig.RealmDBDataBase, RealmConfig.RealmDBPort);
-        DB.World.Init(tboxmysqlhost.Text, tboxmysqlname.Text, tboxmysqlpw.Text, tboxmysqlwordldb.Text, tboxmysqlport.Text)
+        Dim blnDBOpen As Boolean = False
+        blnDBOpen = DB.World.Init(tboxmysqlhost.Text, tboxmysqlname.Text, tboxmysqlpw.Text, tboxmysqlwordldb.Text, tboxmysqlport.Text)
+
+        If blnDBOpen = True Then
+            Dim tform As New frmMain
+            tform.Show()
+            Me.Hide()
+        End If
+
     End Sub
+
 End Class
