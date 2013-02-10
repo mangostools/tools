@@ -25,14 +25,14 @@ Partial Class Form1
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.MySQLConnect = New System.Windows.Forms.Button()
+        Me.MySQLHost = New System.Windows.Forms.TextBox()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.TextBox3 = New System.Windows.Forms.TextBox()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
+        Me.MySQLPassword = New System.Windows.Forms.TextBox()
+        Me.MySQLDatabase = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.MySqlPort = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -50,27 +50,27 @@ Partial Class Form1
         Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
         '
-        'Button1
+        'MySQLConnect
         '
-        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(12, 223)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(268, 40)
-        Me.Button1.TabIndex = 1
-        Me.Button1.Text = "Connect"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.MySQLConnect.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.MySQLConnect.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MySQLConnect.Location = New System.Drawing.Point(12, 223)
+        Me.MySQLConnect.Name = "MySQLConnect"
+        Me.MySQLConnect.Size = New System.Drawing.Size(268, 40)
+        Me.MySQLConnect.TabIndex = 1
+        Me.MySQLConnect.Text = "Connect"
+        Me.MySQLConnect.UseVisualStyleBackColor = True
         '
-        'TextBox1
+        'MySQLHost
         '
-        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox1.Location = New System.Drawing.Point(118, 28)
-        Me.TextBox1.Multiline = True
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(162, 21)
-        Me.TextBox1.TabIndex = 2
-        Me.TextBox1.Text = "127.0.0.1"
-        Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.MySQLHost.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MySQLHost.Location = New System.Drawing.Point(118, 28)
+        Me.MySQLHost.Multiline = True
+        Me.MySQLHost.Name = "MySQLHost"
+        Me.MySQLHost.Size = New System.Drawing.Size(162, 21)
+        Me.MySQLHost.TabIndex = 2
+        Me.MySQLHost.Text = "127.0.0.1"
+        Me.MySQLHost.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'TextBox2
         '
@@ -94,73 +94,73 @@ Partial Class Form1
         Me.TextBox3.Text = "mangos"
         Me.TextBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
-        'TextBox4
+        'MySQLPassword
         '
-        Me.TextBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox4.Location = New System.Drawing.Point(118, 147)
-        Me.TextBox4.Multiline = True
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.TextBox4.Size = New System.Drawing.Size(162, 21)
-        Me.TextBox4.TabIndex = 5
-        Me.TextBox4.Text = "mangos"
-        Me.TextBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.MySQLPassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MySQLPassword.Location = New System.Drawing.Point(118, 147)
+        Me.MySQLPassword.Multiline = True
+        Me.MySQLPassword.Name = "MySQLPassword"
+        Me.MySQLPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+        Me.MySQLPassword.Size = New System.Drawing.Size(162, 21)
+        Me.MySQLPassword.TabIndex = 5
+        Me.MySQLPassword.Text = "mangos"
+        Me.MySQLPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
-        'TextBox5
+        'MySQLDatabase
         '
-        Me.TextBox5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox5.Location = New System.Drawing.Point(118, 187)
-        Me.TextBox5.Multiline = True
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(162, 21)
-        Me.TextBox5.TabIndex = 6
-        Me.TextBox5.Text = "mangos"
-        Me.TextBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.MySQLDatabase.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MySQLDatabase.Location = New System.Drawing.Point(118, 187)
+        Me.MySQLDatabase.Multiline = True
+        Me.MySQLDatabase.Name = "MySQLDatabase"
+        Me.MySQLDatabase.Size = New System.Drawing.Size(162, 21)
+        Me.MySQLDatabase.TabIndex = 6
+        Me.MySQLDatabase.Text = "mangos"
+        Me.MySQLDatabase.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(118, 12)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(27, 13)
+        Me.Label1.Size = New System.Drawing.Size(65, 13)
         Me.Label1.TabIndex = 7
-        Me.Label1.Text = "host"
+        Me.Label1.Text = "MySQL host"
         '
-        'Label2
+        'MySqlPort
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(118, 52)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(25, 13)
-        Me.Label2.TabIndex = 8
-        Me.Label2.Text = "port"
+        Me.MySqlPort.AutoSize = True
+        Me.MySqlPort.Location = New System.Drawing.Point(118, 52)
+        Me.MySqlPort.Name = "MySqlPort"
+        Me.MySqlPort.Size = New System.Drawing.Size(64, 13)
+        Me.MySqlPort.TabIndex = 8
+        Me.MySqlPort.Text = "MySQL Port"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
         Me.Label3.Location = New System.Drawing.Point(118, 92)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(56, 13)
+        Me.Label3.Size = New System.Drawing.Size(67, 13)
         Me.Label3.TabIndex = 9
-        Me.Label3.Text = "mysql user"
+        Me.Label3.Text = "MySQL User"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(118, 131)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(81, 13)
+        Me.Label4.Size = New System.Drawing.Size(91, 13)
         Me.Label4.TabIndex = 10
-        Me.Label4.Text = "mysql password"
+        Me.Label4.Text = "MySQL Password"
         '
         'Label5
         '
         Me.Label5.AutoSize = True
         Me.Label5.Location = New System.Drawing.Point(118, 171)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(91, 13)
+        Me.Label5.Size = New System.Drawing.Size(133, 13)
         Me.Label5.TabIndex = 11
-        Me.Label5.Text = "mangos database"
+        Me.Label5.Text = "MaNGOS Database Name"
         '
         'Label6
         '
@@ -187,14 +187,14 @@ Partial Class Form1
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.MySqlPort)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.TextBox5)
-        Me.Controls.Add(Me.TextBox4)
+        Me.Controls.Add(Me.MySQLDatabase)
+        Me.Controls.Add(Me.MySQLPassword)
         Me.Controls.Add(Me.TextBox3)
         Me.Controls.Add(Me.TextBox2)
-        Me.Controls.Add(Me.TextBox1)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.MySQLHost)
+        Me.Controls.Add(Me.MySQLConnect)
         Me.Controls.Add(Me.PictureBox1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Form1"
@@ -205,14 +205,14 @@ Partial Class Form1
 
     End Sub
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
-    Friend WithEvents Button1 As System.Windows.Forms.Button
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
+    Friend WithEvents MySQLConnect As System.Windows.Forms.Button
+    Friend WithEvents MySQLHost As System.Windows.Forms.TextBox
     Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
     Friend WithEvents TextBox3 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox4 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox5 As System.Windows.Forms.TextBox
+    Friend WithEvents MySQLPassword As System.Windows.Forms.TextBox
+    Friend WithEvents MySQLDatabase As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents MySqlPort As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents Label5 As System.Windows.Forms.Label
