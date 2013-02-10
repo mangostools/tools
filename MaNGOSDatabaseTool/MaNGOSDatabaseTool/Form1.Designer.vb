@@ -120,45 +120,50 @@ Partial Class Form1
         'Label1
         '
         Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(118, 12)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(65, 13)
+        Me.Label1.Size = New System.Drawing.Size(77, 13)
         Me.Label1.TabIndex = 7
-        Me.Label1.Text = "MySQL host"
+        Me.Label1.Text = "MySQL Host"
         '
         'MySqlPort
         '
         Me.MySqlPort.AutoSize = True
+        Me.MySqlPort.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MySqlPort.Location = New System.Drawing.Point(118, 52)
         Me.MySqlPort.Name = "MySqlPort"
-        Me.MySqlPort.Size = New System.Drawing.Size(64, 13)
+        Me.MySqlPort.Size = New System.Drawing.Size(74, 13)
         Me.MySqlPort.TabIndex = 8
         Me.MySqlPort.Text = "MySQL Port"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(118, 92)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(67, 13)
+        Me.Label3.Size = New System.Drawing.Size(77, 13)
         Me.Label3.TabIndex = 9
         Me.Label3.Text = "MySQL User"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.Location = New System.Drawing.Point(118, 131)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(91, 13)
+        Me.Label4.Size = New System.Drawing.Size(105, 13)
         Me.Label4.TabIndex = 10
         Me.Label4.Text = "MySQL Password"
         '
         'Label5
         '
         Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.Location = New System.Drawing.Point(118, 171)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(133, 13)
+        Me.Label5.Size = New System.Drawing.Size(153, 13)
         Me.Label5.TabIndex = 11
         Me.Label5.Text = "MaNGOS Database Name"
         '
