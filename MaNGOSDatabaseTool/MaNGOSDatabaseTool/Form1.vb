@@ -2,7 +2,7 @@
 
 Public Class Form1
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub MySQLConnect_Click(sender As Object, e As EventArgs) Handles MySQLConnect.Click
         'If SQLConnection.Connect(tboxmysqlhost.Text, tboxmysqlname.Text, tboxmysqlpw.Text, tboxmysqlwordldb.Text) Then
         '    Datastores.dbused = True
         '    Me.Close()
