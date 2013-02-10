@@ -7,3 +7,12 @@ C:\Users\Christian\tools\MaNGOSDatabaseTool\MaNGOSDatabaseTool\obj\x86\Debug\MaN
 C:\Users\Christian\tools\MaNGOSDatabaseTool\MaNGOSDatabaseTool\obj\x86\Debug\MaNGOSDatabaseTool.exe
 C:\Users\Christian\tools\MaNGOSDatabaseTool\MaNGOSDatabaseTool\obj\x86\Debug\MaNGOSDatabaseTool.xml
 C:\Users\Christian\tools\MaNGOSDatabaseTool\MaNGOSDatabaseTool\obj\x86\Debug\MaNGOSDatabaseTool.pdb
+P:\Projects\#DotNet_Proj\mangos\tools\MaNGOSDatabaseTool\MaNGOSDatabaseTool\obj\x86\Debug\MaNGOSDatabaseTool.exe
+P:\Projects\#DotNet_Proj\mangos\tools\MaNGOSDatabaseTool\MaNGOSDatabaseTool\obj\x86\Debug\MaNGOSDatabaseTool.xml
+P:\Projects\#DotNet_Proj\mangos\tools\MaNGOSDatabaseTool\MaNGOSDatabaseTool\obj\x86\Debug\MaNGOSDatabaseTool.pdb
+P:\Projects\#DotNet_Proj\mangos\tools\MaNGOSDatabaseTool\MaNGOSDatabaseTool\bin\Debug\MaNGOSDatabaseTool.exe
+P:\Projects\#DotNet_Proj\mangos\tools\MaNGOSDatabaseTool\MaNGOSDatabaseTool\bin\Debug\MaNGOSDatabaseTool.pdb
+P:\Projects\#DotNet_Proj\mangos\tools\MaNGOSDatabaseTool\MaNGOSDatabaseTool\bin\Debug\MaNGOSDatabaseTool.xml
+P:\Projects\#DotNet_Proj\mangos\tools\MaNGOSDatabaseTool\MaNGOSDatabaseTool\obj\x86\Debug\MaNGOSDatabaseTool.Form1.resources
+P:\Projects\#DotNet_Proj\mangos\tools\MaNGOSDatabaseTool\MaNGOSDatabaseTool\obj\x86\Debug\MaNGOSDatabaseTool.Resources.resources
+P:\Projects\#DotNet_Proj\mangos\tools\MaNGOSDatabaseTool\MaNGOSDatabaseTool\obj\x86\Debug\MaNGOSDatabaseTool.vbproj.GenerateResource.Cache
