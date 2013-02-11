@@ -37,6 +37,16 @@ Namespace Framework.Database
         End Property
         Private m_RowCount As Integer
 
+        Public Property ErrorMsg() As String
+            Get
+                Return m_ErrMsg
+            End Get
+            Set(value As String)
+                m_ErrMsg = value
+            End Set
+        End Property
+        Private m_ErrMsg As Integer
+
         Public Function Init(host As String, user As String, password As String, database As String, port As Integer) As Boolean
             ConnectionString = "Server=" & host & ";User Id=" & user & ";Port=" & port & ";" & "Password=" & password & ";Database=" & database & ";Allow Zero Datetime=True;" & "Min Pool Size = 25;Max Pool Size=150"
 
@@ -113,7 +123,9 @@ Namespace Framework.Database
                         End Using
                     End Using
                 Catch ex As MySqlException
-                    '(LogType.[ERROR], "{0}", ex.Message)
+                    Dim retData = New SQLResult()
+                    retData.ErrorMsg = ex.Message
+                    Return retData
                 End Try
             End Using
 
@@ -149,7 +161,9 @@ Namespace Framework.Database
                         End Using
                     End Using
                 Catch ex As MySqlException
-                    '(LogType.[ERROR], "{0}", ex.Message)
+                    Dim retData = New SQLResult()
+                    retData.ErrorMsg = ex.Message
+                    Return retData
                 End Try
             End Using
 

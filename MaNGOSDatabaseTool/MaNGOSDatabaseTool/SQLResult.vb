@@ -32,8 +32,23 @@ Namespace Framework.Database
         End Property
         Private m_Count As Integer
 
+        Public Property ErrorMsg() As String
+            Get
+                Return m_ErrMsg
+            End Get
+            Set(value As String)
+                m_ErrMsg = value
+            End Set
+        End Property
+        Private m_ErrMsg As String
+
         Public Function Read(Of T)(row As Integer, columnName As String, Optional number As Integer = 0) As T
-            Return DirectCast(Convert.ChangeType(Rows(row)(columnName & (If(number <> 0, (1 + number).ToString(), ""))), GetType(T)), T)
+
+            Try
+                Return DirectCast(Convert.ChangeType(Rows(row)(columnName & (If(number <> 0, (1 + number).ToString(), ""))), GetType(T)), T)
+            Catch ex As Exception
+                ErrorMsg = ex.Message
+            End Try
         End Function
 
         Public Function ReadAllValuesFromField(columnName As String) As Object()

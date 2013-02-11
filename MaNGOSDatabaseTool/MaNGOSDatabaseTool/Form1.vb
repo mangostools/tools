@@ -12,7 +12,7 @@ Public Class Form1
         'DB.Characters.Init(WorldConfig.CharDBHost, WorldConfig.CharDBUser, WorldConfig.CharDBPassword, WorldConfig.CharDBDataBase, WorldConfig.CharDBPort);
         'DB.Realms.Init(RealmConfig.RealmDBHost, RealmConfig.RealmDBUser, RealmConfig.RealmDBPassword, RealmConfig.RealmDBDataBase, RealmConfig.RealmDBPort);
         Dim blnDBOpen As Boolean = False
-        blnDBOpen = DB.World.Init(tboxmysqlhost.Text, tboxmysqlname.Text, tboxmysqlpw.Text, tboxmysqlwordldb.Text, tboxmysqlport.Text)
+        blnDBOpen = DB.World.Init(txtSQLHost.Text, txtSQLUser.Text, txtSQLPassword.Text, txtSQLWorldDB.Text, txtSQLPort.Text)
 
         If blnDBOpen = True Then
             Dim tform As New frmMain

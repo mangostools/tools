@@ -26,11 +26,11 @@ Partial Class Form1
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.MySQLConnect = New System.Windows.Forms.Button()
-        Me.tboxmysqlhost = New System.Windows.Forms.TextBox()
-        Me.tboxmysqlport = New System.Windows.Forms.TextBox()
-        Me.tboxmysqlname = New System.Windows.Forms.TextBox()
-        Me.tboxmysqlpw = New System.Windows.Forms.TextBox()
-        Me.tboxmysqlwordldb = New System.Windows.Forms.TextBox()
+        Me.txtSQLHost = New System.Windows.Forms.TextBox()
+        Me.txtSQLPort = New System.Windows.Forms.TextBox()
+        Me.txtSQLUser = New System.Windows.Forms.TextBox()
+        Me.txtSQLPassword = New System.Windows.Forms.TextBox()
+        Me.txtSQLWorldDB = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.MySqlPort = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -60,61 +60,61 @@ Partial Class Form1
         Me.MySQLConnect.Text = "Connect"
         Me.MySQLConnect.UseVisualStyleBackColor = True
         '
-        'tboxmysqlhost
+        'txtSQLHost
         '
-        Me.tboxmysqlhost.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tboxmysqlhost.Location = New System.Drawing.Point(118, 28)
-        Me.tboxmysqlhost.Multiline = True
-        Me.tboxmysqlhost.Name = "tboxmysqlhost"
-        Me.tboxmysqlhost.Size = New System.Drawing.Size(162, 21)
-        Me.tboxmysqlhost.TabIndex = 2
-        Me.tboxmysqlhost.Text = "127.0.0.1"
-        Me.tboxmysqlhost.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.txtSQLHost.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtSQLHost.Location = New System.Drawing.Point(118, 28)
+        Me.txtSQLHost.Multiline = True
+        Me.txtSQLHost.Name = "txtSQLHost"
+        Me.txtSQLHost.Size = New System.Drawing.Size(162, 21)
+        Me.txtSQLHost.TabIndex = 2
+        Me.txtSQLHost.Text = "127.0.0.1"
+        Me.txtSQLHost.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
-        'tboxmysqlport
+        'txtSQLPort
         '
-        Me.tboxmysqlport.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tboxmysqlport.Location = New System.Drawing.Point(118, 68)
-        Me.tboxmysqlport.Multiline = True
-        Me.tboxmysqlport.Name = "tboxmysqlport"
-        Me.tboxmysqlport.Size = New System.Drawing.Size(162, 21)
-        Me.tboxmysqlport.TabIndex = 3
-        Me.tboxmysqlport.Text = "3306"
-        Me.tboxmysqlport.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.txtSQLPort.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtSQLPort.Location = New System.Drawing.Point(118, 68)
+        Me.txtSQLPort.Multiline = True
+        Me.txtSQLPort.Name = "txtSQLPort"
+        Me.txtSQLPort.Size = New System.Drawing.Size(162, 21)
+        Me.txtSQLPort.TabIndex = 3
+        Me.txtSQLPort.Text = "3306"
+        Me.txtSQLPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
-        'tboxmysqlname
+        'txtSQLUser
         '
-        Me.tboxmysqlname.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tboxmysqlname.Location = New System.Drawing.Point(118, 108)
-        Me.tboxmysqlname.Multiline = True
-        Me.tboxmysqlname.Name = "tboxmysqlname"
-        Me.tboxmysqlname.Size = New System.Drawing.Size(162, 21)
-        Me.tboxmysqlname.TabIndex = 4
-        Me.tboxmysqlname.Text = "mangos"
-        Me.tboxmysqlname.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.txtSQLUser.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtSQLUser.Location = New System.Drawing.Point(118, 108)
+        Me.txtSQLUser.Multiline = True
+        Me.txtSQLUser.Name = "txtSQLUser"
+        Me.txtSQLUser.Size = New System.Drawing.Size(162, 21)
+        Me.txtSQLUser.TabIndex = 4
+        Me.txtSQLUser.Text = "mangos"
+        Me.txtSQLUser.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
-        'tboxmysqlpw
+        'txtSQLPassword
         '
-        Me.tboxmysqlpw.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tboxmysqlpw.Location = New System.Drawing.Point(118, 147)
-        Me.tboxmysqlpw.Multiline = True
-        Me.tboxmysqlpw.Name = "tboxmysqlpw"
-        Me.tboxmysqlpw.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.tboxmysqlpw.Size = New System.Drawing.Size(162, 21)
-        Me.tboxmysqlpw.TabIndex = 5
-        Me.tboxmysqlpw.Text = "mangos"
-        Me.tboxmysqlpw.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.txtSQLPassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtSQLPassword.Location = New System.Drawing.Point(118, 147)
+        Me.txtSQLPassword.Multiline = True
+        Me.txtSQLPassword.Name = "txtSQLPassword"
+        Me.txtSQLPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+        Me.txtSQLPassword.Size = New System.Drawing.Size(162, 21)
+        Me.txtSQLPassword.TabIndex = 5
+        Me.txtSQLPassword.Text = "mangos"
+        Me.txtSQLPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
-        'tboxmysqlwordldb
+        'txtSQLWorldDB
         '
-        Me.tboxmysqlwordldb.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tboxmysqlwordldb.Location = New System.Drawing.Point(118, 187)
-        Me.tboxmysqlwordldb.Multiline = True
-        Me.tboxmysqlwordldb.Name = "tboxmysqlwordldb"
-        Me.tboxmysqlwordldb.Size = New System.Drawing.Size(162, 21)
-        Me.tboxmysqlwordldb.TabIndex = 6
-        Me.tboxmysqlwordldb.Text = "mangos"
-        Me.tboxmysqlwordldb.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.txtSQLWorldDB.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtSQLWorldDB.Location = New System.Drawing.Point(118, 187)
+        Me.txtSQLWorldDB.Multiline = True
+        Me.txtSQLWorldDB.Name = "txtSQLWorldDB"
+        Me.txtSQLWorldDB.Size = New System.Drawing.Size(162, 21)
+        Me.txtSQLWorldDB.TabIndex = 6
+        Me.txtSQLWorldDB.Text = "mangos"
+        Me.txtSQLWorldDB.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label1
         '
@@ -183,16 +183,16 @@ Partial Class Form1
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.MySqlPort)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.tboxmysqlwordldb)
-        Me.Controls.Add(Me.tboxmysqlpw)
-        Me.Controls.Add(Me.tboxmysqlname)
-        Me.Controls.Add(Me.tboxmysqlport)
-        Me.Controls.Add(Me.tboxmysqlhost)
+        Me.Controls.Add(Me.txtSQLWorldDB)
+        Me.Controls.Add(Me.txtSQLPassword)
+        Me.Controls.Add(Me.txtSQLUser)
+        Me.Controls.Add(Me.txtSQLPort)
+        Me.Controls.Add(Me.txtSQLHost)
         Me.Controls.Add(Me.MySQLConnect)
         Me.Controls.Add(Me.PictureBox1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Form1"
-        Me.Text = "©2013 MaNGOS"
+        Me.Text = "n bv"
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -200,11 +200,11 @@ Partial Class Form1
     End Sub
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents MySQLConnect As System.Windows.Forms.Button
-    Friend WithEvents tboxmysqlhost As System.Windows.Forms.TextBox
-    Friend WithEvents tboxmysqlport As System.Windows.Forms.TextBox
-    Friend WithEvents tboxmysqlname As System.Windows.Forms.TextBox
-    Friend WithEvents tboxmysqlpw As System.Windows.Forms.TextBox
-    Friend WithEvents tboxmysqlwordldb As System.Windows.Forms.TextBox
+    Friend WithEvents txtSQLHost As System.Windows.Forms.TextBox
+    Friend WithEvents txtSQLPort As System.Windows.Forms.TextBox
+    Friend WithEvents txtSQLUser As System.Windows.Forms.TextBox
+    Friend WithEvents txtSQLPassword As System.Windows.Forms.TextBox
+    Friend WithEvents txtSQLWorldDB As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents MySqlPort As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label

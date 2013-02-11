@@ -52,6 +52,8 @@ Public Class frmMain
     'End Sub
 
     Private Sub btnTabPage_Click(sender As Object, e As EventArgs)
+        sender.enabled = False
+        Me.Cursor = System.Windows.Forms.Cursors.WaitCursor
         Dim TableName As String = sender.name 'btnReloadaccount_access
         TableName = TableName.Substring(9, TableName.Length - 9)
         Dim thisResult As New Framework.Database.SQLResult
@@ -64,16 +66,26 @@ Public Class frmMain
                 NewTab = Me.tabMain.Controls.Item(TableName)
                 TableName = "DataGridView" & TableName
                 Temp = NewTab.Controls.Item(TableName)
+                '                Temp.Visible = False
                 Temp.DataSource = thisResult
+                '              Application.DoEvents()
+                '               Temp.Visible = True
+                For TempCol As Integer = 0 To Temp.ColumnCount - 1
+                    Temp.Columns(TempCol).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+                Next
+                Temp.Columns(Temp.ColumnCount - 1).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+
             End If
         End If
+        Me.Cursor = System.Windows.Forms.Cursors.Default
+        sender.enabled = True
     End Sub
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim thisResult As New Framework.Database.SQLResult
         Dim npcflag As New Dictionary(Of String, Int32)
         '        npcflag.Add("npcflag", 0)
-        thisResult = DB.World.Select("SELECT table_name FROM information_schema.tables WHERE table_type = 'base table' AND table_schema='test'")
+        thisResult = DB.World.Select("SELECT table_name FROM information_schema.tables WHERE table_type = 'base table' AND table_schema='" & Form1.txtSQLWorldDB.Text & "'")
 
         If thisResult.Count <> 0 Then
             Dim tabName As String
@@ -97,6 +109,8 @@ Public Class frmMain
                 '
                 Dim DataGridViewTemp = New System.Windows.Forms.DataGridView()
                 DataGridViewTemp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+                DataGridViewTemp.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders
+                DataGridViewTemp.RowHeadersWidth = 100%
                 DataGridViewTemp.Location = New System.Drawing.Point(6, 35)
                 DataGridViewTemp.Name = "DataGridView" & tabName
                 DataGridViewTemp.Size = New System.Drawing.Size(886, 364)
@@ -105,6 +119,8 @@ Public Class frmMain
                 Me.tabMain.TabPages(tabName).Controls.Add(btnTemp)
                 Me.tabMain.TabPages(tabName).Controls.Add(DataGridViewTemp)
             Next
+        Else
+            MsgBox(thisResult.ErrorMsg)
         End If
 
         '        Me.tabMain.TabPages.Add("dddd" & Me.tabMain.TabPages.Count)

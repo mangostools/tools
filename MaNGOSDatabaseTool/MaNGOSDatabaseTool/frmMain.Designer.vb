@@ -38,10 +38,10 @@ Partial Class frmMain
         '
         'tabMain
         '
-        Me.tabMain.Location = New System.Drawing.Point(12, 29)
+        Me.tabMain.Location = New System.Drawing.Point(12, 52)
         Me.tabMain.Name = "tabMain"
         Me.tabMain.SelectedIndex = 0
-        Me.tabMain.Size = New System.Drawing.Size(906, 431)
+        Me.tabMain.Size = New System.Drawing.Size(906, 408)
         Me.tabMain.TabIndex = 3
         '
         'Button1
@@ -52,6 +52,7 @@ Partial Class frmMain
         Me.Button1.TabIndex = 4
         Me.Button1.Text = "Button1"
         Me.Button1.UseVisualStyleBackColor = True
+        Me.Button1.Visible = False
         '
         'frmMain
         '
