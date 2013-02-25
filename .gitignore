@@ -1,0 +1,12 @@
+# Build Folders (you can keep bin if you'd like, to store dlls and pdbs)
+Build
+bin
+obj
+*.suo
+*.user
+*.sdf
+*.ipch
+*.tmp
+
+# mstest test results
+TestResults
