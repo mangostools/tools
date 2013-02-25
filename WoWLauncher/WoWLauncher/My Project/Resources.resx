@@ -121,14 +121,26 @@
   <data name="options2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\options2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="options3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\options3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="play2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\play2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="play3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\play3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ptr2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ptr2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ptr3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ptr3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="support2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\support2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="support3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\support3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="top" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\top.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

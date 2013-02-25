@@ -67,4 +67,20 @@
         PictureBox4.Parent = Me
         PictureBox4.BackgroundImage = Nothing
     End Sub
+
+    Private Sub PictureBox1_MouseClick(sender As System.Object, e As System.Windows.Forms.MouseEventArgs) Handles PictureBox1.MouseClick
+        PictureBox1.BackgroundImage = My.Resources.play3
+    End Sub
+
+    Private Sub PictureBox2_MouseClick(sender As System.Object, e As System.Windows.Forms.MouseEventArgs) Handles PictureBox2.MouseClick
+        PictureBox2.BackgroundImage = My.Resources.ptr3
+    End Sub
+
+    Private Sub PictureBox3_MouseClick(sender As System.Object, e As System.Windows.Forms.MouseEventArgs) Handles PictureBox3.MouseClick
+        PictureBox3.BackgroundImage = My.Resources.support3
+    End Sub
+
+    Private Sub PictureBox4_MouseClick(sender As System.Object, e As System.Windows.Forms.MouseEventArgs) Handles PictureBox4.MouseClick
+        PictureBox4.BackgroundImage = My.Resources.options3
+    End Sub
 End Class
