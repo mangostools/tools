@@ -1,4 +1,4 @@
-﻿Public Class Form1
+﻿Public Class WoWLauncherMain
     Dim IsDraggingForm As Boolean = False
     Private MousePos As New System.Drawing.Point(0, 0)
 
