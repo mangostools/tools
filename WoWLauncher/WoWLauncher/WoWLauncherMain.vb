@@ -32,10 +32,6 @@
         PictureBox4.BackColor = Color.Transparent
     End Sub
 
-    Private Sub WebBrowser1_DocumentCompleted(sender As System.Object, e As System.Windows.Forms.WebBrowserDocumentCompletedEventArgs) Handles WebBrowser1.DocumentCompleted
-        WebBrowser1.ScrollBarsEnabled = False
-    End Sub
-
     Private Sub PictureBox1_MouseEnter(sender As System.Object, e As System.EventArgs) Handles PictureBox1.MouseEnter
         PictureBox1.BackgroundImage = My.Resources.play2
     End Sub

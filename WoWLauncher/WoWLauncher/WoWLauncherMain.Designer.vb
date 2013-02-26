@@ -29,7 +29,6 @@ Partial Class WoWLauncherMain
         Me.PictureBox3 = New System.Windows.Forms.PictureBox()
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
-        Me.WebBrowser1 = New System.Windows.Forms.WebBrowser()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,34 +78,22 @@ Partial Class WoWLauncherMain
         Me.NotifyIcon1.Text = "WoWLauncher"
         Me.NotifyIcon1.Visible = True
         '
-        'WebBrowser1
-        '
-        Me.WebBrowser1.Location = New System.Drawing.Point(0, 0)
-        Me.WebBrowser1.Name = "WebBrowser1"
-        Me.WebBrowser1.Size = New System.Drawing.Size(644, 336)
-        Me.WebBrowser1.TabIndex = 4
-        Me.WebBrowser1.Url = New System.Uri("http://project-zero.eu/WoWLauncher/", System.UriKind.Absolute)
-        Me.WebBrowser1.Visible = False
-        Me.WebBrowser1.WebBrowserShortcutsEnabled = False
-        '
         'WoWLauncherMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = Global.WoWLauncher.My.Resources.Resources.top
-        Me.ClientSize = New System.Drawing.Size(640, 402)
-        Me.Controls.Add(Me.WebBrowser1)
+        Me.ClientSize = New System.Drawing.Size(640, 405)
         Me.Controls.Add(Me.PictureBox4)
         Me.Controls.Add(Me.PictureBox3)
         Me.Controls.Add(Me.PictureBox2)
         Me.Controls.Add(Me.PictureBox1)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.MaximumSize = New System.Drawing.Size(640, 402)
-        Me.MinimumSize = New System.Drawing.Size(640, 402)
+        Me.MaximumSize = New System.Drawing.Size(656, 443)
+        Me.MinimumSize = New System.Drawing.Size(656, 443)
         Me.Name = "WoWLauncherMain"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Form1"
+        Me.Text = "World of Warcraft v1.12.1.5875"
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -119,6 +106,5 @@ Partial Class WoWLauncherMain
     Friend WithEvents PictureBox3 As System.Windows.Forms.PictureBox
     Friend WithEvents PictureBox4 As System.Windows.Forms.PictureBox
     Friend WithEvents NotifyIcon1 As System.Windows.Forms.NotifyIcon
-    Friend WithEvents WebBrowser1 As System.Windows.Forms.WebBrowser
 
 End Class
