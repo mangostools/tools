@@ -55,6 +55,8 @@ Partial Class WoWLauncherOptions
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MaximumSize = New System.Drawing.Size(356, 350)
+        Me.MinimumSize = New System.Drawing.Size(356, 350)
         Me.Name = "WoWLauncherOptions"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Options"
