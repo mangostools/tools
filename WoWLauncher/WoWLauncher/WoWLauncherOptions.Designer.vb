@@ -28,6 +28,11 @@ Partial Class WoWLauncherOptions
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
+        Me.RadioButton3 = New System.Windows.Forms.RadioButton()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'Button1
@@ -53,7 +58,7 @@ Partial Class WoWLauncherOptions
         'TextBox1
         '
         Me.TextBox1.Enabled = False
-        Me.TextBox1.Location = New System.Drawing.Point(87, 235)
+        Me.TextBox1.Location = New System.Drawing.Point(87, 214)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(160, 20)
         Me.TextBox1.TabIndex = 2
@@ -62,7 +67,7 @@ Partial Class WoWLauncherOptions
         'RadioButton1
         '
         Me.RadioButton1.AutoSize = True
-        Me.RadioButton1.Location = New System.Drawing.Point(64, 212)
+        Me.RadioButton1.Location = New System.Drawing.Point(64, 178)
         Me.RadioButton1.Name = "RadioButton1"
         Me.RadioButton1.Size = New System.Drawing.Size(107, 17)
         Me.RadioButton1.TabIndex = 3
@@ -78,11 +83,65 @@ Partial Class WoWLauncherOptions
         Me.Label1.Size = New System.Drawing.Size(0, 13)
         Me.Label1.TabIndex = 4
         '
+        'RadioButton2
+        '
+        Me.RadioButton2.AutoSize = True
+        Me.RadioButton2.Location = New System.Drawing.Point(64, 114)
+        Me.RadioButton2.Name = "RadioButton2"
+        Me.RadioButton2.Size = New System.Drawing.Size(117, 17)
+        Me.RadioButton2.TabIndex = 5
+        Me.RadioButton2.TabStop = True
+        Me.RadioButton2.Text = "Delete WDB Folder"
+        Me.RadioButton2.UseVisualStyleBackColor = True
+        '
+        'RadioButton3
+        '
+        Me.RadioButton3.AutoSize = True
+        Me.RadioButton3.Location = New System.Drawing.Point(64, 50)
+        Me.RadioButton3.Name = "RadioButton3"
+        Me.RadioButton3.Size = New System.Drawing.Size(115, 17)
+        Me.RadioButton3.TabIndex = 6
+        Me.RadioButton3.TabStop = True
+        Me.RadioButton3.Text = "Delete WTF Folder"
+        Me.RadioButton3.UseVisualStyleBackColor = True
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(87, 70)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(132, 13)
+        Me.Label2.TabIndex = 7
+        Me.Label2.Text = "Text Missing Coming Soon"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(87, 134)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(132, 13)
+        Me.Label3.TabIndex = 8
+        Me.Label3.Text = "Text Missing Coming Soon"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(87, 198)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(132, 13)
+        Me.Label4.TabIndex = 9
+        Me.Label4.Text = "Text Missing Coming Soon"
+        '
         'WoWLauncherOptions
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(340, 312)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.RadioButton3)
+        Me.Controls.Add(Me.RadioButton2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.RadioButton1)
         Me.Controls.Add(Me.TextBox1)
@@ -103,4 +162,9 @@ Partial Class WoWLauncherOptions
     Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
     Friend WithEvents RadioButton1 As System.Windows.Forms.RadioButton
     Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents RadioButton2 As System.Windows.Forms.RadioButton
+    Friend WithEvents RadioButton3 As System.Windows.Forms.RadioButton
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents Label4 As System.Windows.Forms.Label
 End Class

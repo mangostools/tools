@@ -64,5 +64,4 @@
         PictureBox4.BackgroundImage = My.Resources.options3
         WoWLauncherOptions.Visible = True
     End Sub
-
 End Class
