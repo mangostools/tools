@@ -62,7 +62,7 @@ Partial Class WoWLauncherOptions
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(160, 20)
         Me.TextBox1.TabIndex = 2
-        Me.TextBox1.Text = " logon.project-zero.eu"
+        Me.TextBox1.Text = "logon.project-zero.eu"
         '
         'RadioButton1
         '

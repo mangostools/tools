@@ -7,7 +7,7 @@
     Private Sub Button1_Click(sender As System.Object, e As System.EventArgs) Handles Button1.Click
         If RadioButton1.Checked Then
             Dim lines() As String = IO.File.ReadAllLines("realmlist.wtf")
-            lines(0) = "set realmlist" & TextBox1.Text
+            lines(0) = "set realmlist " & TextBox1.Text
             IO.File.WriteAllLines("realmlist.wtf", lines)
 
         ElseIf RadioButton2.Checked Then
