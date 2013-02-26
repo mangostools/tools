@@ -30,6 +30,7 @@
         PictureBox2.BackColor = Color.Transparent
         PictureBox3.BackColor = Color.Transparent
         PictureBox4.BackColor = Color.Transparent
+        WoWLauncherOptions.Visible = False
     End Sub
 
     Private Sub PictureBox1_MouseEnter(sender As System.Object, e As System.EventArgs) Handles PictureBox1.MouseEnter
@@ -82,6 +83,7 @@
 
     Private Sub PictureBox4_MouseClick(sender As System.Object, e As System.Windows.Forms.MouseEventArgs) Handles PictureBox4.MouseClick
         PictureBox4.BackgroundImage = My.Resources.options3
+        WoWLauncherOptions.Visible = True
     End Sub
 
 End Class

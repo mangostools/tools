@@ -97,6 +97,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="WoWLauncherOptions.Designer.vb">
+      <DependentUpon>WoWLauncherOptions.vb</DependentUpon>
+    </Compile>
+    <Compile Include="WoWLauncherOptions.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="WoWLauncherMain.resx">
@@ -107,6 +113,9 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WoWLauncherOptions.resx">
+      <DependentUpon>WoWLauncherOptions.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
