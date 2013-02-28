@@ -6,6 +6,8 @@ Imports System.IO
 'Imports StormLibSharp
 
 Public Class Form1
+    Public Locales As String = "enGB enUS deDE esES frFR koKR zhCN zhTW enCN enTW esMX ruRU"
+
     ''' <summary>
     ''' Starts the DBC Extraction process
     ''' </summary>
@@ -98,6 +100,7 @@ Public Class Form1
     ''' <remarks></remarks>
     Private Sub ReadFolders(ByRef StartFolder As System.IO.DirectoryInfo, ByRef FolderList As Collection)
         For Each thisFolder As System.IO.DirectoryInfo In StartFolder.GetDirectories()
+            'Skip the cache and updates folders if they exist
             If thisFolder.FullName.ToLower.Contains("cache") = False And thisFolder.FullName.ToLower.Contains("updates") = False Then
                 FolderList.Add(thisFolder, thisFolder.FullName)
                 ReadFolders(thisFolder, FolderList)
@@ -253,17 +256,6 @@ Public Class Form1
                             My.Computer.FileSystem.DeleteFile(DestinationFolder & "\" & thisFile.FileName)
                         End If
                         Archive.ExportFile(thisFile.FileName, DestinationFolder & "\" & thisFile.FileName)
-
-                        'If My.Computer.FileSystem.FileExists(DestinationFolder & "\" & thisFile.FileName & "_" & MPQFilename.Substring(MPQFilename.LastIndexOf("\") + 1, MPQFilename.Length - (MPQFilename.LastIndexOf("\") + 1) - 4)) = True Then
-                        '    My.Computer.FileSystem.DeleteFile(DestinationFolder & "\" & thisFile.FileName & "_" & MPQFilename.Substring(MPQFilename.LastIndexOf("\") + 1, MPQFilename.Length - (MPQFilename.LastIndexOf("\") + 1) - 4))
-                        'End If
-                        'Archive.ExportFile(thisFile.FileName, DestinationFolder & "\" & thisFile.FileName & "_" & MPQFilename.Substring(MPQFilename.LastIndexOf("\") + 1, MPQFilename.Length - (MPQFilename.LastIndexOf("\") + 1) - 4))
-
-                        ' Create a file and write the byte data to a file.
-                        '                Dim oFileStream As System.IO.FileStream
-                        'oFileStream = New System.IO.FileStream(DestinationFolder & "\" & thisFile.FileName, System.IO.FileMode.Create)
-                        'oFileStream.Write(inbyteData, 0, inbyteData.Length)
-                        'oFileStream.Close()
                     ElseIf intFileType = 3 Then   'PTCH File
                         'TODO: The Patch files need to be handled correctly, currently we are just saving them as .patch
 
@@ -278,10 +270,6 @@ Public Class Form1
                             End If
                         End If
 
-                        'If inbyteData.Length > 20 Then
-                        '    Archive.ExportFile(thisFile.FileName, inbyteData)
-                        'End If
-
                         'If the file already exists, delete it and recreate it
                         If My.Computer.FileSystem.FileExists(DestinationFolder & "\" & thisFile.FileName & ".patch") = False Then
                             Archive.ExportFile(thisFile.FileName, DestinationFolder & "\" & thisFile.FileName & ".patch")
@@ -289,11 +277,61 @@ Public Class Form1
                             Archive.ExportFile(thisFile.FileName, DestinationFolder & "\" & thisFile.FileName & "_" & MPQFilename.Substring(MPQFilename.LastIndexOf("\") + 1, MPQFilename.Length - (MPQFilename.LastIndexOf("\") + 1) - 4) & ".patch")
                         End If
 
-                        ' Create a file and write the byte data to a file.
-                        '                Dim oFileStream As System.IO.FileStream
-                        'oFileStream = New System.IO.FileStream(DestinationFolder & "\" & thisFile.FileName, System.IO.FileMode.Create)
-                        'oFileStream.Write(inbyteData, 0, inbyteData.Length)
-                        'oFileStream.Close()
+                        Dim PatchFile() As Byte = File.ReadAllBytes(DestinationFolder & "\" & thisFile.FileName & ".patch")
+                        Dim MainFile() As Byte = File.ReadAllBytes(DestinationFolder & "\" & thisFile.FileName)
+                        Dim OutPutFile() As Byte = Nothing
+
+                        Using reader As New BinaryReader(File.Open(DestinationFolder & "\" & thisFile.FileName & ".patch", FileMode.Open))
+                            ' Loop through length of file.
+                            Dim pos As Integer = 0
+                            Dim length As Integer = reader.BaseStream.Length
+                            Dim PatchHeader As New TPatchHeader
+                            With PatchHeader
+                                'Patch Header
+                                .dwSignature = reader.ReadChars(4)          'PTCH
+                                .dwSizeOfPatchData = reader.ReadUInt32      'Size of the entire patch (decompressed)
+                                .dwSizeBeforePatch = reader.ReadUInt32      'Size of the file before patch
+                                .dwSizeAfterPatch = reader.ReadUInt32       'Size of the file after patch
+
+                                'MD5 Block
+                                .dwMD5 = reader.ReadChars(4)                'MD5_'
+                                .dwMd5BlockSize = reader.ReadUInt32
+
+                                .md5_before_patch = reader.ReadBytes(16)    'MD5 of the original (unpached) file
+                                .md5_after_patch = reader.ReadBytes(16)     'MD5 of the patched file
+
+                                'XFRM block 
+                                .dwXFRM = reader.ReadChars(4)               'XFRM'
+                                .dwXfrmBlockSize = reader.ReadUInt32        'Size of the XFRM block, includes XFRM header and patch data
+                                .dwPatchType = reader.ReadChars(4)          'BSD0, BSDP, COPY, COUP, CPOG
+                            End With
+
+
+                            '###############################################################################
+                            '## TODO: I am happy with the data and positioning above                      ##
+                            '###############################################################################
+                            '##       The Signature below is correct, just need to calculate the values correctly
+                            Select Case PatchHeader.dwPatchType
+                                Case "BSD0"
+                                    Dim Dummy1() As Byte = reader.ReadBytes(5)
+                                    Dim BSDiffData As New tPatchBSDIFF40
+                                    With BSDiffData
+                                        .Signature = reader.ReadChars(8)                'BSDIFF40
+                                        '.CTRLBlockSize = reader.ReadUInt64              '8 Bytes
+                                        '.DATABlockSize = reader.ReadUInt64              '8 Bytes
+                                        '.AfterPatchSize = reader.ReadUInt64             '8 Bytes
+                                        '.CTRLBlock = reader.ReadBytes(.CTRLBlockSize)
+                                        '.DATABlock = reader.ReadBytes(.DATABlockSize)
+
+                                    End With
+
+                                Case Else
+                                    Stop
+                            End Select
+                        End Using
+
+
+
                     Else    'File is something else
                         'As I am matching on *.db* rather than *.dbc or *.db2, one .db file is found as well - so this check ignores it
                         If thisFile.FileName.EndsWith(".db") = False Then
@@ -307,6 +345,39 @@ Public Class Form1
             MessageBox.Show(ex.Message)
         End Try
     End Sub
+
+    ' Header for PTCH files 
+    Structure TPatchHeader
+        '//-- PATCH header -----------------------------------
+        Dim dwSignature As String                  'PTCH'
+        Dim dwSizeOfPatchData As UInteger            'Size of the entire patch (decompressed)
+        Dim dwSizeBeforePatch As UInteger            'Size of the file before patch
+        Dim dwSizeAfterPatch As UInteger             'Size of file after patch
+
+        '//-- MD5 block --------------------------------------
+        Dim dwMD5 As String                        'MD5_'
+        Dim dwMd5BlockSize As UInteger               'Size of the MD5 block, including the signature and size itself
+        Dim md5_before_patch() As Byte      'MD5 of the original (unpached) file
+        Dim md5_after_patch() As Byte        'MD5 of the patched file
+        'md5_before_patch(0x10) as byte      'MD5 of the original (unpached) file
+        'md5_after_patch(0x10) as byte        'MD5 of the patched file
+
+        '//-- XFRM block -------------------------------------
+        Dim dwXFRM As String                      'XFRM'
+        Dim dwXfrmBlockSize As UInteger              'Size of the XFRM block, includes XFRM header and patch data
+        Dim dwPatchType As String                 'Type of patch ('BSD0' or 'COPY')
+
+    End Structure
+
+    Structure tPatchBSDIFF40
+        Dim Signature As String         'BSDIFF40'
+        Dim CTRLBlockSize As UInteger     '8 Bytes
+        Dim DATABlockSize As UInteger     '8 Bytes
+        Dim AfterPatchSize As UInteger    '8 Bytes
+        Dim CTRLBlock() As Byte
+        Dim DATABlock() As Byte
+        Dim EXTRABlock() As Byte
+    End Structure
 
     ''' <summary>
     ''' Generic Extraction Routine
@@ -348,70 +419,83 @@ Public Class Form1
         End Try
     End Sub
 
-    'Private Shared Function BZip2Decompress(ByVal Data As Stream, ByVal ExpectedLength As Integer) As Byte()
-    '    Dim output As New MemoryStream
-    '    BZip2.Decompress(Data, output)
-    '    Return output.ToArray
-    'End Function
-    'Private Shared Function DecompressMulti(ByVal Input As Byte(), ByVal OutputLength As Integer) As Byte()
-    '    Dim sinput As Stream = New MemoryStream(Input)
-    '    Dim comptype As Byte = sinput.ReadByte
 
-    '    'BZip2
-    '    If ((comptype And 16) <> 0) Then
-    '        Dim result As Byte() = BZip2Decompress(sinput, OutputLength)
-    '        comptype = CByte((comptype And 239))
-    '        If (comptype = 0) Then
-    '            Return result
-    '        End If
-    '        sinput = New MemoryStream(result)
-    '    End If
+    '### TODO: Need to convert this to vb.net
+    'http://msdn.microsoft.com/en-us/library/aa383751%28v=vs.85%29.aspx
 
-    '    ''PKLib
-    '    'If ((comptype And 8) <> 0) Then
-    '    '    Dim result As Byte() = PKDecompress(sinput, OutputLength)
-    '    '    comptype = CByte((comptype And 247))
-    '    '    If (comptype = 0) Then
-    '    '        Return result
-    '    '    End If
-    '    '    sinput = New MemoryStream(result)
-    '    'End If
+    'void Decompress_RLE(LPBYTE pbDecompressed, DWORD cbDecompressed, LPBYTE pbCompressed, DWORD cbCompressed)
+    '{
+    '    LPBYTE pbDecompressedEnd = pbDecompressed + cbDecompressed;
+    '    LPBYTE pbCompressedEnd = pbCompressed + cbCompressed;
+    '    BYTE RepeatCount; 
+    '    BYTE OneByte;
 
-    '    ''ZLib
-    '    'If ((comptype And 2) <> 0) Then
-    '    '    Dim result As Byte() = ZlibDecompress(sinput, OutputLength)
-    '    '    comptype = CByte((comptype And 253))
-    '    '    If (comptype = 0) Then
-    '    '        Return result
-    '    '    End If
-    '    '    sinput = New MemoryStream(result)
-    '    'End If
+    '    // Cut the initial DWORD from the compressed chunk
+    '    pbCompressed += sizeof(DWORD);
+    '    cbCompressed -= sizeof(DWORD);
 
-    '    If ((comptype And 1) <> 0) Then
-    '        'Dim result As Byte() = MpqHuffman.Decompress(sinput)
-    '        'comptype = CByte((comptype And 254))
-    '        'If (comptype = 0) Then
-    '        '    Return result
-    '        'End If
-    '        'sinput = New MemoryStream(result)
-    '    End If
-    '    If ((comptype And 128) <> 0) Then
-    '        'Dim result As Byte() = MpqWavCompression.Decompress(sinput, 2)
-    '        'comptype = CByte((comptype And 127))
-    '        'If (comptype = 0) Then
-    '        '    Return result
-    '        'End If
-    '        'sinput = New MemoryStream(result)
-    '    End If
-    '    If ((comptype And 64) <> 0) Then
-    '        'Dim result As Byte() = MpqWavCompression.Decompress(sinput, 1)
-    '        'comptype = CByte((comptype And 191))
-    '        'If (comptype = 0) Then
-    '        '    Return result
-    '        'End If
-    '        'sinput = New MemoryStream(result)
-    '    End If
+    '    // Pre-fill decompressed buffer with zeros
+    '    memset(pbDecompressed, 0, cbDecompressed);
 
-    '    Throw New Exception(String.Format("Unhandled compression flags: 0x{0:X}", comptype))
-    'End Function
+    '    // Unpack
+    'While (pbCompressed < pbCompressedEnd)
+    '    {
+    '        OneByte = *pbCompressed++;
+
+    '        // Is it a repetition byte ?
+    '        if(OneByte & 0x80)
+    '        {
+    '            RepeatCount = (OneByte & 0x7F) + 1;
+    '            for(BYTE i = 0; i < RepeatCount; i++)
+    '            {
+    '                if(pbDecompressed == pbDecompressedEnd || pbCompressed == pbCompressedEnd)
+    '                    break;
+
+    '                *pbDecompressed++ = *pbCompressed++;
+    '            }
+    '        }
+    '            Else
+    '        {
+    '            pbDecompressed += (OneByte + 1);
+    '        }
+    '    }
+    '}
+
+
+    Private Sub Decompress_RLE(ByRef pbDecompressed As Object, ByRef cbDecompressed As UInteger, ByRef pbCompressed As Object, ByRef cbCompressed As UInteger)
+        'Dim pbDecompressedEnd As LPBYTE = pbDecompressed + cbDecompressed
+        'Dim pbCompressedEnd As LPBYTE = pbCompressed + cbCompressed
+        Dim RepeatCount As [Byte]
+        Dim OneByte As [Byte]
+
+
+        ' Cut the initial DWORD from the compressed chunk
+        'pbCompressed += sizeof(Of UInteger)()
+        'cbCompressed -= sizeof(Of UInteger)()
+
+        ' Pre-fill decompressed buffer with zeros
+        'memset(pbDecompressed, 0, cbDecompressed)
+
+        ' Unpack
+        'While pbCompressed < pbCompressedEnd
+        'OneByte = *System.Math.Max(System.Threading.Interlocked.Increment(pbCompressed),pbCompressed - 1)
+
+        '    ' Is it a repetition byte ?
+        '    If OneByte And &H80 Then
+        '        RepeatCount = (OneByte And &H7F) + 1
+        '        Dim i As [Byte] = 0
+        '        While i < RepeatCount
+        '            If pbDecompressed = pbDecompressedEnd OrElse pbCompressed = pbCompressedEnd Then
+        '                Exit While
+        '            End If
+
+        '        *System.Math.Max(System.Threading.Interlocked.Increment(pbDecompressed),pbDecompressed - 1) = *System.Math.Max(System.Threading.Interlocked.Increment(pbCompressed),pbCompressed - 1)
+        '            System.Math.Max(System.Threading.Interlocked.Increment(i), i - 1)
+        '        End While
+        '    Else
+        '        pbDecompressed += (OneByte + 1)
+        '    End If
+        'End While
+    End Sub
+
 End Class
