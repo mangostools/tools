@@ -2,14 +2,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MangosExtractor", "MangosExtractor\MangosExtractor.vbproj", "{0E2DA065-74DC-404A-8238-25A9F4FC9996}"
-	ProjectSection(ProjectDependencies) = postProject
-		{476E6B36-F10A-4157-A25E-DD66E6767207} = {476E6B36-F10A-4157-A25E-DD66E6767207}
-		{CB385198-50B1-4CF4-883B-11F042DED6AA} = {CB385198-50B1-4CF4-883B-11F042DED6AA}
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MpqLib", "MpqLib\MpqLib.vcxproj", "{476E6B36-F10A-4157-A25E-DD66E6767207}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StormLib_dll", "StormLib\StormLib_dll.vcxproj", "{CB385198-50B1-4CF4-883B-11F042DED6AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,32 +27,6 @@ Global
 		{0E2DA065-74DC-404A-8238-25A9F4FC9996}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{0E2DA065-74DC-404A-8238-25A9F4FC9996}.Release|Win32.ActiveCfg = Release|Any CPU
 		{0E2DA065-74DC-404A-8238-25A9F4FC9996}.Release|x64.ActiveCfg = Release|Any CPU
-		{476E6B36-F10A-4157-A25E-DD66E6767207}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{476E6B36-F10A-4157-A25E-DD66E6767207}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
-		{476E6B36-F10A-4157-A25E-DD66E6767207}.Debug|Mixed Platforms.Build.0 = Debug|Win32
-		{476E6B36-F10A-4157-A25E-DD66E6767207}.Debug|Win32.ActiveCfg = Debug|Win32
-		{476E6B36-F10A-4157-A25E-DD66E6767207}.Debug|Win32.Build.0 = Debug|Win32
-		{476E6B36-F10A-4157-A25E-DD66E6767207}.Debug|x64.ActiveCfg = Debug|Win32
-		{476E6B36-F10A-4157-A25E-DD66E6767207}.Release|Any CPU.ActiveCfg = Release|Win32
-		{476E6B36-F10A-4157-A25E-DD66E6767207}.Release|Mixed Platforms.ActiveCfg = Release|Win32
-		{476E6B36-F10A-4157-A25E-DD66E6767207}.Release|Mixed Platforms.Build.0 = Release|Win32
-		{476E6B36-F10A-4157-A25E-DD66E6767207}.Release|Win32.ActiveCfg = Release|Win32
-		{476E6B36-F10A-4157-A25E-DD66E6767207}.Release|Win32.Build.0 = Release|Win32
-		{476E6B36-F10A-4157-A25E-DD66E6767207}.Release|x64.ActiveCfg = Release|Win32
-		{CB385198-50B1-4CF4-883B-11F042DED6AA}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{CB385198-50B1-4CF4-883B-11F042DED6AA}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
-		{CB385198-50B1-4CF4-883B-11F042DED6AA}.Debug|Mixed Platforms.Build.0 = Debug|Win32
-		{CB385198-50B1-4CF4-883B-11F042DED6AA}.Debug|Win32.ActiveCfg = Debug|Win32
-		{CB385198-50B1-4CF4-883B-11F042DED6AA}.Debug|Win32.Build.0 = Debug|Win32
-		{CB385198-50B1-4CF4-883B-11F042DED6AA}.Debug|x64.ActiveCfg = Debug|x64
-		{CB385198-50B1-4CF4-883B-11F042DED6AA}.Debug|x64.Build.0 = Debug|x64
-		{CB385198-50B1-4CF4-883B-11F042DED6AA}.Release|Any CPU.ActiveCfg = Release|Win32
-		{CB385198-50B1-4CF4-883B-11F042DED6AA}.Release|Mixed Platforms.ActiveCfg = Release|Win32
-		{CB385198-50B1-4CF4-883B-11F042DED6AA}.Release|Mixed Platforms.Build.0 = Release|Win32
-		{CB385198-50B1-4CF4-883B-11F042DED6AA}.Release|Win32.ActiveCfg = Release|Win32
-		{CB385198-50B1-4CF4-883B-11F042DED6AA}.Release|Win32.Build.0 = Release|Win32
-		{CB385198-50B1-4CF4-883B-11F042DED6AA}.Release|x64.ActiveCfg = Release|x64
-		{CB385198-50B1-4CF4-883B-11F042DED6AA}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
