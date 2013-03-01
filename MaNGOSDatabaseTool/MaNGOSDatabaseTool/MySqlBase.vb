@@ -108,8 +108,8 @@ Namespace Framework.Database
                 Try
                     Dim mParams As New List(Of MySqlParameter)(args.Count)
 
-                    For Each a As Object In args
-                        mParams.Add(New MySqlParameter(a.key.ToString(), a.value))
+                    For Each a As KeyValuePair(Of String, Int32) In args
+                        mParams.Add(New MySqlParameter(a.Key.ToString(), a.Value))
                     Next
 
                     sqlCommand.Parameters.AddRange(mParams.ToArray())
@@ -154,9 +154,12 @@ Namespace Framework.Database
 
                     Using SqlData = sqlCommand.ExecuteReader(CommandBehavior.[Default])
                         Using retData = New SQLResult()
-                            retData.Load(SqlData)
-                            retData.Count = retData.Rows.Count
-
+                            Try
+                                retData.Load(SqlData)
+                                retData.Count = retData.Rows.Count
+                            Catch ex As Exception
+                                retData.ErrorMsg = ex.Message
+                            End Try
                             Return retData
                         End Using
                     End Using

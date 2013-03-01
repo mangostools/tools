@@ -28,6 +28,8 @@ Partial Class MaNGOSExtractor
         Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.BtnQuit = New System.Windows.Forms.Button()
+        Me.txtOutputFolder = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'btnStartDBC
@@ -59,7 +61,7 @@ Partial Class MaNGOSExtractor
         'ListBox1
         '
         Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.Location = New System.Drawing.Point(102, 32)
+        Me.ListBox1.Location = New System.Drawing.Point(102, 58)
         Me.ListBox1.Name = "ListBox1"
         Me.ListBox1.Size = New System.Drawing.Size(264, 147)
         Me.ListBox1.Sorted = True
@@ -68,7 +70,7 @@ Partial Class MaNGOSExtractor
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(15, 32)
+        Me.Label2.Location = New System.Drawing.Point(12, 58)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(81, 13)
         Me.Label2.TabIndex = 5
@@ -83,11 +85,30 @@ Partial Class MaNGOSExtractor
         Me.BtnQuit.Text = "E&xit"
         Me.BtnQuit.UseVisualStyleBackColor = True
         '
+        'txtOutputFolder
+        '
+        Me.txtOutputFolder.Location = New System.Drawing.Point(102, 32)
+        Me.txtOutputFolder.Name = "txtOutputFolder"
+        Me.txtOutputFolder.Size = New System.Drawing.Size(264, 20)
+        Me.txtOutputFolder.TabIndex = 8
+        Me.txtOutputFolder.Text = "W:\World of Warcraft\Extracted"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(25, 35)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(71, 13)
+        Me.Label3.TabIndex = 7
+        Me.Label3.Text = "Output Folder"
+        '
         'MaNGOSExtractor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(379, 185)
+        Me.ClientSize = New System.Drawing.Size(379, 211)
+        Me.Controls.Add(Me.txtOutputFolder)
+        Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.BtnQuit)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.ListBox1)
@@ -110,5 +131,7 @@ Partial Class MaNGOSExtractor
     Friend WithEvents ListBox1 As System.Windows.Forms.ListBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents BtnQuit As System.Windows.Forms.Button
+    Friend WithEvents txtOutputFolder As System.Windows.Forms.TextBox
+    Friend WithEvents Label3 As System.Windows.Forms.Label
 
 End Class
