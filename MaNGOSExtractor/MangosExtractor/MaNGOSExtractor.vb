@@ -5,7 +5,7 @@ Imports System.IO
 'Imports ICSharpCode.SharpZipLib
 'Imports StormLibSharp
 
-Public Class Form1
+Public Class MaNGOSExtractor
     Public Locales As String = "enGB enUS deDE esES frFR koKR zhCN zhTW enCN enTW esMX ruRU"
 
     ''' <summary>
@@ -99,13 +99,25 @@ Public Class Form1
     ''' <param name="FolderList"></param>
     ''' <remarks></remarks>
     Private Sub ReadFolders(ByRef StartFolder As System.IO.DirectoryInfo, ByRef FolderList As Collection)
-        For Each thisFolder As System.IO.DirectoryInfo In StartFolder.GetDirectories()
-            'Skip the cache and updates folders if they exist
-            If thisFolder.FullName.ToLower.Contains("cache") = False And thisFolder.FullName.ToLower.Contains("updates") = False Then
-                FolderList.Add(thisFolder, thisFolder.FullName)
-                ReadFolders(thisFolder, FolderList)
-            End If
-        Next
+        If System.IO.Directory.Exists(StartFolder.FullName) = True Then
+            Try
+                For Each thisFolder As System.IO.DirectoryInfo In StartFolder.GetDirectories()
+                    Try
+                        'Skip the cache and updates folders if they exist
+                        If thisFolder.FullName.ToLower.Contains("cache") = False And thisFolder.FullName.ToLower.Contains("updates") = False Then
+                            FolderList.Add(thisFolder, thisFolder.FullName)
+                            ReadFolders(thisFolder, FolderList)
+                        End If
+                    Catch ex As Exception
+                        MessageBox.Show("Error reading folder '" & thisFolder.FullName & "'")
+                    End Try
+                Next
+            Catch ex As Exception
+                MessageBox.Show("Error reading folder '" & StartFolder.FullName & "'")
+            End Try
+        Else
+            MessageBox.Show("Warcraft folder '" & StartFolder.FullName & "' can not be located")
+        End If
     End Sub
 
     ''' <summary>
@@ -462,40 +474,49 @@ Public Class Form1
     '}
 
 
-    Private Sub Decompress_RLE(ByRef pbDecompressed As Object, ByRef cbDecompressed As UInteger, ByRef pbCompressed As Object, ByRef cbCompressed As UInteger)
-        'Dim pbDecompressedEnd As LPBYTE = pbDecompressed + cbDecompressed
-        'Dim pbCompressedEnd As LPBYTE = pbCompressed + cbCompressed
-        Dim RepeatCount As [Byte]
-        Dim OneByte As [Byte]
-
+    Private Sub Decompress_RLE(ByRef pbDecompressed As Byte, ByVal cbDecompressed As UInteger, ByRef pbCompressed As Byte, ByVal cbCompressed As UInteger)
+        'TODO: VB does not have an equivalent for pointers to value types:
+        'ORIGINAL LINE: Byte * pbDecompressedEnd = pbDecompressed + cbDecompressed;
+        Dim pbDecompressedEnd As Byte = pbDecompressed + cbDecompressed
+        'TODO: VB does not have an equivalent for pointers to value types:
+        'ORIGINAL LINE: Byte * pbCompressedEnd = pbCompressed + cbCompressed;
+        Dim pbCompressedEnd As Byte = pbCompressed + cbCompressed
+        Dim RepeatCount As Byte
+        Dim OneByte As Byte
 
         ' Cut the initial DWORD from the compressed chunk
+        'TODO: There is no VB equivalent to 'sizeof':
         'pbCompressed += sizeof(Of UInteger)()
+        'TODO: There is no VB equivalent to 'sizeof':
         'cbCompressed -= sizeof(Of UInteger)()
 
         ' Pre-fill decompressed buffer with zeros
+        'TODO: The memory management function 'memset' has no equivalent in VB:
         'memset(pbDecompressed, 0, cbDecompressed)
 
         ' Unpack
-        'While pbCompressed < pbCompressedEnd
-        'OneByte = *System.Math.Max(System.Threading.Interlocked.Increment(pbCompressed),pbCompressed - 1)
+        While (pbCompressed < pbCompressedEnd)
+            OneByte = pbCompressed
+            pbCompressed += 1
 
-        '    ' Is it a repetition byte ?
-        '    If OneByte And &H80 Then
-        '        RepeatCount = (OneByte And &H7F) + 1
-        '        Dim i As [Byte] = 0
-        '        While i < RepeatCount
-        '            If pbDecompressed = pbDecompressedEnd OrElse pbCompressed = pbCompressedEnd Then
-        '                Exit While
-        '            End If
+            ' Is it a repetition byte ?
+            If OneByte And &H80 <> 0 Then
+                RepeatCount = (OneByte And &H7F) + 1
+                For i As Byte = 0 To RepeatCount - 1
+                    If pbDecompressed = pbDecompressedEnd OrElse pbCompressed = pbCompressedEnd Then
+                        Exit For
+                    End If
 
-        '        *System.Math.Max(System.Threading.Interlocked.Increment(pbDecompressed),pbDecompressed - 1) = *System.Math.Max(System.Threading.Interlocked.Increment(pbCompressed),pbCompressed - 1)
-        '            System.Math.Max(System.Threading.Interlocked.Increment(i), i - 1)
-        '        End While
-        '    Else
-        '        pbDecompressed += (OneByte + 1)
-        '    End If
-        'End While
+                    'TODO: Assignments within expressions are not supported in VB
+                    'ORIGINAL LINE: *pbDecompressed++= *pbCompressed++;
+                    'pbDecompressed++= pbCompressed++
+                Next i
+            Else
+                'TODO: Assignments within expressions are not supported in VB
+                'ORIGINAL LINE: Else ({ pbDecompressed += (OneByte + 1); })
+                pbDecompressed += (OneByte + 1)
+            End If
+        End While
+
     End Sub
-
 End Class
