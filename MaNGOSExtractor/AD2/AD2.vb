@@ -6,8 +6,8 @@ Module AD2
 
     Sub Main()
         Console.WriteLine(" ")
-        Console.WriteLine("MaNGOSExtractor CommandLine")
-        Console.WriteLine("===========================")
+        Console.WriteLine("MaNGOSExtractor{0} CommandLine", MaNGOSExtractorCore.Version())
+        Console.WriteLine("================================")
         Console.WriteLine(" ")
         If My.Application.CommandLineArgs.Count = 0 Then
             Console.WriteLine("Usage:")

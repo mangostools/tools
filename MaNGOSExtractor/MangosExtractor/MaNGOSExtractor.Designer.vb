@@ -22,6 +22,7 @@ Partial Class MaNGOSExtractor
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MaNGOSExtractor))
         Me.btnStartDBC = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtBaseFolder = New System.Windows.Forms.TextBox()
@@ -34,7 +35,7 @@ Partial Class MaNGOSExtractor
         '
         'btnStartDBC
         '
-        Me.btnStartDBC.Location = New System.Drawing.Point(9, 127)
+        Me.btnStartDBC.Location = New System.Drawing.Point(9, 147)
         Me.btnStartDBC.Name = "btnStartDBC"
         Me.btnStartDBC.Size = New System.Drawing.Size(87, 23)
         Me.btnStartDBC.TabIndex = 0
@@ -54,7 +55,7 @@ Partial Class MaNGOSExtractor
         '
         Me.txtBaseFolder.Location = New System.Drawing.Point(102, 6)
         Me.txtBaseFolder.Name = "txtBaseFolder"
-        Me.txtBaseFolder.Size = New System.Drawing.Size(264, 20)
+        Me.txtBaseFolder.Size = New System.Drawing.Size(450, 20)
         Me.txtBaseFolder.TabIndex = 2
         Me.txtBaseFolder.Text = "W:\World of Warcraft"
         '
@@ -63,7 +64,7 @@ Partial Class MaNGOSExtractor
         Me.ListBox1.FormattingEnabled = True
         Me.ListBox1.Location = New System.Drawing.Point(102, 58)
         Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(264, 147)
+        Me.ListBox1.Size = New System.Drawing.Size(450, 147)
         Me.ListBox1.Sorted = True
         Me.ListBox1.TabIndex = 3
         '
@@ -78,7 +79,7 @@ Partial Class MaNGOSExtractor
         '
         'BtnQuit
         '
-        Me.BtnQuit.Location = New System.Drawing.Point(9, 156)
+        Me.BtnQuit.Location = New System.Drawing.Point(9, 176)
         Me.BtnQuit.Name = "BtnQuit"
         Me.BtnQuit.Size = New System.Drawing.Size(87, 23)
         Me.BtnQuit.TabIndex = 6
@@ -89,7 +90,7 @@ Partial Class MaNGOSExtractor
         '
         Me.txtOutputFolder.Location = New System.Drawing.Point(102, 32)
         Me.txtOutputFolder.Name = "txtOutputFolder"
-        Me.txtOutputFolder.Size = New System.Drawing.Size(264, 20)
+        Me.txtOutputFolder.Size = New System.Drawing.Size(450, 20)
         Me.txtOutputFolder.TabIndex = 8
         Me.txtOutputFolder.Text = "W:\World of Warcraft\Extracted"
         '
@@ -106,7 +107,7 @@ Partial Class MaNGOSExtractor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(379, 211)
+        Me.ClientSize = New System.Drawing.Size(564, 211)
         Me.Controls.Add(Me.txtOutputFolder)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.BtnQuit)
@@ -115,11 +116,12 @@ Partial Class MaNGOSExtractor
         Me.Controls.Add(Me.txtBaseFolder)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.btnStartDBC)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "MaNGOSExtractor"
-        Me.ShowIcon = False
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "MaNGOSExtractor"
         Me.ResumeLayout(False)
         Me.PerformLayout()

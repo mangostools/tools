@@ -38,4 +38,15 @@ Namespace Blizzard
         Public m_diffBlockSize As ULong
         Public m_sizeAfter As ULong
     End Structure
+
+    <StructLayout(LayoutKind.Sequential)> _
+    Structure WDBC
+        <MarshalAs(UnmanagedType.ByValArray, SizeConst:=5)> _
+        Public m_magic As Byte()            ' "WDBC"
+        Public m_recordCount As UInteger    ' The number of records
+        Public m_fieldCount As UInteger     ' The number of fields
+        Public m_recSize As UInteger        ' The size of a record
+        Public m_stringSize As UInteger     ' The size of a string field
+    End Structure
+
 End Namespace

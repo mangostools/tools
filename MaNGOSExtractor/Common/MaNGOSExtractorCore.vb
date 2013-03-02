@@ -3,6 +3,16 @@ Imports System.Text
 Imports MpqLib
 
 Module MaNGOSExtractorCore
+    Private m_Version As String = " v1.1"
+    ReadOnly Property Version As String
+        Get
+            Return m_Version
+        End Get
+        'Private Set(value As Integer)
+        '    m_Version = value
+        'End Set
+    End Property
+
     ''' <summary>
     ''' Recursively reads the directory structure from the StartFolder down
     ''' </summary>
@@ -60,6 +70,25 @@ Module MaNGOSExtractorCore
                 'intFileType = 1  = WDBC
                 'intFileType = 2  = WDB2
                 'intFileType = 3  = PTCH
+                'Create the output directory tree, allowing for additional paths contained within the filename
+
+                Dim strSubFolder As String
+                If thisFile.FileName.Contains("\") = True Then
+                    strSubFolder = thisFile.FileName.Substring(0, (thisFile.FileName.LastIndexOf("\")))
+                    If My.Computer.FileSystem.DirectoryExists(DestinationFolder & strSubFolder) = False Then
+                        Directory.CreateDirectory(DestinationFolder & strSubFolder)
+                    End If
+                Else
+                    strSubFolder = ""
+                    If My.Computer.FileSystem.DirectoryExists(DestinationFolder) = False Then
+                        Directory.CreateDirectory(DestinationFolder)
+                    End If
+                End If
+
+                Dim strOriginalName As String = thisFile.FileName.Substring(thisFile.FileName.LastIndexOf("\") + 1, thisFile.FileName.Length - (thisFile.FileName.LastIndexOf("\") + 1))
+                Dim strPatchName As String = strOriginalName & "_" & MPQFilename.Substring(MPQFilename.LastIndexOf("\") + 1, MPQFilename.Length - (MPQFilename.LastIndexOf("\") + 1) - 4) & ".patch"
+                Dim strNewName As String = strOriginalName & ".New"
+                If DestinationFolder.EndsWith("\") = False Then DestinationFolder = DestinationFolder & "\"
 
                 'Skip corrupt files (Length < 21)
                 If inbyteData.Length > 20 Then
@@ -103,28 +132,9 @@ Module MaNGOSExtractorCore
                         '###############################################################################
                         '## Stage 1 - Saves the files out with a .patch extension                     ##
                         '###############################################################################
-                        'Create the output directory tree, allowing for additional paths contained within the filename
-                        Dim strSubFolder As String
-                        If thisFile.FileName.Contains("\") = True Then
-                            strSubFolder = thisFile.FileName.Substring(0, (thisFile.FileName.LastIndexOf("\")))
-                            If My.Computer.FileSystem.DirectoryExists(DestinationFolder & strSubFolder) = False Then
-                                Directory.CreateDirectory(DestinationFolder & strSubFolder)
-                            End If
-                        Else
-                            strSubFolder = ""
-                            If My.Computer.FileSystem.DirectoryExists(DestinationFolder) = False Then
-                                Directory.CreateDirectory(DestinationFolder)
-                            End If
-                        End If
 
                         Console.WriteLine("Destination Folder: {0}", DestinationFolder)
                         Console.WriteLine("Sub Folder: {0}", strSubFolder)
-
-
-                        Dim strOriginalName As String = thisFile.FileName.Substring(thisFile.FileName.LastIndexOf("\") + 1, thisFile.FileName.Length - (thisFile.FileName.LastIndexOf("\") + 1))
-                        Dim strPatchName As String = strOriginalName & "_" & MPQFilename.Substring(MPQFilename.LastIndexOf("\") + 1, MPQFilename.Length - (MPQFilename.LastIndexOf("\") + 1) - 4) & ".patch"
-                        Dim strNewName As String = strOriginalName & ".New"
-                        If DestinationFolder.EndsWith("\") = False Then DestinationFolder = DestinationFolder & "\"
 
                         'If the file already exists, delete it and recreate it
                         If My.Computer.FileSystem.FileExists(DestinationFolder & strSubFolder & "\" & strPatchName) = True Then
@@ -162,6 +172,8 @@ Module MaNGOSExtractorCore
                         End If
                     End If
                 End If
+                FFF(DestinationFolder & strSubFolder & "\" & strOriginalName)
+
             Next
         Catch ex As Exception
             sbOutput.AppendLine(ex.Message)
@@ -209,4 +221,54 @@ Module MaNGOSExtractorCore
         Return sbOutput.ToString()
     End Function
 
+    Function getObjectType(ByRef invalue As Object, ByRef OrigType As String) As String
+
+        Dim type = invalue.GetType()
+        If type Is GetType(Boolean) Then
+            Return "B"
+        ElseIf type Is GetType(Long) Then
+            If OrigType = "" Or OrigType = "B" Or OrigType = "Y" Then
+                Return "L"
+            Else
+                Return OrigType
+            End If
+            'Long    = 64 Bit signed integer
+            'Integer = 32 Bit signed integer
+        ElseIf type Is GetType(Byte) Then
+            If OrigType = "" Or OrigType = "B" Then
+                Return "Y"
+            Else
+                Return OrigType
+            End If
+        ElseIf type Is GetType(String) Then
+            Return "S"
+        Else
+            Return "B"
+        End If
+    End Function
+
+    Sub FFF(ByRef Filename As String)
+        'Dim m_reader As FileReader.IWowClientDBReader
+        'Try
+        '    m_reader = FileReader.DBReaderFactory.GetReader(Filename)
+        '    Dim entireRow() As Byte
+        '    entireRow = m_reader.GetRowAsByteArray(0)
+        '    Dim ColType(entireRow.Count()) As String
+        '    For rows = 0 To m_reader.RecordsCount() - 1
+        '        entireRow = m_reader.GetRowAsByteArray(rows)
+
+        '        For cols = 0 To entireRow.Count() - 1
+        '            ColType(cols) = getObjectType(entireRow(cols), ColType(cols))
+        '        Next
+        '    Next
+        '    For cols = 0 To entireRow.Count() - 1
+        '        Console.Write(ColType(cols))
+        '    Next
+        '    Console.Write(vbCrLf)
+        'Catch ex As Exception
+        '    'ShowErrorMessageBox(ex.Message)
+        '    'e.Cancel = True
+        '    Return
+        'End Try
+    End Sub
 End Module

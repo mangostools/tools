@@ -69,6 +69,9 @@
   <PropertyGroup>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="MpqLib, Version=1.0.3955.35027, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
@@ -95,6 +98,33 @@
     <Import Include="System.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="../Common/Readers/ADBReader.vb">
+      <Link>Readers\ADBReader.vb</Link>
+    </Compile>
+    <Compile Include="../Common/Readers/BinaryFormatter.vb">
+      <Link>Readers\BinaryFormatter.vb</Link>
+    </Compile>
+    <Compile Include="../Common/Readers/BinaryReaderExtensions.vb">
+      <Link>Readers\BinaryReaderExtensions.vb</Link>
+    </Compile>
+    <Compile Include="../Common/Readers/DB2Reader.vb">
+      <Link>Readers\DB2Reader.vb</Link>
+    </Compile>
+    <Compile Include="../Common/Readers/DBCReader.vb">
+      <Link>Readers\DBCReader.vb</Link>
+    </Compile>
+    <Compile Include="../Common/Readers/DBReaderFactory.vb">
+      <Link>Readers\DBReaderFactory.vb</Link>
+    </Compile>
+    <Compile Include="../Common/Readers/IWowClientDBReader.vb">
+      <Link>Readers\IWowClientDBReader.vb</Link>
+    </Compile>
+    <Compile Include="../Common/Readers/STLReader.vb">
+      <Link>Readers\STLReader.vb</Link>
+    </Compile>
+    <Compile Include="../Common/Readers/WDBReader.vb">
+      <Link>Readers\WDBReader.vb</Link>
+    </Compile>
     <Compile Include="../Common/BSDIFF40.vb">
       <Link>Common\BSDIFF40.vb</Link>
     </Compile>
@@ -160,6 +190,7 @@
     <Content Include="../Common/MpqLib.xml">
       <Link>Common\MpqLib.xml</Link>
     </Content>
+    <Content Include="favicon.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">

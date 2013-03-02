@@ -11,6 +11,7 @@ Namespace Blizzard
         Private m_MD5 As MD5_
         Private m_XFRM As XFRM
         Private m_BSDIFF40 As BSDIFF40
+        Private m_WDBC As WDBC
 
         ' BSD0
         Private m_unpackedSize As UInteger
@@ -181,5 +182,29 @@ Namespace Blizzard
             End If
             Return i
         End Function
+
+
+        Public Sub ReadDBC(ByRef Filename As String)
+            Dim thisRecord() As Byte
+
+            Using fs As New FileStream(Filename, FileMode.Open, FileAccess.Read)
+                Using br As New BinaryReader(fs)
+                    m_WDBC = br.ReadStruct(Of WDBC)()
+                    Debug.Assert(m_WDBC.m_magic.FourCC() = "WDBC")
+
+                    'm_WDBC.m_fieldCount
+                    'm_WDBC.m_recordCount
+                    'm_WDBC.m_recSize
+                    'm_WDBC.m_stringSize
+
+                    For CurrentRecord As Byte = 0 To m_WDBC.m_recordCount
+                        thisRecord = br.ReadBytes(m_WDBC.m_recSize)
+
+                    Next
+                End Using
+            End Using
+        End Sub
+
+
     End Class
 End Namespace

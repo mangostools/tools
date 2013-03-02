@@ -96,6 +96,7 @@ Public Class MaNGOSExtractor
         End
     End Sub
 
-
-
+    Private Sub MaNGOSExtractor_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Me.Text = "MaNGOSExtractor" & MaNGOSExtractorCore.Version()
+    End Sub
 End Class
