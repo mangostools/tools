@@ -124,6 +124,9 @@
     </Compile>
     <Compile Include="../Common/Readers/WDBReader.vb">
       <Link>Readers\WDBReader.vb</Link>
+    </Compile>    
+    <Compile Include="../Common/Writers/Export2SQL.vb">
+      <Link>Writers\Export2SQL.vb</Link>
     </Compile>
     <Compile Include="../Common/BSDIFF40.vb">
       <Link>Common\BSDIFF40.vb</Link>

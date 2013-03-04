@@ -26,18 +26,21 @@ Partial Class MaNGOSExtractor
         Me.btnStartDBC = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtBaseFolder = New System.Windows.Forms.TextBox()
-        Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.BtnQuit = New System.Windows.Forms.Button()
         Me.txtOutputFolder = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.chkDBC = New System.Windows.Forms.CheckBox()
+        Me.chkSQL = New System.Windows.Forms.CheckBox()
+        Me.chkCSV = New System.Windows.Forms.CheckBox()
+        Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.SuspendLayout()
         '
         'btnStartDBC
         '
-        Me.btnStartDBC.Location = New System.Drawing.Point(9, 147)
+        Me.btnStartDBC.Location = New System.Drawing.Point(410, 195)
         Me.btnStartDBC.Name = "btnStartDBC"
-        Me.btnStartDBC.Size = New System.Drawing.Size(87, 23)
+        Me.btnStartDBC.Size = New System.Drawing.Size(68, 23)
         Me.btnStartDBC.TabIndex = 0
         Me.btnStartDBC.Text = "&Start"
         Me.btnStartDBC.UseVisualStyleBackColor = True
@@ -59,15 +62,6 @@ Partial Class MaNGOSExtractor
         Me.txtBaseFolder.TabIndex = 2
         Me.txtBaseFolder.Text = "W:\World of Warcraft"
         '
-        'ListBox1
-        '
-        Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.Location = New System.Drawing.Point(102, 58)
-        Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(450, 147)
-        Me.ListBox1.Sorted = True
-        Me.ListBox1.TabIndex = 3
-        '
         'Label2
         '
         Me.Label2.AutoSize = True
@@ -79,9 +73,9 @@ Partial Class MaNGOSExtractor
         '
         'BtnQuit
         '
-        Me.BtnQuit.Location = New System.Drawing.Point(9, 176)
+        Me.BtnQuit.Location = New System.Drawing.Point(484, 195)
         Me.BtnQuit.Name = "BtnQuit"
-        Me.BtnQuit.Size = New System.Drawing.Size(87, 23)
+        Me.BtnQuit.Size = New System.Drawing.Size(68, 23)
         Me.BtnQuit.TabIndex = 6
         Me.BtnQuit.Text = "E&xit"
         Me.BtnQuit.UseVisualStyleBackColor = True
@@ -103,16 +97,57 @@ Partial Class MaNGOSExtractor
         Me.Label3.TabIndex = 7
         Me.Label3.Text = "Output Folder"
         '
+        'chkDBC
+        '
+        Me.chkDBC.AutoSize = True
+        Me.chkDBC.Location = New System.Drawing.Point(12, 87)
+        Me.chkDBC.Name = "chkDBC"
+        Me.chkDBC.Size = New System.Drawing.Size(91, 17)
+        Me.chkDBC.TabIndex = 9
+        Me.chkDBC.Text = "Extract DBC's"
+        Me.chkDBC.UseVisualStyleBackColor = True
+        '
+        'chkSQL
+        '
+        Me.chkSQL.AutoSize = True
+        Me.chkSQL.Location = New System.Drawing.Point(12, 110)
+        Me.chkSQL.Name = "chkSQL"
+        Me.chkSQL.Size = New System.Drawing.Size(80, 17)
+        Me.chkSQL.TabIndex = 10
+        Me.chkSQL.Text = "Export SQL"
+        Me.chkSQL.UseVisualStyleBackColor = True
+        '
+        'chkCSV
+        '
+        Me.chkCSV.AutoSize = True
+        Me.chkCSV.Location = New System.Drawing.Point(12, 133)
+        Me.chkCSV.Name = "chkCSV"
+        Me.chkCSV.Size = New System.Drawing.Size(80, 17)
+        Me.chkCSV.TabIndex = 11
+        Me.chkCSV.Text = "Export CSV"
+        Me.chkCSV.UseVisualStyleBackColor = True
+        '
+        'ListBox1
+        '
+        Me.ListBox1.FormattingEnabled = True
+        Me.ListBox1.Location = New System.Drawing.Point(102, 55)
+        Me.ListBox1.Name = "ListBox1"
+        Me.ListBox1.Size = New System.Drawing.Size(450, 134)
+        Me.ListBox1.TabIndex = 12
+        '
         'MaNGOSExtractor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(564, 211)
+        Me.ClientSize = New System.Drawing.Size(564, 228)
+        Me.Controls.Add(Me.ListBox1)
+        Me.Controls.Add(Me.chkCSV)
+        Me.Controls.Add(Me.chkSQL)
+        Me.Controls.Add(Me.chkDBC)
         Me.Controls.Add(Me.txtOutputFolder)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.BtnQuit)
         Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.ListBox1)
         Me.Controls.Add(Me.txtBaseFolder)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.btnStartDBC)
@@ -130,10 +165,13 @@ Partial Class MaNGOSExtractor
     Friend WithEvents btnStartDBC As System.Windows.Forms.Button
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents txtBaseFolder As System.Windows.Forms.TextBox
-    Friend WithEvents ListBox1 As System.Windows.Forms.ListBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents BtnQuit As System.Windows.Forms.Button
     Friend WithEvents txtOutputFolder As System.Windows.Forms.TextBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents chkDBC As System.Windows.Forms.CheckBox
+    Friend WithEvents chkSQL As System.Windows.Forms.CheckBox
+    Friend WithEvents chkCSV As System.Windows.Forms.CheckBox
+    Friend WithEvents ListBox1 As System.Windows.Forms.ListBox
 
 End Class

@@ -6,7 +6,7 @@ Module AD2
 
     Sub Main()
         Console.WriteLine(" ")
-        Console.WriteLine("MaNGOSExtractor{0} CommandLine", MaNGOSExtractorCore.Version())
+        Console.WriteLine("MaNGOSExtractor{0} CommandLine", Core.MaNGOSExtractorCore.Version())
         Console.WriteLine("================================")
         Console.WriteLine(" ")
         If My.Application.CommandLineArgs.Count = 0 Then
@@ -107,7 +107,7 @@ Module AD2
             colFolders.Add(myFolders, myFolders.FullName)
 
             'Build a list of all the subfolders under data
-            ReadFolders(myFolders, colFolders)
+            Core.ReadFolders(myFolders, colFolders)
 
             'Now we need to walk through the folders, getting the MPQ files along the way
             For t As Integer = 1 To colFolders.Count()
@@ -131,7 +131,7 @@ Module AD2
             For Each strItem As String In colMainFiles
                 Console.WriteLine("  BASE: " & strItem)
                 Try
-                    ExtractDBCFiles(strItem, "*.db*", strOutputFolder)
+                    Core.ExtractDBCFiles(strItem, "*.db*", strOutputFolder)
                 Catch ex As Exception
                     Console.WriteLine(ex.Message)
                 End Try
@@ -140,7 +140,7 @@ Module AD2
             For Each strItem As String In colMainFiles
                 Console.WriteLine("  FILE: " & strItem)
                 Try
-                    ExtractDBCFiles(strItem, "*.db*", strOutputFolder)
+                    Core.ExtractDBCFiles(strItem, "*.db*", strOutputFolder)
                 Catch ex As Exception
                     Console.WriteLine(ex.Message)
                 End Try
@@ -151,7 +151,7 @@ Module AD2
 
                 Try
                     '                    Me.Text = strItem
-                    ExtractDBCFiles(strItem, "*.db*", strOutputFolder)
+                    Core.ExtractDBCFiles(strItem, "*.db*", strOutputFolder)
                 Catch ex As Exception
                     Console.WriteLine(ex.Message)
                 End Try

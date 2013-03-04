@@ -1,6 +1,6 @@
 ﻿Imports System
 Imports System.IO
-Imports MangosExtractor.MaNGOSExtractorCore
+Imports MangosExtractor.Core
 
 Public Class MaNGOSExtractor
     ''' <summary>
@@ -23,67 +23,79 @@ Public Class MaNGOSExtractor
             Exit Sub
         End If
 
+        If chkDBC.Checked = True Then
+            'Set the Top level as {Wow Folder}\data
+            myFolders = New System.IO.DirectoryInfo(txtBaseFolder.Text & "\data")
 
-        'Set the Top level as {Wow Folder}\data
-        myFolders = New System.IO.DirectoryInfo(txtBaseFolder.Text & "\data")
+            'Add the Data folder to the collection before we start walking down the tree
+            colFolders.Add(myFolders, myFolders.FullName)
 
-        'Add the Data folder to the collection before we start walking down the tree
-        colFolders.Add(myFolders, myFolders.FullName)
+            'Build a list of all the subfolders under data
+            Core.ReadFolders(myFolders, colFolders)
 
-        'Build a list of all the subfolders under data
-        ReadFolders(myFolders, colFolders)
-
-        'Now we need to walk through the folders, getting the MPQ files along the way
-        For t As Integer = 1 To colFolders.Count()
-            myFolders = colFolders.Item(t)
-            For Each file As System.IO.FileInfo In myFolders.GetFiles("*.MPQ")
-                If file.FullName.ToLower.Contains("update") = True Or file.FullName.ToLower.Contains("patch") = True Then
-                    colUpdateFiles.Add(file.FullName)
-                ElseIf file.FullName.ToLower.Contains("base") = True Then
-                    colBaseFiles.Add(file.FullName)
-                Else
-                    colMainFiles.Add(file.FullName)
-                End If
+            'Now we need to walk through the folders, getting the MPQ files along the way
+            For t As Integer = 1 To colFolders.Count()
+                myFolders = colFolders.Item(t)
+                For Each file As System.IO.FileInfo In myFolders.GetFiles("*.MPQ")
+                    If file.FullName.ToLower.Contains("update") = True Or file.FullName.ToLower.Contains("patch") = True Then
+                        colUpdateFiles.Add(file.FullName)
+                    ElseIf file.FullName.ToLower.Contains("base") = True Then
+                        colBaseFiles.Add(file.FullName)
+                    Else
+                        colMainFiles.Add(file.FullName)
+                    End If
+                Next
             Next
-        Next
 
-        If txtOutputFolder.Text.EndsWith("\") = False Then txtOutputFolder.Text = txtOutputFolder.Text & "\"
-        If My.Computer.FileSystem.DirectoryExists(txtOutputFolder.Text) = False Then
-            Directory.CreateDirectory(txtOutputFolder.Text)
+            If txtOutputFolder.Text.EndsWith("\") = False Then txtOutputFolder.Text = txtOutputFolder.Text & "\"
+            If My.Computer.FileSystem.DirectoryExists(txtOutputFolder.Text) = False Then
+                Directory.CreateDirectory(txtOutputFolder.Text)
+            End If
+
+
+            For Each strItem As String In colBaseFiles
+                ListBox1.Items.Add("  BASE: " & strItem)
+                Try
+                    Me.Text = strItem
+                    Core.ExtractDBCFiles(strItem, "*.db*", txtOutputFolder.Text)
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message)
+                End Try
+            Next
+
+            For Each strItem As String In colMainFiles
+                ListBox1.Items.Add("  FILE: " & strItem)
+                Try
+                    Me.Text = strItem
+                    Core.ExtractDBCFiles(strItem, "*.db*", txtOutputFolder.Text)
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message)
+                End Try
+            Next
+
+            For Each strItem As String In colUpdateFiles
+                ListBox1.Items.Add("UPDATE: " & strItem)
+
+                Try
+                    Me.Text = strItem
+                    Core.ExtractDBCFiles(strItem, "*.db*", txtOutputFolder.Text)
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message)
+                End Try
+                Application.DoEvents()
+            Next
+            Me.Text = ("Extraction Finished")
         End If
 
-
-        For Each strItem As String In colBaseFiles
-            ListBox1.Items.Add("  BASE: " & strItem)
-            Try
-                Me.Text = strItem
-                ExtractDBCFiles(strItem, "*.db*", txtOutputFolder.Text)
-            Catch ex As Exception
-                MessageBox.Show(ex.Message)
-            End Try
-        Next
-
-        For Each strItem As String In colMainFiles
-            ListBox1.Items.Add("  FILE: " & strItem)
-            Try
-                Me.Text = strItem
-                ExtractDBCFiles(strItem, "*.db*", txtOutputFolder.Text)
-            Catch ex As Exception
-                MessageBox.Show(ex.Message)
-            End Try
-        Next
-
-        For Each strItem As String In colUpdateFiles
-            ListBox1.Items.Add("UPDATE: " & strItem)
-
-            Try
-                Me.Text = strItem
-                ExtractDBCFiles(strItem, "*.db*", txtOutputFolder.Text)
-            Catch ex As Exception
-                MessageBox.Show(ex.Message)
-            End Try
-        Next
-        MessageBox.Show("Finished")
+        'Now that we have all the DBC's extracted and patched, we need to check the export options and export data
+        If chkSQL.Checked = True Then
+            myFolders = New System.IO.DirectoryInfo(txtOutputFolder.Text & "\DBFilesClient")
+            For Each file As System.IO.FileInfo In myFolders.GetFiles("*.DBC")
+                Me.Text = "Extracting: " & file.Name
+                Core.exportSQL(txtOutputFolder.Text & "\DBFilesClient" & "\" & file.Name)
+                Application.DoEvents()
+            Next
+        End If
     End Sub
 
     ''' <summary>
@@ -97,6 +109,6 @@ Public Class MaNGOSExtractor
     End Sub
 
     Private Sub MaNGOSExtractor_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Me.Text = "MaNGOSExtractor" & MaNGOSExtractorCore.Version()
+        Me.Text = "MaNGOSExtractor" & Core.MaNGOSExtractorCore.Version()
     End Sub
 End Class
