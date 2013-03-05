@@ -269,7 +269,7 @@ Namespace Core
             Select Case OrigType
                 Case "String"
                     'If we've been set at String, nothing should change it again
-                    retType = OrigType
+                    'retType = OrigType
                 Case "Int32"
                     'Default Type
                 Case "Int64"
@@ -294,7 +294,7 @@ Namespace Core
             Select Case OrigType
                 Case "String"
                     'If we've been set at String, nothing should change it again
-                    retType = OrigType
+                    ' retType = OrigType
                 Case "Int32"
                     'Default Type
                 Case "Int64"

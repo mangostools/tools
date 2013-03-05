@@ -4,6 +4,7 @@ Imports System.Globalization
 Imports System.IO
 Imports System.Text
 Imports System.Text.RegularExpressions
+Imports System.Reflection
 
 Namespace Core
     Public Module Export2SQL
@@ -20,14 +21,19 @@ Namespace Core
         Public Function exportSQL(ByRef Filename As String) As Boolean
             Dim sqlWriter As New StreamWriter(Filename.Substring(0, Filename.Length - 4) & ".sql")
 
-            'WriteSqlStructure(sqlWriter, Data)
+            'WriteSqlStructure(sqlWriter, ColType, Filename.Substring(0, Filename.Length - 4))
+
+            ' Need to rethink how to do this as its too slow !!
+
 
             Dim m_reader As FileReader.IWowClientDBReader
             Try
                 m_reader = FileReader.DBReaderFactory.GetReader(Filename)
                 Dim entireRow() As Byte
                 entireRow = m_reader.GetRowAsByteArray(0)
-                Dim ColType(entireRow.Count()) As String
+                Dim TotalRows As Integer = entireRow.Count() - 1
+                Dim ColType(TotalRows / 4) As String
+
                 For rows = 0 To m_reader.RecordsCount() - 1
                     entireRow = m_reader.GetRowAsByteArray(rows)
 
@@ -36,55 +42,65 @@ Namespace Core
 
                     Dim flds As Integer = 0
 
-                    For cols As Integer = 0 To entireRow.Count() - 1
-
-                        ColType(cols) = Core.getObjectType(entireRow(cols), ColType(cols))
+                    For cols As Integer = 0 To TotalRows Step 4
+                        Dim TempCol As Object '= entireRow(cols)
                         Try
-                            If m_reader.StringTable(((entireRow.Count() - 1) * rows) + cols).Trim.Length > 0 Then
-                                ColType(cols) = "String"
-                            End If
-                        Catch
+                            TempCol = (entireRow(cols + 3) * 16777216) + (entireRow(cols + 2) * 65536) + (entireRow(cols + 1) * 256) + (entireRow(cols + 0))
+                        Catch ex As Exception
+                            TempCol = -1
                         End Try
-                        Select Case ColType(cols)
+                        'If cols / 4 = 6 Then Stop
+                        ColType(cols / 4) = Core.getObjectType(TempCol, ColType(cols / 4))
+
+
+                        ' Had to diable this string checking as it was finding too many entries
+                        'Try
+                        '    If m_reader.StringTable.ContainsKey(TempCol) = True Then
+                        '        ColType(cols / 4) = "String"
+                        '    End If
+                        'Catch
+                        'End Try
+                        Select Case ColType(cols / 4)
                             Case "Int64"
-                                result.Append(entireRow(cols))
+                                result.Append(TempCol)
                                 Exit Select
                             Case "UInt64"
-                                result.Append(entireRow(cols))
+                                result.Append(TempCol)
                                 Exit Select
                             Case "Int32"
-                                result.Append(entireRow(cols))
+                                result.Append(TempCol)
                                 Exit Select
                             Case "UInt32"
-                                result.Append(entireRow(cols))
+                                result.Append(TempCol)
                                 Exit Select
                             Case "Int16"
-                                result.Append(entireRow(cols))
+                                result.Append(TempCol)
                                 Exit Select
                             Case "UInt16"
-                                result.Append(entireRow(cols))
+                                result.Append(TempCol)
                                 Exit Select
                             Case "SByte"
-                                result.Append(entireRow(cols))
+                                result.Append(TempCol)
                                 Exit Select
                             Case "Byte"
-                                result.Append(entireRow(cols))
+                                result.Append(TempCol)
                                 Exit Select
                             Case "Single"
-                                result.Append(CSng(entireRow(cols)).ToString(CultureInfo.InvariantCulture))
+                                result.Append(CSng(TempCol).ToString(CultureInfo.InvariantCulture))
                                 Exit Select
                             Case "Double"
-                                result.Append(CDbl(entireRow(cols)).ToString(CultureInfo.InvariantCulture))
+                                result.Append(CDbl(TempCol).ToString(CultureInfo.InvariantCulture))
                                 Exit Select
                             Case "String"
                                 'result.Append("""" & StripBadCharacters(DirectCast(entireRow(cols).ToString, String)) & """")
-                                Try
-                                    result.Append("""" & StripBadCharacters(m_reader.StringTable(((entireRow.Count() - 1) * rows) + cols)) & """")
+                                If m_reader.StringTable.ContainsKey(TempCol) = True Then
+                                    result.Append("""" & StripBadCharacters(m_reader.StringTable(TempCol)) & """")
                                     Exit Select
-                                Catch
-                                    result.Append("""""""")
+                                Else
+                                    result.Append(TempCol)
+                                    ColType(cols / 4) = "Int32"
                                     Exit Select
-                                End Try
+                                End If
                             Case Else
                                 Throw New Exception([String].Format("Unknown field type {0}!", Core.getObjectType(entireRow(cols), ColType(cols))))
                         End Select
@@ -238,6 +254,62 @@ Namespace Core
             Next
 
             sqlWriter.WriteLine(") ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Export of {0}';", data.TableName)
+            sqlWriter.WriteLine()
+        End Sub
+
+        Private Sub WriteSqlStructure(sqlWriter As StreamWriter, ColTypes As Collection, Filename As String)
+            sqlWriter.WriteLine("DROP TABLE IF EXISTS `dbc_{0}`;", Path.GetFileNameWithoutExtension(Filename))
+            sqlWriter.WriteLine("CREATE TABLE `dbc_{0}` (", Path.GetFileNameWithoutExtension(Filename))
+
+            For i As Integer = 0 To ColTypes.Count - 1
+                sqlWriter.Write(vbTab & [String].Format("`{0}`", ColTypes(i).ColumnName))
+
+                Select Case ColTypes(i).DataType.Name
+                    Case "Int64"
+                        sqlWriter.Write(" BIGINT NOT NULL DEFAULT '0'")
+                        Exit Select
+                    Case "UInt64"
+                        sqlWriter.Write(" BIGINT UNSIGNED NOT NULL DEFAULT '0'")
+                        Exit Select
+                    Case "Int32"
+                        sqlWriter.Write(" INT NOT NULL DEFAULT '0'")
+                        Exit Select
+                    Case "UInt32"
+                        sqlWriter.Write(" INT UNSIGNED NOT NULL DEFAULT '0'")
+                        Exit Select
+                    Case "Int16"
+                        sqlWriter.Write(" SMALLINT NOT NULL DEFAULT '0'")
+                        Exit Select
+                    Case "UInt16"
+                        sqlWriter.Write(" SMALLINT UNSIGNED NOT NULL DEFAULT '0'")
+                        Exit Select
+                    Case "SByte"
+                        sqlWriter.Write(" TINYINT NOT NULL DEFAULT '0'")
+                        Exit Select
+                    Case "Byte"
+                        sqlWriter.Write(" TINYINT UNSIGNED NOT NULL DEFAULT '0'")
+                        Exit Select
+                    Case "Single"
+                        sqlWriter.Write(" FLOAT NOT NULL DEFAULT '0'")
+                        Exit Select
+                    Case "Double"
+                        sqlWriter.Write(" DOUBLE NOT NULL DEFAULT '0'")
+                        Exit Select
+                    Case "String"
+                        sqlWriter.Write(" TEXT NOT NULL")
+                        Exit Select
+                    Case Else
+                        Throw New Exception([String].Format("Unknown field type {0}!", ColTypes(i).DataType.Name))
+                End Select
+
+                sqlWriter.WriteLine(",")
+            Next
+
+            'For Each index As DataColumn In Data.PrimaryKey
+            '    sqlWriter.WriteLine(vbTab & "PRIMARY KEY (`{0}`)", index.ColumnName)
+            'Next
+
+            sqlWriter.WriteLine(") ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Export of {0}';", Filename)
             sqlWriter.WriteLine()
         End Sub
 
