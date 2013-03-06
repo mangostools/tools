@@ -54,12 +54,14 @@ Namespace Core
 
 
                         ' Had to diable this string checking as it was finding too many entries
-                        'Try
-                        '    If m_reader.StringTable.ContainsKey(TempCol) = True Then
-                        '        ColType(cols / 4) = "String"
-                        '    End If
-                        'Catch
-                        'End Try
+                        Try
+                            If TempCol > 0 Then
+                                If m_reader.StringTable.ContainsKey(TempCol) = True Then
+                                    ColType(cols / 4) = "String"
+                                End If
+                            End If
+                        Catch
+                        End Try
                         Select Case ColType(cols / 4)
                             Case "Int64"
                                 result.Append(TempCol)
@@ -94,7 +96,7 @@ Namespace Core
                             Case "String"
                                 'result.Append("""" & StripBadCharacters(DirectCast(entireRow(cols).ToString, String)) & """")
                                 If m_reader.StringTable.ContainsKey(TempCol) = True Then
-                                    result.Append("""" & StripBadCharacters(m_reader.StringTable(TempCol)) & """")
+                                    result.Append("""" & StripBadCharacters(m_reader.StringTable.Values(TempCol)) & """")
                                     Exit Select
                                 Else
                                     result.Append(TempCol)

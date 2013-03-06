@@ -5,6 +5,13 @@ Imports MpqLib
 Namespace Core
     Module MaNGOSExtractorCore
         Private m_Version As String = " v1.2"
+
+        ''' <summary>
+        ''' Returns the version number as a string - currently predefined, but may come from application properties in the future
+        ''' </summary>
+        ''' <value></value>
+        ''' <returns></returns>
+        ''' <remarks></remarks>
         ReadOnly Property Version As String
             Get
                 Return m_Version
@@ -222,7 +229,7 @@ Namespace Core
             Return sbOutput.ToString()
         End Function
 
-        Function getObjectType(ByRef invalue As Object, ByRef OrigType As String) As String
+        Function getObjectType2(ByRef invalue As Object, ByRef OrigType As String) As String
 
             Dim thisType As String = DirectCast(invalue.ToString, String)
 
@@ -286,27 +293,17 @@ Namespace Core
             Return retType
         End Function
 
-        Function getObjectTypeOld(ByRef invalue As Object, ByRef OrigType As String) As String
+        Function getObjectType1(ByRef invalue As Object) As String
             Dim type = invalue.GetType()
             Dim thisType As String = type.ToString().Replace("System.", "")
             Dim retType As String = thisType
 
-            Select Case OrigType
-                Case "String"
-                    'If we've been set at String, nothing should change it again
-                    ' retType = OrigType
-                Case "Int32"
-                    'Default Type
-                Case "Int64"
-                    If retType = "Int32" Then retType = OrigType
-                Case "Double"
-                    'If we've been set at Double, nothing should lower it again
-                    retType = OrigType
-                Case Else
-                    retType = "Int32"
-            End Select
             Return retType
         End Function
 
+
+        Function getObjectType(ByRef invalue As Object, Old As String) As String
+            Return getObjectType1(invalue)
+        End Function
     End Module
 End Namespace
