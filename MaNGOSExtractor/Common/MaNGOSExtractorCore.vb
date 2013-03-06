@@ -302,8 +302,31 @@ Namespace Core
         End Function
 
 
-        Function getObjectType(ByRef invalue As Object, Old As String) As String
-            Return getObjectType1(invalue)
+        Function getObjectType(ByRef InputData As Object, ByRef test As String) As String
+            Dim OutData As String = ""
+            Dim testL As Long
+            Long.TryParse(InputData, testL)
+            Dim testI As Integer
+            Integer.TryParse(InputData, testI)
+            Dim testD As Double
+            Double.TryParse(InputData, testD)
+
+            If IsNumeric(InputData) = True Then
+                If testI > 0 Then
+                    OutData = "Int32"
+                ElseIf testI = 0 And testL = 0 Then
+                    OutData = "Float"
+                Else
+                    OutData = "Long"
+                End If
+            Else
+                OutData = "String"
+            End If
+            Return OutData
         End Function
+
+        'Function getObjectType(ByRef invalue As Object, Old As String) As String
+        '    Return getObjectType1(invalue)
+        'End Function
     End Module
 End Namespace

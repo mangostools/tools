@@ -24,7 +24,11 @@ Namespace Core
             'WriteSqlStructure(sqlWriter, ColType, Filename.Substring(0, Filename.Length - 4))
 
             ' Need to rethink how to do this as its too slow !!
-
+            ' I'm thinking about trying the following: 
+            ' 1) Preload everything into memory
+            ' 2) Perform checks for stringtable matches
+            ' 3) Replace values for stringtable columns with text
+            ' 4) Write data out to SQL
 
             Dim m_reader As FileReader.IWowClientDBReader
             Try
@@ -33,7 +37,7 @@ Namespace Core
                 entireRow = m_reader.GetRowAsByteArray(0)
                 Dim TotalRows As Integer = entireRow.Count() - 1
                 Dim ColType(TotalRows / 4) As String
-
+                'Dim ColStrings(m_reader.RecordsCount() - 1, TotalRows / 4) As String
                 For rows = 0 To m_reader.RecordsCount() - 1
                     entireRow = m_reader.GetRowAsByteArray(rows)
 
@@ -58,12 +62,16 @@ Namespace Core
                             If TempCol > 0 Then
                                 If m_reader.StringTable.ContainsKey(TempCol) = True Then
                                     ColType(cols / 4) = "String"
+                                    'ColStrings(rows, cols / 4) = m_reader.StringTable.ContainsValue(TempCol)
                                 End If
                             End If
                         Catch
                         End Try
                         Select Case ColType(cols / 4)
                             Case "Int64"
+                                result.Append(TempCol)
+                                Exit Select
+                            Case "Long"
                                 result.Append(TempCol)
                                 Exit Select
                             Case "UInt64"
@@ -87,7 +95,7 @@ Namespace Core
                             Case "Byte"
                                 result.Append(TempCol)
                                 Exit Select
-                            Case "Single"
+                            Case "Single", "Float"
                                 result.Append(CSng(TempCol).ToString(CultureInfo.InvariantCulture))
                                 Exit Select
                             Case "Double"

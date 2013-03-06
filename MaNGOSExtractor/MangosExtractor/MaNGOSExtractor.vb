@@ -110,5 +110,15 @@ Public Class MaNGOSExtractor
 
     Private Sub MaNGOSExtractor_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.Text = "MaNGOSExtractor" & Core.MaNGOSExtractorCore.Version()
+
+        'Dim Test = "1"
+        'MessageBox.Show(CheckValue(Test) & " Data:" & Test)
+
+        'Test = "1.1"
+        'MessageBox.Show(CheckValue(Test) & " Data:" & Test)
+
+        'Test = "-14325.1455"
+        'MessageBox.Show(Core.CheckValue(Test) & " Data:" & Test)
     End Sub
+
 End Class
