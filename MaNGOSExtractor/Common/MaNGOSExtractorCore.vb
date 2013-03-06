@@ -4,7 +4,7 @@ Imports MpqLib
 
 Namespace Core
     Module MaNGOSExtractorCore
-        Private m_Version As String = " v1.1"
+        Private m_Version As String = " v1.2"
         ReadOnly Property Version As String
             Get
                 Return m_Version
