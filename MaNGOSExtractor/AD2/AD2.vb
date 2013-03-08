@@ -152,29 +152,29 @@ Module AD2
                 End If
 
                 For Each strItem As String In colMainFiles
-                    Console.WriteLine("  BASE: " & strItem)
+                    Console.WriteLine("Reading: " & strItem)
                     Try
-                        Core.ExtractDBCFiles(strItem, "*.db*", strOutputFolder)
+                        Core.ExtractDBCFiles(strItem, "*.db?", strOutputFolder)
                     Catch ex As Exception
                         Console.WriteLine(ex.Message)
                     End Try
                 Next
 
                 For Each strItem As String In colMainFiles
-                    Console.WriteLine("  FILE: " & strItem)
+                    Console.WriteLine("Reading: " & strItem)
                     Try
-                        Core.ExtractDBCFiles(strItem, "*.db*", strOutputFolder)
+                        Core.ExtractDBCFiles(strItem, "*.db?", strOutputFolder)
                     Catch ex As Exception
                         Console.WriteLine(ex.Message)
                     End Try
                 Next
 
                 For Each strItem As String In colUpdateFiles
-                    Console.WriteLine("UPDATE: " & strItem)
+                    Console.WriteLine("Reading: " & strItem)
 
                     Try
                         '                    Me.Text = strItem
-                        Core.ExtractDBCFiles(strItem, "*.db*", strOutputFolder)
+                        Core.ExtractDBCFiles(strItem, "*.db?", strOutputFolder)
                     Catch ex As Exception
                         Console.WriteLine(ex.Message)
                     End Try
@@ -182,18 +182,66 @@ Module AD2
                 Console.WriteLine("Finished Extracting")
             End If
 
+
+            'Load the entire DBC into a DataTable to be processed by both exports
+
+
+
             If blnExportToSQL = True Then
                 myFolders = New System.IO.DirectoryInfo(strOutputFolder & "\DBFilesClient")
-                For Each file As System.IO.FileInfo In myFolders.GetFiles("*.DBC")
-                    Console.WriteLine("Extracting: " & file.Name)
-                    Core.exportSQL(strOutputFolder & "\DBFilesClient" & "\" & file.Name)
-                    Threading.Thread.Sleep(2000000)
+                For Each file As System.IO.FileInfo In myFolders.GetFiles("*.DB?")
+                    Dim dbcDataTable As New DataTable
+                    If blnExportToSQL = True Then
+                        Alert("Loading DBC " & file.Name & " into memory", True)
+                        loadDBCtoDataTable(strOutputFolder & "\DBFilesClient" & "\" & file.Name, dbcDataTable)
+                        'Application.DoEvents()
+                    End If
+                    If blnExportToSQL = True Then
+
+                        Console.WriteLine("Extracting: " & file.Name)
+                        Core.exportSQL(strOutputFolder & "\DBFilesClient" & "\" & file.Name, dbcDataTable)
+                        dbcDataTable = Nothing
+                        'Threading.Thread.Sleep(200000)
+                    End If
                 Next
             End If
 
 
+
             End
-            End If
+        End If
     End Sub
 
+    Class Listbox
+        Function Items() As Collection
+            Return Nothing
+        End Function
+
+        Function StartIndex() As Integer
+            Return 0
+        End Function
+        Property SelectedIndex As Integer
+            Get
+                Return 0
+            End Get
+            Set(value As Integer)
+
+            End Set
+        End Property
+
+        ReadOnly Property Count() As Integer
+            Get
+                Return -1
+            End Get
+        End Property
+        Property Add() As String
+            Get
+                Return ""
+            End Get
+            Set(value As String)
+
+            End Set
+        End Property
+
+    End Class
 End Module

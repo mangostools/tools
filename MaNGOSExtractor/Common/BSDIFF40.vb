@@ -57,10 +57,12 @@ Namespace Blizzard
             ' TODO
         End Sub
 
-        Public Sub PrintHeaders()
-            Console.WriteLine("PTCH: patchSize {0}, sizeBefore {1}, sizeAfter {2}", m_PTCH.m_patchSize, m_PTCH.m_sizeBefore, m_PTCH.m_sizeAfter)
-            Console.WriteLine("MD5_: md5BlockSize {0}" & vbLf & " md5Before {1}" & vbLf & " md5After {2}", m_MD5.m_md5BlockSize, m_MD5.m_md5Before.ToHexString(), m_MD5.m_md5After.ToHexString())
-            Console.WriteLine("XFRM: xfrmBlockSize {0}, patch type: {1}", m_XFRM.m_xfrmBlockSize, m_XFRM.m_type.FourCC())
+        Public Sub PrintHeaders(ByRef Filename As String)
+
+            Core.Alert("Patching: " & Filename & " Size=" & m_PTCH.m_patchSize & ", Before=" & m_PTCH.m_sizeBefore & ", After=" & m_PTCH.m_sizeAfter, Core.runningAsGui)
+            '            Console.WriteLine("PTCH: patchSize {0}, sizeBefore {1}, sizeAfter {2}", m_PTCH.m_patchSize, m_PTCH.m_sizeBefore, m_PTCH.m_sizeAfter)
+            'Console.WriteLine("MD5_: md5BlockSize {0}" & vbLf & " md5Before {1}" & vbLf & " md5After {2}", m_MD5.m_md5BlockSize, m_MD5.m_md5Before.ToHexString(), m_MD5.m_md5After.ToHexString())
+            'Console.WriteLine("XFRM: xfrmBlockSize {0}, patch type: {1}", m_XFRM.m_xfrmBlockSize, m_XFRM.m_type.FourCC())
         End Sub
 
         Private Sub BSDIFFParseHeader(br As BinaryReader)
@@ -182,29 +184,6 @@ Namespace Blizzard
             End If
             Return i
         End Function
-
-
-        Public Sub ReadDBC(ByRef Filename As String)
-            Dim thisRecord() As Byte
-
-            Using fs As New FileStream(Filename, FileMode.Open, FileAccess.Read)
-                Using br As New BinaryReader(fs)
-                    m_WDBC = br.ReadStruct(Of WDBC)()
-                    Debug.Assert(m_WDBC.m_magic.FourCC() = "WDBC")
-
-                    'm_WDBC.m_fieldCount
-                    'm_WDBC.m_recordCount
-                    'm_WDBC.m_recSize
-                    'm_WDBC.m_stringSize
-
-                    For CurrentRecord As Byte = 0 To m_WDBC.m_recordCount
-                        thisRecord = br.ReadBytes(m_WDBC.m_recSize)
-
-                    Next
-                End Using
-            End Using
-        End Sub
-
 
     End Class
 End Namespace

@@ -33,12 +33,12 @@ Partial Class MaNGOSExtractor
         Me.chkDBC = New System.Windows.Forms.CheckBox()
         Me.chkSQL = New System.Windows.Forms.CheckBox()
         Me.chkCSV = New System.Windows.Forms.CheckBox()
-        Me.ListBox1 = New System.Windows.Forms.ListBox()
+        Me.lstMainLog = New System.Windows.Forms.ListBox()
         Me.SuspendLayout()
         '
         'btnStartDBC
         '
-        Me.btnStartDBC.Location = New System.Drawing.Point(410, 195)
+        Me.btnStartDBC.Location = New System.Drawing.Point(410, 429)
         Me.btnStartDBC.Name = "btnStartDBC"
         Me.btnStartDBC.Size = New System.Drawing.Size(68, 23)
         Me.btnStartDBC.TabIndex = 0
@@ -73,7 +73,7 @@ Partial Class MaNGOSExtractor
         '
         'BtnQuit
         '
-        Me.BtnQuit.Location = New System.Drawing.Point(484, 195)
+        Me.BtnQuit.Location = New System.Drawing.Point(484, 429)
         Me.BtnQuit.Name = "BtnQuit"
         Me.BtnQuit.Size = New System.Drawing.Size(68, 23)
         Me.BtnQuit.TabIndex = 6
@@ -127,20 +127,20 @@ Partial Class MaNGOSExtractor
         Me.chkCSV.Text = "Export CSV"
         Me.chkCSV.UseVisualStyleBackColor = True
         '
-        'ListBox1
+        'lstMainLog
         '
-        Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.Location = New System.Drawing.Point(102, 55)
-        Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(450, 134)
-        Me.ListBox1.TabIndex = 12
+        Me.lstMainLog.FormattingEnabled = True
+        Me.lstMainLog.Location = New System.Drawing.Point(102, 58)
+        Me.lstMainLog.Name = "lstMainLog"
+        Me.lstMainLog.Size = New System.Drawing.Size(450, 368)
+        Me.lstMainLog.TabIndex = 13
         '
         'MaNGOSExtractor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(564, 228)
-        Me.Controls.Add(Me.ListBox1)
+        Me.ClientSize = New System.Drawing.Size(564, 458)
+        Me.Controls.Add(Me.lstMainLog)
         Me.Controls.Add(Me.chkCSV)
         Me.Controls.Add(Me.chkSQL)
         Me.Controls.Add(Me.chkDBC)
@@ -172,6 +172,6 @@ Partial Class MaNGOSExtractor
     Friend WithEvents chkDBC As System.Windows.Forms.CheckBox
     Friend WithEvents chkSQL As System.Windows.Forms.CheckBox
     Friend WithEvents chkCSV As System.Windows.Forms.CheckBox
-    Friend WithEvents ListBox1 As System.Windows.Forms.ListBox
+    Friend WithEvents lstMainLog As System.Windows.Forms.ListBox
 
 End Class

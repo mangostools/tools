@@ -21,6 +21,26 @@ Namespace Core
             'End Set
         End Property
 
+        Public Property runningAsGui As Boolean
+            Get
+                Return m_runningAsGui
+            End Get
+            Set(value As Boolean)
+                m_runningAsGui = value
+            End Set
+        End Property
+        Private m_runningAsGui As Boolean = False
+
+        Public Property alertlist As ListBox
+            Get
+                Return m_alertlist
+            End Get
+            Set(value As ListBox)
+                m_alertlist = value
+            End Set
+        End Property
+        Private m_alertlist As ListBox
+
         ''' <summary>
         ''' Recursively reads the directory structure from the StartFolder down
         ''' </summary>
@@ -141,8 +161,8 @@ Namespace Core
                             '## Stage 1 - Saves the files out with a .patch extension                     ##
                             '###############################################################################
 
-                            Console.WriteLine("Destination Folder: {0}", DestinationFolder)
-                            Console.WriteLine("Sub Folder: {0}", strSubFolder)
+                            'Console.WriteLine("Destination Folder: {0}", DestinationFolder)
+                            'Console.WriteLine("Sub Folder: {0}", strSubFolder)
 
                             'If the file already exists, delete it and recreate it
                             If My.Computer.FileSystem.FileExists(DestinationFolder & strSubFolder & "\" & strPatchName) = True Then
@@ -161,7 +181,7 @@ Namespace Core
                             '##           original file                                                   ##
                             '###############################################################################
                             Using p As New Blizzard.Patch(DestinationFolder & strSubFolder & "\" & strPatchName)
-                                p.PrintHeaders()
+                                p.PrintHeaders(strOriginalName)
                                 p.Apply(DestinationFolder & strSubFolder & "\" & strOriginalName, DestinationFolder & strSubFolder & "\" & strNewName, True)
                             End Using
 
@@ -229,79 +249,13 @@ Namespace Core
             Return sbOutput.ToString()
         End Function
 
-        Function getObjectType2(ByRef invalue As Object, ByRef OrigType As String) As String
-
-            Dim thisType As String = DirectCast(invalue.ToString, String)
-
-            Dim retType As String = "Int32"
-            If IsNumeric(thisType) = False Then
-                retType = "String"
-            Else
-                Dim blnInt32 As Boolean = False
-                Dim blnInt64 As Boolean = False
-                Dim blnDouble As Boolean = False
-                Try
-                    Dim MyInt32 As Int32 = DirectCast(invalue, Int32)
-                    blnInt32 = True
-                Catch
-                    blnInt32 = False
-                End Try
-
-                Try
-                    Dim MyInt64 As Int64 = DirectCast(invalue, Int64)
-                    blnInt64 = True
-                Catch
-                    blnInt64 = False
-                End Try
-
-                Try
-                    Dim MyDouble As Double = DirectCast(invalue, Double)
-                    blnDouble = True
-                Catch
-                    blnDouble = False
-                End Try
-
-                If blnInt64 = False And blnDouble = False Then
-                    retType = "Int32"
-                ElseIf blnInt64 = True Then
-                    retType = "Int64"
-                ElseIf blnDouble = True Then
-                    retType = "Double"
-                End If
-
-            End If
-
-            'retType = thisType
-
-            Select Case OrigType
-                Case "String"
-                    'If we've been set at String, nothing should change it again
-                    'retType = OrigType
-                Case "Int32"
-                    'Default Type
-                Case "Int64"
-                    If retType = "Int32" Then retType = OrigType
-                Case "Double"
-                    'If we've been set at Double, nothing should lower it again
-                    retType = OrigType
-                Case ""
-
-                Case Else
-                    retType = "Int32"
-            End Select
-
-            Return retType
-        End Function
-
-        Function getObjectType1(ByRef invalue As Object) As String
-            Dim type = invalue.GetType()
-            Dim thisType As String = type.ToString().Replace("System.", "")
-            Dim retType As String = thisType
-
-            Return retType
-        End Function
-
-
+        ''' <summary>
+        ''' Returns a value based on object type
+        ''' </summary>
+        ''' <param name="InputData"></param>
+        ''' <param name="test"></param>
+        ''' <returns></returns>
+        ''' <remarks></remarks>
         Function getObjectType(ByRef InputData As Object, ByRef test As String) As String
             Dim OutData As String = ""
             Dim testL As Long
@@ -313,11 +267,23 @@ Namespace Core
 
             If IsNumeric(InputData) = True Then
                 If testI > 0 Then
-                    OutData = "Int32"
+                    If test = "Float" Or test = "Long" Or test = "String" Then
+                        OutData = test
+                    Else
+                        OutData = "Int32"
+                    End If
                 ElseIf testI = 0 And testL = 0 Then
-                    OutData = "Float"
+                    If test = "Long" Or test = "String" Then
+                        OutData = test
+                    Else
+                        OutData = "Float"
+                    End If
                 Else
-                    OutData = "Long"
+                    If test = "String" Then
+                        OutData = test
+                    Else
+                        OutData = "Float"
+                    End If
                 End If
             Else
                 OutData = "String"
@@ -325,8 +291,35 @@ Namespace Core
             Return OutData
         End Function
 
-        'Function getObjectType(ByRef invalue As Object, Old As String) As String
-        '    Return getObjectType1(invalue)
-        'End Function
+        ''' <summary>
+        ''' Sends a message to either a gui listbox or console
+        ''' </summary>
+        ''' <param name="AlertMessage"></param>
+        ''' <param name="runningAsGui"></param>
+        ''' <param name="resultList"></param>
+        ''' <remarks></remarks>
+        Public Sub Alert(ByRef AlertMessage As String, ByRef runningAsGui As Boolean, Optional append As Boolean = False)
+            If runningAsGui = True Then 'running as a Gui App
+                If Not IsNothing(m_alertlist) Then
+                    If append = False Then
+                        m_alertlist.Items.Add(AlertMessage)
+                        m_alertlist.SelectedIndex = m_alertlist.Items.Count() - 1
+                    Else
+                        Dim Temp As String = m_alertlist.Items(m_alertlist.Items.Count() - 1)
+                        AlertMessage = Temp & AlertMessage
+                        m_alertlist.Items.Remove(m_alertlist.Items.Count() - 1)
+
+                        m_alertlist.Items.Add(AlertMessage)
+                        m_alertlist.SelectedIndex = m_alertlist.Items.Count() - 1
+                    End If
+                End If
+                Else 'Running as console
+                    If append = False Then
+                        Console.WriteLine(AlertMessage)
+                    Else
+                        Console.Write(AlertMessage)
+                    End If
+                End If
+        End Sub
     End Module
 End Namespace

@@ -17,7 +17,8 @@ Namespace FileReader
             ElseIf ext = ".STL" Then
                 reader = New STLReader(file)
             Else
-                Throw New InvalidDataException([String].Format("Unknown file type {0}", ext))
+                reader = Nothing
+                'Throw New InvalidDataException([String].Format("Unknown file type {0}", ext))
             End If
 
             Return reader

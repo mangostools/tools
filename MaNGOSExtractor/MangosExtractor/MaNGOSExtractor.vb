@@ -1,6 +1,7 @@
 ﻿Imports System
 Imports System.IO
 Imports MangosExtractor.Core
+Imports System.Data
 
 Public Class MaNGOSExtractor
     ''' <summary>
@@ -10,7 +11,7 @@ Public Class MaNGOSExtractor
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub btnStartDBC_Click(sender As Object, e As EventArgs) Handles btnStartDBC.Click
-        ListBox1.Items.Clear()
+        lstMainLog.Items.Clear()
         Dim colBaseFiles As New SortedSet(Of String)    'Collection containing all the base files
         Dim colMainFiles As New SortedSet(Of String)    'Collection containing all the main files
         Dim colUpdateFiles As New SortedSet(Of String)  'Collection containing any update or patch files
@@ -19,7 +20,7 @@ Public Class MaNGOSExtractor
         Dim myFolders As System.IO.DirectoryInfo
 
         If System.IO.Directory.Exists(txtBaseFolder.Text) = False Then
-            MessageBox.Show("Warcraft folder '" & txtBaseFolder.Text & "' can not be located")
+            Alert("Warcraft folder '" & txtBaseFolder.Text & "' can not be located", MaNGOSExtractorCore.runningAsGui)
             Exit Sub
         End If
 
@@ -54,47 +55,66 @@ Public Class MaNGOSExtractor
 
 
             For Each strItem As String In colBaseFiles
-                ListBox1.Items.Add("  BASE: " & strItem)
+                Alert("Reading: " & strItem, True)
                 Try
                     Me.Text = strItem
-                    Core.ExtractDBCFiles(strItem, "*.db*", txtOutputFolder.Text)
+                    Core.ExtractDBCFiles(strItem, "*.db?", txtOutputFolder.Text)
                 Catch ex As Exception
-                    MessageBox.Show(ex.Message)
+                    Alert(ex.Message, MaNGOSExtractorCore.runningAsGui)
                 End Try
             Next
 
             For Each strItem As String In colMainFiles
-                ListBox1.Items.Add("  FILE: " & strItem)
+                Alert("Reading: " & strItem, True)
                 Try
                     Me.Text = strItem
-                    Core.ExtractDBCFiles(strItem, "*.db*", txtOutputFolder.Text)
+                    Core.ExtractDBCFiles(strItem, "*.db?", txtOutputFolder.Text)
                 Catch ex As Exception
-                    MessageBox.Show(ex.Message)
+                    Alert(ex.Message, MaNGOSExtractorCore.runningAsGui)
                 End Try
             Next
 
             For Each strItem As String In colUpdateFiles
-                ListBox1.Items.Add("UPDATE: " & strItem)
+                Alert("Reading: " & strItem, True)
 
                 Try
                     Me.Text = strItem
-                    Core.ExtractDBCFiles(strItem, "*.db*", txtOutputFolder.Text)
+                    Core.ExtractDBCFiles(strItem, "*.db?", txtOutputFolder.Text)
                 Catch ex As Exception
-                    MessageBox.Show(ex.Message)
+                    Alert(ex.Message, MaNGOSExtractorCore.runningAsGui)
                 End Try
                 Application.DoEvents()
             Next
-            Me.Text = ("Extraction Finished")
+            Alert("Extraction Finished", Core.runningAsGui)
         End If
 
-        'Now that we have all the DBC's extracted and patched, we need to check the export options and export data
-        If chkSQL.Checked = True Then
+        If chkCSV.Checked = True Or chkSQL.Checked = True Then
+            'Now that we have all the DBC's extracted and patched, we need to check the export options and export data
             myFolders = New System.IO.DirectoryInfo(txtOutputFolder.Text & "\DBFilesClient")
-            For Each file As System.IO.FileInfo In myFolders.GetFiles("*.DBC")
-                Me.Text = "Extracting: " & file.Name
-                Core.exportSQL(txtOutputFolder.Text & "\DBFilesClient" & "\" & file.Name)
-                Application.DoEvents()
+            For Each file As System.IO.FileInfo In myFolders.GetFiles("*.DB?")
+                Dim dbcDataTable As New DataTable
+
+                'Load the entire DBC into a DataTable to be processed by both exports
+                If chkCSV.Checked = True Or chkSQL.Checked = True Then
+                    Alert("Loading DBC " & file.Name & " into memory", True)
+                    loadDBCtoDataTable(txtOutputFolder.Text & "\DBFilesClient" & "\" & file.Name, dbcDataTable)
+                    Application.DoEvents()
+                End If
+
+                If chkSQL.Checked = True Then
+                    Alert("Creating SQL for " & file.Name, True)
+                    exportSQL(txtOutputFolder.Text & "\DBFilesClient" & "\" & file.Name, dbcDataTable)
+                    Application.DoEvents()
+                End If
+
+                If chkCSV.Checked = True Then
+                    Alert("Creating CSV for " & file.Name, True)
+                    'Core.exportSQL(txtOutputFolder.Text & "\DBFilesClient" & "\" & file.Name, dbcDataTable)
+                    Application.DoEvents()
+                End If
+
             Next
+            Alert("Finished Exporting", Core.runningAsGui)
         End If
     End Sub
 
@@ -108,17 +128,20 @@ Public Class MaNGOSExtractor
         End
     End Sub
 
+    ''' <summary>
+    ''' Set runningAsGui = true and set the alertlist to main screen listbox
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
     Private Sub MaNGOSExtractor_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.Text = "MaNGOSExtractor" & Core.MaNGOSExtractorCore.Version()
+        Core.runningAsGui = True
+        Core.alertlist = lstMainLog
 
-        'Dim Test = "1"
-        'MessageBox.Show(CheckValue(Test) & " Data:" & Test)
+        'Dim Test As Object = 1
+        'MessageBox.Show(Core.getObjectType(Test, "Long"))
 
-        'Test = "1.1"
-        'MessageBox.Show(CheckValue(Test) & " Data:" & Test)
-
-        'Test = "-14325.1455"
-        'MessageBox.Show(Core.CheckValue(Test) & " Data:" & Test)
     End Sub
 
 End Class
