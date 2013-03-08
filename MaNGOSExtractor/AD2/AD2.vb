@@ -16,6 +16,7 @@ Module AD2
             Console.WriteLine("-o set output path")
             Console.WriteLine("-e {1/2/3} 1 Maps Only, 2 DBC Only, 3 both DBC and Maps   Default is 3")
             Console.WriteLine("-s create .SQL file for each .DBC, requires -o switch")
+            Console.WriteLine("-c create .CSV file for each .DBC, requires -o switch")
             End
         Else
             Dim strExtractionLevel As String = ""
@@ -25,6 +26,8 @@ Module AD2
             Dim blnCMDError As Boolean = False
             Dim blnExtract As Boolean = False
             Dim blnExportToSQL As Boolean = False
+            Dim blnExportToCSV As Boolean = False
+
             For Commands As Integer = 0 To intMaxCommands
                 Select Case My.Application.CommandLineArgs(Commands)
                     Case "-e"
@@ -86,9 +89,13 @@ Module AD2
                         Commands = Commands + 1
                     Case "-s"
                         blnExportToSQL = True
-                        If System.IO.Directory.Exists(strOutputFolder) = True Then
-                            Console.WriteLine("Output Folder: " & strOutputFolder)
-                        Else
+                        If System.IO.Directory.Exists(strOutputFolder) = False Then
+                            Console.WriteLine("Output Folder: *ERROR* - Folder '" & strOutputFolder & "' could not be found")
+                            blnCMDError = True
+                        End If
+                    Case "-c"
+                        blnExportToCSV = True
+                        If System.IO.Directory.Exists(strOutputFolder) = False Then
                             Console.WriteLine("Output Folder: *ERROR* - Folder '" & strOutputFolder & "' could not be found")
                             blnCMDError = True
                         End If
@@ -99,6 +106,9 @@ Module AD2
 
             'If any parameters have been flagged as having an error, bail out
             If blnExportToSQL = True And strOutputFolder = "" Then
+                Console.WriteLine("*ERROR* -o {output folder} is required")
+                blnCMDError = True
+            ElseIf blnExportToCSV = True And strOutputFolder = "" Then
                 Console.WriteLine("*ERROR* -o {output folder} is required")
                 blnCMDError = True
             ElseIf blnExtract = True And strOutputFolder = "" Then
@@ -173,7 +183,6 @@ Module AD2
                     Console.WriteLine("Reading: " & strItem)
 
                     Try
-                        '                    Me.Text = strItem
                         Core.ExtractDBCFiles(strItem, "*.db?", strOutputFolder)
                     Catch ex As Exception
                         Console.WriteLine(ex.Message)
@@ -184,22 +193,24 @@ Module AD2
 
 
             'Load the entire DBC into a DataTable to be processed by both exports
-
-
-
-            If blnExportToSQL = True Then
+            If blnExportToSQL = True Or blnExportToCSV = True Then
                 myFolders = New System.IO.DirectoryInfo(strOutputFolder & "\DBFilesClient")
                 For Each file As System.IO.FileInfo In myFolders.GetFiles("*.DB?")
                     Dim dbcDataTable As New DataTable
-                    If blnExportToSQL = True Then
-                        Alert("Loading DBC " & file.Name & " into memory", True)
-                        loadDBCtoDataTable(strOutputFolder & "\DBFilesClient" & "\" & file.Name, dbcDataTable)
-                        'Application.DoEvents()
-                    End If
-                    If blnExportToSQL = True Then
+                    Alert("Loading DBC " & file.Name & " into memory", True)
+                    loadDBCtoDataTable(strOutputFolder & "\DBFilesClient" & "\" & file.Name, dbcDataTable)
+                    'Application.DoEvents()
 
+                    If blnExportToSQL = True Then
                         Console.WriteLine("Extracting: " & file.Name)
                         Core.exportSQL(strOutputFolder & "\DBFilesClient" & "\" & file.Name, dbcDataTable)
+                        dbcDataTable = Nothing
+                        'Threading.Thread.Sleep(200000)
+                    End If
+
+                    If blnExportToCSV = True Then
+                        Console.WriteLine("Extracting: " & file.Name)
+                        Core.exportCSV(strOutputFolder & "\DBFilesClient" & "\" & file.Name, dbcDataTable)
                         dbcDataTable = Nothing
                         'Threading.Thread.Sleep(200000)
                     End If

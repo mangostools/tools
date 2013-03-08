@@ -34,6 +34,7 @@ Partial Class MaNGOSExtractor
         Me.chkSQL = New System.Windows.Forms.CheckBox()
         Me.chkCSV = New System.Windows.Forms.CheckBox()
         Me.lstMainLog = New System.Windows.Forms.ListBox()
+        Me.brnWDB = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btnStartDBC
@@ -135,11 +136,22 @@ Partial Class MaNGOSExtractor
         Me.lstMainLog.Size = New System.Drawing.Size(450, 368)
         Me.lstMainLog.TabIndex = 13
         '
+        'brnWDB
+        '
+        Me.brnWDB.Location = New System.Drawing.Point(102, 432)
+        Me.brnWDB.Name = "brnWDB"
+        Me.brnWDB.Size = New System.Drawing.Size(82, 23)
+        Me.brnWDB.TabIndex = 14
+        Me.brnWDB.Text = "&WDB to SQL"
+        Me.brnWDB.UseVisualStyleBackColor = True
+        Me.brnWDB.Visible = False
+        '
         'MaNGOSExtractor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(564, 458)
+        Me.Controls.Add(Me.brnWDB)
         Me.Controls.Add(Me.lstMainLog)
         Me.Controls.Add(Me.chkCSV)
         Me.Controls.Add(Me.chkSQL)
@@ -173,5 +185,6 @@ Partial Class MaNGOSExtractor
     Friend WithEvents chkSQL As System.Windows.Forms.CheckBox
     Friend WithEvents chkCSV As System.Windows.Forms.CheckBox
     Friend WithEvents lstMainLog As System.Windows.Forms.ListBox
+    Friend WithEvents brnWDB As System.Windows.Forms.Button
 
 End Class

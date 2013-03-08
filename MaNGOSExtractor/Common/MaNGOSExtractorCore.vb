@@ -1,26 +1,35 @@
 ﻿Imports System.IO
 Imports System.Text
 Imports MpqLib
+Imports System.Data
+Imports System.Text.RegularExpressions
 
 Namespace Core
     Module MaNGOSExtractorCore
-        Private m_Version As String = " v1.2"
+        'Private m_Version As String = " v1.3"
 
         ''' <summary>
-        ''' Returns the version number as a string - currently predefined, but may come from application properties in the future
+        ''' Returns the version number as a string which is pulled from the application properties
         ''' </summary>
         ''' <value></value>
         ''' <returns></returns>
         ''' <remarks></remarks>
         ReadOnly Property Version As String
             Get
-                Return m_Version
+
+                Return " v" & My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor    'm_Version
             End Get
             'Private Set(value As Integer)
             '    m_Version = value
             'End Set
         End Property
 
+        ''' <summary>
+        ''' A boolean value which indicates whether the app is running as a gui or console (false=console)
+        ''' </summary>
+        ''' <value></value>
+        ''' <returns></returns>
+        ''' <remarks></remarks>
         Public Property runningAsGui As Boolean
             Get
                 Return m_runningAsGui
@@ -31,6 +40,12 @@ Namespace Core
         End Property
         Private m_runningAsGui As Boolean = False
 
+        ''' <summary>
+        ''' Defines the Listbox which messages are sent to in gui mode
+        ''' </summary>
+        ''' <value></value>
+        ''' <returns></returns>
+        ''' <remarks></remarks>
         Public Property alertlist As ListBox
             Get
                 Return m_alertlist
@@ -266,7 +281,7 @@ Namespace Core
             Double.TryParse(InputData, testD)
 
             If IsNumeric(InputData) = True Then
-                If testI > 0 Then
+                If testI > 0 And testI < 65536 Then
                     If test = "Float" Or test = "Long" Or test = "String" Then
                         OutData = test
                     Else
@@ -282,7 +297,7 @@ Namespace Core
                     If test = "String" Then
                         OutData = test
                     Else
-                        OutData = "Float"
+                        OutData = "Long"
                     End If
                 End If
             Else
@@ -313,13 +328,168 @@ Namespace Core
                         m_alertlist.SelectedIndex = m_alertlist.Items.Count() - 1
                     End If
                 End If
-                Else 'Running as console
-                    If append = False Then
-                        Console.WriteLine(AlertMessage)
-                    Else
-                        Console.Write(AlertMessage)
-                    End If
+            Else 'Running as console
+                If append = False Then
+                    Console.WriteLine(AlertMessage)
+                Else
+                    Console.Write(AlertMessage)
                 End If
+            End If
         End Sub
+
+        ''' <summary>
+        ''' Loads a DBC file data into a datatable 
+        ''' </summary>
+        ''' <param name="Filename"></param>
+        ''' <param name="dbcDataTable"></param>
+        ''' <returns></returns>
+        ''' <remarks></remarks>
+        Public Function loadDBCtoDataTable(ByRef Filename As String, ByRef dbcDataTable As DataTable) As DataTable
+            Dim m_reader As FileReader.IWowClientDBReader
+
+            Dim entireRow() As Byte
+            Dim thisRow As DataRow
+
+            m_reader = FileReader.DBReaderFactory.GetReader(Filename)
+            Try
+                entireRow = m_reader.GetRowAsByteArray(0)
+                Dim TotalRows As Integer = entireRow.Length - 1
+                Dim ColType(TotalRows / 4) As String
+
+                If TotalRows > 0 Then
+
+                    Try
+
+                        For cols As Integer = 0 To TotalRows Step 4
+                            dbcDataTable.Columns.Add("Col" & (cols / 4).ToString(), GetType(String))
+                        Next
+
+                    Catch ex As Exception
+                        Core.Alert(ex.Message, MaNGOSExtractorCore.runningAsGui)
+                    End Try
+
+                    Try
+                        For rows = 0 To m_reader.RecordsCount() - 1
+                            entireRow = m_reader.GetRowAsByteArray(rows)
+
+                            thisRow = dbcDataTable.NewRow()
+                            For cols As Integer = 0 To TotalRows Step 4
+                                If cols = 14 Then Stop
+                                Dim TempCol As Object '= entireRow(cols)
+                                Try
+                                    If entireRow(cols + 3) > 127 Then 'And entireRow(cols + 2) = 255 And entireRow(cols + 1) = 255 And entireRow(cols + 0) = 255 Then
+                                        TempCol = -1
+                                    Else
+                                        TempCol = (entireRow(cols + 3) * 16777216) + (entireRow(cols + 2) * 65536) + (entireRow(cols + 1) * 256) + (entireRow(cols + 0))
+                                    End If
+                                Catch ex As Exception
+                                    TempCol = -1
+                                End Try
+                                thisRow(CInt(cols / 4)) = TempCol
+                            Next
+                            dbcDataTable.Rows.Add(thisRow)
+                            Threading.Thread.Sleep(0)
+                        Next
+                    Catch ex As Exception
+                        Core.Alert(ex.Message, MaNGOSExtractorCore.runningAsGui)
+                    End Try
+
+                    'Create a new row at the end to store the datatype
+                    thisRow = dbcDataTable.NewRow()
+
+                    dbcDataTable.Rows.Add(thisRow)
+                    Try
+                        For cols As Integer = 0 To TotalRows Step 4
+                            Dim blnFoundString As Boolean = True
+                            For thisScanRow As Integer = 0 To dbcDataTable.Rows.Count - 1
+
+                                If IsDBNull(dbcDataTable.Rows(thisScanRow)(CInt(cols / 4))) = False Then
+                                    If m_reader.StringTable.ContainsKey(dbcDataTable.Rows(thisScanRow)(CInt(cols / 4))) = False Then
+                                        blnFoundString = False
+                                        'Dim testL As Long
+                                        'Dim testI As Integer
+                                        'Dim testD As Double
+                                        'Try
+                                        '    Long.TryParse(dbcDataTable.Rows(thisScanRow)(CInt(cols / 4)), testL)
+                                        '    Integer.TryParse(dbcDataTable.Rows(thisScanRow)(CInt(cols / 4)), testI)
+                                        '    Double.TryParse(dbcDataTable.Rows(thisScanRow)(CInt(cols / 4)), testD)
+                                        'Catch ex As Exception
+                                        '    Core.Alert(ex.Message, MaNGOSExtractorCore.runningAsGui)
+                                        'End Try
+                                        Dim strDataType As String = ""
+                                        Dim strCurDataType As String = "Int32"
+                                        If Not IsDBNull(dbcDataTable.Rows(dbcDataTable.Rows.Count() - 1)(CInt(cols / 4))) Then
+                                            strCurDataType = dbcDataTable.Rows(dbcDataTable.Rows.Count() - 1)(CInt(cols / 4))
+                                        Else
+                                            strCurDataType = "1"
+                                        End If
+                                        Select Case strCurDataType
+                                            Case "0"
+                                                strDataType = "String"
+                                            Case "1"
+                                                strDataType = "Int32"
+                                            Case "2"
+                                                strDataType = "Long"
+                                            Case "3"
+                                                strDataType = "Float"
+                                        End Select
+                                        strDataType = Core.getObjectType(dbcDataTable.Rows(thisScanRow)(CInt(cols / 4)), strDataType)
+                                        Try
+                                            If strDataType = "Int32" Then 'Integer
+                                                dbcDataTable.Rows(dbcDataTable.Rows.Count() - 1)(CInt(cols / 4)) = 1
+                                            ElseIf strDataType = "Float" Then 'Float
+                                                dbcDataTable.Rows(dbcDataTable.Rows.Count() - 1)(CInt(cols / 4)) = 3
+                                            ElseIf strDataType = "String" Then 'Float
+                                                dbcDataTable.Rows(dbcDataTable.Rows.Count() - 1)(CInt(cols / 4)) = 0
+                                            Else 'Long
+                                                dbcDataTable.Rows(dbcDataTable.Rows.Count() - 1)(CInt(cols / 4)) = 2
+                                            End If
+                                        Catch ex As Exception
+                                            Core.Alert(ex.Message, MaNGOSExtractorCore.runningAsGui)
+                                        End Try
+                                    End If
+                                End If
+                            Next
+
+                            If blnFoundString = True Then
+                                Try
+                                    For thisScanRow As Integer = 0 To dbcDataTable.Rows.Count - 1
+                                        dbcDataTable.Rows(thisScanRow)(CInt(cols / 4)) = m_reader.StringTable(dbcDataTable.Rows(thisScanRow)(CInt(cols / 4)))
+                                        dbcDataTable.Rows(dbcDataTable.Rows.Count() - 1)(CInt(cols / 4)) = 0
+                                        Threading.Thread.Sleep(0)
+                                    Next
+                                Catch ex As Exception
+                                End Try
+                            End If
+                            Threading.Thread.Sleep(0)
+                        Next
+
+                    Catch ex As Exception
+                        Core.Alert(ex.Message, MaNGOSExtractorCore.runningAsGui)
+                    End Try
+                End If
+
+            Catch ex As Exception
+                Core.Alert(ex.Message, MaNGOSExtractorCore.runningAsGui)
+            End Try
+
+            Return dbcDataTable
+        End Function
+
+
+        ''' <summary>
+        ''' Remove characters that mess with MySQL by escaping them with a leading \
+        ''' </summary>
+        ''' <param name="input"></param>
+        ''' <returns></returns>
+        ''' <remarks></remarks>
+        Public Function StripBadCharacters(input As String) As String
+            input = input.Replace("\", "\\")
+            input = input.Replace("'", "\'")
+            input = input.Replace("_", "\_")
+            input = input.Replace("%", "\%")
+            input = input.Replace(Chr(34), "\" & Chr(34))
+            Return input
+        End Function
     End Module
 End Namespace

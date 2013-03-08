@@ -90,6 +90,11 @@ Public Class MaNGOSExtractor
 
         If chkCSV.Checked = True Or chkSQL.Checked = True Then
             'Now that we have all the DBC's extracted and patched, we need to check the export options and export data
+            If txtOutputFolder.Text.EndsWith("\") = False Then txtOutputFolder.Text = txtOutputFolder.Text & "\"
+            If My.Computer.FileSystem.DirectoryExists(txtOutputFolder.Text) = False Then
+                Directory.CreateDirectory(txtOutputFolder.Text)
+            End If
+
             myFolders = New System.IO.DirectoryInfo(txtOutputFolder.Text & "\DBFilesClient")
             For Each file As System.IO.FileInfo In myFolders.GetFiles("*.DB?")
                 Dim dbcDataTable As New DataTable
@@ -98,19 +103,22 @@ Public Class MaNGOSExtractor
                 If chkCSV.Checked = True Or chkSQL.Checked = True Then
                     Alert("Loading DBC " & file.Name & " into memory", True)
                     loadDBCtoDataTable(txtOutputFolder.Text & "\DBFilesClient" & "\" & file.Name, dbcDataTable)
-                    Application.DoEvents()
+                    Threading.Thread.Sleep(0)
+                    'Application.DoEvents()
                 End If
 
                 If chkSQL.Checked = True Then
                     Alert("Creating SQL for " & file.Name, True)
                     exportSQL(txtOutputFolder.Text & "\DBFilesClient" & "\" & file.Name, dbcDataTable)
-                    Application.DoEvents()
+                    Threading.Thread.Sleep(0)
+                    'Application.DoEvents()
                 End If
 
                 If chkCSV.Checked = True Then
                     Alert("Creating CSV for " & file.Name, True)
-                    'Core.exportSQL(txtOutputFolder.Text & "\DBFilesClient" & "\" & file.Name, dbcDataTable)
-                    Application.DoEvents()
+                    exportCSV(txtOutputFolder.Text & "\DBFilesClient" & "\" & file.Name, dbcDataTable)
+                    Threading.Thread.Sleep(0)
+                    'Application.DoEvents()
                 End If
 
             Next
@@ -139,9 +147,56 @@ Public Class MaNGOSExtractor
         Core.runningAsGui = True
         Core.alertlist = lstMainLog
 
-        'Dim Test As Object = 1
-        'MessageBox.Show(Core.getObjectType(Test, "Long"))
+        'Dim Test As Object = 65536
+        'MessageBox.Show(Core.getObjectType(Test, "Int32"))
 
     End Sub
 
+    Private Sub brnWDB_Click(sender As Object, e As EventArgs) Handles brnWDB.Click
+        lstMainLog.Items.Clear()
+        Dim colBaseFiles As New SortedSet(Of String)    'Collection containing all the base files
+        Dim colMainFiles As New SortedSet(Of String)    'Collection containing all the main files
+        Dim colUpdateFiles As New SortedSet(Of String)  'Collection containing any update or patch files
+
+        Dim colFolders As New Collection                'Collection to hold for the folders to be processed
+        Dim myFolders As System.IO.DirectoryInfo
+
+        If System.IO.Directory.Exists(txtBaseFolder.Text) = False Then
+            Alert("Warcraft folder '" & txtBaseFolder.Text & "' can not be located", MaNGOSExtractorCore.runningAsGui)
+            Exit Sub
+        End If
+
+        'Now that we have all the DBC's extracted and patched, we need to check the export options and export data
+        txtOutputFolder.Text = txtOutputFolder.Text & "\WDBFiles"
+        If txtOutputFolder.Text.EndsWith("\") = False Then txtOutputFolder.Text = txtOutputFolder.Text & "\"
+        If My.Computer.FileSystem.DirectoryExists(txtOutputFolder.Text) = False Then
+            Directory.CreateDirectory(txtOutputFolder.Text)
+        End If
+
+
+        'If chkCSV.Checked = True Or chkSQL.Checked = True Then
+        'Now that we have all the DBC's extracted and patched, we need to check the export options and export data
+        myFolders = New System.IO.DirectoryInfo(txtBaseFolder.Text & "\CACHE\WDB\engb")
+        For Each file As System.IO.FileInfo In myFolders.GetFiles("*.WDB")
+            Dim dbcDataTable As New DataTable
+
+            'Load the entire DBC into a DataTable to be processed by both exports
+            '                If chkCSV.Checked = True Or chkSQL.Checked = True Then
+            Alert("Loading WBC " & file.Name & " into memory", True)
+            loadDBCtoDataTable(txtBaseFolder.Text & "\CACHE\WDB\engb" & "\" & file.Name, dbcDataTable)
+            Application.DoEvents()
+            'End If
+
+            ' If chkSQL.Checked = True Then
+            Alert("Creating SQL for " & file.Name, True)
+            exportSQL(txtOutputFolder.Text & "\" & file.Name, dbcDataTable)
+            Application.DoEvents()
+            ' End If
+
+
+        Next
+        Alert("Finished Exporting", Core.runningAsGui)
+        'End If
+
+    End Sub
 End Class

@@ -69,7 +69,7 @@ Namespace FileReader
         Private m_rows As Dictionary(Of Integer, Byte())
 
         Public Function GetRowAsByteArray(row As Integer) As Byte() Implements IWowClientDBReader.GetRowAsByteArray
-            Return m_rows(row)
+            Return m_rows(m_rows.ElementAt(row).Key)
         End Function
 
         Default Public ReadOnly Property Item(row As Integer) As BinaryReader Implements IWowClientDBReader.Item
@@ -98,15 +98,21 @@ Namespace FileReader
 
                 m_rows = New Dictionary(Of Integer, Byte())()
 
-                While reader.BaseStream.Position <> reader.BaseStream.Length
-                    Dim entry = reader.ReadInt32()
-                    Dim size = reader.ReadInt32()
-                    If entry = 0 AndAlso size = 0 AndAlso reader.BaseStream.Position = reader.BaseStream.Length Then
-                        Exit While
-                    End If
-                    Dim row = New Byte(-1) {}.Concat(BitConverter.GetBytes(entry)).Concat(reader.ReadBytes(size)).ToArray()
-                    m_rows.Add(entry, row)
-                End While
+                Try
+                    While reader.BaseStream.Position <> reader.BaseStream.Length
+
+
+                        Dim entry = reader.ReadInt32()
+                        Dim size = reader.ReadInt32()
+                        If entry = 0 AndAlso size = 0 AndAlso reader.BaseStream.Position = reader.BaseStream.Length Then
+                            Exit While
+                        End If
+                        Dim row = New Byte(-1) {}.Concat(BitConverter.GetBytes(entry)).Concat(reader.ReadBytes(size)).ToArray()
+                        m_rows.Add(entry, row)
+                    End While
+                Catch ex As Exception
+
+                End Try
 
                 m_RecordsCount = m_rows.Count
             End Using
