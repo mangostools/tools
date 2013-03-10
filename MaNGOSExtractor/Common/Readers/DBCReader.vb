@@ -60,7 +60,16 @@ Namespace FileReader
         Private m_rows As Byte()()
 
         Public Function GetRowAsByteArray(row As Integer) As Byte() Implements IWowClientDBReader.GetRowAsByteArray
-            Return m_rows(row)
+            Try
+                If m_rows.Count() > 0 Then
+                    Return m_rows(row)
+                Else
+                    Return Nothing
+                End If
+            Catch ex As Exception
+                Return Nothing
+            End Try
+
         End Function
 
         Default Public ReadOnly Property Item(row As Integer) As BinaryReader Implements IWowClientDBReader.Item

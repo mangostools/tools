@@ -105,10 +105,10 @@ Module AD2
             Next
 
             'If any parameters have been flagged as having an error, bail out
-            If blnExportToSQL = True And strOutputFolder = "" Then
+            If blnExportToSQL = True And strOutputFolder = "" And blnExtract = False Then
                 Console.WriteLine("*ERROR* -o {output folder} is required")
                 blnCMDError = True
-            ElseIf blnExportToCSV = True And strOutputFolder = "" Then
+            ElseIf blnExportToCSV = True And strOutputFolder = "" And blnExtract = False Then
                 Console.WriteLine("*ERROR* -o {output folder} is required")
                 blnCMDError = True
             ElseIf blnExtract = True And strOutputFolder = "" Then
@@ -120,16 +120,21 @@ Module AD2
             If blnCMDError = True Then End
 
             'At this stage we should have the options we need plus parameters and paths
-            Dim colBaseFiles As New SortedSet(Of String)     'Collection containing all the base files
-            Dim colMainFiles As New SortedSet(Of String)    'Collection containing all the main files
-            Dim colUpdateFiles As New SortedSet(Of String)   'Collection containing any update or patch files
+            Dim colBaseFiles As New SortedList()     'Collection containing all the base files
+            Dim colMainFiles As New SortedList()    'Collection containing all the main files
+            Dim colUpdateFiles As New SortedList()   'Collection containing any update or patch files
 
             Dim colFolders As New Collection                'Collection to hold for the folders to be processed
             Dim myFolders As System.IO.DirectoryInfo
 
             If System.IO.Directory.Exists(strInputFolder) = False Then
-                Console.WriteLine("Warcraft folder '{0}' can not be located", strInputFolder)
+                Alert("Warcraft folder '" & strInputFolder & "' can not be located", MaNGOSExtractorCore.runningAsGui)
                 Exit Sub
+            End If
+
+            ReadWarcraftExe(strInputFolder & "\Wow.exe")
+            If Core.FullVersion <> "" Then
+                Alert("Warcraft Version v" & Core.FullVersion & " Build " & Core.BuildNo, Core.runningAsGui)
             End If
 
             If blnExtract = True Then
@@ -147,11 +152,11 @@ Module AD2
                     myFolders = colFolders.Item(t)
                     For Each file As System.IO.FileInfo In myFolders.GetFiles("*.MPQ")
                         If file.FullName.ToLower.Contains("update") = True Or file.FullName.ToLower.Contains("patch") = True Then
-                            colUpdateFiles.Add(file.FullName)
+                            colUpdateFiles.Add(file.FullName, file.FullName)
                         ElseIf file.FullName.ToLower.Contains("base") = True Then
-                            colBaseFiles.Add(file.FullName)
+                            colBaseFiles.Add(file.FullName, file.FullName)
                         Else
-                            colMainFiles.Add(file.FullName)
+                            colMainFiles.Add(file.FullName, file.FullName)
                         End If
                     Next
                 Next
@@ -161,60 +166,43 @@ Module AD2
                     Directory.CreateDirectory(strOutputFolder)
                 End If
 
-                For Each strItem As String In colMainFiles
-                    Console.WriteLine("Reading: " & strItem)
+
+                For Each strItem As DictionaryEntry In colMainFiles
+                    Alert("Reading: " & strItem.Value, False)
                     Try
-                        Core.ExtractDBCFiles(strItem, "*.db?", strOutputFolder)
+                        Core.ExtractDBCFiles(strItem.Value, "*.db?", strOutputFolder)
                     Catch ex As Exception
-                        Console.WriteLine(ex.Message)
+                        Alert(ex.Message, MaNGOSExtractorCore.runningAsGui)
                     End Try
                 Next
 
-                For Each strItem As String In colMainFiles
-                    Console.WriteLine("Reading: " & strItem)
+                For Each strItem As DictionaryEntry In colMainFiles
+                    Alert("Reading: " & strItem.Value, False)
                     Try
-                        Core.ExtractDBCFiles(strItem, "*.db?", strOutputFolder)
+                        Core.ExtractDBCFiles(strItem.Value, "*.db?", strOutputFolder)
                     Catch ex As Exception
-                        Console.WriteLine(ex.Message)
+                        Alert(ex.Message, MaNGOSExtractorCore.runningAsGui)
                     End Try
                 Next
 
-                For Each strItem As String In colUpdateFiles
-                    Console.WriteLine("Reading: " & strItem)
+                For Each strItem As DictionaryEntry In colUpdateFiles
+                    Alert("Reading: " & strItem.Value, False)
 
                     Try
-                        Core.ExtractDBCFiles(strItem, "*.db?", strOutputFolder)
+                        Core.ExtractDBCFiles(strItem.Value, "*.db?", strOutputFolder)
                     Catch ex As Exception
-                        Console.WriteLine(ex.Message)
+                        Alert(ex.Message, MaNGOSExtractorCore.runningAsGui)
                     End Try
+                    Threading.Thread.Sleep(0)
                 Next
-                Console.WriteLine("Finished Extracting")
+                Alert("Extraction Finished", Core.runningAsGui)
             End If
 
 
             'Load the entire DBC into a DataTable to be processed by both exports
             If blnExportToSQL = True Or blnExportToCSV = True Then
-                myFolders = New System.IO.DirectoryInfo(strOutputFolder & "\DBFilesClient")
-                For Each file As System.IO.FileInfo In myFolders.GetFiles("*.DB?")
-                    Dim dbcDataTable As New DataTable
-                    Alert("Loading DBC " & file.Name & " into memory", True)
-                    loadDBCtoDataTable(strOutputFolder & "\DBFilesClient" & "\" & file.Name, dbcDataTable)
-                    'Application.DoEvents()
-
-                    If blnExportToSQL = True Then
-                        Console.WriteLine("Extracting: " & file.Name)
-                        Core.exportSQL(strOutputFolder & "\DBFilesClient" & "\" & file.Name, dbcDataTable)
-                        dbcDataTable = Nothing
-                        'Threading.Thread.Sleep(200000)
-                    End If
-
-                    If blnExportToCSV = True Then
-                        Console.WriteLine("Extracting: " & file.Name)
-                        Core.exportCSV(strOutputFolder & "\DBFilesClient" & "\" & file.Name, dbcDataTable)
-                        dbcDataTable = Nothing
-                        'Threading.Thread.Sleep(200000)
-                    End If
-                Next
+                ExportFiles(strOutputFolder, blnExportToCSV, blnExportToSQL)
+                Alert("Export Finished", Core.runningAsGui)
             End If
 
 
@@ -224,13 +212,28 @@ Module AD2
     End Sub
 
     Class Listbox
-        Function Items() As Collection
+        Function Items() As SortedList
             Return Nothing
         End Function
 
         Function StartIndex() As Integer
             Return 0
         End Function
+
+        Public Sub RemoveAt(index As Integer)
+            'Me.owner.CheckNoDataSource()
+            'If (index < 0) OrElse (index >= Me.InnerArray.GetCount(0)) Then
+            '    Throw New ArgumentOutOfRangeException("index", SR.GetString("InvalidArgument", New Object() {"index", index.ToString(CultureInfo.CurrentCulture)}))
+            'End If
+            'Me.owner.UpdateMaxItemWidth(Me.InnerArray.GetItem(index, 0), True)
+            'Me.InnerArray.RemoveAt(index)
+            'If Me.owner.IsHandleCreated Then
+            '    Me.owner.NativeRemoveAt(index)
+            'End If
+            'Me.owner.UpdateHorizontalExtent()
+        End Sub
+
+
         Property SelectedIndex As Integer
             Get
                 Return 0
@@ -244,14 +247,6 @@ Module AD2
             Get
                 Return -1
             End Get
-        End Property
-        Property Add() As String
-            Get
-                Return ""
-            End Get
-            Set(value As String)
-
-            End Set
         End Property
 
     End Class
