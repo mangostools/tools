@@ -82,7 +82,7 @@ Partial Class WoWLauncherMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackgroundImage = Global.WoWLauncher.My.Resources.Resources.top
+        Me.BackgroundImage = Global.MaNGOSLauncher.My.Resources.Resources.top
         Me.ClientSize = New System.Drawing.Size(640, 405)
         Me.Controls.Add(Me.PictureBox4)
         Me.Controls.Add(Me.PictureBox3)

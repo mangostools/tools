@@ -8,9 +8,9 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{4770B1E7-12BC-44AD-986E-66DAB2A0C881}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>WoWLauncher.My.MyApplication</StartupObject>
-    <RootNamespace>WoWLauncher</RootNamespace>
-    <AssemblyName>WoWLauncher</AssemblyName>
+    <StartupObject>MaNGOSLauncher.My.MyApplication</StartupObject>
+    <RootNamespace>MaNGOSLauncher</RootNamespace>
+    <AssemblyName>MaNGOSLauncher</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
@@ -23,7 +23,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>WoWLauncher.xml</DocumentationFile>
+    <DocumentationFile>MaNGOSLauncher.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
@@ -33,7 +33,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\x86\Release\</OutputPath>
-    <DocumentationFile>WoWLauncher.xml</DocumentationFile>
+    <DocumentationFile>MaNGOSLauncher.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
