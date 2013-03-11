@@ -59,11 +59,8 @@ Namespace Blizzard
 
         Public Sub PrintHeaders(ByRef Filename As String)
 
-            Core.Alert("        Patching: " & Filename, Core.runningAsGui) '& " Size=" & m_PTCH.m_patchSize & ", Before=" & m_PTCH.m_sizeBefore & ", After=" & m_PTCH.m_sizeAfter, Core.runningAsGui)
-            '            Console.WriteLine("PTCH: patchSize {0}, sizeBefore {1}, sizeAfter {2}", m_PTCH.m_patchSize, m_PTCH.m_sizeBefore, m_PTCH.m_sizeAfter)
-            'Console.WriteLine("MD5_: md5BlockSize {0}" & vbLf & " md5Before {1}" & vbLf & " md5After {2}", m_MD5.m_md5BlockSize, m_MD5.m_md5Before.ToHexString(), m_MD5.m_md5After.ToHexString())
-            'Console.WriteLine("XFRM: xfrmBlockSize {0}, patch type: {1}", m_XFRM.m_xfrmBlockSize, m_XFRM.m_type.FourCC())
-        End Sub
+            Core.Alert("        Patching: " & Filename, False) '& " Size=" & m_PTCH.m_patchSize & ", Before=" & m_PTCH.m_sizeBefore & ", After=" & m_PTCH.m_sizeAfter, Core.runningAsGui)
+          End Sub
 
         Private Sub BSDIFFParseHeader(br As BinaryReader)
             m_BSDIFF40 = br.ReadStruct(Of BSDIFF40)()

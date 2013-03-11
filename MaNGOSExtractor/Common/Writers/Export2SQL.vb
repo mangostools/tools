@@ -32,7 +32,7 @@ Namespace Core
                 Dim intCounterRows As Integer = (intMaxRows - 1)
 
                 For rows = 0 To intMaxRows - 1
-                    If intCounterRows Mod (intCounterRows / 100) = (intCounterRows / 100) Then Alert("+", Core.runningAsGui, True)
+                    If intCounterRows Mod (intCounterRows / 100) = (intCounterRows / 100) Then Alert("+", True)
 
                     Dim result As New StringBuilder()
                     result.AppendFormat("INSERT INTO `dbc_{0}` VALUES (", Path.GetFileNameWithoutExtension(Filename))
@@ -70,7 +70,7 @@ Namespace Core
                                     result.Append("""" & StripBadCharacters(DirectCast(thisColData.ToString, String)) & """")
                                     Exit Select
                                 Case Else
-                                    Core.Alert([String].Format("Unknown field type {0}!", thisColData), MaNGOSExtractorCore.runningAsGui)
+                                    Core.Alert([String].Format("Unknown field type {0}!", thisColData), False)
                             End Select
 
                             If flds < intMaxCols Then
@@ -80,7 +80,7 @@ Namespace Core
                             flds += 1
                         Next
                     Catch ex As Exception
-                        Alert(ex.Message & " - 1", Core.runningAsGui)
+                        Alert(ex.Message & " - 1", False)
                     End Try
 
                     result.Append(");")
@@ -93,7 +93,7 @@ Namespace Core
 
                 Return True
             Catch ex As Exception
-                Alert(ex.Message & " - 2", Core.runningAsGui)
+                Alert(ex.Message & " - 2", False)
                 Return False
             End Try
         End Function
@@ -133,7 +133,7 @@ Namespace Core
                             sqlWriter.Write(" TEXT NOT NULL")
                             Exit Select
                         Case Else
-                            Alert("Unknown field type " & data.Columns(i).DataType.Name & "!", runningAsGui)
+                            Alert("Unknown field type " & data.Columns(i).DataType.Name & "!", False)
                     End Select
 
                     If i < data.Columns.Count - 1 Then sqlWriter.WriteLine(",")

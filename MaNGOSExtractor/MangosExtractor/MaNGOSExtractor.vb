@@ -24,13 +24,13 @@ Public Class MaNGOSExtractor
         Dim myFolders As System.IO.DirectoryInfo
 
         If System.IO.Directory.Exists(txtBaseFolder.Text) = False Then
-            Alert("Warcraft folder '" & txtBaseFolder.Text & "' can not be located", MaNGOSExtractorCore.runningAsGui)
+            Alert("Warcraft folder '" & txtBaseFolder.Text & "' can not be located", False)
             Exit Sub
         End If
 
         ReadWarcraftExe(txtBaseFolder.Text & "\Wow.exe")
         If Core.FullVersion <> "" Then
-            Alert("Warcraft Version v" & Core.FullVersion & " Build " & Core.BuildNo, Core.runningAsGui)
+            Alert("Warcraft Version v" & Core.FullVersion & " Build " & Core.BuildNo, False)
         End If
 
         If chkDBC.Checked = True Then
@@ -64,46 +64,40 @@ Public Class MaNGOSExtractor
 
 
             For Each strItem As DictionaryEntry In colBaseFiles
-                Alert("Reading: " & strItem.Value, True)
+                Alert("Reading: " & strItem.Value, False)
                 Try
                     Core.ExtractDBCFiles(strItem.Value, "*.db?", txtOutputFolder.Text)
                 Catch ex As Exception
-                    Alert(ex.Message, MaNGOSExtractorCore.runningAsGui)
+                    Alert(ex.Message, False)
                 End Try
             Next
 
             For Each strItem As DictionaryEntry In colMainFiles
-                Alert("Reading: " & strItem.Value, True)
+                Alert("Reading: " & strItem.Value, False)
                 Try
                     Core.ExtractDBCFiles(strItem.Value, "*.db?", txtOutputFolder.Text)
                 Catch ex As Exception
-                    Alert(ex.Message, MaNGOSExtractorCore.runningAsGui)
+                    Alert(ex.Message, False)
                 End Try
             Next
 
             For Each strItem As DictionaryEntry In colUpdateFiles
-                Alert("Reading: " & strItem.Value, True)
+                Alert("Reading: " & strItem.Value, False)
 
                 Try
                     Core.ExtractDBCFiles(strItem.Value, "*.db?", txtOutputFolder.Text)
                 Catch ex As Exception
-                    Alert(ex.Message, MaNGOSExtractorCore.runningAsGui)
+                    Alert(ex.Message, False)
                 End Try
                 Threading.Thread.Sleep(0)
             Next
-            Alert("Extraction Finished", Core.runningAsGui)
+            Alert("Extraction Finished", False)
         End If
 
         If chkCSV.Checked = True Or chkSQL.Checked = True Then
-            ExportFiles(txtOutputFolder.Text, chkCSV.Checked, chkSQL.Checked)
             'Now that we have all the DBC's extracted and patched, we need to check the export options and export data
-
-
-
-
-
-
-            Alert("Finished Exporting", Core.runningAsGui)
+            ExportFiles(txtOutputFolder.Text, chkCSV.Checked, chkSQL.Checked, False)
+            Alert("Finished Exporting", False)
         End If
         Me.Cursor = System.Windows.Forms.Cursors.Default
         btnStartDBC.Enabled = True
@@ -127,7 +121,7 @@ Public Class MaNGOSExtractor
     ''' <remarks></remarks>
     Private Sub MaNGOSExtractor_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.Text = "MaNGOSExtractor" & Core.MaNGOSExtractorCore.Version()
-        Core.runningAsGui = True
+        Core.runAsGui = True
         Core.alertlist = lstMainLog
 
         'Dim Test As Object = 65536
@@ -148,7 +142,7 @@ Public Class MaNGOSExtractor
         Dim myFolders As System.IO.DirectoryInfo
 
         If System.IO.Directory.Exists(txtBaseFolder.Text) = False Then
-            Alert("Warcraft folder '" & txtBaseFolder.Text & "' can not be located", MaNGOSExtractorCore.runningAsGui)
+            Alert("Warcraft folder '" & txtBaseFolder.Text & "' can not be located", False)
             Exit Sub
         End If
 
@@ -181,7 +175,7 @@ Public Class MaNGOSExtractor
 
 
         Next
-        Alert("Finished Exporting", Core.runningAsGui)
+        Alert("Finished Exporting", False)
         'End If
         Me.Cursor = System.Windows.Forms.Cursors.Default
         brnWDB.Enabled = True

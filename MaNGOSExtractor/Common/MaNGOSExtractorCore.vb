@@ -60,7 +60,7 @@ Namespace Core
         ''' <value></value>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Property runningAsGui As Boolean
+        Public Property runAsGui As Boolean
             Get
                 Return m_runningAsGui
             End Get
@@ -218,9 +218,6 @@ Namespace Core
                             '###############################################################################
                             '## Stage 1 - Saves the files out with a .patch extension                     ##
                             '###############################################################################
-
-                            'Console.WriteLine("Destination Folder: {0}", DestinationFolder)
-                            'Console.WriteLine("Sub Folder: {0}", strSubFolder)
 
                             'If the file already exists, delete it and recreate it
                             If My.Computer.FileSystem.FileExists(DestinationFolder & strSubFolder & "\" & strPatchName) = True Then
@@ -400,16 +397,17 @@ Namespace Core
                     Dim strValuecounter As String = "0%---------50%--------100%"
                     Dim intblockcountersize As Integer = strValuecounter.Length()
                     If CInt(Fix(intMaxRows / intblockcountersize)) > 4 Then
-                        Alert("         Loading DBC into memory " & strValuecounter & " Records: " & intMaxRows, runningAsGui)
-                        Alert("                                 ", runningAsGui)
+                        Alert("         Loading DBC into memory " & strValuecounter & " Records: " & intMaxRows, False)
+                        Alert("                                 ", False)
                     Else
-                        Alert("         Loading DBC into memory " & strValuecounter & " Records: 0", runningAsGui)
+                        Alert("         Loading DBC into memory " & strValuecounter & " Records: 0", False)
+                        Alert("", False)
                     End If
                     For rows As Integer = 0 To intMaxRows
                         'Try
                         If CInt(intMaxRows / intblockcountersize) > 4 Then
                             If rows Mod CInt(intMaxRows / intblockcountersize) = 0 Then
-                                Alert(".", runningAsGui, True)
+                                Alert(".", True)
                             End If
                         End If
                         'Catch ex As Exception
@@ -440,13 +438,13 @@ Namespace Core
                         Threading.Thread.Sleep(0)
                     Next
                 Else 'Empty file
-                    Alert("", Core.runningAsGui)
+                    Alert("", False)
                 End If
                 'Catch ex As Exception
                 '    Core.Alert(ex.Message, MaNGOSExtractorCore.runningAsGui)
                 'End Try
 
-                Alert("", runningAsGui)
+                Alert("", False)
                 'Create a new row at the end to store the datatype
                 If intMaxRows > 0 Then
                     thisRow = dbcDataTable.NewRow()
@@ -455,19 +453,25 @@ Namespace Core
                     'Try
                     Dim strValuecounter As String = "0%---------50%--------100%"
                     Dim intblockcountersize As Integer = strValuecounter.Length()
-                    If CInt(Fix(TotalRows / 4) / intblockcountersize) > 0 Then
-                        Alert("         Determining Column Data Types " & strValuecounter, runningAsGui, True)
+                    'If CInt(Fix(TotalRows / 4) / intblockcountersize) > 0 Then
+                    Alert("   Determining Column Data Types " & strValuecounter, False)
 
-                        Alert("                                       ", Core.runningAsGui, False)
-                    End If
+                    Alert("                                 ", False)
+                    'End If
                     Dim totalCols As Integer = dbcDataTable.Columns.Count() - 1
-                    For cols As Integer = 0 To TotalRows Step 4
+                    For cols As Integer = 0 To totalCols 'TotalRows Step 4
                         'Try
 
-                        If CInt(Fix(totalCols / intblockcountersize)) > 0 Then
-                            If cols Mod CInt(Fix(totalCols / intblockcountersize)) = 0 Then
+                        If CInt((totalCols / intblockcountersize)) > 0 Then
+                            If cols Mod CInt((totalCols / intblockcountersize)) = 0 Then
 
-                                Alert(".", runningAsGui, True)
+                                Alert(".", True)
+
+                            End If
+                        Else
+                            If (cols + 1) Mod CInt((intblockcountersize / (cols + 1))) = 0 Then
+
+                                Alert(".", True)
 
                             End If
                         End If
@@ -479,14 +483,14 @@ Namespace Core
                         Dim blnFoundString As Boolean = True
 
                         For thisScanRow As Integer = 0 To dbcDataTable.Rows.Count - 1
-                            If IsDBNull(dbcDataTable.Rows(thisScanRow)(CInt(cols / 4))) = False Then
-                                If m_reader.StringTable.ContainsKey(dbcDataTable.Rows(thisScanRow)(CInt(cols / 4))) = False Then
+                            If IsDBNull(dbcDataTable.Rows(thisScanRow)(CInt(cols))) = False Then
+                                If m_reader.StringTable.ContainsKey(dbcDataTable.Rows(thisScanRow)(CInt(cols))) = False Then
                                     blnFoundString = False
 
                                     Dim strDataType As String = ""
                                     Dim strCurDataType As String = "Int32"
-                                    If Not IsDBNull(dbcDataTable.Rows(dbcDataTable.Rows.Count() - 1)(CInt(cols / 4))) Then
-                                        strCurDataType = dbcDataTable.Rows(dbcDataTable.Rows.Count() - 1)(CInt(cols / 4))
+                                    If Not IsDBNull(dbcDataTable.Rows(dbcDataTable.Rows.Count() - 1)(CInt(cols))) Then
+                                        strCurDataType = dbcDataTable.Rows(dbcDataTable.Rows.Count() - 1)(CInt(cols))
                                     Else
                                         strCurDataType = "1"
                                     End If
@@ -500,16 +504,16 @@ Namespace Core
                                         Case "3"
                                             strDataType = "Float"
                                     End Select
-                                    strDataType = Core.getObjectType(dbcDataTable.Rows(thisScanRow)(CInt(cols / 4)), strDataType)
+                                    strDataType = Core.getObjectType(dbcDataTable.Rows(thisScanRow)(CInt(cols)), strDataType)
                                     'Try
                                     If strDataType = "Int32" Then 'Integer
-                                        dbcDataTable.Rows(dbcDataTable.Rows.Count() - 1)(CInt(cols / 4)) = 1
+                                        dbcDataTable.Rows(dbcDataTable.Rows.Count() - 1)(CInt(cols)) = 1
                                     ElseIf strDataType = "Float" Then 'Float
-                                        dbcDataTable.Rows(dbcDataTable.Rows.Count() - 1)(CInt(cols / 4)) = 3
+                                        dbcDataTable.Rows(dbcDataTable.Rows.Count() - 1)(CInt(cols)) = 3
                                     ElseIf strDataType = "String" Then 'Float
-                                        dbcDataTable.Rows(dbcDataTable.Rows.Count() - 1)(CInt(cols / 4)) = 0
+                                        dbcDataTable.Rows(dbcDataTable.Rows.Count() - 1)(CInt(cols)) = 0
                                     Else 'Long
-                                        dbcDataTable.Rows(dbcDataTable.Rows.Count() - 1)(CInt(cols / 4)) = 2
+                                        dbcDataTable.Rows(dbcDataTable.Rows.Count() - 1)(CInt(cols)) = 2
                                     End If
                                     'Catch ex As Exception
                                     '    Core.Alert("Error: " & ex.Message, MaNGOSExtractorCore.runningAsGui)
@@ -525,8 +529,8 @@ Namespace Core
                         If blnFoundString = True Then
                             'Try
                             For thisScanRow As Integer = 0 To dbcDataTable.Rows.Count - 1
-                                dbcDataTable.Rows(thisScanRow)(CInt(cols / 4)) = m_reader.StringTable(dbcDataTable.Rows(thisScanRow)(CInt(cols / 4)))
-                                dbcDataTable.Rows(dbcDataTable.Rows.Count() - 1)(CInt(cols / 4)) = 0
+                                dbcDataTable.Rows(thisScanRow)(CInt(cols)) = m_reader.StringTable(dbcDataTable.Rows(thisScanRow)(CInt(cols)))
+                                dbcDataTable.Rows(dbcDataTable.Rows.Count() - 1)(CInt(cols)) = 0
                                 Threading.Thread.Sleep(0)
                             Next
                             'Catch ex As Exception
@@ -539,8 +543,9 @@ Namespace Core
                     '    Core.Alert("Error: " & ex.Message, MaNGOSExtractorCore.runningAsGui)
                     'End Try
                 End If
+                Alert("", False)
             Else 'No Rows
-                Alert("", Core.runningAsGui)
+                Alert("", False)
             End If
             'Catch ex As Exception
             '    Core.Alert("Error: " & ex.Message, MaNGOSExtractorCore.runningAsGui)
@@ -573,11 +578,11 @@ Namespace Core
         ''' <param name="runningAsGui"></param>
         ''' <param name="resultList"></param>
         ''' <remarks></remarks>
-        Public Sub Alert(ByRef AlertMessage As String, ByRef runningAsGui As Boolean, Optional append As Boolean = False)
-            If runningAsGui = True Then 'running as a Gui App
+        Public Sub Alert(ByRef AlertMessage As String, ByRef Append As Boolean)
+            If m_runningAsGui = True Then 'running as a Gui App
 
                 If Not IsNothing(Core.alertlist) Then
-                    If append = False Then
+                    If Append = False Then
 #If _MyType <> "Console" Then
                         Core.alertlist.Items.Add(AlertMessage)
 #Else
@@ -600,7 +605,7 @@ Namespace Core
                     End If
                 End If
             Else 'Running as console
-                If append = False Then
+                If Append = False Then
                     Console.WriteLine(AlertMessage)
                 Else
                     Console.Write(AlertMessage)
@@ -609,7 +614,7 @@ Namespace Core
         End Sub
 
 
-        Public Sub ExportFiles(ByRef OutputFolder As String, ByRef ExportCSV As Boolean, ByRef ExportSQL As Boolean)
+        Public Sub ExportFiles(ByRef OutputFolder As String, ByRef ExportCSV As Boolean, ByRef ExportSQL As Boolean, ByRef ExportXML As Boolean)
             'Now that we have all the DBC's extracted and patched, we need to check the export options and export data
             If OutputFolder.EndsWith("\") = False Then OutputFolder = OutputFolder & "\"
             If My.Computer.FileSystem.DirectoryExists(OutputFolder) = False Then
@@ -622,25 +627,29 @@ Namespace Core
 
                 'Load the entire DBC into a DataTable to be processed by both exports
                 If ExportCSV = True Or ExportSQL = True Then
-                    Alert(file.Name, Core.runningAsGui)
+                    Alert("", False)
+                    Alert(file.Name, False)
                     loadDBCtoDataTable(OutputFolder & "\DBFilesClient" & "\" & file.Name, dbcDataTable)
-                    Threading.Thread.Sleep(0)
-                    'Application.DoEvents()
                 End If
 
                 If ExportSQL = True Then
                     Alert("Creating SQL for " & file.Name, True)
                     Core.exportSQL(OutputFolder & "\DBFilesClient" & "\" & file.Name, dbcDataTable)
-                    Threading.Thread.Sleep(0)
-                    'Application.DoEvents()
+                    Alert("", False)
                 End If
 
                 If ExportCSV = True Then
                     Alert("Creating CSV for " & file.Name, True)
                     Core.exportCSV(OutputFolder & "\DBFilesClient" & "\" & file.Name, dbcDataTable)
-                    Threading.Thread.Sleep(0)
-                    'Application.DoEvents()
+                    Alert("", False)
                 End If
+
+                If ExportXML = True Then
+                    Alert("Creating XML for " & file.Name, True)
+                    Core.exportXML(OutputFolder & "\DBFilesClient" & "\" & file.Name, dbcDataTable)
+
+                End If
+
                 Threading.Thread.Sleep(0)
                 dbcDataTable = Nothing
             Next

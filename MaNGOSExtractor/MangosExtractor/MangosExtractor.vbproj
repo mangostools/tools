@@ -26,7 +26,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.3.0.%2a</ApplicationVersion>
+    <ApplicationVersion>1.4.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -129,6 +129,9 @@
     </Compile>
     <Compile Include="../Common/Writers/Export2CSV.vb">
       <Link>Writers\Export2CSV.vb</Link>
+    </Compile>
+    <Compile Include="../Common/Writers/Export2XML.vb">
+      <Link>Writers\Export2XML.vb</Link>
     </Compile>
     <Compile Include="../Common/BSDIFF40.vb">
       <Link>Common\BSDIFF40.vb</Link>

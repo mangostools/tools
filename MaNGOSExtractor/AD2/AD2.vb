@@ -128,13 +128,13 @@ Module AD2
             Dim myFolders As System.IO.DirectoryInfo
 
             If System.IO.Directory.Exists(strInputFolder) = False Then
-                Alert("Warcraft folder '" & strInputFolder & "' can not be located", MaNGOSExtractorCore.runningAsGui)
+                Alert("Warcraft folder '" & strInputFolder & "' can not be located", False)
                 Exit Sub
             End If
 
             ReadWarcraftExe(strInputFolder & "\Wow.exe")
             If Core.FullVersion <> "" Then
-                Alert("Warcraft Version v" & Core.FullVersion & " Build " & Core.BuildNo, Core.runningAsGui)
+                Alert("Warcraft Version v" & Core.FullVersion & " Build " & Core.BuildNo, False)
             End If
 
             If blnExtract = True Then
@@ -172,7 +172,7 @@ Module AD2
                     Try
                         Core.ExtractDBCFiles(strItem.Value, "*.db?", strOutputFolder)
                     Catch ex As Exception
-                        Alert(ex.Message, MaNGOSExtractorCore.runningAsGui)
+                        Alert(ex.Message, False)
                     End Try
                 Next
 
@@ -181,7 +181,7 @@ Module AD2
                     Try
                         Core.ExtractDBCFiles(strItem.Value, "*.db?", strOutputFolder)
                     Catch ex As Exception
-                        Alert(ex.Message, MaNGOSExtractorCore.runningAsGui)
+                        Alert(ex.Message, False)
                     End Try
                 Next
 
@@ -191,18 +191,18 @@ Module AD2
                     Try
                         Core.ExtractDBCFiles(strItem.Value, "*.db?", strOutputFolder)
                     Catch ex As Exception
-                        Alert(ex.Message, MaNGOSExtractorCore.runningAsGui)
+                        Alert(ex.Message, False)
                     End Try
                     Threading.Thread.Sleep(0)
                 Next
-                Alert("Extraction Finished", Core.runningAsGui)
+                Alert("Extraction Finished", False)
             End If
 
 
             'Load the entire DBC into a DataTable to be processed by both exports
             If blnExportToSQL = True Or blnExportToCSV = True Then
-                ExportFiles(strOutputFolder, blnExportToCSV, blnExportToSQL)
-                Alert("Export Finished", Core.runningAsGui)
+                ExportFiles(strOutputFolder, blnExportToCSV, blnExportToSQL, False)
+                Alert("Export Finished", False)
             End If
 
 

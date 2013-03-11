@@ -43,9 +43,9 @@ Partial Class MaNGOSExtractor
         '
         'btnStartDBC
         '
-        Me.btnStartDBC.Location = New System.Drawing.Point(720, 4)
+        Me.btnStartDBC.Location = New System.Drawing.Point(709, 4)
         Me.btnStartDBC.Name = "btnStartDBC"
-        Me.btnStartDBC.Size = New System.Drawing.Size(68, 23)
+        Me.btnStartDBC.Size = New System.Drawing.Size(79, 23)
         Me.btnStartDBC.TabIndex = 8
         Me.btnStartDBC.Text = "&Start"
         Me.btnStartDBC.UseVisualStyleBackColor = True
@@ -70,9 +70,9 @@ Partial Class MaNGOSExtractor
         '
         'BtnQuit
         '
-        Me.BtnQuit.Location = New System.Drawing.Point(720, 30)
+        Me.BtnQuit.Location = New System.Drawing.Point(709, 30)
         Me.BtnQuit.Name = "BtnQuit"
-        Me.BtnQuit.Size = New System.Drawing.Size(68, 23)
+        Me.BtnQuit.Size = New System.Drawing.Size(79, 23)
         Me.BtnQuit.TabIndex = 9
         Me.BtnQuit.Text = "E&xit"
         Me.BtnQuit.UseVisualStyleBackColor = True
@@ -129,18 +129,18 @@ Partial Class MaNGOSExtractor
         '
         Me.lstMainLog.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.lstMainLog.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.lstMainLog.Font = New System.Drawing.Font("Lucida Console", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lstMainLog.Font = New System.Drawing.Font("Lucida Console", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lstMainLog.ForeColor = System.Drawing.Color.Black
         Me.lstMainLog.FormattingEnabled = True
-        Me.lstMainLog.ItemHeight = 11
+        Me.lstMainLog.ItemHeight = 12
         Me.lstMainLog.Location = New System.Drawing.Point(102, 58)
         Me.lstMainLog.Name = "lstMainLog"
-        Me.lstMainLog.Size = New System.Drawing.Size(686, 363)
+        Me.lstMainLog.Size = New System.Drawing.Size(686, 384)
         Me.lstMainLog.TabIndex = 13
         '
         'brnWDB
         '
-        Me.brnWDB.Location = New System.Drawing.Point(102, 432)
+        Me.brnWDB.Location = New System.Drawing.Point(5, 392)
         Me.brnWDB.Name = "brnWDB"
         Me.brnWDB.Size = New System.Drawing.Size(82, 23)
         Me.brnWDB.TabIndex = 14
