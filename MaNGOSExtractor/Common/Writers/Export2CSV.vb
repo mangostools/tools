@@ -66,7 +66,7 @@ Namespace Core
                             flds += 1
                         Next
                     Catch ex As Exception
-                        Alert(ex.Message & " - 1", False)
+                        Alert(ex.Message & " - 1", Core.AlertNewLine.AddCRLF)
                     End Try
                     sqlWriter.WriteLine(result)
                     Threading.Thread.Sleep(0)
@@ -77,7 +77,7 @@ Namespace Core
 
                 Return True
             Catch ex As Exception
-                Alert(ex.Message & " - 2", False)
+                Alert(ex.Message & " - 2", Core.AlertNewLine.AddCRLF)
                 Return False
             End Try
         End Function

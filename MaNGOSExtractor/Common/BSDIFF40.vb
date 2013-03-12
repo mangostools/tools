@@ -59,7 +59,7 @@ Namespace Blizzard
 
         Public Sub PrintHeaders(ByRef Filename As String)
 
-            Core.Alert("        Patching: " & Filename, False) '& " Size=" & m_PTCH.m_patchSize & ", Before=" & m_PTCH.m_sizeBefore & ", After=" & m_PTCH.m_sizeAfter, Core.runningAsGui)
+            Core.Alert("        Patching: " & Filename, Core.AlertNewLine.AddCRLF) '& " Size=" & m_PTCH.m_patchSize & ", Before=" & m_PTCH.m_sizeBefore & ", After=" & m_PTCH.m_sizeAfter, Core.runningAsGui)
           End Sub
 
         Private Sub BSDIFFParseHeader(br As BinaryReader)

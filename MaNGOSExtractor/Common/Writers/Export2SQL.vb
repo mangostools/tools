@@ -19,20 +19,20 @@ Namespace Core
         Private m_Finished As Action(Of Integer)
 
 
-        Public Function exportSQL(ByRef Filename As String, ByRef DBCDataTable As DataTable) As Boolean
+        Public Function exportSQL(ByRef Filename As String, ByRef DBCDataTable As DataTable, ByRef sourceFolder As String) As Boolean
             Dim intMaxRows As Integer = DBCDataTable.Rows.Count() - 1
             Dim intMaxCols As Integer = DBCDataTable.Columns.Count() - 1
 
             '            Dim sqlWriter As New StreamWriter(Filename.Substring(0, Filename.Length - 4) & ".dbc.sql")
             Dim sqlWriter As New StreamWriter(Filename & ".sql")
 
-            WriteSqlStructure(sqlWriter, DBCDataTable, Path.GetFileNameWithoutExtension(Filename.Substring(0, Filename.Length - 4)))
+            WriteSqlStructure(sqlWriter, DBCDataTable, Path.GetFileNameWithoutExtension(Filename.Substring(0, Filename.Length - 4)), sourceFolder)
 
             Try
                 Dim intCounterRows As Integer = (intMaxRows - 1)
 
                 For rows = 0 To intMaxRows - 1
-                    If intCounterRows Mod (intCounterRows / 100) = (intCounterRows / 100) Then Alert("+", True)
+                    If intCounterRows Mod (intCounterRows / 100) = (intCounterRows / 100) Then Alert("+", Core.AlertNewLine.NoCRLF)
 
                     Dim result As New StringBuilder()
                     result.AppendFormat("INSERT INTO `dbc_{0}` VALUES (", Path.GetFileNameWithoutExtension(Filename))
@@ -70,7 +70,7 @@ Namespace Core
                                     result.Append("""" & StripBadCharacters(DirectCast(thisColData.ToString, String)) & """")
                                     Exit Select
                                 Case Else
-                                    Core.Alert([String].Format("Unknown field type {0}!", thisColData), False)
+                                    Core.Alert([String].Format("Unknown field type {0}!", thisColData), Core.AlertNewLine.AddCRLF)
                             End Select
 
                             If flds < intMaxCols Then
@@ -80,7 +80,7 @@ Namespace Core
                             flds += 1
                         Next
                     Catch ex As Exception
-                        Alert(ex.Message & " - 1", False)
+                        Alert(ex.Message & " - 1", Core.AlertNewLine.AddCRLF)
                     End Try
 
                     result.Append(");")
@@ -93,7 +93,7 @@ Namespace Core
 
                 Return True
             Catch ex As Exception
-                Alert(ex.Message & " - 2", False)
+                Alert(ex.Message & " - 2", Core.AlertNewLine.AddCRLF)
                 Return False
             End Try
         End Function
@@ -105,14 +105,23 @@ Namespace Core
         ''' <param name="data"></param>
         ''' <param name="tablename"></param>
         ''' <remarks></remarks>
-        Private Sub WriteSqlStructure(sqlWriter As StreamWriter, data As DataTable, tablename As String)
+        Private Sub WriteSqlStructure(sqlWriter As StreamWriter, data As DataTable, tablename As String, ByRef sourceFolder As String)
             sqlWriter.WriteLine("DROP TABLE IF EXISTS `dbc_{0}`;", tablename)
 
             If data.Rows.Count() > 0 Then
                 sqlWriter.WriteLine("CREATE TABLE `dbc_{0}` (", tablename)
                 Dim strDataType As String = ""
+                Dim blnOverrideOk As Boolean = False
+                Dim ColumnNameOverride As New Dictionary(Of Integer, String)
+                ColumnNameOverride = LoadXMLDefinitions(Sourcefolder, tablename)
+                If ColumnNameOverride.Count() = data.Columns.Count() Then blnOverrideOk = True
                 For i As Integer = 0 To data.Columns.Count - 1
-                    sqlWriter.Write(vbTab & [String].Format("`{0}`", data.Columns(i).ColumnName))
+                    If blnOverrideOk = False Then
+                        sqlWriter.Write(vbTab & [String].Format("`{0}`", data.Columns(i).ColumnName))
+                    Else
+                        sqlWriter.Write(vbTab & [String].Format("`{0}`", ColumnNameOverride(i).ToString))
+                    End If
+
                     If Not IsDBNull(data.Rows(data.Rows.Count - 1)(i)) Then
                         strDataType = data.Rows(data.Rows.Count - 1)(i)
                     Else
@@ -133,7 +142,7 @@ Namespace Core
                             sqlWriter.Write(" TEXT NOT NULL")
                             Exit Select
                         Case Else
-                            Alert("Unknown field type " & data.Columns(i).DataType.Name & "!", False)
+                            Alert("Unknown field type " & data.Columns(i).DataType.Name & "!", Core.AlertNewLine.NoCRLF)
                     End Select
 
                     If i < data.Columns.Count - 1 Then sqlWriter.WriteLine(",")

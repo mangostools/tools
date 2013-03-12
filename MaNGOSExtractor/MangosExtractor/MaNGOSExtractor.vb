@@ -24,13 +24,15 @@ Public Class MaNGOSExtractor
         Dim myFolders As System.IO.DirectoryInfo
 
         If System.IO.Directory.Exists(txtBaseFolder.Text) = False Then
-            Alert("Warcraft folder '" & txtBaseFolder.Text & "' can not be located", False)
+            Alert("Warcraft folder '" & txtBaseFolder.Text & "' can not be located", Core.AlertNewLine.AddCRLF)
+            Me.Cursor = System.Windows.Forms.Cursors.Default
+            btnStartDBC.Enabled = True
             Exit Sub
         End If
 
         ReadWarcraftExe(txtBaseFolder.Text & "\Wow.exe")
         If Core.FullVersion <> "" Then
-            Alert("Warcraft Version v" & Core.FullVersion & " Build " & Core.BuildNo, False)
+            Alert("Warcraft Version v" & Core.FullVersion & " Build " & Core.BuildNo, Core.AlertNewLine.AddCRLF)
         End If
 
         If chkDBC.Checked = True Then
@@ -64,41 +66,42 @@ Public Class MaNGOSExtractor
 
 
             For Each strItem As DictionaryEntry In colBaseFiles
-                Alert("Reading: " & strItem.Value, False)
+                Alert("Reading: " & strItem.Value, Core.AlertNewLine.AddCRLF)
                 Try
                     Core.ExtractDBCFiles(strItem.Value, "*.db?", txtOutputFolder.Text)
                 Catch ex As Exception
-                    Alert(ex.Message, False)
+                    Alert(ex.Message, Core.AlertNewLine.AddCRLF)
                 End Try
             Next
 
             For Each strItem As DictionaryEntry In colMainFiles
-                Alert("Reading: " & strItem.Value, False)
+                Alert("Reading: " & strItem.Value, Core.AlertNewLine.AddCRLF)
                 Try
                     Core.ExtractDBCFiles(strItem.Value, "*.db?", txtOutputFolder.Text)
                 Catch ex As Exception
-                    Alert(ex.Message, False)
+                    Alert(ex.Message, Core.AlertNewLine.AddCRLF)
                 End Try
             Next
 
             For Each strItem As DictionaryEntry In colUpdateFiles
-                Alert("Reading: " & strItem.Value, False)
+                Alert("Reading: " & strItem.Value, Core.AlertNewLine.AddCRLF)
 
                 Try
                     Core.ExtractDBCFiles(strItem.Value, "*.db?", txtOutputFolder.Text)
                 Catch ex As Exception
-                    Alert(ex.Message, False)
+                    Alert(ex.Message, Core.AlertNewLine.AddCRLF)
                 End Try
                 Threading.Thread.Sleep(0)
             Next
-            Alert("Extraction Finished", False)
+            Alert("Extraction Finished", Core.AlertNewLine.AddCRLF)
         End If
 
-        If chkCSV.Checked = True Or chkSQL.Checked = True Then
+        If chkCSV.Checked = True Or chkSQL.Checked = True Or chkExportXML.Checked = True Then
             'Now that we have all the DBC's extracted and patched, we need to check the export options and export data
-            ExportFiles(txtOutputFolder.Text, chkCSV.Checked, chkSQL.Checked, False)
-            Alert("Finished Exporting", False)
+            ExportFiles(txtBaseFolder.Text, txtOutputFolder.Text, chkCSV.Checked, chkSQL.Checked, chkExportXML.Checked)
+            Alert("Finished Exporting", Core.AlertNewLine.AddCRLF)
         End If
+
         Me.Cursor = System.Windows.Forms.Cursors.Default
         btnStartDBC.Enabled = True
     End Sub
@@ -142,7 +145,7 @@ Public Class MaNGOSExtractor
         Dim myFolders As System.IO.DirectoryInfo
 
         If System.IO.Directory.Exists(txtBaseFolder.Text) = False Then
-            Alert("Warcraft folder '" & txtBaseFolder.Text & "' can not be located", False)
+            Alert("Warcraft folder '" & txtBaseFolder.Text & "' can not be located", Core.AlertNewLine.AddCRLF)
             Exit Sub
         End If
 
@@ -162,20 +165,20 @@ Public Class MaNGOSExtractor
 
             'Load the entire DBC into a DataTable to be processed by both exports
             '                If chkCSV.Checked = True Or chkSQL.Checked = True Then
-            Alert("Loading WBC " & file.Name & " into memory", True)
+            Alert("Loading WBC " & file.Name & " into memory", Core.AlertNewLine.AddCRLF)
             loadDBCtoDataTable(txtBaseFolder.Text & "\CACHE\WDB\engb" & "\" & file.Name, dbcDataTable)
             Application.DoEvents()
             'End If
 
             ' If chkSQL.Checked = True Then
-            Alert("Creating SQL for " & file.Name, True)
-            exportSQL(txtOutputFolder.Text & "\" & file.Name, dbcDataTable)
+            Alert("Creating SQL for " & file.Name, Core.AlertNewLine.AddCRLF)
+            exportSQL(txtOutputFolder.Text & "\" & file.Name, dbcDataTable, txtBaseFolder.Text)
             Application.DoEvents()
             ' End If
 
 
         Next
-        Alert("Finished Exporting", False)
+        Alert("Finished Exporting", Core.AlertNewLine.AddCRLF)
         'End If
         Me.Cursor = System.Windows.Forms.Cursors.Default
         brnWDB.Enabled = True

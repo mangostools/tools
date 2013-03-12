@@ -179,6 +179,12 @@
     <Content Include="../Common/MpqLib.xml">
       <Link>Common\MpqLib.xml</Link>
     </Content>
+    <Content Include="Resources\dbc_classic.xml" />
+    <EmbeddedResource Include="Resources\dbc_cata.xml" />
+    <EmbeddedResource Include="Resources\dbc_mop.xml" />
+    <EmbeddedResource Include="Resources\dbc_tbc.xml" />
+    <EmbeddedResource Include="Resources\dbc_wotlk.xml" />
+    <None Include="Resources\mangos_foundation.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">

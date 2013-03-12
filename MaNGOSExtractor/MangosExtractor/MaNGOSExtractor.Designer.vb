@@ -38,6 +38,7 @@ Partial Class MaNGOSExtractor
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.btnSelectBaseFolder = New System.Windows.Forms.Button()
         Me.btnSelectOutputFolder = New System.Windows.Forms.Button()
+        Me.chkExportXML = New System.Windows.Forms.CheckBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -135,7 +136,7 @@ Partial Class MaNGOSExtractor
         Me.lstMainLog.ItemHeight = 12
         Me.lstMainLog.Location = New System.Drawing.Point(102, 58)
         Me.lstMainLog.Name = "lstMainLog"
-        Me.lstMainLog.Size = New System.Drawing.Size(686, 384)
+        Me.lstMainLog.Size = New System.Drawing.Size(686, 396)
         Me.lstMainLog.TabIndex = 13
         '
         'brnWDB
@@ -180,12 +181,23 @@ Partial Class MaNGOSExtractor
         Me.btnSelectOutputFolder.Text = "…"
         Me.btnSelectOutputFolder.UseVisualStyleBackColor = True
         '
+        'chkExportXML
+        '
+        Me.chkExportXML.AutoSize = True
+        Me.chkExportXML.Location = New System.Drawing.Point(12, 156)
+        Me.chkExportXML.Name = "chkExportXML"
+        Me.chkExportXML.Size = New System.Drawing.Size(81, 17)
+        Me.chkExportXML.TabIndex = 16
+        Me.chkExportXML.Text = "Export XML"
+        Me.chkExportXML.UseVisualStyleBackColor = True
+        '
         'MaNGOSExtractor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.ClientSize = New System.Drawing.Size(794, 458)
+        Me.Controls.Add(Me.chkExportXML)
         Me.Controls.Add(Me.btnSelectOutputFolder)
         Me.Controls.Add(Me.btnSelectBaseFolder)
         Me.Controls.Add(Me.PictureBox1)
@@ -227,5 +239,6 @@ Partial Class MaNGOSExtractor
     Friend WithEvents FolderBrowserDialog1 As System.Windows.Forms.FolderBrowserDialog
     Friend WithEvents btnSelectBaseFolder As System.Windows.Forms.Button
     Friend WithEvents btnSelectOutputFolder As System.Windows.Forms.Button
+    Friend WithEvents chkExportXML As System.Windows.Forms.CheckBox
 
 End Class
