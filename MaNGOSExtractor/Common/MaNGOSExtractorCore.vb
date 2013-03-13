@@ -366,25 +366,20 @@ Namespace Core
             Catch ex As Exception
                 entireRow = Nothing
             End Try
-            Dim TotalRows As Integer
+            Dim intMaxcols As Integer
             If IsNothing(entireRow) = True Then
-                TotalRows = 0
+                intMaxcols = 0
             Else
-                TotalRows = entireRow.Length - 1
+                intMaxcols = entireRow.Length - 1
             End If
-            Dim ColType(TotalRows / 4) As String
+            Dim ColType(intMaxcols / 4) As String
+            'Dim ColType(intMaxcols) As String
 
-            If TotalRows > 0 Then
-
-                'Try
-
-                For cols As Integer = 0 To TotalRows Step 4
+            If intMaxcols > 0 Then
+                For cols As Integer = 0 To intMaxcols Step 4
                     dbcDataTable.Columns.Add("Col" & (cols / 4).ToString(), GetType(String))
+                    'dbcDataTable.Columns.Add("Col" & (cols).ToString(), GetType(String))
                 Next
-
-                'Catch ex As Exception
-                '    Alert(ex.Message, MaNGOSExtractorCore.runningAsGui)
-                'End Try
 
                 Dim intMaxRows As Integer = 0
                 Try
@@ -394,10 +389,10 @@ Namespace Core
                 End Try
 
                 'Try
-                If intMaxRows > 0 Then
+                If intMaxRows >= 0 Then
                     Dim strValuecounter As String = "0%---------50%--------100%"
                     Dim intblockcountersize As Integer = strValuecounter.Length()
-                    If CInt(Fix(intMaxRows / intblockcountersize)) > 4 Then
+                    If intMaxRows > 0 Then
                         Alert("", Core.AlertNewLine.AddCRLF)
                         Alert("         Loading DBC into memory " & strValuecounter & " Records: " & intMaxRows, Core.AlertNewLine.AddCRLF)
                         Alert("", Core.AlertNewLine.AddCRLF)
@@ -406,6 +401,7 @@ Namespace Core
                         Alert("         Loading DBC into memory " & strValuecounter & " Records: 0", Core.AlertNewLine.AddCRLF)
                         Alert("", Core.AlertNewLine.AddCRLF)
                     End If
+
                     For rows As Integer = 0 To intMaxRows
                         'Try
                         If CInt(intMaxRows / intblockcountersize) > 4 Then
@@ -413,38 +409,39 @@ Namespace Core
                                 Alert(".", Core.AlertNewLine.NoCRLF)
                             End If
                         End If
-                        'Catch ex As Exception
-                        '    Alert(ex.Message, MaNGOSExtractorCore.runningAsGui)
-                        'End Try
+
                         entireRow = m_reader.GetRowAsByteArray(rows)
 
                         thisRow = dbcDataTable.NewRow()
-                        For cols As Integer = 0 To TotalRows Step 4
+                        Dim cols As Integer = 0
+                        While cols < entireRow.Length() - 1 '(dbcDataTable.Columns.Count()) * 4 '((intMaxcols + 1) * 4)
+                            '                       For cols As Integer = 0 To ((intMaxcols - 1) * 4) Step 4
                             Dim TempCol As Object '= entireRow(cols)
-                            Try
-                                If IsNothing(entireRow) = True Then
-                                    TempCol = -1
-                                Else
+                            ' Try
+                            If IsNothing(entireRow) = True Then
+                                TempCol = -1
+                            Else
+                                Try
                                     If entireRow(cols + 3) > 127 Then 'And entireRow(cols + 2) = 255 And entireRow(cols + 1) = 255 And entireRow(cols + 0) = 255 Then
                                         TempCol = -1
                                     Else
                                         TempCol = (entireRow(cols + 3) * 16777216) + (entireRow(cols + 2) * 65536) + (entireRow(cols + 1) * 256) + (entireRow(cols + 0))
                                     End If
-                                End If
-                            Catch ex As Exception
-                                TempCol = -1
-                            End Try
+                                Catch ex As Exception
+                                    TempCol = -1
+                                End Try
+                            End If
+                            '                            thisRow(CInt(cols / 4)) = TempCol
                             thisRow(CInt(cols / 4)) = TempCol
-                        Next
+                            '                        Next
+                            cols = cols + 4
+                        End While
                         dbcDataTable.Rows.Add(thisRow)
                         Threading.Thread.Sleep(0)
                     Next
                 Else 'Empty file
                     Alert("", Core.AlertNewLine.AddCRLF)
                 End If
-                'Catch ex As Exception
-                '    Core.Alert(ex.Message, MaNGOSExtractorCore.runningAsGui)
-                'End Try
 
                 Alert("", Core.AlertNewLine.AddCRLF)
                 'Create a new row at the end to store the datatype
@@ -484,6 +481,7 @@ Namespace Core
 
                         Dim blnFoundString As Boolean = True
                         Dim SteppingAmount As Integer = 1 'dbcDataTable.Rows.Count() - 1 / 100
+                        If dbcDataTable.Rows.Count() > 5000 Then SteppingAmount = 100
                         If SteppingAmount < 1 Then SteppingAmount = 1
                         For thisScanRow As Integer = 0 To dbcDataTable.Rows.Count - 1 Step SteppingAmount
                             If IsDBNull(dbcDataTable.Rows(thisScanRow)(CInt(cols))) = False Then
@@ -529,11 +527,13 @@ Namespace Core
                         '    Core.Alert("Error: " & ex.Message, MaNGOSExtractorCore.runningAsGui)
                         'End Try
 
-                        If blnFoundString = True Then
+                        If blnFoundString = True And m_reader.StringTableSize > 0 Then
                             'Try
                             For thisScanRow As Integer = 0 To dbcDataTable.Rows.Count - 1 Step SteppingAmount
-                                dbcDataTable.Rows(thisScanRow)(CInt(cols)) = m_reader.StringTable(dbcDataTable.Rows(thisScanRow)(CInt(cols)))
-                                dbcDataTable.Rows(dbcDataTable.Rows.Count() - 1)(CInt(cols)) = 0
+                                If Not IsDBNull(dbcDataTable.Rows(thisScanRow)(CInt(cols))) Then
+                                    dbcDataTable.Rows(thisScanRow)(CInt(cols)) = m_reader.StringTable(dbcDataTable.Rows(thisScanRow)(CInt(cols)))
+                                    dbcDataTable.Rows(dbcDataTable.Rows.Count() - 1)(CInt(cols)) = 0
+                                End If
                                 Threading.Thread.Sleep(0)
                             Next
                             'Catch ex As Exception
@@ -620,7 +620,15 @@ Namespace Core
             End If
         End Sub
 
-
+        ''' <summary>
+        ''' Main Export routine, this reads all the dbc's from the output folder and calls the selected export routines on each one
+        ''' </summary>
+        ''' <param name="BaseFolder"></param>
+        ''' <param name="OutputFolder"></param>
+        ''' <param name="ExportCSV"></param>
+        ''' <param name="ExportSQL"></param>
+        ''' <param name="ExportXML"></param>
+        ''' <remarks></remarks>
         Public Sub ExportFiles(ByRef BaseFolder As String, ByRef OutputFolder As String, ByRef ExportCSV As Boolean, ByRef ExportSQL As Boolean, ByRef ExportXML As Boolean)
             'Now that we have all the DBC's extracted and patched, we need to check the export options and export data
             If OutputFolder.EndsWith("\") = False Then OutputFolder = OutputFolder & "\"
@@ -629,31 +637,46 @@ Namespace Core
             End If
             Dim myFolders As System.IO.DirectoryInfo
             myFolders = New System.IO.DirectoryInfo(OutputFolder & "\DBFilesClient")
-            For Each file As System.IO.FileInfo In myFolders.GetFiles("*.DB?")
+
+
+
+
+            Dim Files() As System.IO.FileInfo = myFolders.GetFiles("*.DB?")
+            Dim FilelistSorted As New SortedList()
+            
+            For Each thisFile As System.IO.FileInfo In Files
+                FilelistSorted.Add(thisFile.Name, thisFile.Name)
+            Next
+
+            ' For Each file As System.IO.FileInfo In Files 'myFolders.GetFiles("*.DB?")
+            For Each fileItem As DictionaryEntry In FilelistSorted 'myFolders.GetFiles("*.DB?")
                 Dim dbcDataTable As New DataTable
 
-                'Load the entire DBC into a DataTable to be processed by both exports
+                'Load the entire DBC into a DataTable to be processed by all exports
                 If ExportCSV = True Or ExportSQL = True Or ExportXML = True Then
                     Alert("", Core.AlertNewLine.AddCRLF)
-                    Alert(file.Name, Core.AlertNewLine.NoCRLF)
-                    loadDBCtoDataTable(OutputFolder & "\DBFilesClient" & "\" & file.Name, dbcDataTable)
+                    Alert(fileItem.Value, Core.AlertNewLine.NoCRLF)
+                    loadDBCtoDataTable(OutputFolder & "\DBFilesClient" & "\" & fileItem.Value, dbcDataTable)
                 End If
 
+                'Export to SQL Files
                 If ExportSQL = True Then
-                    Alert("Creating SQL for " & file.Name, Core.AlertNewLine.AddCRLF)
-                    Core.exportSQL(OutputFolder & "\DBFilesClient" & "\" & file.Name, dbcDataTable, BaseFolder)
+                    Alert("Creating SQL for " & fileItem.Value, Core.AlertNewLine.AddCRLF)
+                    Core.exportSQL(OutputFolder & "\DBFilesClient" & "\" & fileItem.Value, dbcDataTable, BaseFolder)
                     Alert("", Core.AlertNewLine.NoCRLF)
                 End If
 
+                'Export to CSV
                 If ExportCSV = True Then
-                    Alert("Creating CSV for " & file.Name, Core.AlertNewLine.AddCRLF)
-                    Core.exportCSV(OutputFolder & "\DBFilesClient" & "\" & file.Name, dbcDataTable)
+                    Alert("Creating CSV for " & fileItem.Value, Core.AlertNewLine.AddCRLF)
+                    Core.exportCSV(OutputFolder & "\DBFilesClient" & "\" & fileItem.Value, dbcDataTable)
                     Alert("", Core.AlertNewLine.NoCRLF)
                 End If
 
+                'Export to XML
                 If ExportXML = True Then
-                    Alert("Creating XML for " & file.Name, Core.AlertNewLine.AddCRLF)
-                    Core.exportXML(BaseFolder, OutputFolder & "\DBFilesClient" & "\" & file.Name, dbcDataTable)
+                    Alert("Creating XML for " & fileItem.Value, Core.AlertNewLine.AddCRLF)
+                    Core.exportXML(BaseFolder, OutputFolder & "\DBFilesClient" & "\" & fileItem.Value, dbcDataTable)
                     Alert("", Core.AlertNewLine.NoCRLF)
                 End If
 
@@ -662,6 +685,11 @@ Namespace Core
             Next
         End Sub
 
+        ''' <summary>
+        ''' This function returns the dbc fieldnames xml config file
+        ''' </summary>
+        ''' <returns></returns>
+        ''' <remarks></remarks>
         Public Function returnDBCXMLfilename() As String
             Dim XMLFilename As String = ""
             Select Case Core.MajorVersion
@@ -679,6 +707,13 @@ Namespace Core
             Return XMLFilename
         End Function
 
+        ''' <summary>
+        ''' Loads the fieldnames from the config xml for the specified file and returns a Dictionary of all field names
+        ''' </summary>
+        ''' <param name="sourceFolder"></param>
+        ''' <param name="Tablename"></param>
+        ''' <returns></returns>
+        ''' <remarks></remarks>
         Public Function LoadXMLDefinitions(ByRef sourceFolder As String, ByRef Tablename As String) As Dictionary(Of Integer, String)
             Dim thisCollection As New Dictionary(Of Integer, String) ' Collection
             Dim myXMLDoc As New Xml.XmlDocument()

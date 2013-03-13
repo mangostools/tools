@@ -32,7 +32,7 @@ Namespace Core
                 Dim intCounterRows As Integer = (intMaxRows - 1)
 
                 For rows = 0 To intMaxRows - 1
-                    If intCounterRows Mod (intCounterRows / 100) = (intCounterRows / 100) Then Alert("+", Core.AlertNewLine.NoCRLF)
+                    'If intCounterRows Mod (intCounterRows / 100) = (intCounterRows / 100) Then Alert("+", Core.AlertNewLine.NoCRLF)
 
                     Dim result As New StringBuilder()
                     result.AppendFormat("INSERT INTO `dbc_{0}` VALUES (", Path.GetFileNameWithoutExtension(Filename))
@@ -142,7 +142,9 @@ Namespace Core
                             sqlWriter.Write(" TEXT NOT NULL")
                             Exit Select
                         Case Else
-                            Alert("Unknown field type " & data.Columns(i).DataType.Name & "!", Core.AlertNewLine.NoCRLF)
+                            sqlWriter.Write(" INT NOT NULL DEFAULT '0'")
+                            Exit Select
+                            'Alert("Unknown field type " & data.Columns(i).DataType.Name & "!", Core.AlertNewLine.NoCRLF)
                     End Select
 
                     If i < data.Columns.Count - 1 Then sqlWriter.WriteLine(",")

@@ -1,0 +1,2853 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <Config>
+    <Lang_Count>12</Lang_Count>
+    <ClientLanguages>"enGB", "enUS", "deDE", "esES", "frFR", "koKR", "zhCN", "zhTW", "enCN", "enTW", "esMX", "ruRU"</ClientLanguages>
+    <Min_Supported_Build>5875</Min_Supported_Build>
+    <Expansion_Count>1</Expansion_Count>
+    <World_Count>2</World_Count>
+    <File_Revision>[3]Updated DB2 Include files</File_Revision>
+  </Config>
+  <Files>
+    <AnimationData>
+      <index>
+        <primary>ID</primary>
+      </index>
+      <include>Y</include>
+      <tablename>dbc_AnimationData</tablename>
+      <fieldcount>7</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="Name" include="y" />
+      <field type="int" name="col2" include="y" />
+      <field type="int" name="col3" include="y" />
+      <field type="int" name="col4" include="y" />
+      <field type="int" name="col5" include="y" />
+      <field type="int" name="col6" include="y" />
+    </AnimationData>
+    <AreaPOI>
+      <index>
+        <primary>ID</primary>
+      </index>
+      <include>Y</include>
+      <tablename>dbc_AreaPOI</tablename>
+      <fieldcount>29</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="col1" include="y" />
+      <field type="int" name="col2" include="y" />
+      <field type="int" name="col3" include="y" />
+      <field type="bigint" name="col4" include="y" />
+      <field type="bigint" name="col5" include="y" />
+      <field type="bigint" name="col6" include="y" />
+      <field type="int" name="col7" include="y" />
+      <field type="int" name="col8" include="y" />
+      <field type="bigint" name="col9" include="y" />
+      <field type="text" name="Name" include="y" />
+      <field type="text" name="col11" include="y" />
+      <field type="text" name="col12" include="y" />
+      <field type="text" name="col13" include="y" />
+      <field type="text" name="col14" include="y" />
+      <field type="text" name="col15" include="y" />
+      <field type="text" name="col16" include="y" />
+      <field type="text" name="col17" include="y" />
+      <field type="bigint" name="col18" include="y" />
+      <field type="text" name="col19" include="y" />
+      <field type="text" name="col20" include="y" />
+      <field type="text" name="col21" include="y" />
+      <field type="text" name="col22" include="y" />
+      <field type="text" name="col23" include="y" />
+      <field type="text" name="col24" include="y" />
+      <field type="text" name="col25" include="y" />
+      <field type="text" name="col26" include="y" />
+      <field type="bigint" name="Description" include="y" />
+      <field type="int" name="col28" include="y" />
+    </AreaPOI>
+    <AreaTable>
+      <index>
+        <primary>id</primary>
+      </index>
+      <include>Y</include>
+      <tablename>dbc_AreaTable</tablename>
+      <fieldcount>25</fieldcount>
+      <field type="int" name="id" include="y" />
+      <field type="int" name="mapid" include="y" />
+      <field type="int" name="zone" include="y" />
+      <field type="int" name="exploreFlag" include="y" />
+      <field type="int" name="flags" include="y" />
+      <field type="int" name="col5" include="y" />
+      <field type="int" name="col6" include="y" />
+      <field type="int" name="col7" include="y" />
+      <field type="int" name="col8" include="y" />
+      <field type="int" name="col9" include="y" />
+      <field type="bigint" name="col10" include="y" />
+      <field type="text" name="col11" include="y" />
+      <field type="text" name="col12" include="y" />
+      <field type="text" name="col13" include="y" />
+      <field type="text" name="col14" include="y" />
+      <field type="text" name="col15" include="y" />
+      <field type="text" name="col16" include="y" />
+      <field type="text" name="col17" include="y" />
+      <field type="text" name="col18" include="y" />
+      <field type="bigint" name="col19" include="y" />
+      <field type="int" name="col20" include="y" />
+      <field type="text" name="col21" include="y" />
+      <field type="text" name="col22" include="y" />
+      <field type="text" name="col23" include="y" />
+      <field type="int" name="col24" include="y" />
+    </AreaTable>
+    <AreaTrigger>
+      <index>
+        <primary>m_id</primary>
+      </index>
+      <include>Y</include>
+      <tablename>dbc_AreaTrigger</tablename>
+      <fieldcount>10</fieldcount>
+      <field type="int" name="m_id" include="y" />
+      <field type="int" name="m_mapId" include="y" />
+      <field type="bigint" name="m_posX" include="y" />
+      <field type="bigint" name="m_posY" include="y" />
+      <field type="bigint" name="m_posZ" include="y" />
+      <field type="bigint" name="col5" include="y" />
+      <field type="bigint" name="col6" include="y" />
+      <field type="bigint" name="col7" include="y" />
+      <field type="bigint" name="col8" include="y" />
+      <field type="bigint" name="col9" include="y" />
+    </AreaTrigger>
+    <AttackAnimKits>
+      <include>Y</include>
+      <tablename>dbc_AttackAnimKits</tablename>
+      <fieldcount>5</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="AnimationID" include="y" />
+      <field type="int" name="attackTypeID" include="y" />
+      <field type="int" name="flags" include="y" />
+      <field type="int" name="col4" include="y" />
+    </AttackAnimKits>
+    <AttackAnimTypes>
+      <include>Y</include>
+      <tablename>dbc_AttackAnimTypes</tablename>
+      <fieldcount>2</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="name" include="y" />
+    </AttackAnimTypes>
+    <AuctionHouse>
+      <include>Y</include>
+      <tablename>dbc_AuctionHouse</tablename>
+      <fieldcount>13</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="factionID" include="y" />
+      <field type="int" name="depositRate" include="y" />
+      <field type="int" name="consignmentRate" include="y" />
+      <field type="text" name="name" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="text" name="col9" include="y" />
+      <field type="text" name="col10" include="y" />
+      <field type="text" name="col11" include="y" />
+      <field type="bigint" name="col12" include="y" />
+    </AuctionHouse>
+    <BankBagSlotPrices>
+      <include>Y</include>
+      <tablename>dbc_BankBagSlotPrices</tablename>
+      <fieldcount>2</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="bigint" name="cost" include="y" />
+    </BankBagSlotPrices>
+    <CameraShakes>
+      <include>Y</include>
+      <tablename>dbc_CameraShakes</tablename>
+      <fieldcount>8</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="shakeType" include="y" />
+      <field type="int" name="direction" include="y" />
+      <field type="bigint" name="amplitude" include="y" />
+      <field type="bigint" name="frequency" include="y" />
+      <field type="bigint" name="duration" include="y" />
+      <field type="bigint" name="phase" include="y" />
+      <field type="bigint" name="coefficient" include="y" />
+    </CameraShakes>
+    <Cfg_Categories>
+      <include>Y</include>
+      <tablename>dbc_Cfg_Categories</tablename>
+      <fieldcount>11</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="col1" include="y" />
+      <field type="text" name="col2" include="y" />
+      <field type="text" name="col3" include="y" />
+      <field type="text" name="Name" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="text" name="col9" include="y" />
+      <field type="bigint" name="col10" include="y" />
+    </Cfg_Categories>
+    <Cfg_Configs>
+      <include>Y</include>
+      <tablename>dbc_Cfg_Configs</tablename>
+      <fieldcount>4</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="col1" include="y" />
+      <field type="int" name="col2" include="y" />
+      <field type="int" name="col3" include="y" />
+    </Cfg_Configs>
+    <CharacterCreateCameras>
+      <include>Y</include>
+      <tablename>dbc_CharacterCreateCameras</tablename>
+      <fieldcount>6</fieldcount>
+      <field type="int" name="col0" include="y" />
+      <field type="int" name="col1" include="y" />
+      <field type="int" name="col2" include="y" />
+      <field type="bigint" name="col3" include="y" />
+      <field type="bigint" name="col4" include="y" />
+      <field type="bigint" name="col5" include="y" />
+    </CharacterCreateCameras>
+    <CharacterFacialHairStyles>
+      <include>Y</include>
+      <tablename>dbc_CharacterFacialHairStyles</tablename>
+      <fieldcount>9</fieldcount>
+      <field type="int" name="raceID" include="y" />
+      <field type="int" name="col1" include="y" />
+      <field type="int" name="col2" include="y" />
+      <field type="bigint" name="col3" include="y" />
+      <field type="bigint" name="col4" include="y" />
+      <field type="bigint" name="col5" include="y" />
+      <field type="int" name="col6" include="y" />
+      <field type="int" name="col7" include="y" />
+      <field type="int" name="col8" include="y" />
+    </CharacterFacialHairStyles>
+    <CharHairGeosets>
+      <include>Y</include>
+      <tablename>dbc_CharHairGeosets</tablename>
+      <fieldcount>6</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="RaceID" include="y" />
+      <field type="int" name="SexID" include="y" />
+      <field type="int" name="VariationID" include="y" />
+      <field type="int" name="GeosetID" include="y" />
+      <field type="int" name="Showscalp" include="y" />
+    </CharHairGeosets>
+    <CharHairTextures>
+      <include>Y</include>
+      <tablename>dbc_CharHairTextures</tablename>
+      <fieldcount>8</fieldcount>
+      <field type="int" name="col0" include="y" />
+      <field type="int" name="col1" include="y" />
+      <field type="int" name="col2" include="y" />
+      <field type="int" name="col3" include="y" />
+      <field type="bigint" name="col4" include="y" />
+      <field type="bigint" name="col5" include="y" />
+      <field type="bigint" name="col6" include="y" />
+      <field type="bigint" name="col7" include="y" />
+    </CharHairTextures>
+    <CharSections>
+      <include>Y</include>
+      <tablename>dbc_CharSections</tablename>
+      <fieldcount>10</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="Race" include="y" />
+      <field type="text" name="Gender" include="y" />
+      <field type="int" name="GeneralType" include="y" />
+      <field type="int" name="TextureName1" include="y" />
+      <field type="int" name="TextureName2" include="y" />
+      <field type="text" name="TextureName3" include="y" />
+      <field type="text" name="Flags" include="y" />
+      <field type="text" name="Type" include="y" />
+      <field type="text" name="Variation" include="y" />
+    </CharSections>
+    <CharStartOutfit>
+      <include>Y</include>
+      <tablename>dbc_CharStartOutfit</tablename>
+      <fieldcount>38</fieldcount>
+      <field type="int" name="col0" include="y" />
+      <field type="bigint" name="col1" include="y" />
+      <field type="int" name="col2" include="y" />
+      <field type="int" name="col3" include="y" />
+      <field type="int" name="col4" include="y" />
+      <field type="int" name="col5" include="y" />
+      <field type="int" name="col6" include="y" />
+      <field type="int" name="col7" include="y" />
+      <field type="int" name="col8" include="y" />
+      <field type="bigint" name="col9" include="y" />
+      <field type="bigint" name="col10" include="y" />
+      <field type="bigint" name="col11" include="y" />
+      <field type="bigint" name="col12" include="y" />
+      <field type="bigint" name="col13" include="y" />
+      <field type="int" name="col14" include="y" />
+      <field type="int" name="col15" include="y" />
+      <field type="bigint" name="col16" include="y" />
+      <field type="bigint" name="col17" include="y" />
+      <field type="bigint" name="col18" include="y" />
+      <field type="bigint" name="col19" include="y" />
+      <field type="bigint" name="col20" include="y" />
+      <field type="bigint" name="col21" include="y" />
+      <field type="bigint" name="col22" include="y" />
+      <field type="bigint" name="col23" include="y" />
+      <field type="bigint" name="col24" include="y" />
+      <field type="bigint" name="col25" include="y" />
+      <field type="int" name="col26" include="y" />
+      <field type="int" name="col27" include="y" />
+      <field type="bigint" name="col28" include="y" />
+      <field type="bigint" name="col29" include="y" />
+      <field type="bigint" name="col30" include="y" />
+      <field type="bigint" name="col31" include="y" />
+      <field type="bigint" name="col32" include="y" />
+      <field type="bigint" name="col33" include="y" />
+      <field type="bigint" name="col34" include="y" />
+      <field type="bigint" name="col35" include="y" />
+      <field type="bigint" name="col36" include="y" />
+      <field type="bigint" name="col37" include="y" />
+    </CharStartOutfit>
+    <CharVariations>
+      <include>Y</include>
+      <tablename>dbc_CharVariations</tablename>
+      <fieldcount>6</fieldcount>
+      <field type="int" name="col0" include="y" />
+      <field type="int" name="col1" include="y" />
+      <field type="text" name="col2" include="y" />
+      <field type="int" name="col3" include="y" />
+      <field type="int" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+    </CharVariations>
+    <ChatChannels>
+      <include>Y</include>
+      <tablename>dbc_ChatChannels</tablename>
+      <fieldcount>21</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="bigint" name="flags" include="y" />
+      <field type="text" name="factionGroup" include="y" />
+      <field type="text" name="name" include="y" />
+      <field type="text" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="text" name="col9" include="y" />
+      <field type="text" name="col10" include="y" />
+      <field type="bigint" name="col11" include="y" />
+      <field type="text" name="col12" include="y" />
+      <field type="text" name="col13" include="y" />
+      <field type="text" name="col14" include="y" />
+      <field type="text" name="col15" include="y" />
+      <field type="text" name="col16" include="y" />
+      <field type="text" name="col17" include="y" />
+      <field type="text" name="col18" include="y" />
+      <field type="text" name="col19" include="y" />
+      <field type="bigint" name="col20" include="y" />
+    </ChatChannels>
+    <ChatProfanity>
+      <include>Y</include>
+      <tablename>dbc_ChatProfanity</tablename>
+      <fieldcount>2</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="dirty_word" include="y" />
+    </ChatProfanity>
+    <ChrClasses>
+      <index>
+        <primary>ID</primary>
+      </index>
+      <include>Y</include>
+      <tablename>dbc_ChrClasses</tablename>
+      <fieldcount>17</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="col1" include="y" />
+      <field type="text" name="col2" include="y" />
+      <field type="int" name="col3" include="y" />
+      <field type="text" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="text" name="col9" include="y" />
+      <field type="text" name="col10" include="y" />
+      <field type="text" name="col11" include="y" />
+      <field type="text" name="col12" include="y" />
+      <field type="bigint" name="col13" include="y" />
+      <field type="text" name="col14" include="y" />
+      <field type="int" name="col15" include="y" />
+      <field type="text" name="col16" include="y" />
+    </ChrClasses>
+    <ChrRaces>
+      <include>Y</include>
+      <tablename>dbc_ChrRaces</tablename>
+      <fieldcount>29</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="flags" include="y" />
+      <field type="int" name="factionID" include="y" />
+      <field type="int" name="ExplorationSoundID" include="y" />
+      <field type="int" name="MaleDisplayID" include="y" />
+      <field type="int" name="FemaleDisplayID" include="y" />
+      <field type="text" name="ClientPrefix" include="y" />
+      <field type="bigint" name="col7" include="y" />
+      <field type="int" name="col8" include="y" />
+      <field type="int" name="col9" include="y" />
+      <field type="int" name="col10" include="y" />
+      <field type="int" name="col11" include="y" />
+      <field type="int" name="col12" include="y" />
+      <field type="int" name="col13" include="y" />
+      <field type="bigint" name="col14" include="y" />
+      <field type="text" name="col15" include="y" />
+      <field type="int" name="col16" include="y" />
+      <field type="text" name="col17" include="y" />
+      <field type="text" name="col18" include="y" />
+      <field type="text" name="col19" include="y" />
+      <field type="text" name="col20" include="y" />
+      <field type="text" name="col21" include="y" />
+      <field type="text" name="col22" include="y" />
+      <field type="text" name="col23" include="y" />
+      <field type="text" name="col24" include="y" />
+      <field type="bigint" name="col25" include="y" />
+      <field type="text" name="col26" include="y" />
+      <field type="text" name="col27" include="y" />
+      <field type="text" name="col28" include="y" />
+    </ChrRaces>
+    <CinematicCamera>
+      <include>Y</include>
+      <tablename>dbc_CinematicCamera</tablename>
+      <fieldcount>7</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="model" include="y" />
+      <field type="int" name="soundID" include="y" />
+      <field type="bigint" name="originX" include="y" />
+      <field type="bigint" name="originY" include="y" />
+      <field type="bigint" name="originZ" include="y" />
+      <field type="bigint" name="originFacing" include="y" />
+    </CinematicCamera>
+    <CinematicSequences>
+      <include>Y</include>
+      <tablename>dbc_CinematicSequences</tablename>
+      <fieldcount>10</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="col1" include="y" />
+      <field type="int" name="col2" include="y" />
+      <field type="text" name="col3" include="y" />
+      <field type="text" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="text" name="col9" include="y" />
+    </CinematicSequences>
+    <CreatureDisplayInfo>
+      <include>Y</include>
+      <tablename>dbc_CreatureDisplayInfo</tablename>
+      <fieldcount>12</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="modelID" include="y" />
+      <field type="int" name="soundID" include="y" />
+      <field type="int" name="extendedDisplayInfoID" include="y" />
+      <field type="bigint" name="creatureModelScale" include="y" />
+      <field type="int" name="creatureModelAlpha" include="y" />
+      <field type="text" name="textureVariation1" include="y" />
+      <field type="text" name="textureVariation2" include="y" />
+      <field type="text" name="textureVariation3" include="y" />
+      <field type="bigint" name="textureVariation4" include="y" />
+      <field type="text" name="col10" include="y" />
+      <field type="int" name="col11" include="y" />
+    </CreatureDisplayInfo>
+    <CreatureDisplayInfoExtra>
+      <include>Y</include>
+      <tablename>dbc_CreatureDisplayInfoExtra</tablename>
+      <fieldcount>19</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="RaceId" include="y" />
+      <field type="text" name="col2" include="y" />
+      <field type="int" name="col3" include="y" />
+      <field type="int" name="col4" include="y" />
+      <field type="int" name="col5" include="y" />
+      <field type="int" name="col6" include="y" />
+      <field type="int" name="col7" include="y" />
+      <field type="int" name="col8" include="y" />
+      <field type="int" name="col9" include="y" />
+      <field type="int" name="col10" include="y" />
+      <field type="int" name="col11" include="y" />
+      <field type="int" name="col12" include="y" />
+      <field type="int" name="col13" include="y" />
+      <field type="int" name="col14" include="y" />
+      <field type="int" name="col15" include="y" />
+      <field type="int" name="col16" include="y" />
+      <field type="int" name="col17" include="y" />
+      <field type="text" name="Texture" include="y" />
+    </CreatureDisplayInfoExtra>
+    <CreatureFamily>
+      <include>Y</include>
+      <tablename>dbc_CreatureFamily</tablename>
+      <fieldcount>18</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="bigint" name="minScale" include="y" />
+      <field type="text" name="minScaleLevel" include="y" />
+      <field type="bigint" name="maxScale" include="y" />
+      <field type="int" name="maxScaleLevel" include="y" />
+      <field type="int" name="SkillLine1" include="y" />
+      <field type="int" name="SkillLine2" include="y" />
+      <field type="int" name="ItemPetFood" include="y" />
+      <field type="text" name="petTalentType" include="y" />
+      <field type="text" name="categoryEnumID" include="y" />
+      <field type="text" name="name" include="y" />
+      <field type="text" name="col11" include="y" />
+      <field type="text" name="col12" include="y" />
+      <field type="text" name="col13" include="y" />
+      <field type="text" name="col14" include="y" />
+      <field type="text" name="col15" include="y" />
+      <field type="bigint" name="col16" include="y" />
+      <field type="text" name="col17" include="y" />
+    </CreatureFamily>
+    <CreatureModelData>
+      <include>Y</include>
+      <tablename>dbc_CreatureModelData</tablename>
+      <fieldcount>16</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="flags" include="y" />
+      <field type="text" name="ModelName" include="y" />
+      <field type="int" name="sizeClass" include="y" />
+      <field type="bigint" name="modelScale" include="y" />
+      <field type="bigint" name="bloodID" include="y" />
+      <field type="bigint" name="footprintTextureID" include="y" />
+      <field type="bigint" name="footprintTextureLength" include="y" />
+      <field type="bigint" name="footprintTextureWidth" include="y" />
+      <field type="bigint" name="footprintTextureScale" include="y" />
+      <field type="text" name="col10" include="y" />
+      <field type="int" name="col11" include="y" />
+      <field type="int" name="col12" include="y" />
+      <field type="int" name="col13" include="y" />
+      <field type="bigint" name="col14" include="y" />
+      <field type="bigint" name="col15" include="y" />
+    </CreatureModelData>
+    <CreatureSoundData>
+      <include>Y</include>
+      <tablename>dbc_CreatureSoundData</tablename>
+      <fieldcount>30</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="col1" include="y" />
+      <field type="int" name="col2" include="y" />
+      <field type="int" name="col3" include="y" />
+      <field type="int" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="int" name="col6" include="y" />
+      <field type="int" name="col7" include="y" />
+      <field type="int" name="col8" include="y" />
+      <field type="int" name="col9" include="y" />
+      <field type="int" name="col10" include="y" />
+      <field type="int" name="col11" include="y" />
+      <field type="int" name="col12" include="y" />
+      <field type="int" name="col13" include="y" />
+      <field type="int" name="col14" include="y" />
+      <field type="int" name="col15" include="y" />
+      <field type="int" name="col16" include="y" />
+      <field type="int" name="col17" include="y" />
+      <field type="int" name="col18" include="y" />
+      <field type="int" name="col19" include="y" />
+      <field type="int" name="col20" include="y" />
+      <field type="int" name="col21" include="y" />
+      <field type="text" name="col22" include="y" />
+      <field type="int" name="col23" include="y" />
+      <field type="int" name="col24" include="y" />
+      <field type="text" name="col25" include="y" />
+      <field type="text" name="col26" include="y" />
+      <field type="int" name="col27" include="y" />
+      <field type="int" name="col28" include="y" />
+      <field type="int" name="col29" include="y" />
+    </CreatureSoundData>
+    <CreatureSpellData>
+      <include>Y</include>
+      <tablename>dbc_CreatureSpellData</tablename>
+      <fieldcount>9</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="Spell1Id" include="y" />
+      <field type="int" name="Spell2Id" include="y" />
+      <field type="int" name="Spell3Id" include="y" />
+      <field type="text" name="Spell4Id" include="y" />
+      <field type="int" name="CoolDown1" include="y" />
+      <field type="int" name="CoolDown2" include="y" />
+      <field type="int" name="CoolDown3" include="y" />
+      <field type="text" name="CoolDown4" include="y" />
+    </CreatureSpellData>
+    <CreatureType>
+      <index>
+        <primary>ID</primary>
+      </index>
+      <include>Y</include>
+      <tablename>dbc_CreatureType</tablename>
+      <fieldcount>11</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="Name" include="y" />
+      <field type="text" name="flags" include="y" />
+      <field type="text" name="col3" include="y" />
+      <field type="text" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="bigint" name="col9" include="y" />
+      <field type="text" name="col10" include="y" />
+    </CreatureType>
+    <DeathThudLookups>
+      <include>Y</include>
+      <tablename>dbc_DeathThudLookups</tablename>
+      <fieldcount>5</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="SizeClass" include="y" />
+      <field type="int" name="TerrainTypeSoundID" include="y" />
+      <field type="int" name="SoundEntryID" include="y" />
+      <field type="int" name="SoundEntryIDWater" include="y" />
+    </DeathThudLookups>
+    <DurabilityCosts>
+      <include>Y</include>
+      <tablename>dbc_DurabilityCosts</tablename>
+      <fieldcount>30</fieldcount>
+      <field type="int" name="ItemLevel" include="y" />
+      <field type="int" name="Multiplier1" include="y" />
+      <field type="int" name="Multiplier2" include="y" />
+      <field type="int" name="Multiplier3" include="y" />
+      <field type="int" name="Multiplier4" include="y" />
+      <field type="int" name="Multiplier5" include="y" />
+      <field type="int" name="Multiplier6" include="y" />
+      <field type="int" name="Multiplier7" include="y" />
+      <field type="int" name="Multiplier8" include="y" />
+      <field type="int" name="Multiplier9" include="y" />
+      <field type="text" name="Multiplier10" include="y" />
+      <field type="int" name="Multiplier11" include="y" />
+      <field type="int" name="Multiplier12" include="y" />
+      <field type="int" name="Multiplier13" include="y" />
+      <field type="int" name="Multiplier14" include="y" />
+      <field type="int" name="Multiplier15" include="y" />
+      <field type="int" name="Multiplier16" include="y" />
+      <field type="int" name="Multiplier17" include="y" />
+      <field type="int" name="Multiplier18" include="y" />
+      <field type="int" name="Multiplier19" include="y" />
+      <field type="int" name="Multiplier20" include="y" />
+      <field type="int" name="Multiplier21" include="y" />
+      <field type="text" name="Multiplier22" include="y" />
+      <field type="int" name="Multiplier23" include="y" />
+      <field type="int" name="Multiplier24" include="y" />
+      <field type="int" name="Multiplier25" include="y" />
+      <field type="int" name="Multiplier26" include="y" />
+      <field type="text" name="Multiplier27" include="y" />
+      <field type="int" name="Multiplier28" include="y" />
+      <field type="text" name="Multiplier29" include="y" />
+    </DurabilityCosts>
+    <DurabilityQuality>
+      <include>Y</include>
+      <tablename>dbc_DurabilityQuality</tablename>
+      <fieldcount>2</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="bigint" name="Multiplier" include="y" />
+    </DurabilityQuality>
+    <Emotes>
+      <include>Y</include>
+      <tablename>dbc_Emotes</tablename>
+      <fieldcount>7</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="EmoteSlashCommand" include="y" />
+      <field type="int" name="AnimationDataId" include="y" />
+      <field type="int" name="EmoteFlags" include="y" />
+      <field type="int" name="EmoteSpecProc" include="y" />
+      <field type="int" name="EmoteSpecProcParam" include="y" />
+      <field type="int" name="SoundEntriesId" include="y" />
+    </Emotes>
+    <EmotesText>
+      <include>Y</include>
+      <tablename>dbc_EmotesText</tablename>
+      <fieldcount>19</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="sRefCon" include="y" />
+      <field type="int" name="EmotesTextData1Id" include="y" />
+      <field type="int" name="EmotesTextData2Id" include="y" />
+      <field type="int" name="EmotesTextData3Id" include="y" />
+      <field type="int" name="EmotesTextData4Id" include="y" />
+      <field type="text" name="EmotesTextData5Id" include="y" />
+      <field type="int" name="EmotesTextData6Id" include="y" />
+      <field type="text" name="EmotesTextData7Id" include="y" />
+      <field type="int" name="EmotesTextData8Id" include="y" />
+      <field type="text" name="EmotesTextData9Id" include="y" />
+      <field type="int" name="EmotesTextData10Id" include="y" />
+      <field type="int" name="EmotesTextData11Id" include="y" />
+      <field type="text" name="EmotesTextData12Id" include="y" />
+      <field type="text" name="EmotesTextData13Id" include="y" />
+      <field type="int" name="EmotesTextData14Id" include="y" />
+      <field type="text" name="EmotesTextData15Id" include="y" />
+      <field type="text" name="EmotesTextData16Id" include="y" />
+      <field type="text" name="EmotesTextData17Id" include="y" />
+    </EmotesText>
+    <EmotesTextData>
+      <include>Y</include>
+      <tablename>dbc_EmotesTextData</tablename>
+      <fieldcount>10</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="sRefName" include="y" />
+      <field type="text" name="col2" include="y" />
+      <field type="text" name="col3" include="y" />
+      <field type="text" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="bigint" name="col9" include="y" />
+    </EmotesTextData>
+    <EmotesTextSound>
+      <include>Y</include>
+      <tablename>dbc_EmotesTextSound</tablename>
+      <fieldcount>5</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="emotesTextID" include="y" />
+      <field type="int" name="raceID" include="y" />
+      <field type="int" name="sexID" include="y" />
+      <field type="int" name="soundID" include="y" />
+    </EmotesTextSound>
+    <EnvironmentalDamage>
+      <include>Y</include>
+      <tablename>dbc_EnvironmentalDamage</tablename>
+      <fieldcount>3</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="EnumID" include="y" />
+      <field type="int" name="VisualkitID" include="y" />
+    </EnvironmentalDamage>
+    <Exhaustion>
+      <include>Y</include>
+      <tablename>dbc_Exhaustion</tablename>
+      <fieldcount>15</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="bigint" name="xp" include="y" />
+      <field type="bigint" name="factor" include="y" />
+      <field type="bigint" name="outdoorHours" include="y" />
+      <field type="bigint" name="innHours" include="y" />
+      <field type="text" name="name" include="y" />
+      <field type="text" name="threshold" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="text" name="col9" include="y" />
+      <field type="text" name="col10" include="y" />
+      <field type="text" name="col11" include="y" />
+      <field type="text" name="col12" include="y" />
+      <field type="bigint" name="col13" include="y" />
+      <field type="bigint" name="col14" include="y" />
+    </Exhaustion>
+    <Faction>
+      <include>Y</include>
+      <tablename>dbc_Faction</tablename>
+      <fieldcount>37</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="bigint" name="reputationIndex" include="y" />
+      <field type="int" name="reputationRaceMask1" include="y" />
+      <field type="int" name="reputationRaceMask2" include="y" />
+      <field type="int" name="reputationRaceMask3" include="y" />
+      <field type="int" name="reputationRaceMask4" include="y" />
+      <field type="int" name="reputationClassMask1" include="y" />
+      <field type="int" name="reputationClassMask2" include="y" />
+      <field type="text" name="reputationClassMask3" include="y" />
+      <field type="text" name="reputationClassMask4" include="y" />
+      <field type="bigint" name="reputationBase1" include="y" />
+      <field type="bigint" name="reputationBase2" include="y" />
+      <field type="int" name="reputationBase3" include="y" />
+      <field type="int" name="reputationBase4" include="y" />
+      <field type="int" name="reputationFlags1" include="y" />
+      <field type="int" name="reputationFlags2" include="y" />
+      <field type="int" name="reputationFlags3" include="y" />
+      <field type="int" name="reputationFlags4" include="y" />
+      <field type="int" name="parentFactionID" include="y" />
+      <field type="text" name="parentFactionMod1" include="y" />
+      <field type="text" name="parentFactionMod2" include="y" />
+      <field type="text" name="parentFactionCap1" include="y" />
+      <field type="text" name="parentFactionCap2" include="y" />
+      <field type="text" name="Name" include="y" />
+      <field type="text" name="Description" include="y" />
+      <field type="text" name="col25" include="y" />
+      <field type="text" name="col26" include="y" />
+      <field type="bigint" name="col27" include="y" />
+      <field type="text" name="col28" include="y" />
+      <field type="text" name="col29" include="y" />
+      <field type="text" name="col30" include="y" />
+      <field type="text" name="col31" include="y" />
+      <field type="text" name="col32" include="y" />
+      <field type="text" name="col33" include="y" />
+      <field type="text" name="col34" include="y" />
+      <field type="text" name="col35" include="y" />
+      <field type="bigint" name="col36" include="y" />
+    </Faction>
+    <FactionGroup>
+      <include>Y</include>
+      <tablename>dbc_FactionGroup</tablename>
+      <fieldcount>12</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="maskID" include="y" />
+      <field type="text" name="internalName" include="y" />
+      <field type="text" name="sRefName" include="y" />
+      <field type="text" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="text" name="col9" include="y" />
+      <field type="text" name="col10" include="y" />
+      <field type="bigint" name="col11" include="y" />
+    </FactionGroup>
+    <FactionTemplate>
+      <include>Y</include>
+      <tablename>dbc_FactionTemplate</tablename>
+      <fieldcount>14</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="Faction1Id" include="y" />
+      <field type="int" name="col2" include="y" />
+      <field type="int" name="FightSupport" include="y" />
+      <field type="int" name="Friendly" include="y" />
+      <field type="int" name="Hostile" include="y" />
+      <field type="int" name="Faction2Id" include="y" />
+      <field type="int" name="Faction3Id" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="text" name="col9" include="y" />
+      <field type="int" name="Faction4Id" include="y" />
+      <field type="int" name="Faction5Id" include="y" />
+      <field type="int" name="Faction6Id" include="y" />
+      <field type="int" name="Faction7Id" include="y" />
+    </FactionTemplate>
+    <FootprintTextures>
+      <include>Y</include>
+      <tablename>dbc_FootprintTextures</tablename>
+      <fieldcount>2</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="FootstepFilename" include="y" />
+    </FootprintTextures>
+    <FootstepTerrainLookup>
+      <include>Y</include>
+      <tablename>dbc_FootstepTerrainLookup</tablename>
+      <fieldcount>5</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="CreatureFootstepID" include="y" />
+      <field type="int" name="TerrainSoundID" include="y" />
+      <field type="int" name="SoundID" include="y" />
+      <field type="int" name="SoundIDSplash" include="y" />
+    </FootstepTerrainLookup>
+    <GameObjectArtKit>
+      <include>Y</include>
+      <tablename>dbc_GameObjectArtKit</tablename>
+      <fieldcount>8</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="textureVariation1" include="y" />
+      <field type="text" name="textureVariation2" include="y" />
+      <field type="text" name="textureVariation3" include="y" />
+      <field type="text" name="attachModel1" include="y" />
+      <field type="text" name="attachModel2" include="y" />
+      <field type="text" name="attachModel3" include="y" />
+      <field type="text" name="attachModel4" include="y" />
+    </GameObjectArtKit>
+    <GameObjectDisplayInfo>
+      <include>Y</include>
+      <tablename>dbc_GameObjectDisplayInfo</tablename>
+      <fieldcount>12</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="modelName" include="y" />
+      <field type="int" name="col2" include="y" />
+      <field type="int" name="col3" include="y" />
+      <field type="int" name="col4" include="y" />
+      <field type="int" name="col5" include="y" />
+      <field type="int" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="int" name="col8" include="y" />
+      <field type="int" name="col9" include="y" />
+      <field type="int" name="col10" include="y" />
+      <field type="int" name="col11" include="y" />
+    </GameObjectDisplayInfo>
+    <GameTips>
+      <include>Y</include>
+      <tablename>dbc_GameTips</tablename>
+      <fieldcount>10</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="Tip" include="y" />
+      <field type="text" name="col2" include="y" />
+      <field type="text" name="col3" include="y" />
+      <field type="text" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="bigint" name="col9" include="y" />
+    </GameTips>
+    <GMSurveyCurrentSurvey>
+      <include>Y</include>
+      <tablename>dbc_GMSurveyCurrentSurvey</tablename>
+      <fieldcount>2</fieldcount>
+      <field type="int" name="LangID" include="y" />
+      <field type="int" name="GMSurveyID" include="y" />
+    </GMSurveyCurrentSurvey>
+    <GMSurveyQuestions>
+      <include>Y</include>
+      <tablename>dbc_GMSurveyQuestions</tablename>
+      <fieldcount>10</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="Question" include="y" />
+      <field type="text" name="col2" include="y" />
+      <field type="text" name="col3" include="y" />
+      <field type="text" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="bigint" name="col9" include="y" />
+    </GMSurveyQuestions>
+    <GMSurveySurveys>
+      <include>Y</include>
+      <tablename>dbc_GMSurveySurveys</tablename>
+      <fieldcount>11</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="Q1" include="y" />
+      <field type="int" name="Q2" include="y" />
+      <field type="int" name="Q3" include="y" />
+      <field type="int" name="Q4" include="y" />
+      <field type="int" name="Q5" include="y" />
+      <field type="text" name="Q6" include="y" />
+      <field type="text" name="Q7" include="y" />
+      <field type="text" name="Q8" include="y" />
+      <field type="text" name="Q9" include="y" />
+      <field type="text" name="Q10" include="y" />
+    </GMSurveySurveys>
+    <GMTicketCategory>
+      <include>Y</include>
+      <tablename>dbc_GMTicketCategory</tablename>
+      <fieldcount>10</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="sRefName" include="y" />
+      <field type="text" name="col2" include="y" />
+      <field type="text" name="col3" include="y" />
+      <field type="text" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="bigint" name="col9" include="y" />
+    </GMTicketCategory>
+    <GroundEffectDoodad>
+      <include>Y</include>
+      <tablename>dbc_GroundEffectDoodad</tablename>
+      <fieldcount>3</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="InternalId" include="y" />
+      <field type="text" name="GroundModels" include="y" />
+    </GroundEffectDoodad>
+    <GroundEffectTexture>
+      <include>Y</include>
+      <tablename>dbc_GroundEffectTexture</tablename>
+      <fieldcount>7</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="bigint" name="EffectDoodad1Id" include="y" />
+      <field type="bigint" name="EffectDoodad2Id" include="y" />
+      <field type="bigint" name="EffectDoodad3Id" include="y" />
+      <field type="bigint" name="EffectDoodad4Id" include="y" />
+      <field type="int" name="AmountAndCoverage" include="y" />
+      <field type="int" name="TerrainType" include="y" />
+    </GroundEffectTexture>
+    <HelmetGeosetVisData>
+      <include>Y</include>
+      <tablename>dbc_HelmetGeosetVisData</tablename>
+      <fieldcount>6</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="bigint" name="HairFlags" include="y" />
+      <field type="bigint" name="Facial1Flags" include="y" />
+      <field type="bigint" name="Facial2Flags" include="y" />
+      <field type="bigint" name="Facial3Flags" include="y" />
+      <field type="bigint" name="EarsFlags" include="y" />
+    </HelmetGeosetVisData>
+    <ItemBagFamily>
+      <include>Y</include>
+      <tablename>dbc_ItemBagFamily</tablename>
+      <fieldcount>10</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="sRefName" include="y" />
+      <field type="text" name="col2" include="y" />
+      <field type="text" name="col3" include="y" />
+      <field type="text" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="bigint" name="col9" include="y" />
+    </ItemBagFamily>
+    <ItemClass>
+      <include>Y</include>
+      <tablename>dbc_ItemClass</tablename>
+      <fieldcount>12</fieldcount>
+      <field type="int" name="classID" include="y" />
+      <field type="int" name="col1" include="y" />
+      <field type="text" name="col2" include="y" />
+      <field type="text" name="classname" include="y" />
+      <field type="text" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="text" name="col9" include="y" />
+      <field type="text" name="col10" include="y" />
+      <field type="bigint" name="col11" include="y" />
+    </ItemClass>
+    <ItemDisplayInfo>
+      <include>Y</include>
+      <tablename>dbc_ItemDisplayInfo</tablename>
+      <fieldcount>23</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="modelName1" include="y" />
+      <field type="text" name="modelName2" include="y" />
+      <field type="text" name="modelTexture1" include="y" />
+      <field type="text" name="modelTexture2" include="y" />
+      <field type="text" name="inventoryIcon1" include="y" />
+      <field type="int" name="inventoryIcon2" include="y" />
+      <field type="text" name="geosetGroup1" include="y" />
+      <field type="text" name="geosetGroup2" include="y" />
+      <field type="text" name="geosetGroup3" include="y" />
+      <field type="int" name="flags" include="y" />
+      <field type="int" name="spellVisualID" include="y" />
+      <field type="int" name="groupSoundIndex" include="y" />
+      <field type="int" name="helmetGeosetVis1" include="y" />
+      <field type="text" name="helmetGeosetVis2" include="y" />
+      <field type="text" name="texture1" include="y" />
+      <field type="text" name="texture2" include="y" />
+      <field type="text" name="texture3" include="y" />
+      <field type="text" name="texture4" include="y" />
+      <field type="text" name="texture5" include="y" />
+      <field type="text" name="texture6" include="y" />
+      <field type="text" name="texture7" include="y" />
+      <field type="int" name="texture8" include="y" />
+    </ItemDisplayInfo>
+    <ItemGroupSounds>
+      <include>Y</include>
+      <tablename>dbc_ItemGroupSounds</tablename>
+      <fieldcount>5</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="Pickup" include="y" />
+      <field type="int" name="PutDown" include="y" />
+      <field type="int" name="col3" include="y" />
+      <field type="text" name="col4" include="y" />
+    </ItemGroupSounds>
+    <ItemPetFood>
+      <include>Y</include>
+      <tablename>dbc_ItemPetFood</tablename>
+      <fieldcount>10</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="sRefName" include="y" />
+      <field type="text" name="col2" include="y" />
+      <field type="text" name="col3" include="y" />
+      <field type="text" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="bigint" name="col9" include="y" />
+    </ItemPetFood>
+    <ItemRandomProperties>
+      <include>Y</include>
+      <tablename>dbc_ItemRandomProperties</tablename>
+      <fieldcount>16</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="name" include="y" />
+      <field type="int" name="SpellItemEnchantment1" include="y" />
+      <field type="int" name="SpellItemEnchantment2" include="y" />
+      <field type="int" name="SpellItemEnchantment3" include="y" />
+      <field type="text" name="SpellItemEnchantment4" include="y" />
+      <field type="text" name="SpellItemEnchantment5" include="y" />
+      <field type="text" name="suffix" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="text" name="col9" include="y" />
+      <field type="text" name="col10" include="y" />
+      <field type="text" name="col11" include="y" />
+      <field type="text" name="col12" include="y" />
+      <field type="text" name="col13" include="y" />
+      <field type="text" name="col14" include="y" />
+      <field type="bigint" name="col15" include="y" />
+    </ItemRandomProperties>
+    <ItemSet>
+      <include>Y</include>
+      <tablename>dbc_ItemSet</tablename>
+      <fieldcount>45</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="sRefName" include="y" />
+      <field type="text" name="Item1" include="y" />
+      <field type="text" name="Item2" include="y" />
+      <field type="text" name="Item3" include="y" />
+      <field type="text" name="Item4" include="y" />
+      <field type="text" name="Item5" include="y" />
+      <field type="text" name="Item6" include="y" />
+      <field type="text" name="Item7" include="y" />
+      <field type="bigint" name="Item8" include="y" />
+      <field type="int" name="Item9" include="y" />
+      <field type="int" name="Item10" include="y" />
+      <field type="int" name="Item11" include="y" />
+      <field type="int" name="Item12" include="y" />
+      <field type="int" name="Item13" include="y" />
+      <field type="int" name="Item14" include="y" />
+      <field type="int" name="Item15" include="y" />
+      <field type="int" name="Item16" include="y" />
+      <field type="int" name="Item17" include="y" />
+      <field type="int" name="setSpellID1" include="y" />
+      <field type="text" name="setSpellID2" include="y" />
+      <field type="text" name="setSpellID3" include="y" />
+      <field type="text" name="setSpellID4" include="y" />
+      <field type="text" name="setSpellID5" include="y" />
+      <field type="text" name="setSpellID6" include="y" />
+      <field type="text" name="setSpellID7" include="y" />
+      <field type="text" name="setSpellID8" include="y" />
+      <field type="int" name="setThreshold1" include="y" />
+      <field type="int" name="setThreshold2" include="y" />
+      <field type="int" name="setThreshold3" include="y" />
+      <field type="int" name="setThreshold4" include="y" />
+      <field type="int" name="setThreshold5" include="y" />
+      <field type="int" name="setThreshold6" include="y" />
+      <field type="int" name="setThreshold7" include="y" />
+      <field type="int" name="setThreshold8" include="y" />
+      <field type="int" name="requiredSkill" include="y" />
+      <field type="int" name="requiredSkillRank" include="y" />
+      <field type="int" name="col37" include="y" />
+      <field type="int" name="col38" include="y" />
+      <field type="int" name="col39" include="y" />
+      <field type="int" name="col40" include="y" />
+      <field type="int" name="col41" include="y" />
+      <field type="int" name="col42" include="y" />
+      <field type="int" name="col43" include="y" />
+      <field type="int" name="col44" include="y" />
+    </ItemSet>
+    <ItemSubClass>
+      <include>Y</include>
+      <tablename>dbc_ItemSubClass</tablename>
+      <fieldcount>28</fieldcount>
+      <field type="bigint" name="itemclassID" include="y" />
+      <field type="bigint" name="subClassID" include="y" />
+      <field type="bigint" name="prerequisiteProficiency" include="y" />
+      <field type="bigint" name="postrequisiteProficiency" include="y" />
+      <field type="int" name="flags" include="y" />
+      <field type="int" name="displayFlags" include="y" />
+      <field type="int" name="weaponParrySeq" include="y" />
+      <field type="int" name="weaponReadySeq" include="y" />
+      <field type="int" name="weaponAttackSeq" include="y" />
+      <field type="int" name="WeaponSwingSize" include="y" />
+      <field type="text" name="displayName" include="y" />
+      <field type="text" name="col11" include="y" />
+      <field type="text" name="col12" include="y" />
+      <field type="text" name="col13" include="y" />
+      <field type="text" name="col14" include="y" />
+      <field type="text" name="col15" include="y" />
+      <field type="text" name="col16" include="y" />
+      <field type="text" name="col17" include="y" />
+      <field type="bigint" name="col18" include="y" />
+      <field type="text" name="col19" include="y" />
+      <field type="text" name="col20" include="y" />
+      <field type="text" name="col21" include="y" />
+      <field type="text" name="col22" include="y" />
+      <field type="text" name="col23" include="y" />
+      <field type="text" name="col24" include="y" />
+      <field type="text" name="col25" include="y" />
+      <field type="text" name="col26" include="y" />
+      <field type="bigint" name="verboseName" include="y" />
+    </ItemSubClass>
+    <ItemSubClassMask>
+      <include>Y</include>
+      <tablename>dbc_ItemSubClassMask</tablename>
+      <fieldcount>11</fieldcount>
+      <field type="int" name="classID" include="y" />
+      <field type="bigint" name="col1" include="y" />
+      <field type="text" name="Name" include="y" />
+      <field type="text" name="col3" include="y" />
+      <field type="text" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="text" name="col9" include="y" />
+      <field type="bigint" name="col10" include="y" />
+    </ItemSubClassMask>
+    <ItemVisualEffects>
+      <include>Y</include>
+      <tablename>dbc_ItemVisualEffects</tablename>
+      <fieldcount>2</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="Model" include="y" />
+    </ItemVisualEffects>
+    <ItemVisuals>
+      <include>Y</include>
+      <tablename>dbc_ItemVisuals</tablename>
+      <fieldcount>6</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="bigint" name="VisualEffect1" include="y" />
+      <field type="int" name="VisualEffect2" include="y" />
+      <field type="int" name="VisualEffect3" include="y" />
+      <field type="bigint" name="VisualEffect4" include="y" />
+      <field type="int" name="VisualEffect5" include="y" />
+    </ItemVisuals>
+    <Languages>
+      <include>Y</include>
+      <tablename>dbc_Languages</tablename>
+      <fieldcount>10</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="sRefName" include="y" />
+      <field type="text" name="col2" include="y" />
+      <field type="text" name="col3" include="y" />
+      <field type="text" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="bigint" name="col9" include="y" />
+    </Languages>
+    <LanguageWords>
+      <include>Y</include>
+      <tablename>dbc_LanguageWords</tablename>
+      <fieldcount>3</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="LanguagesId" include="y" />
+      <field type="text" name="text" include="y" />
+    </LanguageWords>
+    <LFGDungeons>
+      <include>Y</include>
+      <tablename>dbc_LFGDungeons</tablename>
+      <fieldcount>14</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="Name" include="y" />
+      <field type="text" name="minLevel" include="y" />
+      <field type="text" name="maxLevel" include="y" />
+      <field type="text" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="bigint" name="col9" include="y" />
+      <field type="int" name="col10" include="y" />
+      <field type="int" name="col11" include="y" />
+      <field type="int" name="col12" include="y" />
+      <field type="bigint" name="col13" include="y" />
+    </LFGDungeons>
+    <Light>
+      <include>Y</include>
+      <tablename>dbc_Light</tablename>
+      <fieldcount>12</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="MapID" include="y" />
+      <field type="bigint" name="x" include="y" />
+      <field type="bigint" name="y" include="y" />
+      <field type="bigint" name="z" include="y" />
+      <field type="bigint" name="falloffStart" include="y" />
+      <field type="bigint" name="falloffEnd" include="y" />
+      <field type="int" name="SkyAndFog" include="y" />
+      <field type="int" name="WaterSettings" include="y" />
+      <field type="int" name="SunsetParams" include="y" />
+      <field type="int" name="OtherParams" include="y" />
+      <field type="int" name="DeathParams" include="y" />
+    </Light>
+    <LightFloatBand>
+      <include>Y</include>
+      <tablename>dbc_LightFloatBand</tablename>
+      <fieldcount>34</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="col1" include="y" />
+      <field type="bigint" name="col2" include="y" />
+      <field type="bigint" name="col3" include="y" />
+      <field type="bigint" name="col4" include="y" />
+      <field type="bigint" name="col5" include="y" />
+      <field type="bigint" name="col6" include="y" />
+      <field type="bigint" name="col7" include="y" />
+      <field type="bigint" name="col8" include="y" />
+      <field type="bigint" name="col9" include="y" />
+      <field type="bigint" name="col10" include="y" />
+      <field type="bigint" name="col11" include="y" />
+      <field type="bigint" name="col12" include="y" />
+      <field type="bigint" name="col13" include="y" />
+      <field type="bigint" name="col14" include="y" />
+      <field type="bigint" name="col15" include="y" />
+      <field type="bigint" name="col16" include="y" />
+      <field type="bigint" name="col17" include="y" />
+      <field type="bigint" name="col18" include="y" />
+      <field type="bigint" name="col19" include="y" />
+      <field type="bigint" name="col20" include="y" />
+      <field type="bigint" name="col21" include="y" />
+      <field type="bigint" name="col22" include="y" />
+      <field type="bigint" name="col23" include="y" />
+      <field type="bigint" name="col24" include="y" />
+      <field type="bigint" name="col25" include="y" />
+      <field type="bigint" name="col26" include="y" />
+      <field type="bigint" name="col27" include="y" />
+      <field type="bigint" name="col28" include="y" />
+      <field type="bigint" name="col29" include="y" />
+      <field type="bigint" name="col30" include="y" />
+      <field type="bigint" name="col31" include="y" />
+      <field type="bigint" name="col32" include="y" />
+      <field type="bigint" name="col33" include="y" />
+    </LightFloatBand>
+    <LightIntBand>
+      <include>Y</include>
+      <tablename>dbc_LightIntBand</tablename>
+      <fieldcount>34</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="col1" include="y" />
+      <field type="bigint" name="col2" include="y" />
+      <field type="bigint" name="col3" include="y" />
+      <field type="bigint" name="col4" include="y" />
+      <field type="bigint" name="col5" include="y" />
+      <field type="bigint" name="col6" include="y" />
+      <field type="bigint" name="col7" include="y" />
+      <field type="bigint" name="col8" include="y" />
+      <field type="bigint" name="col9" include="y" />
+      <field type="bigint" name="col10" include="y" />
+      <field type="bigint" name="col11" include="y" />
+      <field type="bigint" name="col12" include="y" />
+      <field type="bigint" name="col13" include="y" />
+      <field type="bigint" name="col14" include="y" />
+      <field type="bigint" name="col15" include="y" />
+      <field type="bigint" name="col16" include="y" />
+      <field type="bigint" name="col17" include="y" />
+      <field type="bigint" name="col18" include="y" />
+      <field type="bigint" name="col19" include="y" />
+      <field type="bigint" name="col20" include="y" />
+      <field type="bigint" name="col21" include="y" />
+      <field type="bigint" name="col22" include="y" />
+      <field type="bigint" name="col23" include="y" />
+      <field type="bigint" name="col24" include="y" />
+      <field type="bigint" name="col25" include="y" />
+      <field type="bigint" name="col26" include="y" />
+      <field type="bigint" name="col27" include="y" />
+      <field type="bigint" name="col28" include="y" />
+      <field type="bigint" name="col29" include="y" />
+      <field type="bigint" name="col30" include="y" />
+      <field type="bigint" name="col31" include="y" />
+      <field type="bigint" name="col32" include="y" />
+      <field type="bigint" name="col33" include="y" />
+    </LightIntBand>
+    <LightParams>
+      <include>Y</include>
+      <tablename>dbc_LightParams</tablename>
+      <fieldcount>9</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="highlightSky" include="y" />
+      <field type="int" name="lightSkyboxID" include="y" />
+      <field type="text" name="cloudTypeID" include="y" />
+      <field type="bigint" name="glow" include="y" />
+      <field type="bigint" name="waterShallowAlpha" include="y" />
+      <field type="bigint" name="waterDeepAlpha" include="y" />
+      <field type="bigint" name="oceanShallowAlpha" include="y" />
+      <field type="bigint" name="oceanDeepAlpha" include="y" />
+    </LightParams>
+    <LightSkybox>
+      <include>Y</include>
+      <tablename>dbc_LightSkybox</tablename>
+      <fieldcount>2</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="sRefPath" include="y" />
+    </LightSkybox>
+    <LiquidType>
+      <include>Y</include>
+      <tablename>dbc_LiquidType</tablename>
+      <fieldcount>4</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="name" include="y" />
+      <field type="int" name="col2" include="y" />
+      <field type="int" name="col3" include="y" />
+    </LiquidType>
+    <LoadingScreens>
+      <include>Y</include>
+      <tablename>dbc_LoadingScreens</tablename>
+      <fieldcount>3</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="name" include="y" />
+      <field type="text" name="fileName" include="y" />
+    </LoadingScreens>
+    <LoadingScreenTaxiSplines>
+      <include>Y</include>
+      <tablename>dbc_LoadingScreenTaxiSplines</tablename>
+      <fieldcount>19</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="PathID" include="y" />
+      <field type="bigint" name="col2" include="y" />
+      <field type="bigint" name="col3" include="y" />
+      <field type="bigint" name="col4" include="y" />
+      <field type="bigint" name="col5" include="y" />
+      <field type="bigint" name="col6" include="y" />
+      <field type="bigint" name="col7" include="y" />
+      <field type="bigint" name="col8" include="y" />
+      <field type="text" name="col9" include="y" />
+      <field type="bigint" name="col10" include="y" />
+      <field type="bigint" name="col11" include="y" />
+      <field type="bigint" name="col12" include="y" />
+      <field type="bigint" name="col13" include="y" />
+      <field type="bigint" name="col14" include="y" />
+      <field type="bigint" name="col15" include="y" />
+      <field type="bigint" name="col16" include="y" />
+      <field type="text" name="col17" include="y" />
+      <field type="int" name="col18" include="y" />
+    </LoadingScreenTaxiSplines>
+    <Lock>
+      <include>Y</include>
+      <tablename>dbc_Lock</tablename>
+      <fieldcount>33</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="Type1" include="y" />
+      <field type="int" name="Type2" include="y" />
+      <field type="int" name="Type3" include="y" />
+      <field type="int" name="Type4" include="y" />
+      <field type="int" name="Type5" include="y" />
+      <field type="text" name="Type6" include="y" />
+      <field type="text" name="Type7" include="y" />
+      <field type="text" name="Type8" include="y" />
+      <field type="int" name="Lock_Properties1" include="y" />
+      <field type="int" name="Lock_Properties2" include="y" />
+      <field type="int" name="Lock_Properties3" include="y" />
+      <field type="int" name="Lock_Properties4" include="y" />
+      <field type="int" name="Lock_Properties5" include="y" />
+      <field type="text" name="Lock_Properties6" include="y" />
+      <field type="text" name="Lock_Properties7" include="y" />
+      <field type="text" name="Lock_Properties8" include="y" />
+      <field type="int" name="Required_Skill1" include="y" />
+      <field type="int" name="Required_Skill2" include="y" />
+      <field type="int" name="Required_Skill3" include="y" />
+      <field type="int" name="Required_Skill4" include="y" />
+      <field type="int" name="Required_Skill5" include="y" />
+      <field type="text" name="Required_Skill6" include="y" />
+      <field type="text" name="Required_Skill7" include="y" />
+      <field type="text" name="Required_Skill8" include="y" />
+      <field type="int" name="Action1" include="y" />
+      <field type="int" name="Action2" include="y" />
+      <field type="int" name="Action3" include="y" />
+      <field type="int" name="Action4" include="y" />
+      <field type="int" name="Action5" include="y" />
+      <field type="text" name="Action6" include="y" />
+      <field type="text" name="Action7" include="y" />
+      <field type="text" name="Action8" include="y" />
+    </Lock>
+    <LockType>
+      <include>Y</include>
+      <tablename>dbc_LockType</tablename>
+      <fieldcount>29</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="name" include="y" />
+      <field type="text" name="itemstatename" include="y" />
+      <field type="text" name="processname" include="y" />
+      <field type="text" name="internal_name" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="bigint" name="col9" include="y" />
+      <field type="text" name="col10" include="y" />
+      <field type="text" name="col11" include="y" />
+      <field type="text" name="col12" include="y" />
+      <field type="text" name="col13" include="y" />
+      <field type="text" name="col14" include="y" />
+      <field type="text" name="col15" include="y" />
+      <field type="text" name="col16" include="y" />
+      <field type="text" name="col17" include="y" />
+      <field type="bigint" name="col18" include="y" />
+      <field type="text" name="col19" include="y" />
+      <field type="text" name="col20" include="y" />
+      <field type="text" name="col21" include="y" />
+      <field type="text" name="col22" include="y" />
+      <field type="text" name="col23" include="y" />
+      <field type="text" name="col24" include="y" />
+      <field type="text" name="col25" include="y" />
+      <field type="text" name="col26" include="y" />
+      <field type="bigint" name="col27" include="y" />
+      <field type="text" name="col28" include="y" />
+    </LockType>
+    <MailTemplate>
+      <include>Y</include>
+      <tablename>dbc_MailTemplate</tablename>
+      <fieldcount>10</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="Subject" include="y" />
+      <field type="text" name="MessageBody" include="y" />
+      <field type="text" name="col3" include="y" />
+      <field type="text" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="bigint" name="col9" include="y" />
+    </MailTemplate>
+    <Map>
+      <include>Y</include>
+      <tablename>dbc_Map</tablename>
+      <fieldcount>42</fieldcount>
+      <field type="int" name="col0" include="y" />
+      <field type="text" name="col1" include="y" />
+      <field type="int" name="col2" include="y" />
+      <field type="text" name="col3" include="y" />
+      <field type="text" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="text" name="col9" include="y" />
+      <field type="text" name="col10" include="y" />
+      <field type="text" name="col11" include="y" />
+      <field type="bigint" name="col12" include="y" />
+      <field type="int" name="col13" include="y" />
+      <field type="int" name="col14" include="y" />
+      <field type="int" name="col15" include="y" />
+      <field type="bigint" name="col16" include="y" />
+      <field type="bigint" name="col17" include="y" />
+      <field type="bigint" name="col18" include="y" />
+      <field type="int" name="col19" include="y" />
+      <field type="text" name="col20" include="y" />
+      <field type="text" name="col21" include="y" />
+      <field type="text" name="col22" include="y" />
+      <field type="text" name="col23" include="y" />
+      <field type="text" name="col24" include="y" />
+      <field type="text" name="col25" include="y" />
+      <field type="text" name="col26" include="y" />
+      <field type="text" name="col27" include="y" />
+      <field type="bigint" name="col28" include="y" />
+      <field type="text" name="col29" include="y" />
+      <field type="text" name="col30" include="y" />
+      <field type="text" name="col31" include="y" />
+      <field type="text" name="col32" include="y" />
+      <field type="text" name="col33" include="y" />
+      <field type="text" name="col34" include="y" />
+      <field type="text" name="col35" include="y" />
+      <field type="text" name="col36" include="y" />
+      <field type="bigint" name="col37" include="y" />
+      <field type="int" name="col38" include="y" />
+      <field type="int" name="col39" include="y" />
+      <field type="text" name="col40" include="y" />
+      <field type="bigint" name="col41" include="y" />
+    </Map>
+    <Material>
+      <include>Y</include>
+      <tablename>dbc_Material</tablename>
+      <fieldcount>3</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="Flags" include="y" />
+      <field type="int" name="FoleySound" include="y" />
+    </Material>
+    <NameGen>
+      <include>Y</include>
+      <tablename>dbc_NameGen</tablename>
+      <fieldcount>4</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="name" include="y" />
+      <field type="int" name="raceID" include="y" />
+      <field type="text" name="gender" include="y" />
+    </NameGen>
+    <NamesProfanity>
+      <include>Y</include>
+      <tablename>dbc_NamesProfanity</tablename>
+      <fieldcount>2</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="Pattern" include="y" />
+    </NamesProfanity>
+    <NamesReserved>
+      <include>Y</include>
+      <tablename>dbc_NamesReserved</tablename>
+      <fieldcount>2</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="name" include="y" />
+    </NamesReserved>
+    <NPCSounds>
+      <include>Y</include>
+      <tablename>dbc_NPCSounds</tablename>
+      <fieldcount>5</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="SoundEntries1" include="y" />
+      <field type="bigint" name="SoundEntries2" include="y" />
+      <field type="int" name="SoundEntries3" include="y" />
+      <field type="text" name="SoundEntries4" include="y" />
+    </NPCSounds>
+    <Package>
+      <include>Y</include>
+      <tablename>dbc_Package</tablename>
+      <fieldcount>12</fieldcount>
+      <field type="bigint" name="ID" include="y" />
+      <field type="int" name="icon" include="y" />
+      <field type="int" name="cost" include="y" />
+      <field type="int" name="name" include="y" />
+      <field type="text" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="text" name="col9" include="y" />
+      <field type="text" name="col10" include="y" />
+      <field type="int" name="col11" include="y" />
+    </Package>
+    <PageTextMaterial>
+      <include>Y</include>
+      <tablename>dbc_PageTextMaterial</tablename>
+      <fieldcount>2</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="name" include="y" />
+    </PageTextMaterial>
+    <PaperDollItemFrame>
+      <include>Y</include>
+      <tablename>dbc_PaperDollItemFrame</tablename>
+      <fieldcount>3</fieldcount>
+      <field type="text" name="itemButtonName" include="y" />
+      <field type="text" name="SlotIcon" include="y" />
+      <field type="int" name="SlotNumber" include="y" />
+    </PaperDollItemFrame>
+    <PetLoyalty>
+      <include>Y</include>
+      <tablename>dbc_PetLoyalty</tablename>
+      <fieldcount>10</fieldcount>
+      <field type="int" name="col0" include="y" />
+      <field type="text" name="col1" include="y" />
+      <field type="text" name="col2" include="y" />
+      <field type="text" name="col3" include="y" />
+      <field type="text" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="bigint" name="col9" include="y" />
+    </PetLoyalty>
+    <PetPersonality>
+      <include>Y</include>
+      <tablename>dbc_PetPersonality</tablename>
+      <fieldcount>19</fieldcount>
+      <field type="int" name="col0" include="y" />
+      <field type="text" name="col1" include="y" />
+      <field type="text" name="col2" include="y" />
+      <field type="text" name="col3" include="y" />
+      <field type="text" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="bigint" name="col9" include="y" />
+      <field type="text" name="col10" include="y" />
+      <field type="bigint" name="col11" include="y" />
+      <field type="bigint" name="col12" include="y" />
+      <field type="bigint" name="col13" include="y" />
+      <field type="bigint" name="col14" include="y" />
+      <field type="bigint" name="col15" include="y" />
+      <field type="bigint" name="col16" include="y" />
+      <field type="bigint" name="col17" include="y" />
+      <field type="bigint" name="col18" include="y" />
+    </PetPersonality>
+    <QuestInfo>
+      <include>Y</include>
+      <tablename>dbc_QuestInfo</tablename>
+      <fieldcount>10</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="InfoName" include="y" />
+      <field type="text" name="col2" include="y" />
+      <field type="text" name="col3" include="y" />
+      <field type="text" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="bigint" name="col9" include="y" />
+    </QuestInfo>
+    <QuestSort>
+      <include>Y</include>
+      <tablename>dbc_QuestSort</tablename>
+      <fieldcount>10</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="SortName" include="y" />
+      <field type="text" name="col2" include="y" />
+      <field type="text" name="col3" include="y" />
+      <field type="text" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="bigint" name="col9" include="y" />
+    </QuestSort>
+    <Resistances>
+      <include>Y</include>
+      <tablename>dbc_Resistances</tablename>
+      <fieldcount>12</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="Flags" include="y" />
+      <field type="int" name="FizzleSoundID" include="y" />
+      <field type="text" name="sRefName" include="y" />
+      <field type="text" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="text" name="col9" include="y" />
+      <field type="text" name="col10" include="y" />
+      <field type="bigint" name="col11" include="y" />
+    </Resistances>
+    <ServerMessages>
+      <include>Y</include>
+      <tablename>dbc_ServerMessages</tablename>
+      <fieldcount>10</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="Message" include="y" />
+      <field type="text" name="col2" include="y" />
+      <field type="text" name="col3" include="y" />
+      <field type="text" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="bigint" name="col9" include="y" />
+    </ServerMessages>
+    <SheatheSoundLookups>
+      <include>Y</include>
+      <tablename>dbc_SheatheSoundLookups</tablename>
+      <fieldcount>7</fieldcount>
+      <field type="int" name="col0" include="y" />
+      <field type="int" name="col1" include="y" />
+      <field type="int" name="col2" include="y" />
+      <field type="int" name="col3" include="y" />
+      <field type="int" name="col4" include="y" />
+      <field type="int" name="col5" include="y" />
+      <field type="int" name="col6" include="y" />
+    </SheatheSoundLookups>
+    <SkillCostsData>
+      <include>Y</include>
+      <tablename>dbc_SkillCostsData</tablename>
+      <fieldcount>5</fieldcount>
+      <field type="int" name="col0" include="y" />
+      <field type="int" name="col1" include="y" />
+      <field type="int" name="col2" include="y" />
+      <field type="int" name="col3" include="y" />
+      <field type="int" name="col4" include="y" />
+    </SkillCostsData>
+    <SkillLine>
+      <include>Y</include>
+      <tablename>dbc_SkillLine</tablename>
+      <fieldcount>22</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="bigint" name="SkillLineCategoryId" include="y" />
+      <field type="text" name="sRefName" include="y" />
+      <field type="text" name="description" include="y" />
+      <field type="text" name="skillCostID" include="y" />
+      <field type="text" name="verb" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="SpellIcon" include="y" />
+      <field type="text" name="canLink" include="y" />
+      <field type="text" name="col9" include="y" />
+      <field type="text" name="col10" include="y" />
+      <field type="bigint" name="col11" include="y" />
+      <field type="text" name="col12" include="y" />
+      <field type="text" name="col13" include="y" />
+      <field type="text" name="col14" include="y" />
+      <field type="text" name="col15" include="y" />
+      <field type="text" name="col16" include="y" />
+      <field type="text" name="col17" include="y" />
+      <field type="text" name="col18" include="y" />
+      <field type="text" name="col19" include="y" />
+      <field type="bigint" name="col20" include="y" />
+      <field type="int" name="col21" include="y" />
+    </SkillLine>
+    <SkillLineAbility>
+      <include>Y</include>
+      <tablename>dbc_SkillLineAbility</tablename>
+      <fieldcount>15</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="skillLine" include="y" />
+      <field type="int" name="spell" include="y" />
+      <field type="text" name="raceMask" include="y" />
+      <field type="int" name="classMask" include="y" />
+      <field type="text" name="excludeRace" include="y" />
+      <field type="text" name="excludeClass" include="y" />
+      <field type="int" name="minSkillLineRank" include="y" />
+      <field type="int" name="supercededBySpell" include="y" />
+      <field type="int" name="aquireMethod" include="y" />
+      <field type="int" name="trivialSkillLineRankHigh" include="y" />
+      <field type="int" name="trivialSkillLineRankLow" include="y" />
+      <field type="text" name="characterPoints" include="y" />
+      <field type="text" name="col13" include="y" />
+      <field type="int" name="characterPoints" include="y" />
+    </SkillLineAbility>
+    <SkillLineCategory>
+      <include>Y</include>
+      <tablename>dbc_SkillLineCategory</tablename>
+      <fieldcount>11</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="name" include="y" />
+      <field type="text" name="sortIndex" include="y" />
+      <field type="text" name="col3" include="y" />
+      <field type="text" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="bigint" name="col9" include="y" />
+      <field type="int" name="col10" include="y" />
+    </SkillLineCategory>
+    <SkillRaceClassInfo>
+      <include>Y</include>
+      <tablename>dbc_SkillRaceClassInfo</tablename>
+      <fieldcount>8</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="SkillLineId" include="y" />
+      <field type="int" name="ChrRacesId" include="y" />
+      <field type="int" name="ChrClassesId" include="y" />
+      <field type="int" name="Flags" include="y" />
+      <field type="int" name="RequLvl" include="y" />
+      <field type="int" name="skillTierId" include="y" />
+      <field type="int" name="skillCostID" include="y" />
+    </SkillRaceClassInfo>
+    <SkillTiers>
+      <include>Y</include>
+      <tablename>dbc_SkillTiers</tablename>
+      <fieldcount>33</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="col1" include="y" />
+      <field type="int" name="col2" include="y" />
+      <field type="int" name="col3" include="y" />
+      <field type="text" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="text" name="col9" include="y" />
+      <field type="text" name="col10" include="y" />
+      <field type="text" name="col11" include="y" />
+      <field type="text" name="col12" include="y" />
+      <field type="text" name="col13" include="y" />
+      <field type="text" name="col14" include="y" />
+      <field type="text" name="col15" include="y" />
+      <field type="text" name="col16" include="y" />
+      <field type="int" name="col17" include="y" />
+      <field type="int" name="col18" include="y" />
+      <field type="int" name="col19" include="y" />
+      <field type="int" name="col20" include="y" />
+      <field type="text" name="col21" include="y" />
+      <field type="text" name="col22" include="y" />
+      <field type="text" name="col23" include="y" />
+      <field type="text" name="col24" include="y" />
+      <field type="text" name="col25" include="y" />
+      <field type="text" name="col26" include="y" />
+      <field type="text" name="col27" include="y" />
+      <field type="text" name="col28" include="y" />
+      <field type="text" name="col29" include="y" />
+      <field type="text" name="col30" include="y" />
+      <field type="text" name="col31" include="y" />
+      <field type="text" name="col32" include="y" />
+    </SkillTiers>
+    <SoundAmbience>
+      <include>Y</include>
+      <tablename>dbc_SoundAmbience</tablename>
+      <fieldcount>3</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="SoundEntries_dayId" include="y" />
+      <field type="int" name="SoundEntries_nightId" include="y" />
+    </SoundAmbience>
+    <SoundCharacterMacroLines>
+      <include>Y</include>
+      <tablename>dbc_SoundCharacterMacroLines</tablename>
+      <fieldcount>5</fieldcount>
+      <field type="int" name="col0" include="y" />
+      <field type="int" name="col1" include="y" />
+      <field type="int" name="col2" include="y" />
+      <field type="int" name="col3" include="y" />
+      <field type="int" name="col4" include="y" />
+    </SoundCharacterMacroLines>
+    <SoundEntries>
+      <include>Y</include>
+      <tablename>dbc_SoundEntries</tablename>
+      <fieldcount>29</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="soundType" include="y" />
+      <field type="text" name="name" include="y" />
+      <field type="text" name="File1" include="y" />
+      <field type="text" name="File2" include="y" />
+      <field type="text" name="File3" include="y" />
+      <field type="text" name="File4" include="y" />
+      <field type="text" name="File5" include="y" />
+      <field type="text" name="File6" include="y" />
+      <field type="text" name="File7" include="y" />
+      <field type="text" name="File8" include="y" />
+      <field type="text" name="File9" include="y" />
+      <field type="text" name="File10" include="y" />
+      <field type="int" name="Freq1" include="y" />
+      <field type="int" name="Freq2" include="y" />
+      <field type="int" name="Freq3" include="y" />
+      <field type="int" name="Freq4" include="y" />
+      <field type="int" name="Freq5" include="y" />
+      <field type="int" name="Freq6" include="y" />
+      <field type="int" name="Freq7" include="y" />
+      <field type="int" name="Freq8" include="y" />
+      <field type="int" name="Freq9" include="y" />
+      <field type="int" name="Freq10" include="y" />
+      <field type="text" name="DirectoryBase" include="y" />
+      <field type="bigint" name="volumeFloat" include="y" />
+      <field type="int" name="flags" include="y" />
+      <field type="bigint" name="minDistance" include="y" />
+      <field type="bigint" name="distanceCutoff" include="y" />
+      <field type="int" name="col28" include="y" />
+    </SoundEntries>
+    <SoundProviderPreferences>
+      <include>Y</include>
+      <tablename>dbc_SoundProviderPreferences</tablename>
+      <fieldcount>24</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="Description" include="y" />
+      <field type="int" name="Flags" include="y" />
+      <field type="int" name="EAXEnvironmentSelection" include="y" />
+      <field type="bigint" name="EAXDecayTime" include="y" />
+      <field type="bigint" name="EAX2EnvironmentSize" include="y" />
+      <field type="bigint" name="EAX2EnvironmentDiffusion" include="y" />
+      <field type="bigint" name="EAX2Room" include="y" />
+      <field type="bigint" name="EAX2RoomHF" include="y" />
+      <field type="bigint" name="EAX2DecayHFRatio" include="y" />
+      <field type="bigint" name="EAX2Reflections" include="y" />
+      <field type="bigint" name="EAX2ReflectionsDelay" include="y" />
+      <field type="bigint" name="EAX2Reverb" include="y" />
+      <field type="bigint" name="EAX2ReverbDelay" include="y" />
+      <field type="bigint" name="EAX2RoomRolloff" include="y" />
+      <field type="bigint" name="EAX2AirAbsorption" include="y" />
+      <field type="text" name="EAX3RoomLF" include="y" />
+      <field type="bigint" name="EAX3DecayLFRatio" include="y" />
+      <field type="bigint" name="EAX3EchoTime" include="y" />
+      <field type="bigint" name="EAX3EchoDepth" include="y" />
+      <field type="bigint" name="EAX3ModulationTime" include="y" />
+      <field type="bigint" name="EAX3ModulationDepth" include="y" />
+      <field type="bigint" name="EAX3HFReference" include="y" />
+      <field type="bigint" name="EAX3LFReference" include="y" />
+    </SoundProviderPreferences>
+    <SoundSamplePreferences>
+      <include>Y</include>
+      <tablename>dbc_SoundSamplePreferences</tablename>
+      <fieldcount>17</fieldcount>
+      <field type="int" name="col0" include="y" />
+      <field type="int" name="col1" include="y" />
+      <field type="text" name="col2" include="y" />
+      <field type="int" name="col3" include="y" />
+      <field type="text" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="bigint" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="bigint" name="col8" include="y" />
+      <field type="bigint" name="col9" include="y" />
+      <field type="text" name="col10" include="y" />
+      <field type="bigint" name="col11" include="y" />
+      <field type="text" name="col12" include="y" />
+      <field type="bigint" name="col13" include="y" />
+      <field type="bigint" name="col14" include="y" />
+      <field type="bigint" name="col15" include="y" />
+      <field type="text" name="col16" include="y" />
+    </SoundSamplePreferences>
+    <SoundWaterType>
+      <include>Y</include>
+      <tablename>dbc_SoundWaterType</tablename>
+      <fieldcount>4</fieldcount>
+      <field type="int" name="col0" include="y" />
+      <field type="int" name="col1" include="y" />
+      <field type="int" name="col2" include="y" />
+      <field type="int" name="col3" include="y" />
+    </SoundWaterType>
+    <SpamMessages>
+      <include>Y</include>
+      <tablename>dbc_SpamMessages</tablename>
+      <fieldcount>2</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="text" include="y" />
+    </SpamMessages>
+    <Spell>
+      <include>Y</include>
+      <tablename>dbc_Spell</tablename>
+      <fieldcount>173</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="col1" include="y" />
+      <field type="int" name="col2" include="y" />
+      <field type="int" name="col3" include="y" />
+      <field type="int" name="col4" include="y" />
+      <field type="int" name="col5" include="y" />
+      <field type="bigint" name="col6" include="y" />
+      <field type="bigint" name="col7" include="y" />
+      <field type="bigint" name="col8" include="y" />
+      <field type="bigint" name="col9" include="y" />
+      <field type="text" name="col10" include="y" />
+      <field type="bigint" name="col11" include="y" />
+      <field type="bigint" name="col12" include="y" />
+      <field type="int" name="col13" include="y" />
+      <field type="text" name="col14" include="y" />
+      <field type="int" name="col15" include="y" />
+      <field type="text" name="col16" include="y" />
+      <field type="text" name="col17" include="y" />
+      <field type="int" name="col18" include="y" />
+      <field type="bigint" name="col19" include="y" />
+      <field type="bigint" name="col20" include="y" />
+      <field type="int" name="col21" include="y" />
+      <field type="bigint" name="col22" include="y" />
+      <field type="int" name="col23" include="y" />
+      <field type="bigint" name="col24" include="y" />
+      <field type="int" name="col25" include="y" />
+      <field type="int" name="col26" include="y" />
+      <field type="int" name="col27" include="y" />
+      <field type="int" name="col28" include="y" />
+      <field type="int" name="col29" include="y" />
+      <field type="int" name="col30" include="y" />
+      <field type="int" name="col31" include="y" />
+      <field type="int" name="col32" include="y" />
+      <field type="text" name="col33" include="y" />
+      <field type="text" name="col34" include="y" />
+      <field type="text" name="col35" include="y" />
+      <field type="int" name="col36" include="y" />
+      <field type="bigint" name="col37" include="y" />
+      <field type="int" name="col38" include="y" />
+      <field type="int" name="col39" include="y" />
+      <field type="int" name="col40" include="y" />
+      <field type="int" name="col41" include="y" />
+      <field type="int" name="col42" include="y" />
+      <field type="int" name="col43" include="y" />
+      <field type="int" name="col44" include="y" />
+      <field type="int" name="col45" include="y" />
+      <field type="int" name="col46" include="y" />
+      <field type="text" name="col47" include="y" />
+      <field type="text" name="col48" include="y" />
+      <field type="text" name="col49" include="y" />
+      <field type="int" name="col50" include="y" />
+      <field type="int" name="col51" include="y" />
+      <field type="int" name="col52" include="y" />
+      <field type="int" name="col53" include="y" />
+      <field type="int" name="col54" include="y" />
+      <field type="text" name="col55" include="y" />
+      <field type="text" name="col56" include="y" />
+      <field type="text" name="col57" include="y" />
+      <field type="bigint" name="col58" include="y" />
+      <field type="bigint" name="col59" include="y" />
+      <field type="bigint" name="col60" include="y" />
+      <field type="int" name="col61" include="y" />
+      <field type="int" name="col62" include="y" />
+      <field type="int" name="col63" include="y" />
+      <field type="int" name="col64" include="y" />
+      <field type="int" name="col65" include="y" />
+      <field type="text" name="col66" include="y" />
+      <field type="text" name="col67" include="y" />
+      <field type="text" name="col68" include="y" />
+      <field type="text" name="col69" include="y" />
+      <field type="text" name="col70" include="y" />
+      <field type="text" name="col71" include="y" />
+      <field type="text" name="col72" include="y" />
+      <field type="bigint" name="col73" include="y" />
+      <field type="bigint" name="col74" include="y" />
+      <field type="text" name="col75" include="y" />
+      <field type="bigint" name="col76" include="y" />
+      <field type="bigint" name="col77" include="y" />
+      <field type="int" name="col78" include="y" />
+      <field type="text" name="col79" include="y" />
+      <field type="int" name="col80" include="y" />
+      <field type="text" name="col81" include="y" />
+      <field type="int" name="col82" include="y" />
+      <field type="int" name="col83" include="y" />
+      <field type="int" name="col84" include="y" />
+      <field type="int" name="col85" include="y" />
+      <field type="int" name="col86" include="y" />
+      <field type="int" name="col87" include="y" />
+      <field type="int" name="col88" include="y" />
+      <field type="int" name="col89" include="y" />
+      <field type="int" name="col90" include="y" />
+      <field type="int" name="col91" include="y" />
+      <field type="int" name="col92" include="y" />
+      <field type="int" name="col93" include="y" />
+      <field type="int" name="col94" include="y" />
+      <field type="int" name="col95" include="y" />
+      <field type="int" name="col96" include="y" />
+      <field type="bigint" name="col97" include="y" />
+      <field type="bigint" name="col98" include="y" />
+      <field type="text" name="col99" include="y" />
+      <field type="int" name="col100" include="y" />
+      <field type="text" name="col101" include="y" />
+      <field type="text" name="col102" include="y" />
+      <field type="bigint" name="col103" include="y" />
+      <field type="bigint" name="col104" include="y" />
+      <field type="text" name="col105" include="y" />
+      <field type="bigint" name="col106" include="y" />
+      <field type="bigint" name="col107" include="y" />
+      <field type="int" name="col108" include="y" />
+      <field type="int" name="col109" include="y" />
+      <field type="int" name="col110" include="y" />
+      <field type="int" name="col111" include="y" />
+      <field type="text" name="col112" include="y" />
+      <field type="text" name="col113" include="y" />
+      <field type="text" name="col114" include="y" />
+      <field type="int" name="col115" include="y" />
+      <field type="text" name="col116" include="y" />
+      <field type="int" name="col117" include="y" />
+      <field type="int" name="col118" include="y" />
+      <field type="int" name="col119" include="y" />
+      <field type="text" name="col120" include="y" />
+      <field type="text" name="col121" include="y" />
+      <field type="text" name="col122" include="y" />
+      <field type="text" name="col123" include="y" />
+      <field type="text" name="col124" include="y" />
+      <field type="text" name="col125" include="y" />
+      <field type="text" name="col126" include="y" />
+      <field type="text" name="col127" include="y" />
+      <field type="bigint" name="col128" include="y" />
+      <field type="text" name="col129" include="y" />
+      <field type="text" name="col130" include="y" />
+      <field type="text" name="col131" include="y" />
+      <field type="text" name="col132" include="y" />
+      <field type="text" name="col133" include="y" />
+      <field type="text" name="col134" include="y" />
+      <field type="text" name="col135" include="y" />
+      <field type="text" name="col136" include="y" />
+      <field type="bigint" name="col137" include="y" />
+      <field type="text" name="col138" include="y" />
+      <field type="text" name="col139" include="y" />
+      <field type="text" name="col140" include="y" />
+      <field type="text" name="col141" include="y" />
+      <field type="text" name="col142" include="y" />
+      <field type="text" name="col143" include="y" />
+      <field type="text" name="col144" include="y" />
+      <field type="text" name="col145" include="y" />
+      <field type="bigint" name="col146" include="y" />
+      <field type="text" name="col147" include="y" />
+      <field type="text" name="col148" include="y" />
+      <field type="text" name="col149" include="y" />
+      <field type="text" name="col150" include="y" />
+      <field type="text" name="col151" include="y" />
+      <field type="text" name="col152" include="y" />
+      <field type="text" name="col153" include="y" />
+      <field type="text" name="col154" include="y" />
+      <field type="bigint" name="col155" include="y" />
+      <field type="int" name="col156" include="y" />
+      <field type="int" name="col157" include="y" />
+      <field type="int" name="col158" include="y" />
+      <field type="int" name="col159" include="y" />
+      <field type="int" name="col160" include="y" />
+      <field type="bigint" name="col161" include="y" />
+      <field type="text" name="col162" include="y" />
+      <field type="text" name="col163" include="y" />
+      <field type="int" name="col164" include="y" />
+      <field type="int" name="col165" include="y" />
+      <field type="bigint" name="col166" include="y" />
+      <field type="bigint" name="col167" include="y" />
+      <field type="bigint" name="col168" include="y" />
+      <field type="bigint" name="col169" include="y" />
+      <field type="text" name="col170" include="y" />
+      <field type="text" name="col171" include="y" />
+      <field type="text" name="col172" include="y" />
+    </Spell>
+    <SpellAuraNames>
+      <include>Y</include>
+      <tablename>dbc_SpellAuraNames</tablename>
+      <fieldcount>12</fieldcount>
+      <field type="int" name="col0" include="y" />
+      <field type="int" name="col1" include="y" />
+      <field type="text" name="col2" include="y" />
+      <field type="text" name="col3" include="y" />
+      <field type="text" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="text" name="col9" include="y" />
+      <field type="text" name="col10" include="y" />
+      <field type="bigint" name="col11" include="y" />
+    </SpellAuraNames>
+    <SpellCastTimes>
+      <include>Y</include>
+      <tablename>dbc_SpellCastTimes</tablename>
+      <fieldcount>4</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="bigint" name="base" include="y" />
+      <field type="bigint" name="perLevel" include="y" />
+      <field type="bigint" name="minCastTime" include="y" />
+    </SpellCastTimes>
+    <SpellCategory>
+      <include>Y</include>
+      <tablename>dbc_SpellCategory</tablename>
+      <fieldcount>2</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="col1" include="y" />
+    </SpellCategory>
+    <SpellChainEffects>
+      <include>Y</include>
+      <tablename>dbc_SpellChainEffects</tablename>
+      <fieldcount>8</fieldcount>
+      <field type="int" name="col0" include="y" />
+      <field type="bigint" name="col1" include="y" />
+      <field type="bigint" name="col2" include="y" />
+      <field type="bigint" name="col3" include="y" />
+      <field type="bigint" name="col4" include="y" />
+      <field type="int" name="col5" include="y" />
+      <field type="int" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+    </SpellChainEffects>
+    <SpellDispelType>
+      <include>Y</include>
+      <tablename>dbc_SpellDispelType</tablename>
+      <fieldcount>12</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="sRefName" include="y" />
+      <field type="text" name="mask" include="y" />
+      <field type="text" name="immunityPossible" include="y" />
+      <field type="text" name="internalName" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="bigint" name="immunityPossible" include="y" />
+      <field type="text" name="internalName" include="y" />
+      <field type="text" name="col11" include="y" />
+    </SpellDispelType>
+    <SpellDuration>
+      <include>Y</include>
+      <tablename>dbc_SpellDuration</tablename>
+      <fieldcount>4</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="bigint" name="duration" include="y" />
+      <field type="int" name="durationPerLevel" include="y" />
+      <field type="bigint" name="maxDuration" include="y" />
+    </SpellDuration>
+    <SpellEffectCameraShakes>
+      <include>Y</include>
+      <tablename>dbc_SpellEffectCameraShakes</tablename>
+      <fieldcount>4</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="CameraShakes1" include="y" />
+      <field type="int" name="CameraShakes2" include="y" />
+      <field type="int" name="CameraShakes3" include="y" />
+    </SpellEffectCameraShakes>
+    <SpellEffectNames>
+      <include>Y</include>
+      <tablename>dbc_SpellEffectNames</tablename>
+      <fieldcount>10</fieldcount>
+      <field type="int" name="col0" include="y" />
+      <field type="text" name="col1" include="y" />
+      <field type="text" name="col2" include="y" />
+      <field type="text" name="col3" include="y" />
+      <field type="text" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="bigint" name="col9" include="y" />
+    </SpellEffectNames>
+    <SpellFocusObject>
+      <include>Y</include>
+      <tablename>dbc_SpellFocusObject</tablename>
+      <fieldcount>10</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="name" include="y" />
+      <field type="text" name="col2" include="y" />
+      <field type="text" name="col3" include="y" />
+      <field type="text" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="bigint" name="col9" include="y" />
+    </SpellFocusObject>
+    <SpellIcon>
+      <include>Y</include>
+      <tablename>dbc_SpellIcon</tablename>
+      <fieldcount>2</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="textureFilename" include="y" />
+    </SpellIcon>
+    <SpellItemEnchantment>
+      <include>Y</include>
+      <tablename>dbc_SpellItemEnchantment</tablename>
+      <fieldcount>24</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="col1" include="y" />
+      <field type="int" name="col2" include="y" />
+      <field type="text" name="col3" include="y" />
+      <field type="bigint" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="bigint" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="text" name="col9" include="y" />
+      <field type="int" name="col10" include="y" />
+      <field type="int" name="Name" include="y" />
+      <field type="text" name="col12" include="y" />
+      <field type="text" name="col13" include="y" />
+      <field type="text" name="col14" include="y" />
+      <field type="text" name="col15" include="y" />
+      <field type="text" name="col16" include="y" />
+      <field type="text" name="col17" include="y" />
+      <field type="text" name="col18" include="y" />
+      <field type="text" name="col19" include="y" />
+      <field type="text" name="col20" include="y" />
+      <field type="bigint" name="col21" include="y" />
+      <field type="bigint" name="col22" include="y" />
+      <field type="int" name="col23" include="y" />
+    </SpellItemEnchantment>
+    <SpellMechanic>
+      <include>Y</include>
+      <tablename>dbc_SpellMechanic</tablename>
+      <fieldcount>10</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="col1" include="y" />
+      <field type="text" name="col2" include="y" />
+      <field type="text" name="col3" include="y" />
+      <field type="text" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="bigint" name="col9" include="y" />
+    </SpellMechanic>
+    <SpellRadius>
+      <include>Y</include>
+      <tablename>dbc_SpellRadius</tablename>
+      <fieldcount>4</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="bigint" name="radius" include="y" />
+      <field type="text" name="radiusPerLevel" include="y" />
+      <field type="bigint" name="radiusMax" include="y" />
+    </SpellRadius>
+    <SpellRange>
+      <include>Y</include>
+      <tablename>dbc_SpellRange</tablename>
+      <fieldcount>22</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="bigint" name="minRangeHostile" include="y" />
+      <field type="bigint" name="minRangeFriend" include="y" />
+      <field type="text" name="maxRangeHostile" include="y" />
+      <field type="text" name="maxRangeFriend" include="y" />
+      <field type="text" name="Type" include="y" />
+      <field type="text" name="displayName" include="y" />
+      <field type="text" name="displayNameShort" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="text" name="col9" include="y" />
+      <field type="text" name="col10" include="y" />
+      <field type="text" name="col11" include="y" />
+      <field type="bigint" name="col12" include="y" />
+      <field type="text" name="col13" include="y" />
+      <field type="text" name="col14" include="y" />
+      <field type="text" name="col15" include="y" />
+      <field type="text" name="col16" include="y" />
+      <field type="text" name="col17" include="y" />
+      <field type="text" name="col18" include="y" />
+      <field type="text" name="col19" include="y" />
+      <field type="text" name="col20" include="y" />
+      <field type="bigint" name="col21" include="y" />
+    </SpellRange>
+    <SpellShapeshiftForm>
+      <include>Y</include>
+      <tablename>dbc_SpellShapeshiftForm</tablename>
+      <fieldcount>14</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="bonusActionBar" include="y" />
+      <field type="text" name="name" include="y" />
+      <field type="text" name="col3" include="y" />
+      <field type="text" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="text" name="col9" include="y" />
+      <field type="bigint" name="col10" include="y" />
+      <field type="int" name="col11" include="y" />
+      <field type="bigint" name="col12" include="y" />
+      <field type="int" name="col13" include="y" />
+    </SpellShapeshiftForm>
+    <SpellVisual>
+      <include>Y</include>
+      <tablename>dbc_SpellVisual</tablename>
+      <fieldcount>16</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="col1" include="y" />
+      <field type="int" name="col2" include="y" />
+      <field type="int" name="col3" include="y" />
+      <field type="int" name="col4" include="y" />
+      <field type="int" name="col5" include="y" />
+      <field type="int" name="col6" include="y" />
+      <field type="int" name="col7" include="y" />
+      <field type="int" name="col8" include="y" />
+      <field type="int" name="col9" include="y" />
+      <field type="bigint" name="col10" include="y" />
+      <field type="int" name="col11" include="y" />
+      <field type="int" name="col12" include="y" />
+      <field type="int" name="col13" include="y" />
+      <field type="bigint" name="col14" include="y" />
+      <field type="int" name="col15" include="y" />
+    </SpellVisual>
+    <SpellVisualEffectName>
+      <include>Y</include>
+      <tablename>dbc_SpellVisualEffectName</tablename>
+      <fieldcount>5</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="name" include="y" />
+      <field type="text" name="fileName" include="y" />
+      <field type="int" name="areaEffectSize" include="y" />
+      <field type="bigint" name="scale" include="y" />
+    </SpellVisualEffectName>
+    <SpellVisualKit>
+      <include>Y</include>
+      <tablename>dbc_SpellVisualKit</tablename>
+      <fieldcount>35</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="col1" include="y" />
+      <field type="bigint" name="col2" include="y" />
+      <field type="bigint" name="col3" include="y" />
+      <field type="bigint" name="col4" include="y" />
+      <field type="bigint" name="col5" include="y" />
+      <field type="bigint" name="col6" include="y" />
+      <field type="bigint" name="col7" include="y" />
+      <field type="bigint" name="col8" include="y" />
+      <field type="bigint" name="col9" include="y" />
+      <field type="bigint" name="col10" include="y" />
+      <field type="bigint" name="col11" include="y" />
+      <field type="bigint" name="col12" include="y" />
+      <field type="bigint" name="col13" include="y" />
+      <field type="int" name="col14" include="y" />
+      <field type="bigint" name="col15" include="y" />
+      <field type="bigint" name="col16" include="y" />
+      <field type="bigint" name="col17" include="y" />
+      <field type="bigint" name="col18" include="y" />
+      <field type="bigint" name="col19" include="y" />
+      <field type="bigint" name="col20" include="y" />
+      <field type="bigint" name="col21" include="y" />
+      <field type="text" name="col22" include="y" />
+      <field type="bigint" name="col23" include="y" />
+      <field type="bigint" name="col24" include="y" />
+      <field type="bigint" name="col25" include="y" />
+      <field type="text" name="col26" include="y" />
+      <field type="bigint" name="col27" include="y" />
+      <field type="bigint" name="col28" include="y" />
+      <field type="bigint" name="col29" include="y" />
+      <field type="text" name="col30" include="y" />
+      <field type="bigint" name="col31" include="y" />
+      <field type="bigint" name="col32" include="y" />
+      <field type="text" name="col33" include="y" />
+      <field type="text" name="col34" include="y" />
+    </SpellVisualKit>
+    <SpellVisualPrecastTransitions>
+      <include>Y</include>
+      <tablename>dbc_SpellVisualPrecastTransitions</tablename>
+      <fieldcount>3</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="loadAnimation" include="y" />
+      <field type="text" name="holdAnimation" include="y" />
+    </SpellVisualPrecastTransitions>
+    <StableSlotPrices>
+      <include>Y</include>
+      <tablename>dbc_StableSlotPrices</tablename>
+      <fieldcount>2</fieldcount>
+      <field type="int" name="col0" include="y" />
+      <field type="int" name="col1" include="y" />
+    </StableSlotPrices>
+    <Startup_Strings>
+      <include>Y</include>
+      <tablename>dbc_Startup_Strings</tablename>
+      <fieldcount>11</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="Name" include="y" />
+      <field type="text" name="Text" include="y" />
+      <field type="text" name="col3" include="y" />
+      <field type="text" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="text" name="col9" include="y" />
+      <field type="bigint" name="col10" include="y" />
+    </Startup_Strings>
+    <Stationery>
+      <include>Y</include>
+      <tablename>dbc_Stationery</tablename>
+      <fieldcount>4</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="itemID" include="y" />
+      <field type="text" name="texture" include="y" />
+      <field type="int" name="flags" include="y" />
+    </Stationery>
+    <StringLookups>
+      <include>Y</include>
+      <tablename>dbc_StringLookups</tablename>
+      <fieldcount>2</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="String" include="y" />
+    </StringLookups>
+    <Talent>
+      <include>Y</include>
+      <tablename>dbc_Talent</tablename>
+      <fieldcount>21</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="TalentTab" include="y" />
+      <field type="int" name="tierId" include="y" />
+      <field type="int" name="columnIndex" include="y" />
+      <field type="int" name="spellRank" include="y" />
+      <field type="int" name="prereqTalent" include="y" />
+      <field type="int" name="prereqRank" include="y" />
+      <field type="int" name="flags" include="y" />
+      <field type="int" name="requiredSpellId" include="y" />
+      <field type="text" name="allowForPetFlags" include="y" />
+      <field type="text" name="col10" include="y" />
+      <field type="text" name="col11" include="y" />
+      <field type="text" name="col12" include="y" />
+      <field type="int" name="col13" include="y" />
+      <field type="text" name="col14" include="y" />
+      <field type="text" name="col15" include="y" />
+      <field type="int" name="col16" include="y" />
+      <field type="text" name="col17" include="y" />
+      <field type="text" name="col18" include="y" />
+      <field type="int" name="col19" include="y" />
+      <field type="int" name="col20" include="y" />
+    </Talent>
+    <TalentTab>
+      <include>Y</include>
+      <tablename>dbc_TalentTab</tablename>
+      <fieldcount>15</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="Name" include="y" />
+      <field type="text" name="SpellIconID" include="y" />
+      <field type="text" name="raceMark" include="y" />
+      <field type="text" name="classMask" include="y" />
+      <field type="text" name="orderIndex" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="bigint" name="col9" include="y" />
+      <field type="int" name="col10" include="y" />
+      <field type="int" name="col11" include="y" />
+      <field type="int" name="col12" include="y" />
+      <field type="int" name="col13" include="y" />
+      <field type="text" name="col14" include="y" />
+    </TalentTab>
+    <TaxiNodes>
+      <include>Y</include>
+      <tablename>dbc_TaxiNodes</tablename>
+      <fieldcount>16</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="bigint" name="ContinentID" include="y" />
+      <field type="bigint" name="X" include="y" />
+      <field type="bigint" name="Y" include="y" />
+      <field type="bigint" name="Z" include="y" />
+      <field type="text" name="Name" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="text" name="col9" include="y" />
+      <field type="text" name="col10" include="y" />
+      <field type="text" name="col11" include="y" />
+      <field type="text" name="col12" include="y" />
+      <field type="bigint" name="col13" include="y" />
+      <field type="int" name="col14" include="y" />
+      <field type="int" name="col15" include="y" />
+    </TaxiNodes>
+    <TaxiPath>
+      <include>Y</include>
+      <tablename>dbc_TaxiPath</tablename>
+      <fieldcount>4</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="FromTaxiNode" include="y" />
+      <field type="int" name="ToTaxiNode" include="y" />
+      <field type="int" name="Cost" include="y" />
+    </TaxiPath>
+    <TaxiPathNode>
+      <include>Y</include>
+      <tablename>dbc_TaxiPathNode</tablename>
+      <fieldcount>9</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="PathID" include="y" />
+      <field type="int" name="NodeIndex" include="y" />
+      <field type="int" name="ContinentID" include="y" />
+      <field type="bigint" name="LocX" include="y" />
+      <field type="bigint" name="LocY" include="y" />
+      <field type="bigint" name="LocZ" include="y" />
+      <field type="text" name="flags" include="y" />
+      <field type="text" name="delay" include="y" />
+    </TaxiPathNode>
+    <TerrainType>
+      <include>Y</include>
+      <tablename>dbc_TerrainType</tablename>
+      <fieldcount>6</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="TerrainDEsc" include="y" />
+      <field type="int" name="FootstepSprayRun" include="y" />
+      <field type="int" name="FootstepSprayWalk" include="y" />
+      <field type="int" name="Sound" include="y" />
+      <field type="text" name="Flags" include="y" />
+    </TerrainType>
+    <TransportAnimation>
+      <include>Y</include>
+      <tablename>dbc_TransportAnimation</tablename>
+      <fieldcount>7</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="bigint" name="TransportID" include="y" />
+      <field type="bigint" name="TimeIndex" include="y" />
+      <field type="bigint" name="PosX" include="y" />
+      <field type="bigint" name="PosY" include="y" />
+      <field type="bigint" name="PosZ" include="y" />
+      <field type="int" name="SequenceID" include="y" />
+    </TransportAnimation>
+    <UISoundLookups>
+      <include>Y</include>
+      <tablename>dbc_UISoundLookups</tablename>
+      <fieldcount>3</fieldcount>
+      <field type="int" name="col0" include="y" />
+      <field type="int" name="col1" include="y" />
+      <field type="text" name="col2" include="y" />
+    </UISoundLookups>
+    <UnitBlood>
+      <include>Y</include>
+      <tablename>dbc_UnitBlood</tablename>
+      <fieldcount>10</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="CombatBloodSpurtFront1" include="y" />
+      <field type="int" name="CombatBloodSpurtFront2" include="y" />
+      <field type="int" name="CombatBloodSpurtBack1" include="y" />
+      <field type="int" name="CombatBloodSpurtBack2" include="y" />
+      <field type="text" name="GroundBlood1" include="y" />
+      <field type="text" name="GroundBlood2" include="y" />
+      <field type="text" name="GroundBlood3" include="y" />
+      <field type="text" name="GroundBlood4" include="y" />
+      <field type="text" name="col9" include="y" />
+    </UnitBlood>
+    <UnitBloodLevels>
+      <include>Y</include>
+      <tablename>dbc_UnitBloodLevels</tablename>
+      <fieldcount>4</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="Violencelevel1" include="y" />
+      <field type="int" name="Violencelevel2" include="y" />
+      <field type="int" name="Violencelevel3" include="y" />
+    </UnitBloodLevels>
+    <VideoHardware>
+      <include>Y</include>
+      <tablename>dbc_VideoHardware</tablename>
+      <fieldcount>22</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="col1" include="y" />
+      <field type="int" name="col2" include="y" />
+      <field type="int" name="col3" include="y" />
+      <field type="int" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="int" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="text" name="col9" include="y" />
+      <field type="int" name="col10" include="y" />
+      <field type="text" name="col11" include="y" />
+      <field type="text" name="col12" include="y" />
+      <field type="int" name="col13" include="y" />
+      <field type="int" name="col14" include="y" />
+      <field type="int" name="col15" include="y" />
+      <field type="int" name="col16" include="y" />
+      <field type="text" name="col17" include="y" />
+      <field type="text" name="col18" include="y" />
+      <field type="text" name="col19" include="y" />
+      <field type="text" name="col20" include="y" />
+      <field type="int" name="col21" include="y" />
+    </VideoHardware>
+    <VocalUISounds>
+      <include>Y</include>
+      <tablename>dbc_VocalUISounds</tablename>
+      <fieldcount>7</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="voiceUIEnum" include="y" />
+      <field type="int" name="RaceId" include="y" />
+      <field type="bigint" name="NormalSoundMale" include="y" />
+      <field type="bigint" name="NormalSoundFemale" include="y" />
+      <field type="bigint" name="DrunkSoundMale" include="y" />
+      <field type="bigint" name="DrunkSoundFemale" include="y" />
+    </VocalUISounds>
+    <WeaponImpactSounds>
+      <include>Y</include>
+      <tablename>dbc_WeaponImpactSounds</tablename>
+      <fieldcount>23</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="WeaponSubclassId" include="y" />
+      <field type="int" name="ParrySoundType" include="y" />
+      <field type="int" name="impactSoundID1" include="y" />
+      <field type="int" name="impactSoundID2" include="y" />
+      <field type="int" name="impactSoundID3" include="y" />
+      <field type="int" name="impactSoundID4" include="y" />
+      <field type="int" name="impactSoundID5" include="y" />
+      <field type="int" name="impactSoundID6" include="y" />
+      <field type="int" name="impactSoundID7" include="y" />
+      <field type="int" name="impactSoundID8" include="y" />
+      <field type="int" name="impactSoundID9" include="y" />
+      <field type="int" name="impactSoundID10" include="y" />
+      <field type="int" name="critimpactSoundID1" include="y" />
+      <field type="int" name="critimpactSoundID2" include="y" />
+      <field type="int" name="critimpactSoundID3" include="y" />
+      <field type="int" name="critimpactSoundID4" include="y" />
+      <field type="int" name="critimpactSoundID5" include="y" />
+      <field type="int" name="critimpactSoundID6" include="y" />
+      <field type="int" name="critimpactSoundID7" include="y" />
+      <field type="int" name="critimpactSoundID8" include="y" />
+      <field type="int" name="critimpactSoundID9" include="y" />
+      <field type="int" name="critimpactSoundID10" include="y" />
+    </WeaponImpactSounds>
+    <WeaponSwingSounds2>
+      <include>Y</include>
+      <tablename>dbc_WeaponSwingSounds2</tablename>
+      <fieldcount>4</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="SwingType" include="y" />
+      <field type="int" name="Crit" include="y" />
+      <field type="int" name="SoundID" include="y" />
+    </WeaponSwingSounds2>
+    <WMOAreaTable>
+      <include>Y</include>
+      <tablename>dbc_WMOAreaTable</tablename>
+      <fieldcount>20</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="WMOID" include="y" />
+      <field type="int" name="NameSetID" include="y" />
+      <field type="bigint" name="WMOGroupID" include="y" />
+      <field type="bigint" name="soundProviderPref" include="y" />
+      <field type="int" name="soundProviderPrefUnderwater" include="y" />
+      <field type="int" name="AmbienceID" include="y" />
+      <field type="bigint" name="ZoneMusic" include="y" />
+      <field type="int" name="IntroSound" include="y" />
+      <field type="text" name="flag" include="y" />
+      <field type="int" name="AreaTableID" include="y" />
+      <field type="text" name="AreaName" include="y" />
+      <field type="text" name="col12" include="y" />
+      <field type="text" name="col13" include="y" />
+      <field type="text" name="col14" include="y" />
+      <field type="text" name="col15" include="y" />
+      <field type="text" name="col16" include="y" />
+      <field type="text" name="col17" include="y" />
+      <field type="text" name="col18" include="y" />
+      <field type="bigint" name="col19" include="y" />
+    </WMOAreaTable>
+    <WorldMapArea>
+      <include>Y</include>
+      <tablename>dbc_WorldMapArea</tablename>
+      <fieldcount>8</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="mapID" include="y" />
+      <field type="int" name="areaID" include="y" />
+      <field type="text" name="areaName" include="y" />
+      <field type="bigint" name="locLeft" include="y" />
+      <field type="bigint" name="locRight" include="y" />
+      <field type="bigint" name="locTop" include="y" />
+      <field type="bigint" name="locBottom" include="y" />
+    </WorldMapArea>
+    <WorldMapContinent>
+      <include>Y</include>
+      <tablename>dbc_WorldMapContinent</tablename>
+      <fieldcount>13</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="mapID" include="y" />
+      <field type="int" name="leftBoundary" include="y" />
+      <field type="int" name="rightBoundary" include="y" />
+      <field type="int" name="topBoundary" include="y" />
+      <field type="int" name="bottomBoundary" include="y" />
+      <field type="bigint" name="continentOffsetX" include="y" />
+      <field type="bigint" name="continentOffsetY" include="y" />
+      <field type="bigint" name="scale" include="y" />
+      <field type="bigint" name="taxiMinX" include="y" />
+      <field type="bigint" name="taxiMinY" include="y" />
+      <field type="bigint" name="taxiMaxX" include="y" />
+      <field type="bigint" name="taxiMaxY" include="y" />
+    </WorldMapContinent>
+    <WorldMapOverlay>
+      <include>Y</include>
+      <tablename>dbc_WorldMapOverlay</tablename>
+      <fieldcount>17</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="mapAreaId" include="y" />
+      <field type="int" name="AreaId" include="y" />
+      <field type="int" name="col3" include="y" />
+      <field type="int" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="textureName" include="y" />
+      <field type="text" name="textureWidth" include="y" />
+      <field type="text" name="textureHeight" include="y" />
+      <field type="int" name="offsetX" include="y" />
+      <field type="int" name="offsetY" include="y" />
+      <field type="int" name="hitRectTop" include="y" />
+      <field type="int" name="hitRectLeft" include="y" />
+      <field type="int" name="hitRectBottom" include="y" />
+      <field type="int" name="hitRectRight" include="y" />
+      <field type="int" name="col15" include="y" />
+      <field type="int" name="col16" include="y" />
+    </WorldMapOverlay>
+    <WorldSafeLocs>
+      <include>Y</include>
+      <tablename>dbc_WorldSafeLocs</tablename>
+      <fieldcount>14</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="Continent" include="y" />
+      <field type="bigint" name="locationX" include="y" />
+      <field type="bigint" name="locationY" include="y" />
+      <field type="bigint" name="locationZ" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="AreaName" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="text" name="col9" include="y" />
+      <field type="text" name="col10" include="y" />
+      <field type="text" name="col11" include="y" />
+      <field type="text" name="col12" include="y" />
+      <field type="bigint" name="col13" include="y" />
+    </WorldSafeLocs>
+    <WorldStateUI>
+      <include>Y</include>
+      <tablename>dbc_WorldStateUI</tablename>
+      <fieldcount>39</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="int" name="map" include="y" />
+      <field type="int" name="zone" include="y" />
+      <field type="text" name="col3" include="y" />
+      <field type="text" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="text" name="col9" include="y" />
+      <field type="text" name="col10" include="y" />
+      <field type="text" name="col11" include="y" />
+      <field type="bigint" name="col12" include="y" />
+      <field type="text" name="col13" include="y" />
+      <field type="text" name="col14" include="y" />
+      <field type="text" name="col15" include="y" />
+      <field type="text" name="col16" include="y" />
+      <field type="text" name="col17" include="y" />
+      <field type="text" name="col18" include="y" />
+      <field type="text" name="col19" include="y" />
+      <field type="text" name="col20" include="y" />
+      <field type="bigint" name="col21" include="y" />
+      <field type="bigint" name="col22" include="y" />
+      <field type="int" name="col23" include="y" />
+      <field type="int" name="col24" include="y" />
+      <field type="text" name="col25" include="y" />
+      <field type="text" name="col26" include="y" />
+      <field type="text" name="col27" include="y" />
+      <field type="text" name="col28" include="y" />
+      <field type="text" name="col29" include="y" />
+      <field type="text" name="col30" include="y" />
+      <field type="text" name="col31" include="y" />
+      <field type="text" name="col32" include="y" />
+      <field type="text" name="col33" include="y" />
+      <field type="bigint" name="col34" include="y" />
+      <field type="text" name="col35" include="y" />
+      <field type="int" name="col36" include="y" />
+      <field type="int" name="col37" include="y" />
+      <field type="text" name="col38" include="y" />
+    </WorldStateUI>
+    <WowError_Strings>
+      <index>
+        <primary>ID</primary>
+      </index>
+      <include>Y</include>
+      <tablename>dbc_WowError_Strings</tablename>
+      <fieldcount>11</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="errorName" include="y" />
+      <field type="text" name="errorString" include="y" />
+      <field type="text" name="col3" include="y" />
+      <field type="text" name="col4" include="y" />
+      <field type="text" name="col5" include="y" />
+      <field type="text" name="col6" include="y" />
+      <field type="text" name="col7" include="y" />
+      <field type="text" name="col8" include="y" />
+      <field type="text" name="col9" include="y" />
+      <field type="bigint" name="col10" include="y" />
+    </WowError_Strings>
+    <ZoneIntroMusicTable>
+      <include>Y</include>
+      <tablename>dbc_ZoneIntroMusicTable</tablename>
+      <fieldcount>5</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="Name" include="y" />
+      <field type="int" name="SoundID" include="y" />
+      <field type="text" name="Priority" include="y" />
+      <field type="int" name="MinDelayMinutes" include="y" />
+    </ZoneIntroMusicTable>
+    <ZoneMusic>
+      <include>Y</include>
+      <tablename>dbc_ZoneMusic</tablename>
+      <fieldcount>8</fieldcount>
+      <field type="int" name="ID" include="y" />
+      <field type="text" name="SetName" include="y" />
+      <field type="bigint" name="SilenceIntervalMinDay" include="y" />
+      <field type="bigint" name="SilenceIntervalMinNight" include="y" />
+      <field type="bigint" name="SilenceIntervalMaxDay" include="y" />
+      <field type="bigint" name="SilenceIntervalMaxNight" include="y" />
+      <field type="int" name="SoundsDay" include="y" />
+      <field type="int" name="SoundsNight" include="y" />
+    </ZoneMusic>
+  </Files>
+</root>

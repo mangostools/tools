@@ -40,7 +40,7 @@
     <DocumentationFile>
     </DocumentationFile>
     <NoWarn>41999,42016,42017,42018,42019,42032,42036</NoWarn>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -200,11 +200,21 @@
       <Link>Common\MpqLib.xml</Link>
     </Content>
     <Content Include="favicon.ico" />
-    <EmbeddedResource Include="Resources\dbc_classic.xml" />
-    <EmbeddedResource Include="Resources\dbc_cata.xml" />
-    <EmbeddedResource Include="Resources\dbc_mop.xml" />
-    <EmbeddedResource Include="Resources\dbc_tbc.xml" />
-    <EmbeddedResource Include="Resources\dbc_wotlk.xml" />
+    <EmbeddedResource Include="../Common/dbc_classic.xml">
+      <Link>Common\dbc_classic.xml</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="../Common/dbc_cata.xml">
+      <Link>Common\dbc_cata.xml</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="../Common/dbc_mop.xml">
+      <Link>Common\dbc_mop.xml</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="../Common/dbc_tbc.xml">
+      <Link>Common\dbc_tbc.xml</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="../Common/dbc_wotlk.xml">
+      <Link>Common\dbc_wotlk.xml</Link>
+    </EmbeddedResource>
     <None Include="Resources\mangos_foundation.png" />
   </ItemGroup>
   <ItemGroup>
