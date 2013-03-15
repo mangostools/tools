@@ -201,7 +201,7 @@ Module AD2
 
             'Load the entire DBC into a DataTable to be processed by both exports
             If blnExportToSQL = True Or blnExportToCSV = True Then
-                ExportFiles(strInputFolder, strOutputFolder, blnExportToCSV, blnExportToSQL, False)
+                ExportDBCFiles(strInputFolder, strOutputFolder, blnExportToCSV, blnExportToSQL, False)
                 Alert("Export Finished", Core.AlertNewLine.AddCRLF)
             End If
 

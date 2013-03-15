@@ -35,7 +35,7 @@ Public Class MaNGOSExtractor
             Alert("Warcraft Version v" & Core.FullVersion & " Build " & Core.BuildNo, Core.AlertNewLine.AddCRLF)
         End If
 
-        If chkDBC.Checked = True Then
+        If chkDBC.Checked = True Or chkExtractMaps.Checked = True Then
             'Set the Top level as {Wow Folder}\data
             myFolders = New System.IO.DirectoryInfo(txtBaseFolder.Text & "\data")
 
@@ -63,8 +63,9 @@ Public Class MaNGOSExtractor
             If My.Computer.FileSystem.DirectoryExists(txtOutputFolder.Text) = False Then
                 Directory.CreateDirectory(txtOutputFolder.Text)
             End If
+        End If
 
-
+        If chkDBC.Checked = True Then
             For Each strItem As DictionaryEntry In colBaseFiles
                 Alert("Reading: " & strItem.Value, Core.AlertNewLine.AddCRLF)
                 Try
@@ -96,9 +97,72 @@ Public Class MaNGOSExtractor
             Alert("Extraction Finished", Core.AlertNewLine.AddCRLF)
         End If
 
+        If chkExtractMaps.Checked = True Then
+            ''Set the Top level as {Wow Folder}\data
+            'myFolders = New System.IO.DirectoryInfo(txtBaseFolder.Text & "\data")
+
+            ''Add the Data folder to the collection before we start walking down the tree
+            'colFolders.Add(myFolders, myFolders.FullName)
+
+            ''Build a list of all the subfolders under data
+            'Core.ReadFolders(myFolders, colFolders)
+
+            ''Now we need to walk through the folders, getting the MPQ files along the way
+            'For t As Integer = 1 To colFolders.Count()
+            '    myFolders = colFolders.Item(t)
+            '    For Each file As System.IO.FileInfo In myFolders.GetFiles("*.MPQ")
+            '        If file.FullName.ToLower.Contains("update") = True Or file.FullName.ToLower.Contains("patch") = True Then
+            '            colUpdateFiles.Add(file.FullName, file.FullName)
+            '        ElseIf file.FullName.ToLower.Contains("base") = True Then
+            '            colBaseFiles.Add(file.FullName, file.FullName)
+            '        Else
+            '            colMainFiles.Add(file.FullName, file.FullName)
+            '        End If
+            '    Next
+            'Next
+
+            'If txtOutputFolder.Text.EndsWith("\") = False Then txtOutputFolder.Text = txtOutputFolder.Text & "\"
+            'If My.Computer.FileSystem.DirectoryExists(txtOutputFolder.Text) = False Then
+            '    Directory.CreateDirectory(txtOutputFolder.Text)
+            'End If
+
+
+            For Each strItem As DictionaryEntry In colBaseFiles
+                Alert("Reading: " & strItem.Value, Core.AlertNewLine.AddCRLF)
+                Try
+                    Core.ExtractFilesGeneric(strItem.Value, "*.adt", txtOutputFolder.Text)
+                Catch ex As Exception
+                    Alert(ex.Message, Core.AlertNewLine.AddCRLF)
+                End Try
+            Next
+
+            For Each strItem As DictionaryEntry In colMainFiles
+                Alert("Reading: " & strItem.Value, Core.AlertNewLine.AddCRLF)
+                Try
+                    Core.ExtractFilesGeneric(strItem.Value, "*.adt", txtOutputFolder.Text)
+                Catch ex As Exception
+                    Alert(ex.Message, Core.AlertNewLine.AddCRLF)
+                End Try
+            Next
+
+            For Each strItem As DictionaryEntry In colUpdateFiles
+                Alert("Reading: " & strItem.Value, Core.AlertNewLine.AddCRLF)
+
+                Try
+                    Core.ExtractFilesGeneric(strItem.Value, "*.adt", txtOutputFolder.Text)
+                Catch ex As Exception
+                    Alert(ex.Message, Core.AlertNewLine.AddCRLF)
+                End Try
+                Threading.Thread.Sleep(0)
+            Next
+            Alert("Extraction Finished", Core.AlertNewLine.AddCRLF)
+        End If
+
+
+
         If chkCSV.Checked = True Or chkSQL.Checked = True Or chkExportXML.Checked = True Then
             'Now that we have all the DBC's extracted and patched, we need to check the export options and export data
-            ExportFiles(txtBaseFolder.Text, txtOutputFolder.Text, chkCSV.Checked, chkSQL.Checked, chkExportXML.Checked)
+            ExportDBCFiles(txtBaseFolder.Text, txtOutputFolder.Text, chkCSV.Checked, chkSQL.Checked, chkExportXML.Checked)
             Alert("Finished Exporting", Core.AlertNewLine.AddCRLF)
         End If
 

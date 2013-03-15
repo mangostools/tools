@@ -52,7 +52,7 @@
       <field type="int" name="Type" include="y" />
       <field type="bigint" name="asset_id" include="y" />
       <field type="bigint" name="quantity" include="y" />
-      <field type="text" name="col5" include="y" />
+      <field type="int" name="col5" include="y" />
       <field type="int" name="start_event" include="y" />
       <field type="int" name="start_asset" include="y" />
       <field type="int" name="fail_event" include="y" />
@@ -728,7 +728,7 @@
       <field type="int" name="col13" include="y" />
       <field type="int" name="col14" include="y" />
       <field type="int" name="col15" include="y" />
-      <field type="text" name="col16" include="y" />
+      <field type="int" name="col16" include="y" />
     </CreatureDisplayInfo>
     <CreatureDisplayInfoExtra>
       <include>Y</include>
@@ -753,7 +753,7 @@
       <field type="bigint" name="Gloves" include="y" />
       <field type="int" name="Wrist" include="y" />
       <field type="int" name="Cape" include="y" />
-      <field type="text" name="CanEquip" include="y" />
+      <field type="int" name="CanEquip" include="y" />
       <field type="text" name="Texture" include="y" />
     </CreatureDisplayInfoExtra>
     <CreatureFamily>
@@ -1270,23 +1270,23 @@
       <fieldcount>19</fieldcount>
       <field type="bigint" name="ID" include="y" />
       <field type="text" name="modelName" include="y" />
-      <field type="text" name="col2" include="y" />
+      <field type="int" name="col2" include="y" />
       <field type="int" name="col3" include="y" />
       <field type="int" name="col4" include="y" />
       <field type="int" name="col5" include="y" />
       <field type="int" name="col6" include="y" />
-      <field type="text" name="col7" include="y" />
-      <field type="text" name="col8" include="y" />
-      <field type="text" name="col9" include="y" />
-      <field type="text" name="col10" include="y" />
-      <field type="text" name="col11" include="y" />
+      <field type="int" name="col7" include="y" />
+      <field type="int" name="col8" include="y" />
+      <field type="int" name="col9" include="y" />
+      <field type="int" name="col10" include="y" />
+      <field type="int" name="col11" include="y" />
       <field type="bigint" name="col12" include="y" />
       <field type="bigint" name="col13" include="y" />
       <field type="bigint" name="col14" include="y" />
       <field type="bigint" name="col15" include="y" />
       <field type="bigint" name="col16" include="y" />
       <field type="bigint" name="col17" include="y" />
-      <field type="text" name="col18" include="y" />
+      <field type="int" name="col18" include="y" />
     </GameObjectDisplayInfo>
     <GameTables>
       <include>Y</include>
@@ -1881,7 +1881,7 @@
       <field type="text" name="modelTexture1" include="y" />
       <field type="text" name="modelTexture2" include="y" />
       <field type="text" name="inventoryIcon1" include="y" />
-      <field type="text" name="inventoryIcon2" include="y" />
+      <field type="int" name="inventoryIcon2" include="y" />
       <field type="int" name="geosetGroup1" include="y" />
       <field type="text" name="geosetGroup2" include="y" />
       <field type="text" name="geosetGroup3" include="y" />
@@ -2102,8 +2102,8 @@
       <field type="int" name="col14" include="y" />
       <field type="int" name="col15" include="y" />
       <field type="int" name="col16" include="y" />
-      <field type="text" name="col17" include="y" />
-      <field type="text" name="col18" include="y" />
+      <field type="int" name="col17" include="y" />
+      <field type="int" name="col18" include="y" />
       <field type="int" name="col19" include="y" />
       <field type="int" name="col20" include="y" />
       <field type="int" name="col21" include="y" />
@@ -2127,8 +2127,8 @@
       <field type="int" name="col39" include="y" />
       <field type="int" name="col40" include="y" />
       <field type="int" name="col41" include="y" />
-      <field type="text" name="col42" include="y" />
-      <field type="text" name="col43" include="y" />
+      <field type="int" name="col42" include="y" />
+      <field type="int" name="col43" include="y" />
       <field type="bigint" name="col44" include="y" />
       <field type="int" name="col45" include="y" />
       <field type="int" name="col46" include="y" />
@@ -2137,37 +2137,37 @@
       <field type="int" name="col49" include="y" />
       <field type="int" name="col50" include="y" />
       <field type="int" name="col51" include="y" />
-      <field type="text" name="col52" include="y" />
-      <field type="text" name="col53" include="y" />
+      <field type="int" name="col52" include="y" />
+      <field type="int" name="col53" include="y" />
       <field type="int" name="col54" include="y" />
       <field type="int" name="col55" include="y" />
       <field type="int" name="col56" include="y" />
       <field type="int" name="col57" include="y" />
-      <field type="text" name="col58" include="y" />
-      <field type="text" name="col59" include="y" />
-      <field type="text" name="col60" include="y" />
-      <field type="text" name="col61" include="y" />
-      <field type="text" name="col62" include="y" />
-      <field type="text" name="col63" include="y" />
-      <field type="text" name="col64" include="y" />
+      <field type="int" name="col58" include="y" />
+      <field type="int" name="col59" include="y" />
+      <field type="int" name="col60" include="y" />
+      <field type="int" name="col61" include="y" />
+      <field type="int" name="col62" include="y" />
+      <field type="int" name="col63" include="y" />
+      <field type="int" name="col64" include="y" />
       <field type="int" name="col65" include="y" />
       <field type="int" name="col66" include="y" />
       <field type="bigint" name="col67" include="y" />
       <field type="bigint" name="col68" include="y" />
       <field type="bigint" name="col69" include="y" />
       <field type="int" name="col70" include="y" />
-      <field type="text" name="col71" include="y" />
-      <field type="text" name="col72" include="y" />
+      <field type="int" name="col71" include="y" />
+      <field type="int" name="col72" include="y" />
       <field type="int" name="col73" include="y" />
       <field type="int" name="col74" include="y" />
       <field type="text" name="col75" include="y" />
       <field type="text" name="col76" include="y" />
-      <field type="text" name="col77" include="y" />
+      <field type="int" name="col77" include="y" />
       <field type="bigint" name="col78" include="y" />
       <field type="bigint" name="col79" include="y" />
-      <field type="text" name="col80" include="y" />
-      <field type="text" name="col81" include="y" />
-      <field type="text" name="col82" include="y" />
+      <field type="int" name="col80" include="y" />
+      <field type="int" name="col81" include="y" />
+      <field type="int" name="col82" include="y" />
       <field type="bigint" name="col83" include="y" />
       <field type="bigint" name="col84" include="y" />
       <field type="bigint" name="col85" include="y" />
@@ -2176,8 +2176,8 @@
       <field type="int" name="col88" include="y" />
       <field type="int" name="col89" include="y" />
       <field type="int" name="col90" include="y" />
-      <field type="text" name="col91" include="y" />
-      <field type="text" name="col92" include="y" />
+      <field type="int" name="col91" include="y" />
+      <field type="int" name="col92" include="y" />
       <field type="bigint" name="col93" include="y" />
       <field type="bigint" name="col94" include="y" />
       <field type="bigint" name="col95" include="y" />
@@ -2185,30 +2185,30 @@
       <field type="bigint" name="col97" include="y" />
       <field type="int" name="col98" include="y" />
       <field type="text" name="col99" include="y" />
-      <field type="text" name="col100" include="y" />
-      <field type="text" name="col101" include="y" />
-      <field type="text" name="col102" include="y" />
+      <field type="int" name="col100" include="y" />
+      <field type="int" name="col101" include="y" />
+      <field type="int" name="col102" include="y" />
       <field type="text" name="col103" include="y" />
       <field type="int" name="col104" include="y" />
       <field type="int" name="col105" include="y" />
       <field type="int" name="col106" include="y" />
       <field type="int" name="col107" include="y" />
-      <field type="text" name="col108" include="y" />
+      <field type="int" name="col108" include="y" />
       <field type="int" name="col109" include="y" />
       <field type="int" name="col110" include="y" />
       <field type="int" name="col111" include="y" />
       <field type="int" name="col112" include="y" />
       <field type="int" name="col113" include="y" />
-      <field type="text" name="col114" include="y" />
-      <field type="text" name="col115" include="y" />
+      <field type="int" name="col114" include="y" />
+      <field type="int" name="col115" include="y" />
       <field type="int" name="col116" include="y" />
       <field type="int" name="col117" include="y" />
       <field type="int" name="col118" include="y" />
       <field type="int" name="col119" include="y" />
       <field type="int" name="col120" include="y" />
-      <field type="text" name="col121" include="y" />
-      <field type="text" name="col122" include="y" />
-      <field type="text" name="col123" include="y" />
+      <field type="int" name="col121" include="y" />
+      <field type="int" name="col122" include="y" />
+      <field type="int" name="col123" include="y" />
       <field type="int" name="col124" include="y" />
       <field type="int" name="col125" include="y" />
       <field type="bigint" name="col126" include="y" />
@@ -2216,8 +2216,8 @@
       <field type="int" name="col128" include="y" />
       <field type="int" name="col129" include="y" />
       <field type="bigint" name="col130" include="y" />
-      <field type="text" name="col131" include="y" />
-      <field type="text" name="col132" include="y" />
+      <field type="int" name="col131" include="y" />
+      <field type="int" name="col132" include="y" />
     </Item-sparse>
     <ItemSubClass>
       <include>Y</include>
@@ -2496,13 +2496,13 @@
       <field type="int" name="col8" include="y" />
       <field type="int" name="col9" include="y" />
       <field type="int" name="col10" include="y" />
-      <field type="text" name="col11" include="y" />
-      <field type="text" name="col12" include="y" />
-      <field type="text" name="col13" include="y" />
-      <field type="text" name="col14" include="y" />
-      <field type="text" name="col15" include="y" />
-      <field type="text" name="col16" include="y" />
-      <field type="text" name="col17" include="y" />
+      <field type="int" name="col11" include="y" />
+      <field type="int" name="col12" include="y" />
+      <field type="int" name="col13" include="y" />
+      <field type="int" name="col14" include="y" />
+      <field type="int" name="col15" include="y" />
+      <field type="int" name="col16" include="y" />
+      <field type="int" name="col17" include="y" />
       <field type="bigint" name="col18" include="y" />
       <field type="bigint" name="col19" include="y" />
       <field type="bigint" name="col20" include="y" />
@@ -2512,13 +2512,13 @@
       <field type="bigint" name="col24" include="y" />
       <field type="bigint" name="col25" include="y" />
       <field type="bigint" name="col26" include="y" />
-      <field type="text" name="col27" include="y" />
-      <field type="text" name="col28" include="y" />
-      <field type="text" name="col29" include="y" />
-      <field type="text" name="col30" include="y" />
-      <field type="text" name="col31" include="y" />
-      <field type="text" name="col32" include="y" />
-      <field type="text" name="col33" include="y" />
+      <field type="int" name="col27" include="y" />
+      <field type="int" name="col28" include="y" />
+      <field type="int" name="col29" include="y" />
+      <field type="int" name="col30" include="y" />
+      <field type="int" name="col31" include="y" />
+      <field type="int" name="col32" include="y" />
+      <field type="int" name="col33" include="y" />
     </LightIntBand>
     <LightParams>
       <include>Y</include>
@@ -3309,8 +3309,8 @@
       <field type="bigint" name="spell" include="y" />
       <field type="bigint" name="raceMask" include="y" />
       <field type="int" name="classMask" include="y" />
-      <field type="text" name="excludeRace" include="y" />
-      <field type="text" name="excludeClass" include="y" />
+      <field type="int" name="excludeRace" include="y" />
+      <field type="int" name="excludeClass" include="y" />
       <field type="int" name="minSkillLineRank" include="y" />
       <field type="bigint" name="supercededBySpell" include="y" />
       <field type="int" name="aquireMethod" include="y" />
@@ -3463,8 +3463,8 @@
       <field type="bigint" name="distanceCutoff" include="y" />
       <field type="int" name="col28" include="y" />
       <field type="int" name="col29" include="y" />
-      <field type="text" name="col30" include="y" />
-      <field type="text" name="col31" include="y" />
+      <field type="int" name="col30" include="y" />
+      <field type="int" name="col31" include="y" />
       <field type="bigint" name="col32" include="y" />
       <field type="bigint" name="col33" include="y" />
       <field type="text" name="col34" include="y" />
@@ -3584,7 +3584,7 @@
       <field type="bigint" name="col8" include="y" />
       <field type="bigint" name="col9" include="y" />
       <field type="bigint" name="col10" include="y" />
-      <field type="text" name="col11" include="y" />
+      <field type="int" name="col11" include="y" />
       <field type="int" name="col12" include="y" />
       <field type="int" name="col13" include="y" />
       <field type="bigint" name="col14" include="y" />
@@ -3603,7 +3603,7 @@
       <field type="int" name="col27" include="y" />
       <field type="int" name="col28" include="y" />
       <field type="int" name="col29" include="y" />
-      <field type="text" name="col30" include="y" />
+      <field type="int" name="col30" include="y" />
       <field type="int" name="col31" include="y" />
       <field type="int" name="col32" include="y" />
       <field type="int" name="col33" include="y" />
@@ -3611,7 +3611,7 @@
       <field type="int" name="col35" include="y" />
       <field type="int" name="col36" include="y" />
       <field type="int" name="col37" include="y" />
-      <field type="text" name="col38" include="y" />
+      <field type="int" name="col38" include="y" />
       <field type="int" name="col39" include="y" />
       <field type="int" name="col40" include="y" />
       <field type="int" name="col41" include="y" />
@@ -3620,7 +3620,7 @@
       <field type="int" name="col44" include="y" />
       <field type="int" name="col45" include="y" />
       <field type="int" name="col46" include="y" />
-      <field type="text" name="col47" include="y" />
+      <field type="int" name="col47" include="y" />
     </Spell>
     <SpellActivationOverlay>
       <include>Y</include>
@@ -3685,8 +3685,8 @@
       <fieldcount>7</fieldcount>
       <field type="int" name="ID" include="y" />
       <field type="int" name="FacingCasterFlags" include="y" />
-      <field type="text" name="MinFactionID" include="y" />
-      <field type="text" name="MinReputation" include="y" />
+      <field type="int" name="MinFactionID" include="y" />
+      <field type="int" name="MinReputation" include="y" />
       <field type="int" name="AreaGroupID" include="y" />
       <field type="int" name="RequiredAuraVision" include="y" />
       <field type="int" name="RequiresSpellFocus" include="y" />
@@ -3776,7 +3776,7 @@
       <tablename>dbc_SpellClassOptions</tablename>
       <fieldcount>7</fieldcount>
       <field type="int" name="col0" include="y" />
-      <field type="text" name="col1" include="y" />
+      <field type="int" name="col1" include="y" />
       <field type="bigint" name="col2" include="y" />
       <field type="bigint" name="col3" include="y" />
       <field type="bigint" name="col4" include="y" />
@@ -3846,7 +3846,7 @@
       <field type="int" name="col11" include="y" />
       <field type="bigint" name="col12" include="y" />
       <field type="int" name="col13" include="y" />
-      <field type="text" name="col14" include="y" />
+      <field type="int" name="col14" include="y" />
       <field type="int" name="col15" include="y" />
       <field type="int" name="col16" include="y" />
       <field type="bigint" name="col17" include="y" />
@@ -3921,7 +3921,7 @@
       <field type="bigint" name="col1" include="y" />
       <field type="int" name="col2" include="y" />
       <field type="bigint" name="col3" include="y" />
-      <field type="text" name="col4" include="y" />
+      <field type="int" name="col4" include="y" />
       <field type="int" name="col5" include="y" />
     </SpellInterrupts>
     <SpellItemEnchantment>
@@ -4160,7 +4160,7 @@
       <field type="int" name="col0" include="y" />
       <field type="bigint" name="col1" include="y" />
       <field type="int" name="col2" include="y" />
-      <field type="text" name="col3" include="y" />
+      <field type="int" name="col3" include="y" />
       <field type="int" name="col4" include="y" />
       <field type="bigint" name="col5" include="y" />
     </SpellTargetRestrictions>
@@ -4192,7 +4192,7 @@
       <field type="int" name="col11" include="y" />
       <field type="int" name="col12" include="y" />
       <field type="int" name="col13" include="y" />
-      <field type="text" name="col14" include="y" />
+      <field type="int" name="col14" include="y" />
       <field type="int" name="col15" include="y" />
       <field type="bigint" name="col16" include="y" />
       <field type="int" name="col17" include="y" />
@@ -4200,17 +4200,17 @@
       <field type="int" name="col19" include="y" />
       <field type="int" name="col20" include="y" />
       <field type="int" name="col21" include="y" />
-      <field type="text" name="col22" include="y" />
+      <field type="int" name="col22" include="y" />
       <field type="int" name="col23" include="y" />
       <field type="int" name="col24" include="y" />
       <field type="int" name="col25" include="y" />
       <field type="bigint" name="col26" include="y" />
-      <field type="text" name="col27" include="y" />
+      <field type="int" name="col27" include="y" />
       <field type="bigint" name="col28" include="y" />
       <field type="bigint" name="col29" include="y" />
-      <field type="text" name="col30" include="y" />
+      <field type="int" name="col30" include="y" />
       <field type="bigint" name="col31" include="y" />
-      <field type="text" name="col32" include="y" />
+      <field type="int" name="col32" include="y" />
     </SpellVisual>
     <SpellVisualEffectName>
       <include>Y</include>
@@ -4223,7 +4223,7 @@
       <field type="bigint" name="scale" include="y" />
       <field type="bigint" name="minAllowedScale" include="y" />
       <field type="bigint" name="maxAllowedScale" include="y" />
-      <field type="text" name="col7" include="y" />
+      <field type="int" name="col7" include="y" />
       <field type="bigint" name="col8" include="y" />
     </SpellVisualEffectName>
     <SpellVisualKit>
@@ -4241,9 +4241,9 @@
       <field type="int" name="col8" include="y" />
       <field type="int" name="col9" include="y" />
       <field type="int" name="col10" include="y" />
-      <field type="text" name="col11" include="y" />
-      <field type="text" name="col12" include="y" />
-      <field type="text" name="col13" include="y" />
+      <field type="int" name="col11" include="y" />
+      <field type="int" name="col12" include="y" />
+      <field type="int" name="col13" include="y" />
       <field type="int" name="col14" include="y" />
       <field type="bigint" name="col15" include="y" />
       <field type="int" name="col16" include="y" />
@@ -4254,20 +4254,20 @@
       <field type="bigint" name="col21" include="y" />
       <field type="bigint" name="col22" include="y" />
       <field type="bigint" name="col23" include="y" />
-      <field type="text" name="col24" include="y" />
-      <field type="text" name="col25" include="y" />
+      <field type="int" name="col24" include="y" />
+      <field type="int" name="col25" include="y" />
       <field type="bigint" name="col26" include="y" />
       <field type="bigint" name="col27" include="y" />
       <field type="bigint" name="col28" include="y" />
       <field type="bigint" name="col29" include="y" />
       <field type="bigint" name="col30" include="y" />
-      <field type="text" name="col31" include="y" />
-      <field type="text" name="col32" include="y" />
-      <field type="text" name="col33" include="y" />
+      <field type="int" name="col31" include="y" />
+      <field type="int" name="col32" include="y" />
+      <field type="int" name="col33" include="y" />
       <field type="bigint" name="col34" include="y" />
-      <field type="text" name="col35" include="y" />
-      <field type="text" name="col36" include="y" />
-      <field type="text" name="col37" include="y" />
+      <field type="int" name="col35" include="y" />
+      <field type="int" name="col36" include="y" />
+      <field type="int" name="col37" include="y" />
       <field type="int" name="col38" include="y" />
     </SpellVisualKit>
     <SpellVisualKitAreaModel>
@@ -4296,7 +4296,7 @@
       <field type="bigint" name="yaw" include="y" />
       <field type="bigint" name="pitch" include="y" />
       <field type="bigint" name="roll" include="y" />
-      <field type="text" name="col10" include="y" />
+      <field type="int" name="col10" include="y" />
       <field type="bigint" name="col11" include="y" />
       <field type="bigint" name="col12" include="y" />
       <field type="bigint" name="col13" include="y" />
@@ -4353,7 +4353,7 @@
       <field type="int" name="tierId" include="y" />
       <field type="int" name="columnIndex" include="y" />
       <field type="bigint" name="spellRank" include="y" />
-      <field type="text" name="prereqTalent" include="y" />
+      <field type="bigint" name="prereqTalent" include="y" />
       <field type="bigint" name="prereqRank" include="y" />
       <field type="text" name="flags" include="y" />
       <field type="text" name="requiredSpellId" include="y" />
@@ -4805,8 +4805,8 @@
       <field type="int" name="flag" include="y" />
       <field type="int" name="AreaTableID" include="y" />
       <field type="text" name="AreaName" include="y" />
-      <field type="text" name="col12" include="y" />
-      <field type="text" name="col13" include="y" />
+      <field type="int" name="col12" include="y" />
+      <field type="int" name="col13" include="y" />
       <field type="int" name="col14" include="y" />
     </WMOAreaTable>
     <world_PVP_Area>

@@ -2,7 +2,7 @@
 Imports System.Text
 Imports MpqLib
 Imports System.Data
-Imports System.Text.RegularExpressions
+'Imports System.Text.RegularExpressions
 Imports System.Reflection
 
 Namespace Core
@@ -297,7 +297,7 @@ Namespace Core
                         My.Computer.FileSystem.DeleteFile(DestinationFolder & "\" & thisFile.FileName)
                     End If
                     Archive.ExportFile(thisFile.FileName, DestinationFolder & "\" & thisFile.FileName)
-
+                    Threading.Thread.Sleep(0)
                 Next
             Catch ex As Exception
                 sbOutput.AppendLine(ex.Message)
@@ -528,16 +528,25 @@ Namespace Core
                         'End Try
 
                         If blnFoundString = True And m_reader.StringTableSize > 0 Then
-                            'Try
+                            Dim thisStrLength As Integer = 0
                             For thisScanRow As Integer = 0 To dbcDataTable.Rows.Count - 1 Step SteppingAmount
                                 If Not IsDBNull(dbcDataTable.Rows(thisScanRow)(CInt(cols))) Then
                                     dbcDataTable.Rows(thisScanRow)(CInt(cols)) = m_reader.StringTable(dbcDataTable.Rows(thisScanRow)(CInt(cols)))
+                                    If thisStrLength < dbcDataTable.Rows(thisScanRow)(CInt(cols)).ToString().Length Then
+                                        thisStrLength = dbcDataTable.Rows(thisScanRow)(CInt(cols)).ToString().Length
+                                    End If
                                     dbcDataTable.Rows(dbcDataTable.Rows.Count() - 1)(CInt(cols)) = 0
                                 End If
                                 Threading.Thread.Sleep(0)
                             Next
-                            'Catch ex As Exception
-                            'End Try
+
+                            If thisStrLength = 0 Then
+                                For thisScanRow As Integer = 0 To dbcDataTable.Rows.Count - 1 Step SteppingAmount
+                                    dbcDataTable.Rows(dbcDataTable.Rows.Count() - 1)(CInt(cols)) = 1
+                                    dbcDataTable.Rows(thisScanRow)(CInt(cols)) = 0
+                                    Threading.Thread.Sleep(0)
+                                Next
+                            End If
                         End If
                         Threading.Thread.Sleep(0)
                     Next
@@ -629,7 +638,7 @@ Namespace Core
         ''' <param name="ExportSQL"></param>
         ''' <param name="ExportXML"></param>
         ''' <remarks></remarks>
-        Public Sub ExportFiles(ByRef BaseFolder As String, ByRef OutputFolder As String, ByRef ExportCSV As Boolean, ByRef ExportSQL As Boolean, ByRef ExportXML As Boolean)
+        Public Sub ExportDBCFiles(ByRef BaseFolder As String, ByRef OutputFolder As String, ByRef ExportCSV As Boolean, ByRef ExportSQL As Boolean, ByRef ExportXML As Boolean)
             'Now that we have all the DBC's extracted and patched, we need to check the export options and export data
             If OutputFolder.EndsWith("\") = False Then OutputFolder = OutputFolder & "\"
             If My.Computer.FileSystem.DirectoryExists(OutputFolder & "DBFilesClient\") = False Then
@@ -643,7 +652,7 @@ Namespace Core
 
             Dim Files() As System.IO.FileInfo = myFolders.GetFiles("*.DB?")
             Dim FilelistSorted As New SortedList()
-            
+
             For Each thisFile As System.IO.FileInfo In Files
                 FilelistSorted.Add(thisFile.Name, thisFile.Name)
             Next
@@ -764,6 +773,7 @@ Namespace Core
             End If
             Return thisCollection
         End Function
+
 
     End Module
 End Namespace

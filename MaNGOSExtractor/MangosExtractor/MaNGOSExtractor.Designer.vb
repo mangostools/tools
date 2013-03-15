@@ -39,6 +39,7 @@ Partial Class MaNGOSExtractor
         Me.btnSelectBaseFolder = New System.Windows.Forms.Button()
         Me.btnSelectOutputFolder = New System.Windows.Forms.Button()
         Me.chkExportXML = New System.Windows.Forms.CheckBox()
+        Me.chkExtractMaps = New System.Windows.Forms.CheckBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -161,7 +162,7 @@ Partial Class MaNGOSExtractor
         '
         'btnSelectBaseFolder
         '
-        Me.btnSelectBaseFolder.Font = New System.Drawing.Font("Arial Narrow", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSelectBaseFolder.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSelectBaseFolder.Location = New System.Drawing.Point(671, 4)
         Me.btnSelectBaseFolder.Margin = New System.Windows.Forms.Padding(0)
         Me.btnSelectBaseFolder.Name = "btnSelectBaseFolder"
@@ -172,7 +173,7 @@ Partial Class MaNGOSExtractor
         '
         'btnSelectOutputFolder
         '
-        Me.btnSelectOutputFolder.Font = New System.Drawing.Font("Arial Narrow", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSelectOutputFolder.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSelectOutputFolder.Location = New System.Drawing.Point(671, 30)
         Me.btnSelectOutputFolder.Margin = New System.Windows.Forms.Padding(0)
         Me.btnSelectOutputFolder.Name = "btnSelectOutputFolder"
@@ -191,12 +192,23 @@ Partial Class MaNGOSExtractor
         Me.chkExportXML.Text = "Export XML"
         Me.chkExportXML.UseVisualStyleBackColor = True
         '
+        'chkExtractMaps
+        '
+        Me.chkExtractMaps.AutoSize = True
+        Me.chkExtractMaps.Location = New System.Drawing.Point(12, 179)
+        Me.chkExtractMaps.Name = "chkExtractMaps"
+        Me.chkExtractMaps.Size = New System.Drawing.Size(88, 17)
+        Me.chkExtractMaps.TabIndex = 17
+        Me.chkExtractMaps.Text = "Extract Maps"
+        Me.chkExtractMaps.UseVisualStyleBackColor = True
+        '
         'MaNGOSExtractor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.ClientSize = New System.Drawing.Size(794, 458)
+        Me.Controls.Add(Me.chkExtractMaps)
         Me.Controls.Add(Me.chkExportXML)
         Me.Controls.Add(Me.btnSelectOutputFolder)
         Me.Controls.Add(Me.btnSelectBaseFolder)
@@ -240,5 +252,6 @@ Partial Class MaNGOSExtractor
     Friend WithEvents btnSelectBaseFolder As System.Windows.Forms.Button
     Friend WithEvents btnSelectOutputFolder As System.Windows.Forms.Button
     Friend WithEvents chkExportXML As System.Windows.Forms.CheckBox
+    Friend WithEvents chkExtractMaps As System.Windows.Forms.CheckBox
 
 End Class

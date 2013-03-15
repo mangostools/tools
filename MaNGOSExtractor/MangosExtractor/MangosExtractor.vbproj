@@ -202,6 +202,7 @@
     <Content Include="favicon.ico" />
     <EmbeddedResource Include="../Common/dbc_classic.xml">
       <Link>Common\dbc_classic.xml</Link>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="../Common/dbc_cata.xml">
       <Link>Common\dbc_cata.xml</Link>
