@@ -123,6 +123,9 @@
     <Compile Include="../Common/Writers/Export2XML.vb">
       <Link>Writers\Export2XML.vb</Link>
     </Compile>
+    <Compile Include="../Common/Writers/Export2MD.vb">
+      <Link>Writers\Export2MD.vb</Link>
+    </Compile>
     <Compile Include="../Common/BSDIFF40.vb">
       <Link>Common\BSDIFF40.vb</Link>
     </Compile>
@@ -181,19 +184,19 @@
     </Content>
     <EmbeddedResource Include="../Common/dbc_classic.xml">
       <Link>Common\dbc_classic.xml</Link>
-    </EmbeddedResource>	
+    </EmbeddedResource>
     <EmbeddedResource Include="../Common/dbc_cata.xml">
       <Link>Common\dbc_cata.xml</Link>
-    </EmbeddedResource>	
+    </EmbeddedResource>
     <EmbeddedResource Include="../Common/dbc_mop.xml">
       <Link>Common\dbc_mop.xml</Link>
-    </EmbeddedResource>	
+    </EmbeddedResource>
     <EmbeddedResource Include="../Common/dbc_tbc.xml">
       <Link>Common\dbc_tbc.xml</Link>
-    </EmbeddedResource>	
+    </EmbeddedResource>
     <EmbeddedResource Include="../Common/dbc_wotlk.xml">
       <Link>Common\dbc_wotlk.xml</Link>
-    </EmbeddedResource>	
+    </EmbeddedResource>
     <None Include="Resources\mangos_foundation.png" />
   </ItemGroup>
   <ItemGroup>

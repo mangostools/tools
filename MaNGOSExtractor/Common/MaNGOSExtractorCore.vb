@@ -2,8 +2,8 @@
 Imports System.Text
 Imports MpqLib
 Imports System.Data
-'Imports System.Text.RegularExpressions
 Imports System.Reflection
+
 
 Namespace Core
     Module MaNGOSExtractorCore
@@ -77,15 +77,15 @@ Namespace Core
         ''' <value></value>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Property alertlist As ListBox
+        Public Property alertlist As Listbox
             Get
                 Return m_alertlist
             End Get
-            Set(value As ListBox)
+            Set(value As Listbox)
                 m_alertlist = value
             End Set
         End Property
-        Private m_alertlist As ListBox
+        Private m_alertlist As Listbox
 
         Public Sub ReadWarcraftExe(ByRef Filename As String)
             Try
@@ -115,6 +115,11 @@ Namespace Core
                             'Skip the cache and updates folders if they exist
                             If thisFolder.FullName.ToLower.Contains("cache") = False And thisFolder.FullName.ToLower.Contains("updates") = False Then
                                 FolderList.Add(thisFolder, thisFolder.FullName)
+#If _MyType <> "Console" Then
+                    Application.doevents()
+#Else
+                                Threading.Thread.Sleep(0)
+#End If
                                 ReadFolders(thisFolder, FolderList)
                             End If
                         Catch ex As Exception
@@ -151,6 +156,11 @@ Namespace Core
 
                 'Process each file found
                 For Each thisFile As MpqLib.Mpq.CFileInfo In FileList
+#If _MyType <> "Console" Then
+                    Application.doevents()
+#Else
+                    Threading.Thread.Sleep(0)
+#End If
                     Dim inbyteData(thisFile.Size - 1) As Byte
                     Dim intFileType As Integer = 0
                     'intFileType = 0  = Unknown
@@ -257,7 +267,11 @@ Namespace Core
                         End If
                     End If
                     '                    Core.exportSQL(DestinationFolder & strSubFolder & "\" & strOriginalName)
-
+#If _MyType <> "Console" Then
+                    Application.doevents()
+#Else
+                    Threading.Thread.Sleep(0)
+#End If
                 Next
             Catch ex As Exception
                 sbOutput.AppendLine(ex.Message)
@@ -283,6 +297,11 @@ Namespace Core
                 FileList = Archive.FindFiles(FileFilter)
 
                 For Each thisFile As MpqLib.Mpq.CFileInfo In FileList
+#If _MyType <> "Console" Then
+                    Application.doevents()
+#Else
+                    Threading.Thread.Sleep(0)
+#End If
                     If thisFile.FileName.Contains("\") = True Then
                         If My.Computer.FileSystem.DirectoryExists(DestinationFolder & "\" & thisFile.FileName.Substring(0, (thisFile.FileName.LastIndexOf("\")))) = False Then
                             Directory.CreateDirectory(DestinationFolder & "\" & thisFile.FileName.Substring(0, (thisFile.FileName.LastIndexOf("\"))))
@@ -378,7 +397,11 @@ Namespace Core
             If intMaxcols > 0 Then
                 For cols As Integer = 0 To intMaxcols Step 4
                     dbcDataTable.Columns.Add("Col" & (cols / 4).ToString(), GetType(String))
-                    'dbcDataTable.Columns.Add("Col" & (cols).ToString(), GetType(String))
+#If _MyType <> "Console" Then
+                    Application.doevents()
+#Else
+                    Threading.Thread.Sleep(0)
+#End If
                 Next
 
                 Dim intMaxRows As Integer = 0
@@ -403,7 +426,11 @@ Namespace Core
                     End If
 
                     For rows As Integer = 0 To intMaxRows
-                        'Try
+#If _MyType <> "Console" Then
+                    Application.doevents()
+#Else
+                        Threading.Thread.Sleep(0)
+#End If
                         If CInt(intMaxRows / intblockcountersize) > 4 Then
                             If rows Mod CInt(intMaxRows / intblockcountersize) = 0 Then
                                 Alert(".", Core.AlertNewLine.NoCRLF)
@@ -435,9 +462,13 @@ Namespace Core
                             thisRow(CInt(cols / 4)) = TempCol
                             '                        Next
                             cols = cols + 4
+#If _MyType <> "Console" Then
+                    Application.doevents()
+#Else
+                            Threading.Thread.Sleep(0)
+#End If
                         End While
                         dbcDataTable.Rows.Add(thisRow)
-                        Threading.Thread.Sleep(0)
                     Next
                 Else 'Empty file
                     Alert("", Core.AlertNewLine.AddCRLF)
@@ -459,8 +490,11 @@ Namespace Core
                     'End If
                     Dim totalCols As Integer = dbcDataTable.Columns.Count() - 1
                     For cols As Integer = 0 To totalCols 'TotalRows Step 4
-                        'Try
-
+#If _MyType <> "Console" Then
+                    Application.doevents()
+#Else
+                        Threading.Thread.Sleep(0)
+#End If
                         If CInt((totalCols / intblockcountersize)) > 0 Then
                             If cols Mod CInt((totalCols / intblockcountersize)) = 0 Then
 
@@ -521,7 +555,11 @@ Namespace Core
                                     'End Try
                                 End If
                             End If
+#If _MyType <> "Console" Then
+                    Application.doevents()
+#Else
                             Threading.Thread.Sleep(0)
+#End If
                         Next
                         'Catch ex As Exception
                         '    Core.Alert("Error: " & ex.Message, MaNGOSExtractorCore.runningAsGui)
@@ -537,18 +575,30 @@ Namespace Core
                                     End If
                                     dbcDataTable.Rows(dbcDataTable.Rows.Count() - 1)(CInt(cols)) = 0
                                 End If
+#If _MyType <> "Console" Then
+                    Application.doevents()
+#Else
                                 Threading.Thread.Sleep(0)
+#End If
                             Next
 
                             If thisStrLength = 0 Then
                                 For thisScanRow As Integer = 0 To dbcDataTable.Rows.Count - 1 Step SteppingAmount
                                     dbcDataTable.Rows(dbcDataTable.Rows.Count() - 1)(CInt(cols)) = 1
                                     dbcDataTable.Rows(thisScanRow)(CInt(cols)) = 0
+#If _MyType <> "Console" Then
+                    Application.doevents()
+#Else
                                     Threading.Thread.Sleep(0)
+#End If
                                 Next
                             End If
                         End If
+#If _MyType <> "Console" Then
+                    Application.doevents()
+#Else
                         Threading.Thread.Sleep(0)
+#End If
                     Next
 
                     'Catch ex As Exception
@@ -647,20 +697,24 @@ Namespace Core
             Dim myFolders As System.IO.DirectoryInfo
             myFolders = New System.IO.DirectoryInfo(OutputFolder & "\DBFilesClient")
 
-
-
-
             Dim Files() As System.IO.FileInfo = myFolders.GetFiles("*.DB?")
             Dim FilelistSorted As New SortedList()
 
             For Each thisFile As System.IO.FileInfo In Files
                 FilelistSorted.Add(thisFile.Name, thisFile.Name)
+#If _MyType <> "Console" Then
+                    Application.doevents()
+#Else
+                Threading.Thread.Sleep(0)
+#End If
             Next
 
             ' For Each file As System.IO.FileInfo In Files 'myFolders.GetFiles("*.DB?")
             For Each fileItem As DictionaryEntry In FilelistSorted 'myFolders.GetFiles("*.DB?")
                 Dim dbcDataTable As New DataTable
-
+#If _MyType <> "Console" Then
+                    Application.doevents()
+#End If
                 'Load the entire DBC into a DataTable to be processed by all exports
                 If ExportCSV = True Or ExportSQL = True Or ExportXML = True Then
                     Alert("", Core.AlertNewLine.AddCRLF)
@@ -689,7 +743,17 @@ Namespace Core
                     Alert("", Core.AlertNewLine.NoCRLF)
                 End If
 
+                ''Export to git MD Files
+                'If exportMD() = True Then
+                '    Alert("Creating MD for " & fileItem.Value, Core.AlertNewLine.AddCRLF)
+                '    Core.exportMD(OutputFolder & "\DBFilesClient" & "\" & fileItem.Value, dbcDataTable, BaseFolder)
+                '    Alert("", Core.AlertNewLine.NoCRLF)
+                'End If
+#If _MyType <> "Console" Then
+                    Application.doevents()
+#Else
                 Threading.Thread.Sleep(0)
+#End If
                 dbcDataTable = Nothing
             Next
         End Sub
@@ -712,6 +776,28 @@ Namespace Core
                     XMLFilename = "dbc_cata.xml"
                 Case "5"
                     XMLFilename = "dbc_mop.xml"
+            End Select
+            Return XMLFilename
+        End Function
+
+        ''' <summary>
+        ''' This function returns the mangosCoreVersion based on the exe
+        ''' </summary>
+        ''' <returns></returns>
+        ''' <remarks></remarks>
+        Public Function returnMangosCoreVersion() As String
+            Dim XMLFilename As String = ""
+            Select Case Core.MajorVersion
+                Case "1"
+                    XMLFilename = "MaNGOSZero"
+                Case "2"
+                    XMLFilename = "MaNGOSOne"
+                Case "3"
+                    XMLFilename = "MaNGOSTwo"
+                Case "4"
+                    XMLFilename = "MaNGOSThree"
+                Case "5"
+                    XMLFilename = "MaNGOSFour"
             End Select
             Return XMLFilename
         End Function
@@ -767,6 +853,11 @@ Namespace Core
                             thisCollection.Add(thisCol, thisFieldNode.Attributes.GetNamedItem("name").InnerText)
                         End If
                         thisFieldNode = thisFieldNode.NextSibling
+#If _MyType <> "Console" Then
+                    Application.doevents()
+#Else
+                        Threading.Thread.Sleep(0)
+#End If
                     Next
                 End If
 

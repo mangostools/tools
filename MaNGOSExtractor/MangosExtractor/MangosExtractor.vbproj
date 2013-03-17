@@ -133,6 +133,9 @@
     <Compile Include="../Common/Writers/Export2XML.vb">
       <Link>Writers\Export2XML.vb</Link>
     </Compile>
+    <Compile Include="../Common/Writers/Export2MD.vb">
+      <Link>Writers\Export2MD.vb</Link>
+    </Compile>
     <Compile Include="../Common/BSDIFF40.vb">
       <Link>Common\BSDIFF40.vb</Link>
     </Compile>

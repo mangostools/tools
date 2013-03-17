@@ -78,6 +78,12 @@ Namespace Core
                             End If
 
                             flds += 1
+#If _MyType <> "Console" Then
+                    Application.doevents()
+#Else
+                            Threading.Thread.Sleep(0)
+#End If
+
                         Next
                     Catch ex As Exception
                         Alert(ex.Message & " - 1", Core.AlertNewLine.AddCRLF)
@@ -85,7 +91,11 @@ Namespace Core
 
                     result.Append(");")
                     sqlWriter.WriteLine(result)
+#If _MyType <> "Console" Then
+                    Application.doevents()
+#Else
                     Threading.Thread.Sleep(0)
+#End If
                 Next
 
                 sqlWriter.Flush()

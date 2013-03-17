@@ -121,6 +121,11 @@ Namespace FileReader
 
                 For i As Integer = 0 To RecordsCount - 1
                     m_rows(i) = reader.ReadBytes(RecordSize)
+#If _MyType <> "Console" Then
+                    Application.doevents()
+#Else
+                    Threading.Thread.Sleep(0)
+#End If
                 Next
 
                 Dim stringTableStart As Integer = CInt(reader.BaseStream.Position)

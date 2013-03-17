@@ -224,6 +224,7 @@ Partial Class MaNGOSExtractor
         Me.Controls.Add(Me.txtBaseFolder)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.btnStartDBC)
+        Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False

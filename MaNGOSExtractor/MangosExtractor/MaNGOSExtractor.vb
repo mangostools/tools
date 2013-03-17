@@ -36,7 +36,7 @@ Public Class MaNGOSExtractor
         End If
 
         If chkDBC.Checked = True Or chkExtractMaps.Checked = True Then
-            'Set the Top level as {Wow Folder}\data
+            'Set the Top level as {Wow Folder}\data then load all the MPQ files
             myFolders = New System.IO.DirectoryInfo(txtBaseFolder.Text & "\data")
 
             'Add the Data folder to the collection before we start walking down the tree
@@ -56,6 +56,11 @@ Public Class MaNGOSExtractor
                     Else
                         colMainFiles.Add(file.FullName, file.FullName)
                     End If
+#If _MyType <> "Console" Then
+                    Application.DoEvents()
+#Else
+                    Threading.Thread.Sleep(0)
+#End If
                 Next
             Next
 
@@ -73,6 +78,11 @@ Public Class MaNGOSExtractor
                 Catch ex As Exception
                     Alert(ex.Message, Core.AlertNewLine.AddCRLF)
                 End Try
+#If _MyType <> "Console" Then
+                Application.DoEvents()
+#Else
+                    Threading.Thread.Sleep(0)
+#End If
             Next
 
             For Each strItem As DictionaryEntry In colMainFiles
@@ -82,6 +92,11 @@ Public Class MaNGOSExtractor
                 Catch ex As Exception
                     Alert(ex.Message, Core.AlertNewLine.AddCRLF)
                 End Try
+#If _MyType <> "Console" Then
+                Application.DoEvents()
+#Else
+                    Threading.Thread.Sleep(0)
+#End If
             Next
 
             For Each strItem As DictionaryEntry In colUpdateFiles
@@ -92,41 +107,16 @@ Public Class MaNGOSExtractor
                 Catch ex As Exception
                     Alert(ex.Message, Core.AlertNewLine.AddCRLF)
                 End Try
-                Threading.Thread.Sleep(0)
+#If _MyType <> "Console" Then
+                Application.DoEvents()
+#Else
+                    Threading.Thread.Sleep(0)
+#End If
             Next
             Alert("Extraction Finished", Core.AlertNewLine.AddCRLF)
         End If
 
         If chkExtractMaps.Checked = True Then
-            ''Set the Top level as {Wow Folder}\data
-            'myFolders = New System.IO.DirectoryInfo(txtBaseFolder.Text & "\data")
-
-            ''Add the Data folder to the collection before we start walking down the tree
-            'colFolders.Add(myFolders, myFolders.FullName)
-
-            ''Build a list of all the subfolders under data
-            'Core.ReadFolders(myFolders, colFolders)
-
-            ''Now we need to walk through the folders, getting the MPQ files along the way
-            'For t As Integer = 1 To colFolders.Count()
-            '    myFolders = colFolders.Item(t)
-            '    For Each file As System.IO.FileInfo In myFolders.GetFiles("*.MPQ")
-            '        If file.FullName.ToLower.Contains("update") = True Or file.FullName.ToLower.Contains("patch") = True Then
-            '            colUpdateFiles.Add(file.FullName, file.FullName)
-            '        ElseIf file.FullName.ToLower.Contains("base") = True Then
-            '            colBaseFiles.Add(file.FullName, file.FullName)
-            '        Else
-            '            colMainFiles.Add(file.FullName, file.FullName)
-            '        End If
-            '    Next
-            'Next
-
-            'If txtOutputFolder.Text.EndsWith("\") = False Then txtOutputFolder.Text = txtOutputFolder.Text & "\"
-            'If My.Computer.FileSystem.DirectoryExists(txtOutputFolder.Text) = False Then
-            '    Directory.CreateDirectory(txtOutputFolder.Text)
-            'End If
-
-
             For Each strItem As DictionaryEntry In colBaseFiles
                 Alert("Reading: " & strItem.Value, Core.AlertNewLine.AddCRLF)
                 Try
@@ -134,6 +124,11 @@ Public Class MaNGOSExtractor
                 Catch ex As Exception
                     Alert(ex.Message, Core.AlertNewLine.AddCRLF)
                 End Try
+#If _MyType <> "Console" Then
+                Application.DoEvents()
+#Else
+                    Threading.Thread.Sleep(0)
+#End If
             Next
 
             For Each strItem As DictionaryEntry In colMainFiles
@@ -143,6 +138,11 @@ Public Class MaNGOSExtractor
                 Catch ex As Exception
                     Alert(ex.Message, Core.AlertNewLine.AddCRLF)
                 End Try
+#If _MyType <> "Console" Then
+                Application.DoEvents()
+#Else
+                    Threading.Thread.Sleep(0)
+#End If
             Next
 
             For Each strItem As DictionaryEntry In colUpdateFiles
@@ -153,12 +153,14 @@ Public Class MaNGOSExtractor
                 Catch ex As Exception
                     Alert(ex.Message, Core.AlertNewLine.AddCRLF)
                 End Try
-                Threading.Thread.Sleep(0)
+#If _MyType <> "Console" Then
+                Application.DoEvents()
+#Else
+                    Threading.Thread.Sleep(0)
+#End If
             Next
             Alert("Extraction Finished", Core.AlertNewLine.AddCRLF)
         End If
-
-
 
         If chkCSV.Checked = True Or chkSQL.Checked = True Or chkExportXML.Checked = True Then
             'Now that we have all the DBC's extracted and patched, we need to check the export options and export data
@@ -231,16 +233,22 @@ Public Class MaNGOSExtractor
             '                If chkCSV.Checked = True Or chkSQL.Checked = True Then
             Alert("Loading WBC " & file.Name & " into memory", Core.AlertNewLine.AddCRLF)
             loadDBCtoDataTable(txtBaseFolder.Text & "\CACHE\WDB\engb" & "\" & file.Name, dbcDataTable)
+#If _MyType <> "Console" Then
             Application.DoEvents()
+#Else
+                    Threading.Thread.Sleep(0)
+#End If
+
             'End If
 
             ' If chkSQL.Checked = True Then
             Alert("Creating SQL for " & file.Name, Core.AlertNewLine.AddCRLF)
             exportSQL(txtOutputFolder.Text & "\" & file.Name, dbcDataTable, txtBaseFolder.Text)
+#If _MyType <> "Console" Then
             Application.DoEvents()
-            ' End If
-
-
+#Else
+                    Threading.Thread.Sleep(0)
+#End If
         Next
         Alert("Finished Exporting", Core.AlertNewLine.AddCRLF)
         'End If
