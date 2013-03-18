@@ -162,9 +162,9 @@ Public Class MaNGOSExtractor
             Alert("Extraction Finished", Core.AlertNewLine.AddCRLF)
         End If
 
-        If chkCSV.Checked = True Or chkSQL.Checked = True Or chkExportXML.Checked = True Then
+        If chkCSV.Checked = True Or chkSQL.Checked = True Or chkExportXML.Checked = True Or chkExportMD.Checked = True Then
             'Now that we have all the DBC's extracted and patched, we need to check the export options and export data
-            ExportDBCFiles(txtBaseFolder.Text, txtOutputFolder.Text, chkCSV.Checked, chkSQL.Checked, chkExportXML.Checked)
+            ExportDBCFiles(txtBaseFolder.Text, txtOutputFolder.Text, chkCSV.Checked, chkSQL.Checked, chkExportXML.Checked, chkExportMD.Checked)
             Alert("Finished Exporting", Core.AlertNewLine.AddCRLF)
         End If
 

@@ -19,7 +19,7 @@ Namespace Core
         Private m_Finished As Action(Of Integer)
 
 
-        Public Function exportMD(ByRef Filename As String, ByRef DBCDataTable As DataTable, ByRef sourceFolder As String) As Boolean
+        Public Function exportMD(ByRef sourceFolder As String, ByRef Filename As String, ByRef DBCDataTable As DataTable) As Boolean
             Dim intMaxRows As Integer = DBCDataTable.Rows.Count() - 1
             Dim intMaxCols As Integer = DBCDataTable.Columns.Count() - 1
 

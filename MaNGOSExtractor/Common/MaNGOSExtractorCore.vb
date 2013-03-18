@@ -688,7 +688,7 @@ Namespace Core
         ''' <param name="ExportSQL"></param>
         ''' <param name="ExportXML"></param>
         ''' <remarks></remarks>
-        Public Sub ExportDBCFiles(ByRef BaseFolder As String, ByRef OutputFolder As String, ByRef ExportCSV As Boolean, ByRef ExportSQL As Boolean, ByRef ExportXML As Boolean)
+        Public Sub ExportDBCFiles(ByRef BaseFolder As String, ByRef OutputFolder As String, ByRef ExportCSV As Boolean, ByRef ExportSQL As Boolean, ByRef ExportXML As Boolean, ByRef ExportMD As Boolean)
             'Now that we have all the DBC's extracted and patched, we need to check the export options and export data
             If OutputFolder.EndsWith("\") = False Then OutputFolder = OutputFolder & "\"
             If My.Computer.FileSystem.DirectoryExists(OutputFolder & "DBFilesClient\") = False Then
@@ -703,7 +703,7 @@ Namespace Core
             For Each thisFile As System.IO.FileInfo In Files
                 FilelistSorted.Add(thisFile.Name, thisFile.Name)
 #If _MyType <> "Console" Then
-                    Application.doevents()
+                Application.DoEvents()
 #Else
                 Threading.Thread.Sleep(0)
 #End If
@@ -713,10 +713,10 @@ Namespace Core
             For Each fileItem As DictionaryEntry In FilelistSorted 'myFolders.GetFiles("*.DB?")
                 Dim dbcDataTable As New DataTable
 #If _MyType <> "Console" Then
-                    Application.doevents()
+                Application.DoEvents()
 #End If
                 'Load the entire DBC into a DataTable to be processed by all exports
-                If ExportCSV = True Or ExportSQL = True Or ExportXML = True Then
+                If ExportCSV = True Or ExportSQL = True Or ExportXML = True Or ExportMD = True Then
                     Alert("", Core.AlertNewLine.AddCRLF)
                     Alert(fileItem.Value, Core.AlertNewLine.NoCRLF)
                     loadDBCtoDataTable(OutputFolder & "\DBFilesClient" & "\" & fileItem.Value, dbcDataTable)
@@ -743,14 +743,14 @@ Namespace Core
                     Alert("", Core.AlertNewLine.NoCRLF)
                 End If
 
-                ''Export to git MD Files
-                'If exportMD() = True Then
-                '    Alert("Creating MD for " & fileItem.Value, Core.AlertNewLine.AddCRLF)
-                '    Core.exportMD(OutputFolder & "\DBFilesClient" & "\" & fileItem.Value, dbcDataTable, BaseFolder)
-                '    Alert("", Core.AlertNewLine.NoCRLF)
-                'End If
+                'Export to git MD Files
+                If ExportMD = True Then
+                    Alert("Creating MD for " & fileItem.Value, Core.AlertNewLine.AddCRLF)
+                    Core.exportMD(BaseFolder, OutputFolder & "\DBFilesClient" & "\" & fileItem.Value, dbcDataTable)
+                    Alert("", Core.AlertNewLine.NoCRLF)
+                End If
 #If _MyType <> "Console" Then
-                    Application.doevents()
+                Application.DoEvents()
 #Else
                 Threading.Thread.Sleep(0)
 #End If

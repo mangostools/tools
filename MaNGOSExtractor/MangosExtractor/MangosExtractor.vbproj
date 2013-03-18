@@ -71,7 +71,7 @@
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>favicon.ico</ApplicationIcon>
+    <ApplicationIcon>mangostools_new_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MpqLib, Version=1.0.3955.35027, Culture=neutral, processorArchitecture=x86">
@@ -203,6 +203,7 @@
       <Link>Common\MpqLib.xml</Link>
     </Content>
     <Content Include="favicon.ico" />
+    <Content Include="mangostools_new_icon.ico" />
     <EmbeddedResource Include="../Common/dbc_classic.xml">
       <Link>Common\dbc_classic.xml</Link>
       <SubType>Designer</SubType>

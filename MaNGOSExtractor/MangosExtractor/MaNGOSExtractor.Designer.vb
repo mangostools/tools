@@ -29,18 +29,25 @@ Partial Class MaNGOSExtractor
         Me.BtnQuit = New System.Windows.Forms.Button()
         Me.txtOutputFolder = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.chkDBC = New System.Windows.Forms.CheckBox()
-        Me.chkSQL = New System.Windows.Forms.CheckBox()
-        Me.chkCSV = New System.Windows.Forms.CheckBox()
         Me.lstMainLog = New System.Windows.Forms.ListBox()
         Me.brnWDB = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.btnSelectBaseFolder = New System.Windows.Forms.Button()
         Me.btnSelectOutputFolder = New System.Windows.Forms.Button()
+        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.chkExportXML = New System.Windows.Forms.CheckBox()
+        Me.chkCSV = New System.Windows.Forms.CheckBox()
+        Me.chkSQL = New System.Windows.Forms.CheckBox()
+        Me.Panel2 = New System.Windows.Forms.Panel()
         Me.chkExtractMaps = New System.Windows.Forms.CheckBox()
+        Me.chkDBC = New System.Windows.Forms.CheckBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.chkExportMD = New System.Windows.Forms.CheckBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel1.SuspendLayout()
+        Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnStartDBC
@@ -97,36 +104,6 @@ Partial Class MaNGOSExtractor
         Me.Label3.TabIndex = 7
         Me.Label3.Text = "Output Folder"
         '
-        'chkDBC
-        '
-        Me.chkDBC.AutoSize = True
-        Me.chkDBC.Location = New System.Drawing.Point(12, 87)
-        Me.chkDBC.Name = "chkDBC"
-        Me.chkDBC.Size = New System.Drawing.Size(91, 17)
-        Me.chkDBC.TabIndex = 5
-        Me.chkDBC.Text = "Extract DBC's"
-        Me.chkDBC.UseVisualStyleBackColor = True
-        '
-        'chkSQL
-        '
-        Me.chkSQL.AutoSize = True
-        Me.chkSQL.Location = New System.Drawing.Point(12, 110)
-        Me.chkSQL.Name = "chkSQL"
-        Me.chkSQL.Size = New System.Drawing.Size(80, 17)
-        Me.chkSQL.TabIndex = 6
-        Me.chkSQL.Text = "Export SQL"
-        Me.chkSQL.UseVisualStyleBackColor = True
-        '
-        'chkCSV
-        '
-        Me.chkCSV.AutoSize = True
-        Me.chkCSV.Location = New System.Drawing.Point(12, 133)
-        Me.chkCSV.Name = "chkCSV"
-        Me.chkCSV.Size = New System.Drawing.Size(80, 17)
-        Me.chkCSV.TabIndex = 7
-        Me.chkCSV.Text = "Export CSV"
-        Me.chkCSV.UseVisualStyleBackColor = True
-        '
         'lstMainLog
         '
         Me.lstMainLog.BackColor = System.Drawing.SystemColors.ActiveCaption
@@ -135,9 +112,9 @@ Partial Class MaNGOSExtractor
         Me.lstMainLog.ForeColor = System.Drawing.Color.Black
         Me.lstMainLog.FormattingEnabled = True
         Me.lstMainLog.ItemHeight = 12
-        Me.lstMainLog.Location = New System.Drawing.Point(102, 58)
+        Me.lstMainLog.Location = New System.Drawing.Point(106, 58)
         Me.lstMainLog.Name = "lstMainLog"
-        Me.lstMainLog.Size = New System.Drawing.Size(686, 396)
+        Me.lstMainLog.Size = New System.Drawing.Size(682, 396)
         Me.lstMainLog.TabIndex = 13
         '
         'brnWDB
@@ -182,25 +159,106 @@ Partial Class MaNGOSExtractor
         Me.btnSelectOutputFolder.Text = "…"
         Me.btnSelectOutputFolder.UseVisualStyleBackColor = True
         '
+        'Panel1
+        '
+        Me.Panel1.Controls.Add(Me.chkExportMD)
+        Me.Panel1.Controls.Add(Me.chkExportXML)
+        Me.Panel1.Controls.Add(Me.chkCSV)
+        Me.Panel1.Controls.Add(Me.chkSQL)
+        Me.Panel1.Location = New System.Drawing.Point(5, 202)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(95, 101)
+        Me.Panel1.TabIndex = 18
+        '
         'chkExportXML
         '
         Me.chkExportXML.AutoSize = True
-        Me.chkExportXML.Location = New System.Drawing.Point(12, 156)
+        Me.chkExportXML.Location = New System.Drawing.Point(3, 49)
         Me.chkExportXML.Name = "chkExportXML"
         Me.chkExportXML.Size = New System.Drawing.Size(81, 17)
-        Me.chkExportXML.TabIndex = 16
+        Me.chkExportXML.TabIndex = 19
         Me.chkExportXML.Text = "Export XML"
         Me.chkExportXML.UseVisualStyleBackColor = True
+        '
+        'chkCSV
+        '
+        Me.chkCSV.AutoSize = True
+        Me.chkCSV.Location = New System.Drawing.Point(3, 26)
+        Me.chkCSV.Name = "chkCSV"
+        Me.chkCSV.Size = New System.Drawing.Size(80, 17)
+        Me.chkCSV.TabIndex = 18
+        Me.chkCSV.Text = "Export CSV"
+        Me.chkCSV.UseVisualStyleBackColor = True
+        '
+        'chkSQL
+        '
+        Me.chkSQL.AutoSize = True
+        Me.chkSQL.Location = New System.Drawing.Point(3, 3)
+        Me.chkSQL.Name = "chkSQL"
+        Me.chkSQL.Size = New System.Drawing.Size(80, 17)
+        Me.chkSQL.TabIndex = 17
+        Me.chkSQL.Text = "Export SQL"
+        Me.chkSQL.UseVisualStyleBackColor = True
+        '
+        'Panel2
+        '
+        Me.Panel2.Controls.Add(Me.chkExtractMaps)
+        Me.Panel2.Controls.Add(Me.chkDBC)
+        Me.Panel2.Location = New System.Drawing.Point(5, 111)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(95, 52)
+        Me.Panel2.TabIndex = 20
         '
         'chkExtractMaps
         '
         Me.chkExtractMaps.AutoSize = True
-        Me.chkExtractMaps.Location = New System.Drawing.Point(12, 179)
+        Me.chkExtractMaps.Enabled = False
+        Me.chkExtractMaps.Location = New System.Drawing.Point(3, 26)
         Me.chkExtractMaps.Name = "chkExtractMaps"
         Me.chkExtractMaps.Size = New System.Drawing.Size(88, 17)
-        Me.chkExtractMaps.TabIndex = 17
+        Me.chkExtractMaps.TabIndex = 19
         Me.chkExtractMaps.Text = "Extract Maps"
         Me.chkExtractMaps.UseVisualStyleBackColor = True
+        '
+        'chkDBC
+        '
+        Me.chkDBC.AutoSize = True
+        Me.chkDBC.Checked = True
+        Me.chkDBC.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkDBC.Location = New System.Drawing.Point(3, 3)
+        Me.chkDBC.Name = "chkDBC"
+        Me.chkDBC.Size = New System.Drawing.Size(91, 17)
+        Me.chkDBC.TabIndex = 18
+        Me.chkDBC.Text = "Extract DBC's"
+        Me.chkDBC.UseVisualStyleBackColor = True
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(2, 95)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(93, 13)
+        Me.Label2.TabIndex = 21
+        Me.Label2.Text = "Extraction Options"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(2, 186)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(76, 13)
+        Me.Label4.TabIndex = 22
+        Me.Label4.Text = "Export Options"
+        '
+        'chkExportMD
+        '
+        Me.chkExportMD.AutoSize = True
+        Me.chkExportMD.Location = New System.Drawing.Point(4, 72)
+        Me.chkExportMD.Name = "chkExportMD"
+        Me.chkExportMD.Size = New System.Drawing.Size(76, 17)
+        Me.chkExportMD.TabIndex = 20
+        Me.chkExportMD.Text = "Export MD"
+        Me.chkExportMD.UseVisualStyleBackColor = True
         '
         'MaNGOSExtractor
         '
@@ -208,16 +266,15 @@ Partial Class MaNGOSExtractor
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.ClientSize = New System.Drawing.Size(794, 458)
-        Me.Controls.Add(Me.chkExtractMaps)
-        Me.Controls.Add(Me.chkExportXML)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.Panel2)
+        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.btnSelectOutputFolder)
         Me.Controls.Add(Me.btnSelectBaseFolder)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.brnWDB)
         Me.Controls.Add(Me.lstMainLog)
-        Me.Controls.Add(Me.chkCSV)
-        Me.Controls.Add(Me.chkSQL)
-        Me.Controls.Add(Me.chkDBC)
         Me.Controls.Add(Me.txtOutputFolder)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.BtnQuit)
@@ -233,6 +290,10 @@ Partial Class MaNGOSExtractor
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "MaNGOSExtractor"
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
+        Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -243,16 +304,21 @@ Partial Class MaNGOSExtractor
     Friend WithEvents BtnQuit As System.Windows.Forms.Button
     Friend WithEvents txtOutputFolder As System.Windows.Forms.TextBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents chkDBC As System.Windows.Forms.CheckBox
-    Friend WithEvents chkSQL As System.Windows.Forms.CheckBox
-    Friend WithEvents chkCSV As System.Windows.Forms.CheckBox
     Friend WithEvents lstMainLog As System.Windows.Forms.ListBox
     Friend WithEvents brnWDB As System.Windows.Forms.Button
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents FolderBrowserDialog1 As System.Windows.Forms.FolderBrowserDialog
     Friend WithEvents btnSelectBaseFolder As System.Windows.Forms.Button
     Friend WithEvents btnSelectOutputFolder As System.Windows.Forms.Button
+    Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents chkExportXML As System.Windows.Forms.CheckBox
+    Friend WithEvents chkCSV As System.Windows.Forms.CheckBox
+    Friend WithEvents chkSQL As System.Windows.Forms.CheckBox
+    Friend WithEvents Panel2 As System.Windows.Forms.Panel
     Friend WithEvents chkExtractMaps As System.Windows.Forms.CheckBox
+    Friend WithEvents chkDBC As System.Windows.Forms.CheckBox
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents chkExportMD As System.Windows.Forms.CheckBox
 
 End Class

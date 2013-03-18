@@ -17,6 +17,8 @@ Module AD2
             Console.WriteLine("-e {1/2/3} 1 Maps Only, 2 DBC Only, 3 both DBC and Maps   Default is 3")
             Console.WriteLine("-s create .SQL file for each .DBC, requires -o switch")
             Console.WriteLine("-c create .CSV file for each .DBC, requires -o switch")
+            Console.WriteLine("-x create .XML file for each .DBC, requires -o switch")
+            Console.WriteLine("-m create .MD file for each .DBC, requires -o switch")
             End
         Else
             Dim strExtractionLevel As String = ""
@@ -27,7 +29,8 @@ Module AD2
             Dim blnExtract As Boolean = False
             Dim blnExportToSQL As Boolean = False
             Dim blnExportToCSV As Boolean = False
-
+            Dim blnExportToXML As Boolean = False
+            Dim blnExportToMD As Boolean = False
             For Commands As Integer = 0 To intMaxCommands
                 Select Case My.Application.CommandLineArgs(Commands)
                     Case "-e"
@@ -95,6 +98,18 @@ Module AD2
                         End If
                     Case "-c"
                         blnExportToCSV = True
+                        If System.IO.Directory.Exists(strOutputFolder) = False Then
+                            Console.WriteLine("Output Folder: *ERROR* - Folder '" & strOutputFolder & "' could not be found")
+                            blnCMDError = True
+                        End If
+                    Case "-x"
+                        blnExportToXML = True
+                        If System.IO.Directory.Exists(strOutputFolder) = False Then
+                            Console.WriteLine("Output Folder: *ERROR* - Folder '" & strOutputFolder & "' could not be found")
+                            blnCMDError = True
+                        End If
+                    Case "-m"
+                        blnExportToMD = True
                         If System.IO.Directory.Exists(strOutputFolder) = False Then
                             Console.WriteLine("Output Folder: *ERROR* - Folder '" & strOutputFolder & "' could not be found")
                             blnCMDError = True
@@ -199,13 +214,11 @@ Module AD2
             End If
 
 
-            'Load the entire DBC into a DataTable to be processed by both exports
-            If blnExportToSQL = True Or blnExportToCSV = True Then
-                ExportDBCFiles(strInputFolder, strOutputFolder, blnExportToCSV, blnExportToSQL, False)
+            'Pass the Parameters to the export routine
+            If blnExportToSQL = True Or blnExportToCSV = True Or blnExportToXML = True Or blnExportToMD = True Then
+                ExportDBCFiles(strInputFolder, strOutputFolder, blnExportToCSV, blnExportToSQL, blnExportToXML, blnExportToMD)
                 Alert("Export Finished", Core.AlertNewLine.AddCRLF)
             End If
-
-
 
             End
         End If
