@@ -116,7 +116,8 @@ Public Class MaNGOSExtractor
             Alert("Extraction Finished", Core.AlertNewLine.AddCRLF)
         End If
 
-        If chkExtractMaps.Checked = True Then
+
+        If chkExtractADT.Checked = True Then
             For Each strItem As DictionaryEntry In colBaseFiles
                 Alert("Reading: " & strItem.Value, Core.AlertNewLine.AddCRLF)
                 Try
@@ -124,10 +125,15 @@ Public Class MaNGOSExtractor
                 Catch ex As Exception
                     Alert(ex.Message, Core.AlertNewLine.AddCRLF)
                 End Try
+                Try
+                    Core.ExtractFilesGeneric(strItem.Value, "*.wdt", txtOutputFolder.Text)
+                Catch ex As Exception
+                    Alert(ex.Message, Core.AlertNewLine.AddCRLF)
+                End Try
 #If _MyType <> "Console" Then
                 Application.DoEvents()
 #Else
-                    Threading.Thread.Sleep(0)
+                                            Threading.Thread.Sleep(0)
 #End If
             Next
 
@@ -138,10 +144,15 @@ Public Class MaNGOSExtractor
                 Catch ex As Exception
                     Alert(ex.Message, Core.AlertNewLine.AddCRLF)
                 End Try
+                Try
+                    Core.ExtractFilesGeneric(strItem.Value, "*.wdt", txtOutputFolder.Text)
+                Catch ex As Exception
+                    Alert(ex.Message, Core.AlertNewLine.AddCRLF)
+                End Try
 #If _MyType <> "Console" Then
                 Application.DoEvents()
 #Else
-                    Threading.Thread.Sleep(0)
+                                            Threading.Thread.Sleep(0)
 #End If
             Next
 
@@ -153,12 +164,67 @@ Public Class MaNGOSExtractor
                 Catch ex As Exception
                     Alert(ex.Message, Core.AlertNewLine.AddCRLF)
                 End Try
+                Try
+                    Core.ExtractFilesGeneric(strItem.Value, "*.wdt", txtOutputFolder.Text)
+                Catch ex As Exception
+                    Alert(ex.Message, Core.AlertNewLine.AddCRLF)
+                End Try
 #If _MyType <> "Console" Then
                 Application.DoEvents()
 #Else
-                    Threading.Thread.Sleep(0)
+                                            Threading.Thread.Sleep(0)
 #End If
             Next
+        End If
+
+        If chkExtractMaps.Checked = True Then
+            'Load the DBC Data into the Dictionary dictMaps
+            Dim dtMaps As New DataTable
+            Dim dictMaps As New Dictionary(Of Integer, String)
+
+            dtMaps = loadDBCtoDataTable(txtOutputFolder.Text & "\DBFilesClient" & "\map.dbc", dtMaps)
+
+            For counter As Integer = 0 To dtMaps.Rows.Count() - 2
+                'Debug.WriteLine("MapID: {0} Name: {1}", dtMaps.Rows(counter)(0), dtMaps.Rows(counter)(1))
+                dictMaps.Add(dtMaps.Rows(counter)(0), dtMaps.Rows(counter)(1))
+            Next
+
+            'Load the DBC Data into the Dictionary dictAreaTable
+            Dim dtAreaTable As New DataTable
+            Dim dictAreaTable As New Dictionary(Of Integer, Integer)
+
+            dtAreaTable = loadDBCtoDataTable(txtOutputFolder.Text & "\DBFilesClient" & "\AreaTable.dbc", dtAreaTable)
+
+            For counter As Integer = 0 To dtAreaTable.Rows.Count() - 2
+                dictAreaTable.Add(dtAreaTable.Rows(counter)(0), dtAreaTable.Rows(counter)(3))
+            Next
+
+            'Load the DBC Data into the Dictionary dictLiquidType
+            Dim dtLiquidType As New DataTable
+            Dim dictLiquidType As New Dictionary(Of Integer, Integer)
+
+            dtLiquidType = loadDBCtoDataTable(txtOutputFolder.Text & "\DBFilesClient" & "\LiquidType.dbc", dtLiquidType)
+
+            For counter As Integer = 0 To dtLiquidType.Rows.Count() - 2
+                dictLiquidType.Add(dtLiquidType.Rows(counter)(0), dtLiquidType.Rows(counter)(3))
+            Next
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             Alert("Extraction Finished", Core.AlertNewLine.AddCRLF)
         End If
 

@@ -316,7 +316,11 @@ Namespace Core
                         My.Computer.FileSystem.DeleteFile(DestinationFolder & "\" & thisFile.FileName)
                     End If
                     Archive.ExportFile(thisFile.FileName, DestinationFolder & "\" & thisFile.FileName)
+#If _MyType <> "Console" Then
+                    Application.doevents()
+#Else
                     Threading.Thread.Sleep(0)
+#End If
                 Next
             Catch ex As Exception
                 sbOutput.AppendLine(ex.Message)

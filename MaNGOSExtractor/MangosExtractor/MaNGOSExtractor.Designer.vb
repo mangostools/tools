@@ -36,6 +36,7 @@ Partial Class MaNGOSExtractor
         Me.btnSelectBaseFolder = New System.Windows.Forms.Button()
         Me.btnSelectOutputFolder = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.chkExportMD = New System.Windows.Forms.CheckBox()
         Me.chkExportXML = New System.Windows.Forms.CheckBox()
         Me.chkCSV = New System.Windows.Forms.CheckBox()
         Me.chkSQL = New System.Windows.Forms.CheckBox()
@@ -44,7 +45,7 @@ Partial Class MaNGOSExtractor
         Me.chkDBC = New System.Windows.Forms.CheckBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.chkExportMD = New System.Windows.Forms.CheckBox()
+        Me.chkExtractADT = New System.Windows.Forms.CheckBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -170,6 +171,16 @@ Partial Class MaNGOSExtractor
         Me.Panel1.Size = New System.Drawing.Size(95, 101)
         Me.Panel1.TabIndex = 18
         '
+        'chkExportMD
+        '
+        Me.chkExportMD.AutoSize = True
+        Me.chkExportMD.Location = New System.Drawing.Point(4, 72)
+        Me.chkExportMD.Name = "chkExportMD"
+        Me.chkExportMD.Size = New System.Drawing.Size(76, 17)
+        Me.chkExportMD.TabIndex = 20
+        Me.chkExportMD.Text = "Export MD"
+        Me.chkExportMD.UseVisualStyleBackColor = True
+        '
         'chkExportXML
         '
         Me.chkExportXML.AutoSize = True
@@ -202,22 +213,22 @@ Partial Class MaNGOSExtractor
         '
         'Panel2
         '
+        Me.Panel2.Controls.Add(Me.chkExtractADT)
         Me.Panel2.Controls.Add(Me.chkExtractMaps)
         Me.Panel2.Controls.Add(Me.chkDBC)
         Me.Panel2.Location = New System.Drawing.Point(5, 111)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(95, 52)
+        Me.Panel2.Size = New System.Drawing.Size(95, 72)
         Me.Panel2.TabIndex = 20
         '
         'chkExtractMaps
         '
         Me.chkExtractMaps.AutoSize = True
-        Me.chkExtractMaps.Enabled = False
         Me.chkExtractMaps.Location = New System.Drawing.Point(3, 26)
         Me.chkExtractMaps.Name = "chkExtractMaps"
-        Me.chkExtractMaps.Size = New System.Drawing.Size(88, 17)
+        Me.chkExtractMaps.Size = New System.Drawing.Size(86, 17)
         Me.chkExtractMaps.TabIndex = 19
-        Me.chkExtractMaps.Text = "Extract Maps"
+        Me.chkExtractMaps.Text = "Create Maps"
         Me.chkExtractMaps.UseVisualStyleBackColor = True
         '
         'chkDBC
@@ -250,15 +261,15 @@ Partial Class MaNGOSExtractor
         Me.Label4.TabIndex = 22
         Me.Label4.Text = "Export Options"
         '
-        'chkExportMD
+        'chkExtractADT
         '
-        Me.chkExportMD.AutoSize = True
-        Me.chkExportMD.Location = New System.Drawing.Point(4, 72)
-        Me.chkExportMD.Name = "chkExportMD"
-        Me.chkExportMD.Size = New System.Drawing.Size(76, 17)
-        Me.chkExportMD.TabIndex = 20
-        Me.chkExportMD.Text = "Export MD"
-        Me.chkExportMD.UseVisualStyleBackColor = True
+        Me.chkExtractADT.AutoSize = True
+        Me.chkExtractADT.Location = New System.Drawing.Point(8, 40)
+        Me.chkExtractADT.Name = "chkExtractADT"
+        Me.chkExtractADT.Size = New System.Drawing.Size(84, 17)
+        Me.chkExtractADT.TabIndex = 20
+        Me.chkExtractADT.Text = "Extract ADT"
+        Me.chkExtractADT.UseVisualStyleBackColor = True
         '
         'MaNGOSExtractor
         '
@@ -320,5 +331,6 @@ Partial Class MaNGOSExtractor
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents chkExportMD As System.Windows.Forms.CheckBox
+    Friend WithEvents chkExtractADT As System.Windows.Forms.CheckBox
 
 End Class

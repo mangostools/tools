@@ -103,7 +103,7 @@ Namespace Core
         ''' <param name="tablename"></param>
         ''' <remarks></remarks>
         Private Sub WriteMDStructure(sqlWriter As StreamWriter, data As DataTable, tablename As String, ByRef sourceFolder As String)
-            sqlWriter.WriteLine("Back to [[Known DBC Files|Dbc-files]] summary")
+            sqlWriter.WriteLine("Back to [[Known DBC Files|" & MDPageLink(tablename) & "]] summary")
             sqlWriter.WriteLine("##### Description of the DBC file " & tablename & " for v" & Core.FullVersion & " (Build " & Core.BuildNo & ")")
             sqlWriter.WriteLine("")
             sqlWriter.Write("Other Versions: ")
@@ -171,6 +171,21 @@ Namespace Core
             End If
             sqlWriter.WriteLine()
         End Sub
+
+
+        Private Function MDPageLink(ByVal filename As String) As String
+            Dim retString As String = ""
+            If InStr("ABCDEFGHabcdefgh", filename.Substring(0, 1)) > 0 Then
+                'If filename.Substring(0, 1).Contains("ABCEEFGH") Then
+                retString = "Dbc-files"
+            ElseIf InStr("IJKLMNOPQRijklmnopqr", filename.Substring(0, 1)) > 0 Then
+                retString = "Dbc-files2"
+            Else
+                retString = "Dbc-files3"
+            End If
+
+            Return retString
+        End Function
 
     End Module
 End Namespace
