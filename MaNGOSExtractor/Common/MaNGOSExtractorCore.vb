@@ -116,7 +116,7 @@ Namespace Core
                             If thisFolder.FullName.ToLower.Contains("cache") = False And thisFolder.FullName.ToLower.Contains("updates") = False Then
                                 FolderList.Add(thisFolder, thisFolder.FullName)
 #If _MyType <> "Console" Then
-                    Application.doevents()
+                                Application.DoEvents()
 #Else
                                 Threading.Thread.Sleep(0)
 #End If
@@ -380,6 +380,18 @@ Namespace Core
         ''' <param name="dbcDataTable"></param>
         ''' <returns></returns>
         ''' <remarks></remarks>
+        Public Function loadDBCtoDataTable(ByRef Filename As String) As DataTable
+            Dim dbcDataTable As New DataTable
+            Return loadDBCtoDataTable(Filename, dbcDataTable)
+        End Function
+
+        ''' <summary>
+        ''' Loads a DBC file data into a datatable 
+        ''' </summary>
+        ''' <param name="Filename"></param>
+        ''' <param name="dbcDataTable"></param>
+        ''' <returns></returns>
+        ''' <remarks></remarks>
         Public Function loadDBCtoDataTable(ByRef Filename As String, ByRef dbcDataTable As DataTable) As DataTable
             Dim m_reader As FileReader.IWowClientDBReader
 
@@ -405,7 +417,7 @@ Namespace Core
                 For cols As Integer = 0 To intMaxcols Step 4
                     dbcDataTable.Columns.Add("Col" & (cols / 4).ToString(), GetType(String))
 #If _MyType <> "Console" Then
-                    Application.doevents()
+                    Application.DoEvents()
 #Else
                     Threading.Thread.Sleep(0)
 #End If
@@ -434,7 +446,7 @@ Namespace Core
 
                     For rows As Integer = 0 To intMaxRows
 #If _MyType <> "Console" Then
-                    Application.doevents()
+                        Application.DoEvents()
 #Else
                         Threading.Thread.Sleep(0)
 #End If
@@ -470,7 +482,7 @@ Namespace Core
                             '                        Next
                             cols = cols + 4
 #If _MyType <> "Console" Then
-                    Application.doevents()
+                            Application.DoEvents()
 #Else
                             Threading.Thread.Sleep(0)
 #End If
@@ -498,7 +510,7 @@ Namespace Core
                     Dim totalCols As Integer = dbcDataTable.Columns.Count() - 1
                     For cols As Integer = 0 To totalCols 'TotalRows Step 4
 #If _MyType <> "Console" Then
-                    Application.doevents()
+                        Application.DoEvents()
 #Else
                         Threading.Thread.Sleep(0)
 #End If
@@ -563,7 +575,7 @@ Namespace Core
                                 End If
                             End If
 #If _MyType <> "Console" Then
-                    Application.doevents()
+                            Application.DoEvents()
 #Else
                             Threading.Thread.Sleep(0)
 #End If
@@ -583,7 +595,7 @@ Namespace Core
                                     dbcDataTable.Rows(dbcDataTable.Rows.Count() - 1)(CInt(cols)) = 0
                                 End If
 #If _MyType <> "Console" Then
-                    Application.doevents()
+                                Application.DoEvents()
 #Else
                                 Threading.Thread.Sleep(0)
 #End If
@@ -594,7 +606,7 @@ Namespace Core
                                     dbcDataTable.Rows(dbcDataTable.Rows.Count() - 1)(CInt(cols)) = 1
                                     dbcDataTable.Rows(thisScanRow)(CInt(cols)) = 0
 #If _MyType <> "Console" Then
-                    Application.doevents()
+                                    Application.DoEvents()
 #Else
                                     Threading.Thread.Sleep(0)
 #End If
@@ -602,7 +614,7 @@ Namespace Core
                             End If
                         End If
 #If _MyType <> "Console" Then
-                    Application.doevents()
+                        Application.DoEvents()
 #Else
                         Threading.Thread.Sleep(0)
 #End If
@@ -726,7 +738,7 @@ Namespace Core
                 If ExportCSV = True Or ExportSQL = True Or ExportXML = True Or ExportMD = True Then
                     Alert("", Core.AlertNewLine.AddCRLF)
                     Alert(fileItem.Value, Core.AlertNewLine.NoCRLF)
-                    loadDBCtoDataTable(OutputFolder & "\DBFilesClient" & "\" & fileItem.Value, dbcDataTable)
+                    dbcDataTable = loadDBCtoDataTable(OutputFolder & "\DBFilesClient" & "\" & fileItem.Value)
                 End If
 
                 'Export to SQL Files
@@ -854,14 +866,13 @@ Namespace Core
                     maxCols = thisFieldCountNode.InnerText '<field type="bigint" name="id" include="y" />
                     thisFieldNode = thisFieldCountNode.NextSibling
 
-                    '                thisFieldNode = thisNode.SelectSingleNode("field")
                     For thisCol As Integer = 0 To maxCols - 1
                         If Not IsNothing(thisFieldNode) Then
                             thisCollection.Add(thisCol, thisFieldNode.Attributes.GetNamedItem("name").InnerText)
                         End If
                         thisFieldNode = thisFieldNode.NextSibling
 #If _MyType <> "Console" Then
-                    Application.doevents()
+                        Application.DoEvents()
 #Else
                         Threading.Thread.Sleep(0)
 #End If
@@ -871,7 +882,5 @@ Namespace Core
             End If
             Return thisCollection
         End Function
-
-
     End Module
 End Namespace

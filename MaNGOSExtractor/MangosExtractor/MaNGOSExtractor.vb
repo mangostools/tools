@@ -59,7 +59,7 @@ Public Class MaNGOSExtractor
 #If _MyType <> "Console" Then
                     Application.DoEvents()
 #Else
-                    Threading.Thread.Sleep(0)
+                Threading.Thread.Sleep(0)
 #End If
                 Next
             Next
@@ -81,7 +81,7 @@ Public Class MaNGOSExtractor
 #If _MyType <> "Console" Then
                 Application.DoEvents()
 #Else
-                    Threading.Thread.Sleep(0)
+                Threading.Thread.Sleep(0)
 #End If
             Next
 
@@ -95,7 +95,7 @@ Public Class MaNGOSExtractor
 #If _MyType <> "Console" Then
                 Application.DoEvents()
 #Else
-                    Threading.Thread.Sleep(0)
+                Threading.Thread.Sleep(0)
 #End If
             Next
 
@@ -110,7 +110,7 @@ Public Class MaNGOSExtractor
 #If _MyType <> "Console" Then
                 Application.DoEvents()
 #Else
-                    Threading.Thread.Sleep(0)
+                Threading.Thread.Sleep(0)
 #End If
             Next
             Alert("Extraction Finished", Core.AlertNewLine.AddCRLF)
@@ -132,7 +132,7 @@ Public Class MaNGOSExtractor
 #If _MyType <> "Console" Then
                 Application.DoEvents()
 #Else
-                                            Threading.Thread.Sleep(0)
+                Threading.Thread.Sleep(0)
 #End If
             Next
 
@@ -151,7 +151,7 @@ Public Class MaNGOSExtractor
 #If _MyType <> "Console" Then
                 Application.DoEvents()
 #Else
-                                            Threading.Thread.Sleep(0)
+                Threading.Thread.Sleep(0)
 #End If
             Next
 
@@ -171,7 +171,7 @@ Public Class MaNGOSExtractor
 #If _MyType <> "Console" Then
                 Application.DoEvents()
 #Else
-                                            Threading.Thread.Sleep(0)
+                Threading.Thread.Sleep(0)
 #End If
             Next
         End If
@@ -183,7 +183,7 @@ Public Class MaNGOSExtractor
 
             Alert("Loading Maps: ", Core.AlertNewLine.AddCRLF)
 
-            dtMaps = loadDBCtoDataTable(txtOutputFolder.Text & "\DBFilesClient" & "\map.dbc", dtMaps)
+            dtMaps = loadDBCtoDataTable(txtOutputFolder.Text & "\DBFilesClient" & "\map.dbc")
             'Alert(dtMaps.Rows.Count() - 2 & " Maps Loaded", Core.AlertNewLine.AddCRLF)
 
             For counter As Integer = 0 To dtMaps.Rows.Count() - 2
@@ -197,7 +197,7 @@ Public Class MaNGOSExtractor
 
             Alert("Loading Areas: ", Core.AlertNewLine.AddCRLF)
 
-            dtAreaTable = loadDBCtoDataTable(txtOutputFolder.Text & "\DBFilesClient" & "\AreaTable.dbc", dtAreaTable)
+            dtAreaTable = loadDBCtoDataTable(txtOutputFolder.Text & "\DBFilesClient" & "\AreaTable.dbc")
             'Alert(dtAreaTable.Rows.Count() - 2 & " Areas Loaded", Core.AlertNewLine.AddCRLF)
 
             For counter As Integer = 0 To dtAreaTable.Rows.Count() - 2
@@ -209,7 +209,7 @@ Public Class MaNGOSExtractor
             Dim dictLiquidType As New Dictionary(Of Integer, Integer)
 
             Alert("Loading Liquid Types: ", Core.AlertNewLine.AddCRLF)
-            dtLiquidType = loadDBCtoDataTable(txtOutputFolder.Text & "\DBFilesClient" & "\LiquidType.dbc", dtLiquidType)
+            dtLiquidType = loadDBCtoDataTable(txtOutputFolder.Text & "\DBFilesClient" & "\LiquidType.dbc")
             'Alert(dtLiquidType.Rows.Count() - 2 & " Liquids Loaded", Core.AlertNewLine.AddCRLF)
 
 
@@ -237,7 +237,7 @@ Public Class MaNGOSExtractor
 #If _MyType <> "Console" Then
                 Application.DoEvents()
 #Else
-                                            Threading.Thread.Sleep(0)
+                Threading.Thread.Sleep(0)
 #End If
             Next
 
@@ -256,7 +256,7 @@ Public Class MaNGOSExtractor
 #If _MyType <> "Console" Then
                 Application.DoEvents()
 #Else
-                                            Threading.Thread.Sleep(0)
+                Threading.Thread.Sleep(0)
 #End If
             Next
 
@@ -276,7 +276,7 @@ Public Class MaNGOSExtractor
 #If _MyType <> "Console" Then
                 Application.DoEvents()
 #Else
-                                            Threading.Thread.Sleep(0)
+                Threading.Thread.Sleep(0)
 #End If
             Next
         End If
@@ -294,6 +294,8 @@ Public Class MaNGOSExtractor
 
         Me.Cursor = System.Windows.Forms.Cursors.Default
         btnStartDBC.Enabled = True
+
+        Alert("Finished", AlertNewLine.AddCRLF)
     End Sub
 
     ''' <summary>
