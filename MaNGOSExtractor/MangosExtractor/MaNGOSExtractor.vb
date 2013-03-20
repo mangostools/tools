@@ -35,7 +35,7 @@ Public Class MaNGOSExtractor
             Alert("Warcraft Version v" & Core.FullVersion & " Build " & Core.BuildNo, Core.AlertNewLine.AddCRLF)
         End If
 
-        If chkDBC.Checked = True Or chkExtractMaps.Checked = True Then
+        If chkDBC.Checked = True Or chkExtractMaps.Checked = True Or chkExtractWMO.Checked = True Or chkExtractADT.Checked = True Then
             'Set the Top level as {Wow Folder}\data then load all the MPQ files
             myFolders = New System.IO.DirectoryInfo(txtBaseFolder.Text & "\data")
 
@@ -116,7 +116,6 @@ Public Class MaNGOSExtractor
             Alert("Extraction Finished", Core.AlertNewLine.AddCRLF)
         End If
 
-
         If chkExtractADT.Checked = True Then
             For Each strItem As DictionaryEntry In colBaseFiles
                 Alert("Reading: " & strItem.Value, Core.AlertNewLine.AddCRLF)
@@ -182,7 +181,10 @@ Public Class MaNGOSExtractor
             Dim dtMaps As New DataTable
             Dim dictMaps As New Dictionary(Of Integer, String)
 
+            Alert("Loading Maps: ", Core.AlertNewLine.AddCRLF)
+
             dtMaps = loadDBCtoDataTable(txtOutputFolder.Text & "\DBFilesClient" & "\map.dbc", dtMaps)
+            'Alert(dtMaps.Rows.Count() - 2 & " Maps Loaded", Core.AlertNewLine.AddCRLF)
 
             For counter As Integer = 0 To dtMaps.Rows.Count() - 2
                 'Debug.WriteLine("MapID: {0} Name: {1}", dtMaps.Rows(counter)(0), dtMaps.Rows(counter)(1))
@@ -193,7 +195,10 @@ Public Class MaNGOSExtractor
             Dim dtAreaTable As New DataTable
             Dim dictAreaTable As New Dictionary(Of Integer, Integer)
 
+            Alert("Loading Areas: ", Core.AlertNewLine.AddCRLF)
+
             dtAreaTable = loadDBCtoDataTable(txtOutputFolder.Text & "\DBFilesClient" & "\AreaTable.dbc", dtAreaTable)
+            'Alert(dtAreaTable.Rows.Count() - 2 & " Areas Loaded", Core.AlertNewLine.AddCRLF)
 
             For counter As Integer = 0 To dtAreaTable.Rows.Count() - 2
                 dictAreaTable.Add(dtAreaTable.Rows(counter)(0), dtAreaTable.Rows(counter)(3))
@@ -203,30 +208,83 @@ Public Class MaNGOSExtractor
             Dim dtLiquidType As New DataTable
             Dim dictLiquidType As New Dictionary(Of Integer, Integer)
 
+            Alert("Loading Liquid Types: ", Core.AlertNewLine.AddCRLF)
             dtLiquidType = loadDBCtoDataTable(txtOutputFolder.Text & "\DBFilesClient" & "\LiquidType.dbc", dtLiquidType)
+            'Alert(dtLiquidType.Rows.Count() - 2 & " Liquids Loaded", Core.AlertNewLine.AddCRLF)
+
 
             For counter As Integer = 0 To dtLiquidType.Rows.Count() - 2
                 dictLiquidType.Add(dtLiquidType.Rows(counter)(0), dtLiquidType.Rows(counter)(3))
             Next
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             Alert("Extraction Finished", Core.AlertNewLine.AddCRLF)
         End If
+
+
+        If chkExtractWMO.Checked = True Then
+            For Each strItem As DictionaryEntry In colBaseFiles
+                Alert("Reading: " & strItem.Value, Core.AlertNewLine.AddCRLF)
+                Try
+                    Core.ExtractFilesGeneric(strItem.Value, "*.wmo", txtOutputFolder.Text)
+                Catch ex As Exception
+                    Alert(ex.Message, Core.AlertNewLine.AddCRLF)
+                End Try
+                'Try
+                '    Core.ExtractFilesGeneric(strItem.Value, "*.wdt", txtOutputFolder.Text)
+                'Catch ex As Exception
+                '    Alert(ex.Message, Core.AlertNewLine.AddCRLF)
+                'End Try
+#If _MyType <> "Console" Then
+                Application.DoEvents()
+#Else
+                                            Threading.Thread.Sleep(0)
+#End If
+            Next
+
+            For Each strItem As DictionaryEntry In colMainFiles
+                Alert("Reading: " & strItem.Value, Core.AlertNewLine.AddCRLF)
+                Try
+                    Core.ExtractFilesGeneric(strItem.Value, "*.wmo", txtOutputFolder.Text)
+                Catch ex As Exception
+                    Alert(ex.Message, Core.AlertNewLine.AddCRLF)
+                End Try
+                'Try
+                '    Core.ExtractFilesGeneric(strItem.Value, "*.wdt", txtOutputFolder.Text)
+                'Catch ex As Exception
+                '    Alert(ex.Message, Core.AlertNewLine.AddCRLF)
+                'End Try
+#If _MyType <> "Console" Then
+                Application.DoEvents()
+#Else
+                                            Threading.Thread.Sleep(0)
+#End If
+            Next
+
+            For Each strItem As DictionaryEntry In colUpdateFiles
+                Alert("Reading: " & strItem.Value, Core.AlertNewLine.AddCRLF)
+
+                Try
+                    Core.ExtractFilesGeneric(strItem.Value, "*.wmo", txtOutputFolder.Text)
+                Catch ex As Exception
+                    Alert(ex.Message, Core.AlertNewLine.AddCRLF)
+                End Try
+                'Try
+                '    Core.ExtractFilesGeneric(strItem.Value, "*.wdt", txtOutputFolder.Text)
+                'Catch ex As Exception
+                '    Alert(ex.Message, Core.AlertNewLine.AddCRLF)
+                'End Try
+#If _MyType <> "Console" Then
+                Application.DoEvents()
+#Else
+                                            Threading.Thread.Sleep(0)
+#End If
+            Next
+        End If
+
+
+
+
+
 
         If chkCSV.Checked = True Or chkSQL.Checked = True Or chkExportXML.Checked = True Or chkExportMD.Checked = True Then
             'Now that we have all the DBC's extracted and patched, we need to check the export options and export data

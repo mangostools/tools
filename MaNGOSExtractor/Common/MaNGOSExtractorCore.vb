@@ -315,6 +315,9 @@ Namespace Core
                     If My.Computer.FileSystem.FileExists(DestinationFolder & "\" & thisFile.FileName) = True Then
                         My.Computer.FileSystem.DeleteFile(DestinationFolder & "\" & thisFile.FileName)
                     End If
+
+                    Alert(thisFile.FileName, Core.MaNGOSExtractorCore.AlertNewLine.AddCRLF)
+
                     Archive.ExportFile(thisFile.FileName, DestinationFolder & "\" & thisFile.FileName)
 #If _MyType <> "Console" Then
                     Application.doevents()
