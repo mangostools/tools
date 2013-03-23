@@ -120,15 +120,15 @@ Public Class MaNGOSExtractor
             For Each strItem As DictionaryEntry In colBaseFiles
                 Alert("Reading: " & strItem.Value, Core.AlertNewLine.AddCRLF)
                 Try
-                    Core.ExtractFilesGeneric(strItem.Value, "*.adt", txtOutputFolder.Text)
+                    Core.ExtractADTFiles(strItem.Value, "*.adt", txtOutputFolder.Text)
                 Catch ex As Exception
                     Alert(ex.Message, Core.AlertNewLine.AddCRLF)
                 End Try
-                Try
-                    Core.ExtractFilesGeneric(strItem.Value, "*.wdt", txtOutputFolder.Text)
-                Catch ex As Exception
-                    Alert(ex.Message, Core.AlertNewLine.AddCRLF)
-                End Try
+                'Try
+                '    Core.ExtractFilesGeneric(strItem.Value, "*.wdt", txtOutputFolder.Text)
+                'Catch ex As Exception
+                '    Alert(ex.Message, Core.AlertNewLine.AddCRLF)
+                'End Try
 #If _MyType <> "Console" Then
                 Application.DoEvents()
 #Else
@@ -139,15 +139,15 @@ Public Class MaNGOSExtractor
             For Each strItem As DictionaryEntry In colMainFiles
                 Alert("Reading: " & strItem.Value, Core.AlertNewLine.AddCRLF)
                 Try
-                    Core.ExtractFilesGeneric(strItem.Value, "*.adt", txtOutputFolder.Text)
+                    Core.ExtractADTFiles(strItem.Value, "*.adt", txtOutputFolder.Text)
                 Catch ex As Exception
                     Alert(ex.Message, Core.AlertNewLine.AddCRLF)
                 End Try
-                Try
-                    Core.ExtractFilesGeneric(strItem.Value, "*.wdt", txtOutputFolder.Text)
-                Catch ex As Exception
-                    Alert(ex.Message, Core.AlertNewLine.AddCRLF)
-                End Try
+                'Try
+                '    Core.ExtractFilesGeneric(strItem.Value, "*.wdt", txtOutputFolder.Text)
+                'Catch ex As Exception
+                '    Alert(ex.Message, Core.AlertNewLine.AddCRLF)
+                'End Try
 #If _MyType <> "Console" Then
                 Application.DoEvents()
 #Else
@@ -159,15 +159,15 @@ Public Class MaNGOSExtractor
                 Alert("Reading: " & strItem.Value, Core.AlertNewLine.AddCRLF)
 
                 Try
-                    Core.ExtractFilesGeneric(strItem.Value, "*.adt", txtOutputFolder.Text)
+                    Core.ExtractADTFiles(strItem.Value, "*.adt", txtOutputFolder.Text)
                 Catch ex As Exception
                     Alert(ex.Message, Core.AlertNewLine.AddCRLF)
                 End Try
-                Try
-                    Core.ExtractFilesGeneric(strItem.Value, "*.wdt", txtOutputFolder.Text)
-                Catch ex As Exception
-                    Alert(ex.Message, Core.AlertNewLine.AddCRLF)
-                End Try
+                'Try
+                '    Core.ExtractFilesGeneric(strItem.Value, "*.wdt", txtOutputFolder.Text)
+                'Catch ex As Exception
+                '    Alert(ex.Message, Core.AlertNewLine.AddCRLF)
+                'End Try
 #If _MyType <> "Console" Then
                 Application.DoEvents()
 #Else
@@ -218,6 +218,50 @@ Public Class MaNGOSExtractor
             Next
 
             Alert("Extraction Finished", Core.AlertNewLine.AddCRLF)
+
+
+            Alert(".... Converting Maps", Core.AlertNewLine.AddCRLF)
+            Dim ADT_RES = 64
+            Dim MapKey As String = "000"
+            Dim MapX As String = "00"
+            Dim MapY As String = "00"
+            Dim ADTfilename As String = ""
+            Dim MapFilename As String = ""
+
+            If My.Computer.FileSystem.DirectoryExists(txtOutputFolder.Text & "maps\") = False Then
+                Directory.CreateDirectory(txtOutputFolder.Text & "maps\")
+            End If
+            For Each thisMap As KeyValuePair(Of Integer, String) In dictMaps
+                Alert(" Extracting..." & thisMap.Value, AlertNewLine.AddCRLF)
+                For x As Integer = 0 To ADT_RES
+                    For y As Integer = 0 To ADT_RES
+                        ADTfilename = txtOutputFolder.Text & "World\Maps\" & thisMap.Value & "\" & thisMap.Value & "_" & x & "_" & y & ".adt"
+                        'Alert("Reading from: " & ADTfilename, Core.AlertNewLine.AddCRLF)
+                        MapKey = thisMap.Key.ToString() '"000"
+                        If MapKey.Length() = 1 Then MapKey = "00" & MapKey
+                        If MapKey.Length() = 2 Then MapKey = "0" & MapKey
+                        MapX = x.ToString() '"00"
+                        If MapX.Length() = 1 Then MapX = "0" & MapX
+                        MapY = y.ToString() '"00"
+                        If MapY.Length() = 1 Then MapY = "0" & MapY
+
+
+                        MapFilename = txtOutputFolder.Text & "maps\" & MapKey.Substring(0, 3) & MapY.Substring(0, 2) & MapX.Substring(0, 2) & ".map"
+                        'Alert(" Writing to: " & MapFilename, Core.AlertNewLine.AddCRLF)
+
+                        ConvertADT(ADTfilename, MapFilename, dictMaps, dictAreaTable, dictLiquidType)
+
+#If _MyType <> "Console" Then
+                        Application.DoEvents()
+#Else
+                Threading.Thread.Sleep(0)
+#End If
+                    Next
+                Next
+            Next
+
+
+
         End If
 
 

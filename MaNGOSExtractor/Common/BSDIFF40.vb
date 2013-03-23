@@ -120,7 +120,12 @@ Namespace Blizzard
                 Debug.Assert(oldFile.Length = m_PTCH.m_sizeBefore)
                 Dim md5 As New MD5CryptoServiceProvider()
                 Dim hash() As Byte = md5.ComputeHash(oldFile)
-                Debug.Assert(hash.Compare(m_MD5.m_md5Before), "Input MD5 mismatch!")
+
+                Try
+                    hash.Compare(m_MD5.m_md5Before)
+                Catch
+                    Core.Alert("Input MD5 mismatch!: " & hash.Compare(m_MD5.m_md5Before), Core.AlertNewLine.AddCRLF)
+                End Try
             End If
 
             Dim ctrlBlock As BinaryReader = m_ctrlBlock.ToBinaryReader()
@@ -169,8 +174,14 @@ Namespace Blizzard
                 Debug.Assert(newFile.Length = m_PTCH.m_sizeAfter)
                 Dim md5 As New MD5CryptoServiceProvider()
                 Dim hash() As Byte = md5.ComputeHash(newFile)
-                Debug.Assert(hash.Compare(m_MD5.m_md5After), "Output MD5 mismatch!")
+
+                Try
+                    hash.Compare(m_MD5.m_md5After)
+                Catch
+                    Core.Alert("Output MD5 mismatch!: " & hash.Compare(m_MD5.m_md5After), Core.AlertNewLine.AddCRLF)
+                End Try
             End If
+
 
             File.WriteAllBytes(newFileName, newFile)
         End Sub
