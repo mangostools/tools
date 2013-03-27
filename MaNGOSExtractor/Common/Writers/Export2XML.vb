@@ -6,7 +6,7 @@ Imports System.Text
 Imports System.Text.RegularExpressions
 Imports System.Reflection
 Imports System.Xml
-Imports System.Xml.Linq
+'Imports System.Xml.Linq
 
 Namespace Core
     Public Module Export2XML

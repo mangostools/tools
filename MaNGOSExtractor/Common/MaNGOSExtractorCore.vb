@@ -821,6 +821,7 @@ Namespace Core
                         Core.alertlist.Items.Add(AlertMessage, AlertMessage)
 #End If
                         Core.alertlist.SelectedIndex = Core.alertlist.Items.Count() - 1
+                        Core.alertlist.SelectedIndex = -1
                     Else
                         Dim Temp As String = Core.alertlist.Items(Core.alertlist.Items.Count() - 1)
                         AlertMessage = Temp & AlertMessage
@@ -1031,78 +1032,82 @@ Namespace Core
         End Function
 
 
-        Public Function ConvertADT(ByRef ADTfilename As String, ByRef MapFilename As String, ByRef dictMaps As Dictionary(Of Integer, String), ByRef dictAreaTable As Dictionary(Of Integer, Integer), ByRef dictLiquidType As Dictionary(Of Integer, Integer)) As Boolean
+        'Public Function ConvertADT(ByRef ADTfilename As String, ByRef MapFilename As String, ByRef dictMaps As Dictionary(Of Integer, String), ByRef dictAreaTable As Dictionary(Of Integer, Integer), ByRef dictLiquidType As Dictionary(Of Integer, Integer)) As Boolean
 
-            If My.Computer.FileSystem.FileExists(ADTfilename) = True Then
+        '    If My.Computer.FileSystem.FileExists(ADTfilename) = True Then
+        '        '               ADTReader.Program.Main(ADTfilename)
 
-                Dim sqlWriter As New StreamWriter(MapFilename)
-                Dim AREAHdr As New StringBuilder("AREA")
-                Dim MHGTHdr As New StringBuilder("MHGT")
-                Dim MLIQHdr As New StringBuilder("MLIQ")
-                Dim HOLEHdr As New StringBuilder
-                Dim AREAData As New StringBuilder
-                Dim MHGTData As New StringBuilder
-                Dim MLIQData As New StringBuilder
-                Dim HOLEData As New StringBuilder
 
-                'Write Identifier
-                sqlWriter.Write("MAPS")
 
-                Select Case MajorVersion
-                    Case "1"
-                        'Write version No
-                        sqlWriter.Write("z1.3")
-                    Case "2"
-                        'Write version No
-                        sqlWriter.Write("s1.3")
-                    Case "3"
-                        'Write version No
-                        sqlWriter.Write("v1.3")
-                    Case "4"
-                        'Write version No
-                        sqlWriter.Write("v1.2")
-                    Case "5"
-                        'Write version No
-                        sqlWriter.Write("v1.2")
-                    Case Else
-                        sqlWriter.Write("????")
-                End Select
-                
-                'Write Area Offset (always 40)
-                sqlWriter.Write(Chr(40) & Chr(0) & Chr(0) & Chr(0))
 
-                'Write Areasize
-                sqlWriter.Write(Chr(8) & Chr(0) & Chr(0) & Chr(0))
+        '        Dim sqlWriter As New StreamWriter(MapFilename)
+        '        Dim AREAHdr As New StringBuilder("AREA")
+        '        Dim MHGTHdr As New StringBuilder("MHGT")
+        '        Dim MLIQHdr As New StringBuilder("MLIQ")
+        '        Dim HOLEHdr As New StringBuilder
+        '        Dim AREAData As New StringBuilder
+        '        Dim MHGTData As New StringBuilder
+        '        Dim MLIQData As New StringBuilder
+        '        Dim HOLEData As New StringBuilder
 
-                'Write MHGT Offset
-                sqlWriter.Write(Chr(48) & Chr(0) & Chr(0) & Chr(0))
+        '        'Write Identifier
+        '        sqlWriter.Write("MAPS")
 
-                'MHGT Size:	4 Bytes		=	10 00 00 00 (16 Bytes)
-                sqlWriter.Write(Chr(16) & Chr(0) & Chr(0) & Chr(0))
+        '        Select Case MajorVersion
+        '            Case "1"
+        '                'Write version No
+        '                sqlWriter.Write("z1.3")
+        '            Case "2"
+        '                'Write version No
+        '                sqlWriter.Write("s1.3")
+        '            Case "3"
+        '                'Write version No
+        '                sqlWriter.Write("v1.3")
+        '            Case "4"
+        '                'Write version No
+        '                sqlWriter.Write("v1.2")
+        '            Case "5"
+        '                'Write version No
+        '                sqlWriter.Write("v1.2")
+        '            Case Else
+        '                sqlWriter.Write("????")
+        '        End Select
 
-                'MLIQ Offset:	4 Bytes		=	40 02 00 00 (576 Bytes)
-                sqlWriter.Write(Chr(64) & Chr(0) & Chr(0) & Chr(0))
+        '        'Write Area Offset (always 40)
+        '        sqlWriter.Write(Chr(40) & Chr(0) & Chr(0) & Chr(0))
 
-                'MLIQ Size:	4 Bytes		=	10 00 00 00 (16 Bytes)
-                sqlWriter.Write(Chr(16) & Chr(0) & Chr(0) & Chr(0))
+        '        'Write Areasize
+        '        sqlWriter.Write(Chr(8) & Chr(0) & Chr(0) & Chr(0))
 
-                'Hole Offset:	4 Bytes		=	50 02 00 00 (591 Bytes)
-                sqlWriter.Write(Chr(80) & Chr(0) & Chr(0) & Chr(0))
+        '        'Write MHGT Offset
+        '        sqlWriter.Write(Chr(48) & Chr(0) & Chr(0) & Chr(0))
 
-                'Hole Size:	4 Bytes		=	00 02 00 00 (512 Bytes)
-                sqlWriter.Write(Chr(0) & Chr(2) & Chr(0) & Chr(0))
+        '        'MHGT Size:	4 Bytes		=	10 00 00 00 (16 Bytes)
+        '        sqlWriter.Write(Chr(16) & Chr(0) & Chr(0) & Chr(0))
 
-                'Write Identifier
-                sqlWriter.Write(AREAHdr)
-                sqlWriter.Write(MHGTHdr)
-                sqlWriter.Write(MLIQHdr)
-                sqlWriter.Write(HOLEHdr)
+        '        'MLIQ Offset:	4 Bytes		=	40 02 00 00 (576 Bytes)
+        '        sqlWriter.Write(Chr(64) & Chr(0) & Chr(0) & Chr(0))
 
-                sqlWriter.Flush()
-                sqlWriter.Close()
-            End If
-            Return True
-        End Function
+        '        'MLIQ Size:	4 Bytes		=	10 00 00 00 (16 Bytes)
+        '        sqlWriter.Write(Chr(16) & Chr(0) & Chr(0) & Chr(0))
+
+        '        'Hole Offset:	4 Bytes		=	50 02 00 00 (591 Bytes)
+        '        sqlWriter.Write(Chr(80) & Chr(0) & Chr(0) & Chr(0))
+
+        '        'Hole Size:	4 Bytes		=	00 02 00 00 (512 Bytes)
+        '        sqlWriter.Write(Chr(0) & Chr(2) & Chr(0) & Chr(0))
+
+        '        'Write Identifier
+        '        sqlWriter.Write(AREAHdr)
+        '        sqlWriter.Write(MHGTHdr)
+        '        sqlWriter.Write(MLIQHdr)
+        '        sqlWriter.Write(HOLEHdr)
+
+        '        sqlWriter.Flush()
+        '        sqlWriter.Close()
+        '    End If
+        '    Return True
+        'End Function
 
 
 

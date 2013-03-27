@@ -2873,10 +2873,10 @@
       <field type="text" name="Directory" include="y" />
       <field type="int" name="instancetype" include="y" />
       <field type="int" name="flags" include="y" />
-      <field type="text" name="unk4" include="y" />
-      <field type="text" name="isPvp" include="y" />
+      <field type="text" name="Type" include="y" comment="0 - None, 1 - Party, 2 - Raid, 3 - PVP, 4 - Arena, any other value - none" />
+      <field type="text" name="isPvp" include="y" comment="Boolean value: 1 - True, 0 - False" />
       <field type="text" name="MapName" include="y" />
-      <field type="text" name="linkedZone" include="y" />
+      <field type="text" name="linkedZone" include="y" comment="linked to areatable.dbc id"/>
       <field type="text" name="hordeIntro" include="y" />
       <field type="text" name="allianceIntro" include="y" />
       <field type="text" name="multimap_id" include="y" />
@@ -2926,15 +2926,15 @@
       <field type="text" name="col54" include="y" />
       <field type="text" name="col55" include="y" />
       <field type="bigint" name="col56" include="y" />
-      <field type="int" name="col57" include="y" />
-      <field type="bigint" name="col58" include="y" />
-      <field type="bigint" name="col59" include="y" />
-      <field type="bigint" name="col60" include="y" />
-      <field type="bigint" name="col61" include="y" />
-      <field type="bigint" name="col62" include="y" />
-      <field type="int" name="col63" include="y" />
-      <field type="bigint" name="col64" include="y" />
-      <field type="int" name="col65" include="y" />
+      <field type="int" name="LoadingScreenid" include="y" comment="linked to ID in Loadscreen.dbc" />
+      <field type="bigint" name="BGmapIconScale" include="y" />
+      <field type="bigint" name="GhostEntranceMap" include="y" />
+      <field type="bigint" name="GhostEntranceX" include="y" />
+      <field type="bigint" name="GhostEntranceY" include="y" />
+      <field type="bigint" name="TimeOfDayOverride" include="y" />
+      <field type="int" name="Expansion" include="y" comment="0 - Classic, 1 - TBC, 2 - WotLK, 3 - Cata, 4 - MOP" />
+      <field type="bigint" name="Raidoffset" include="y" />
+      <field type="int" name="MaxPlayers" include="y" />
     </Map>
     <MapDifficulty>
       <include>Y</include>

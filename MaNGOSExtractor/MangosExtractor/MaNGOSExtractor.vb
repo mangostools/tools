@@ -193,7 +193,7 @@ Public Class MaNGOSExtractor
 
             'Load the DBC Data into the Dictionary dictAreaTable
             Dim dtAreaTable As New DataTable
-            Dim dictAreaTable As New Dictionary(Of Integer, Integer)
+            Dim dictAreaTable As New Dictionary(Of Integer, String)
 
             Alert("Loading Areas: ", Core.AlertNewLine.AddCRLF)
 
@@ -202,6 +202,7 @@ Public Class MaNGOSExtractor
 
             For counter As Integer = 0 To dtAreaTable.Rows.Count() - 2
                 dictAreaTable.Add(dtAreaTable.Rows(counter)(0), dtAreaTable.Rows(counter)(3))
+                'dictAreaTable.Add(dtAreaTable.Rows(counter)(0), dtAreaTable.Rows(counter)(11))
             Next
 
             'Load the DBC Data into the Dictionary dictLiquidType
@@ -236,32 +237,31 @@ Public Class MaNGOSExtractor
                 For x As Integer = 0 To ADT_RES
                     For y As Integer = 0 To ADT_RES
                         ADTfilename = txtOutputFolder.Text & "World\Maps\" & thisMap.Value & "\" & thisMap.Value & "_" & x & "_" & y & ".adt"
-                        'Alert("Reading from: " & ADTfilename, Core.AlertNewLine.AddCRLF)
-                        MapKey = thisMap.Key.ToString() '"000"
-                        If MapKey.Length() = 1 Then MapKey = "00" & MapKey
-                        If MapKey.Length() = 2 Then MapKey = "0" & MapKey
-                        MapX = x.ToString() '"00"
-                        If MapX.Length() = 1 Then MapX = "0" & MapX
-                        MapY = y.ToString() '"00"
-                        If MapY.Length() = 1 Then MapY = "0" & MapY
+                        If My.Computer.FileSystem.FileExists(ADTfilename) = True Then
+                            Alert("Reading from: " & ADTfilename, Core.AlertNewLine.AddCRLF)
+                            MapKey = thisMap.Key.ToString() '"000"
+                            If MapKey.Length() = 1 Then MapKey = "00" & MapKey
+                            If MapKey.Length() = 2 Then MapKey = "0" & MapKey
+                            MapX = x.ToString() '"00"
+                            If MapX.Length() = 1 Then MapX = "0" & MapX
+                            MapY = y.ToString() '"00"
+                            If MapY.Length() = 1 Then MapY = "0" & MapY
 
 
-                        MapFilename = txtOutputFolder.Text & "maps\" & MapKey.Substring(0, 3) & MapY.Substring(0, 2) & MapX.Substring(0, 2) & ".map"
-                        'Alert(" Writing to: " & MapFilename, Core.AlertNewLine.AddCRLF)
-
-                        ConvertADT(ADTfilename, MapFilename, dictMaps, dictAreaTable, dictLiquidType)
-
+                            'ADTReader.Program.Dump(ADTfilename)
+                            MapFilename = txtOutputFolder.Text & "maps\" & MapKey.Substring(0, 3) & MapY.Substring(0, 2) & MapX.Substring(0, 2) & ".map"
+                            ADTReader.Program.ConvertADT(ADTfilename, MapFilename, x, y, dictMaps, dictAreaTable, dictLiquidType)
+                            'Alert(" Writing to: " & MapFilename, Core.AlertNewLine.AddCRLF)
+                            'ConvertADT(ADTfilename, MapFilename, dictMaps, dictAreaTable, dictLiquidType)
+                        End If
 #If _MyType <> "Console" Then
-                        Application.DoEvents()
+                            Application.DoEvents()
 #Else
                 Threading.Thread.Sleep(0)
 #End If
                     Next
                 Next
             Next
-
-
-
         End If
 
 
@@ -363,8 +363,15 @@ Public Class MaNGOSExtractor
         Core.runAsGui = True
         Core.alertlist = lstMainLog
 
-        'Dim Test As Object = 65536
-        'MessageBox.Show(Core.getObjectType(Test, "Int32"))
+        Alert("Welcome to MaNGOS Extractor v" & Core.MaNGOSExtractorCore.Version(), AlertNewLine.AddCRLF)
+        Alert("==================================", AlertNewLine.AddCRLF)
+        Alert("Extract DBC is working", AlertNewLine.AddCRLF)
+        Alert("Extract to SQL/CSV/XML/MD is working", AlertNewLine.AddCRLF)
+        Alert("Extract ADT is working", AlertNewLine.AddCRLF)
+        Alert("Extract WMO/MDL is working", AlertNewLine.AddCRLF)
+        Alert("Extract WDT is NOT working", AlertNewLine.AddCRLF)
+        Alert("Extract Maps is NOT working - WIP", AlertNewLine.AddCRLF)
+        Alert("Extract VMaps is NOT working", AlertNewLine.AddCRLF)
 
     End Sub
 
