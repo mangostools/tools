@@ -35,7 +35,7 @@ Public Class MaNGOSExtractor
             Alert("Warcraft Version v" & Core.FullVersion & " Build " & Core.BuildNo, Core.AlertNewLine.AddCRLF)
         End If
 
-        If chkDBC.Checked = True Or chkExtractMaps.Checked = True Or chkExtractWMO.Checked = True Or chkExtractADT.Checked = True Then
+        If chkDBC.Checked = True Or chkExtractMaps.Checked = True Or chkExtractWMO.Checked = True Or chkExtractWDT.Checked = True Or chkExtractADT.Checked = True Then
             'Set the Top level as {Wow Folder}\data then load all the MPQ files
             myFolders = New System.IO.DirectoryInfo(txtBaseFolder.Text & "\data")
 
@@ -325,7 +325,65 @@ Public Class MaNGOSExtractor
             Next
         End If
 
+        If chkExtractWDT.Checked = True Then
+            For Each strItem As DictionaryEntry In colBaseFiles
+                Alert("Reading: " & strItem.Value, Core.AlertNewLine.AddCRLF)
+                Try
+                    Core.ExtractWDTFiles(strItem.Value, "*.wdt", txtOutputFolder.Text)
+                Catch ex As Exception
+                    Alert(ex.Message, Core.AlertNewLine.AddCRLF)
+                End Try
+                'Try
+                '    Core.ExtractFilesGeneric(strItem.Value, "*.wdt", txtOutputFolder.Text)
+                'Catch ex As Exception
+                '    Alert(ex.Message, Core.AlertNewLine.AddCRLF)
+                'End Try
+#If _MyType <> "Console" Then
+                Application.DoEvents()
+#Else
+                Threading.Thread.Sleep(0)
+#End If
+            Next
 
+            For Each strItem As DictionaryEntry In colMainFiles
+                Alert("Reading: " & strItem.Value, Core.AlertNewLine.AddCRLF)
+                Try
+                    Core.ExtractWDTFiles(strItem.Value, "*.wdt", txtOutputFolder.Text)
+                Catch ex As Exception
+                    Alert(ex.Message, Core.AlertNewLine.AddCRLF)
+                End Try
+                'Try
+                '    Core.ExtractFilesGeneric(strItem.Value, "*.wdt", txtOutputFolder.Text)
+                'Catch ex As Exception
+                '    Alert(ex.Message, Core.AlertNewLine.AddCRLF)
+                'End Try
+#If _MyType <> "Console" Then
+                Application.DoEvents()
+#Else
+                Threading.Thread.Sleep(0)
+#End If
+            Next
+
+            For Each strItem As DictionaryEntry In colUpdateFiles
+                Alert("Reading: " & strItem.Value, Core.AlertNewLine.AddCRLF)
+
+                Try
+                    Core.ExtractWDTFiles(strItem.Value, "*.wdt", txtOutputFolder.Text)
+                Catch ex As Exception
+                    Alert(ex.Message, Core.AlertNewLine.AddCRLF)
+                End Try
+                'Try
+                '    Core.ExtractFilesGeneric(strItem.Value, "*.wdt", txtOutputFolder.Text)
+                'Catch ex As Exception
+                '    Alert(ex.Message, Core.AlertNewLine.AddCRLF)
+                'End Try
+#If _MyType <> "Console" Then
+                Application.DoEvents()
+#Else
+                Threading.Thread.Sleep(0)
+#End If
+            Next
+        End If
 
 
 
@@ -363,15 +421,24 @@ Public Class MaNGOSExtractor
         Core.runAsGui = True
         Core.alertlist = lstMainLog
 
-        Alert("Welcome to MaNGOS Extractor v" & Core.MaNGOSExtractorCore.Version(), AlertNewLine.AddCRLF)
-        Alert("==================================", AlertNewLine.AddCRLF)
-        Alert("Extract DBC is working", AlertNewLine.AddCRLF)
-        Alert("Extract to SQL/CSV/XML/MD is working", AlertNewLine.AddCRLF)
-        Alert("Extract ADT is working", AlertNewLine.AddCRLF)
-        Alert("Extract WMO/MDL is working", AlertNewLine.AddCRLF)
-        Alert("Extract WDT is NOT working", AlertNewLine.AddCRLF)
-        Alert("Extract Maps is NOT working - WIP", AlertNewLine.AddCRLF)
-        Alert("Extract VMaps is NOT working", AlertNewLine.AddCRLF)
+        Alert("Welcome to MaNGOS Extractor" & Core.MaNGOSExtractorCore.Version() & " for all versions of MaNGOS", AlertNewLine.AddCRLF)
+        Alert("=============================================================", AlertNewLine.AddCRLF)
+        Alert("", AlertNewLine.AddCRLF)
+        Alert("What is working:-", AlertNewLine.AddCRLF)
+        Alert("----------------------------------", AlertNewLine.AddCRLF)
+        Alert("Extract and patch DBC", AlertNewLine.AddCRLF)
+        Alert("Export to SQL/CSV/XML/MD", AlertNewLine.AddCRLF)
+        Alert("Extract and patch ADT *", AlertNewLine.AddCRLF)
+        Alert("Extract WMO/MDL *", AlertNewLine.AddCRLF)
+        Alert("Extract and patch WDT *", AlertNewLine.AddCRLF)
+ 
+        Alert("", AlertNewLine.AddCRLF)
+        Alert("What is not working:-", AlertNewLine.AddCRLF)
+        Alert("----------------------------------", AlertNewLine.AddCRLF)
+        Alert("Extract Maps is WIP", AlertNewLine.AddCRLF)
+        Alert("Extract VMaps", AlertNewLine.AddCRLF)
+        Alert("", AlertNewLine.AddCRLF)
+        Alert("* Equivilent to VMAP Extractor Functionality", AlertNewLine.AddCRLF)
 
     End Sub
 

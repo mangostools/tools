@@ -36,19 +36,19 @@ Partial Class MaNGOSExtractor
         Me.btnSelectBaseFolder = New System.Windows.Forms.Button()
         Me.btnSelectOutputFolder = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.chkExtractVmap = New System.Windows.Forms.CheckBox()
+        Me.chkExtractMaps = New System.Windows.Forms.CheckBox()
         Me.chkExportMD = New System.Windows.Forms.CheckBox()
         Me.chkExportXML = New System.Windows.Forms.CheckBox()
         Me.chkCSV = New System.Windows.Forms.CheckBox()
         Me.chkSQL = New System.Windows.Forms.CheckBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.chkExtractWDT = New System.Windows.Forms.CheckBox()
         Me.chkExtractWMO = New System.Windows.Forms.CheckBox()
         Me.chkExtractADT = New System.Windows.Forms.CheckBox()
         Me.chkDBC = New System.Windows.Forms.CheckBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.chkExtractMaps = New System.Windows.Forms.CheckBox()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
-        Me.chkExtractVmap = New System.Windows.Forms.CheckBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -177,6 +177,28 @@ Partial Class MaNGOSExtractor
         Me.Panel1.Size = New System.Drawing.Size(484, 50)
         Me.Panel1.TabIndex = 18
         '
+        'chkExtractVmap
+        '
+        Me.chkExtractVmap.AutoSize = True
+        Me.chkExtractVmap.Location = New System.Drawing.Point(242, 3)
+        Me.chkExtractVmap.Name = "chkExtractVmap"
+        Me.chkExtractVmap.Size = New System.Drawing.Size(236, 17)
+        Me.chkExtractVmap.TabIndex = 24
+        Me.chkExtractVmap.Text = "Create VMaps from DBC, WMO, MDL, WDT"
+        Me.chkExtractVmap.UseVisualStyleBackColor = True
+        '
+        'chkExtractMaps
+        '
+        Me.chkExtractMaps.AutoSize = True
+        Me.chkExtractMaps.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkExtractMaps.Location = New System.Drawing.Point(242, 24)
+        Me.chkExtractMaps.Margin = New System.Windows.Forms.Padding(1)
+        Me.chkExtractMaps.Name = "chkExtractMaps"
+        Me.chkExtractMaps.Size = New System.Drawing.Size(166, 17)
+        Me.chkExtractMaps.TabIndex = 21
+        Me.chkExtractMaps.Text = "Create Maps using DBC/ADT"
+        Me.chkExtractMaps.UseVisualStyleBackColor = True
+        '
         'chkExportMD
         '
         Me.chkExportMD.AutoSize = True
@@ -220,7 +242,7 @@ Partial Class MaNGOSExtractor
         'Panel2
         '
         Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel2.Controls.Add(Me.CheckBox1)
+        Me.Panel2.Controls.Add(Me.chkExtractWDT)
         Me.Panel2.Controls.Add(Me.chkExtractWMO)
         Me.Panel2.Controls.Add(Me.chkExtractADT)
         Me.Panel2.Controls.Add(Me.chkDBC)
@@ -228,6 +250,16 @@ Partial Class MaNGOSExtractor
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(198, 50)
         Me.Panel2.TabIndex = 20
+        '
+        'chkExtractWDT
+        '
+        Me.chkExtractWDT.AutoSize = True
+        Me.chkExtractWDT.Location = New System.Drawing.Point(84, 26)
+        Me.chkExtractWDT.Name = "chkExtractWDT"
+        Me.chkExtractWDT.Size = New System.Drawing.Size(82, 17)
+        Me.chkExtractWDT.TabIndex = 22
+        Me.chkExtractWDT.Text = "Vmap WDT"
+        Me.chkExtractWDT.UseVisualStyleBackColor = True
         '
         'chkExtractWMO
         '
@@ -278,38 +310,6 @@ Partial Class MaNGOSExtractor
         Me.Label4.Size = New System.Drawing.Size(76, 13)
         Me.Label4.TabIndex = 22
         Me.Label4.Text = "Export Options"
-        '
-        'chkExtractMaps
-        '
-        Me.chkExtractMaps.AutoSize = True
-        Me.chkExtractMaps.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkExtractMaps.Location = New System.Drawing.Point(242, 24)
-        Me.chkExtractMaps.Margin = New System.Windows.Forms.Padding(1)
-        Me.chkExtractMaps.Name = "chkExtractMaps"
-        Me.chkExtractMaps.Size = New System.Drawing.Size(166, 17)
-        Me.chkExtractMaps.TabIndex = 21
-        Me.chkExtractMaps.Text = "Create Maps using DBC/ADT"
-        Me.chkExtractMaps.UseVisualStyleBackColor = True
-        '
-        'CheckBox1
-        '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(84, 26)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(82, 17)
-        Me.CheckBox1.TabIndex = 22
-        Me.CheckBox1.Text = "Vmap WDT"
-        Me.CheckBox1.UseVisualStyleBackColor = True
-        '
-        'chkExtractVmap
-        '
-        Me.chkExtractVmap.AutoSize = True
-        Me.chkExtractVmap.Location = New System.Drawing.Point(242, 3)
-        Me.chkExtractVmap.Name = "chkExtractVmap"
-        Me.chkExtractVmap.Size = New System.Drawing.Size(236, 17)
-        Me.chkExtractVmap.TabIndex = 24
-        Me.chkExtractVmap.Text = "Create VMaps from DBC, WMO, MDL, WDT"
-        Me.chkExtractVmap.UseVisualStyleBackColor = True
         '
         'MaNGOSExtractor
         '
@@ -374,6 +374,6 @@ Partial Class MaNGOSExtractor
     Friend WithEvents chkExtractWMO As System.Windows.Forms.CheckBox
     Friend WithEvents chkExtractVmap As System.Windows.Forms.CheckBox
     Friend WithEvents chkExtractMaps As System.Windows.Forms.CheckBox
-    Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
+    Friend WithEvents chkExtractWDT As System.Windows.Forms.CheckBox
 
 End Class

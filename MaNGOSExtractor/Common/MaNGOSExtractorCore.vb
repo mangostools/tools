@@ -48,7 +48,7 @@ Namespace Core
         ReadOnly Property Version As String
             Get
 
-                Return " v" & My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor    'm_Version
+                Return " v" & My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & "." & My.Application.Info.Version.Revision   'm_Version
             End Get
             'Private Set(value As Integer)
             '    m_Version = value
@@ -280,7 +280,7 @@ Namespace Core
         End Function
 
         ''' <summary>
-        ''' Extracts DBC Files including Patch files (MPQLib Version)
+        ''' Extracts ADT Files including Patch files (MPQLib Version)
         ''' </summary>
         ''' <param name="MPQFilename"></param>
         ''' <param name="FileFilter"></param>
@@ -425,6 +425,151 @@ Namespace Core
             Return sbOutput.ToString()
         End Function
 
+        ''' <summary>
+        ''' Extracts WDT Files including Patch files (MPQLib Version)
+        ''' </summary>
+        ''' <param name="MPQFilename"></param>
+        ''' <param name="FileFilter"></param>
+        ''' <param name="DestinationFolder"></param>
+        ''' <remarks></remarks>
+        Public Function ExtractWDTFiles(ByVal MPQFilename As String, ByVal FileFilter As String, ByVal DestinationFolder As String) As String
+            Dim Archive As MpqLib.Mpq.CArchive
+            Dim FileList As System.Collections.Generic.IEnumerable(Of MpqLib.Mpq.CFileInfo)
+            Dim sbOutput As New StringBuilder
+
+            Try
+                'Open the Archive Folder
+                Archive = New MpqLib.Mpq.CArchive(MPQFilename)
+
+                'Get a list of all files matching FileFilter
+                FileList = Archive.FindFiles(FileFilter)
+
+                'Process each file found
+                Dim blnProcessFile As Boolean = True
+                For Each thisFile As MpqLib.Mpq.CFileInfo In FileList
+                    blnProcessFile = True
+                    'If thisFile.FileName.EndsWith("_obj0.adt") = True Then blnProcessFile = False
+                    'If thisFile.FileName.EndsWith("_obj1.adt") = True Then blnProcessFile = False
+                    'If thisFile.FileName.EndsWith("_tex0.adt") = True Then blnProcessFile = False
+                    'If thisFile.FileName.EndsWith("_tex1.adt") = True Then blnProcessFile = False
+
+                    If blnProcessFile = True Then
+#If _MyType <> "Console" Then
+                        Application.DoEvents()
+#Else
+                    Threading.Thread.Sleep(0)
+#End If
+                        Dim inbyteData(thisFile.Size - 1) As Byte
+                        Dim intFileType As Integer = 0
+                        'intFileType = 0  = Unknown
+                        'intFileType = 1  = WDBC
+                        'intFileType = 2  = WDB2
+                        'intFileType = 3  = PTCH
+                        'Create the output directory tree, allowing for additional paths contained within the filename
+
+                        Dim strSubFolder As String
+                        If thisFile.FileName.Contains("\") = True Then
+                            strSubFolder = thisFile.FileName.Substring(0, (thisFile.FileName.LastIndexOf("\")))
+                            If My.Computer.FileSystem.DirectoryExists(DestinationFolder & strSubFolder) = False Then
+                                Directory.CreateDirectory(DestinationFolder & strSubFolder)
+                            End If
+                        Else
+                            strSubFolder = ""
+                            If My.Computer.FileSystem.DirectoryExists(DestinationFolder) = False Then
+                                Directory.CreateDirectory(DestinationFolder)
+                            End If
+                        End If
+
+                        Dim strOriginalName As String = thisFile.FileName.Substring(thisFile.FileName.LastIndexOf("\") + 1, thisFile.FileName.Length - (thisFile.FileName.LastIndexOf("\") + 1))
+                        Dim strPatchName As String = strOriginalName & "_" & MPQFilename.Substring(MPQFilename.LastIndexOf("\") + 1, MPQFilename.Length - (MPQFilename.LastIndexOf("\") + 1) - 4) & ".patch"
+                        Dim strNewName As String = strOriginalName & ".New"
+                        If DestinationFolder.EndsWith("\") = False Then DestinationFolder = DestinationFolder & "\"
+
+                        'Skip corrupt files (Length < 21)
+                        If inbyteData.Length > 20 Then
+
+                            'We perform this export so that we can get the header bytes
+                            Alert("Processing: " & thisFile.FileName, AlertNewLine.AddCRLF)
+                            Archive.ExportFile(thisFile.FileName, inbyteData)
+                            If (inbyteData(0) = 82 And inbyteData(1) = 69 And inbyteData(2) = 86 And inbyteData(3) = 77) Then intFileType = 1 'REVM HEader
+                            If (inbyteData(0) = 80 And inbyteData(1) = 84 And inbyteData(2) = 67 And inbyteData(3) = 72) Then intFileType = 3 'PTCH File
+
+                            If intFileType <> 3 Then 'Is a not a patch file
+
+                                'Create the output directory tree, allowing for additional paths contained within the filename
+                                If thisFile.FileName.Contains("\") = True Then
+                                    If My.Computer.FileSystem.DirectoryExists(DestinationFolder & "\" & thisFile.FileName.Substring(0, (thisFile.FileName.LastIndexOf("\")))) = False Then
+                                        Directory.CreateDirectory(DestinationFolder & "\" & thisFile.FileName.Substring(0, (thisFile.FileName.LastIndexOf("\"))))
+                                    End If
+                                Else
+                                    If My.Computer.FileSystem.DirectoryExists(DestinationFolder) = False Then
+                                        Directory.CreateDirectory(DestinationFolder)
+                                    End If
+                                End If
+
+                                'If the file already exists, delete it and recreate it
+                                If My.Computer.FileSystem.FileExists(DestinationFolder & "\" & thisFile.FileName) = True Then
+                                    My.Computer.FileSystem.DeleteFile(DestinationFolder & "\" & thisFile.FileName)
+                                End If
+                                Archive.ExportFile(thisFile.FileName, DestinationFolder & "\" & thisFile.FileName)
+                            ElseIf intFileType = 3 Then   'PTCH File
+
+                                '###############################################################################
+                                '## Patch Files are a special case and are only present in Cata and Mop       ##
+                                '## - The current Implementation has been split into two stages               ##
+                                '###############################################################################
+                                '## Stage 1 - Saves the files out with a .patch extension                     ##
+                                '###############################################################################
+                                '## Stage 2 - will attempt to process the patch files and apply them to the   ##
+                                '##           original file                                                   ##
+                                '###############################################################################
+
+                                '###############################################################################
+                                '## Stage 1 - Saves the files out with a .patch extension                     ##
+                                '###############################################################################
+
+                                'If the file already exists, delete it and recreate it
+                                If My.Computer.FileSystem.FileExists(DestinationFolder & strSubFolder & "\" & strPatchName) = True Then
+                                    My.Computer.FileSystem.DeleteFile(DestinationFolder & strSubFolder & "\" & strPatchName)
+                                End If
+                                Archive.ExportFile(thisFile.FileName, DestinationFolder & strSubFolder & "\" & strPatchName)
+
+                                'Copy the patch to .new
+                                If My.Computer.FileSystem.FileExists(DestinationFolder & strSubFolder & "\" & strNewName) = False Then
+                                    System.IO.File.Copy(DestinationFolder & strSubFolder & "\" & strPatchName, DestinationFolder & strSubFolder & "\" & strNewName)
+                                End If
+
+
+                                '###############################################################################
+                                '## Stage 2 - will attempt to process the patch files and apply them to the   ##
+                                '##           original file                                                   ##
+                                '###############################################################################
+                                Using p As New Blizzard.Patch(DestinationFolder & strSubFolder & "\" & strPatchName)
+                                    p.PrintHeaders(strOriginalName)
+                                    p.Apply(DestinationFolder & strSubFolder & "\" & strOriginalName, DestinationFolder & strSubFolder & "\" & strNewName, True)
+                                End Using
+
+                                'Move the original and the patch
+                                My.Computer.FileSystem.DeleteFile(DestinationFolder & strSubFolder & "\" & strOriginalName)
+                                My.Computer.FileSystem.DeleteFile(DestinationFolder & strSubFolder & "\" & strPatchName)
+
+                                'Rename the .new as the Original Name
+                                My.Computer.FileSystem.RenameFile(DestinationFolder & strSubFolder & "\" & strNewName, strOriginalName)
+
+                            End If
+                        End If
+#If _MyType <> "Console" Then
+                        Application.DoEvents()
+#Else
+                    Threading.Thread.Sleep(0)
+#End If
+                    End If
+                Next
+            Catch ex As Exception
+                sbOutput.AppendLine(ex.Message)
+            End Try
+            Return sbOutput.ToString()
+        End Function
 
         ''' <summary>
         ''' Generic Extraction Routine
