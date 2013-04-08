@@ -30,14 +30,14 @@ Public Class MaNGOSExtractor
             Exit Sub
         End If
 
-        ReadWarcraftExe(txtBaseFolder.Text & "\Wow.exe")
+        ReadWarcraftExe(txtBaseFolder.Text & "/Wow.exe")
         If Core.FullVersion <> "" Then
             Alert("Warcraft Version v" & Core.FullVersion & " Build " & Core.BuildNo, Core.AlertNewLine.AddCRLF)
         End If
 
         If chkDBC.Checked = True Or chkExtractMaps.Checked = True Or chkExtractWMO.Checked = True Or chkExtractWDT.Checked = True Or chkExtractADT.Checked = True Then
             'Set the Top level as {Wow Folder}\data then load all the MPQ files
-            myFolders = New System.IO.DirectoryInfo(txtBaseFolder.Text & "\data")
+            myFolders = New System.IO.DirectoryInfo(txtBaseFolder.Text & "/data")
 
             'Add the Data folder to the collection before we start walking down the tree
             colFolders.Add(myFolders, myFolders.FullName)
@@ -64,7 +64,11 @@ Public Class MaNGOSExtractor
                 Next
             Next
 
-            If txtOutputFolder.Text.EndsWith("\") = False Then txtOutputFolder.Text = txtOutputFolder.Text & "\"
+            'If txtOutputFolder.Text.EndsWith("\") = False Then txtOutputFolder.Text = txtOutputFolder.Text & "\"
+            If txtOutputFolder.Text.EndsWith("\") = False And txtOutputFolder.Text.EndsWith("/") = False Then
+                txtOutputFolder.Text = txtOutputFolder.Text & "/"
+            End If
+
             If My.Computer.FileSystem.DirectoryExists(txtOutputFolder.Text) = False Then
                 Directory.CreateDirectory(txtOutputFolder.Text)
             End If
@@ -183,7 +187,7 @@ Public Class MaNGOSExtractor
 
             Alert("Loading Maps: ", Core.AlertNewLine.AddCRLF)
 
-            dtMaps = loadDBCtoDataTable(txtOutputFolder.Text & "\DBFilesClient" & "\map.dbc")
+            dtMaps = loadDBCtoDataTable(txtOutputFolder.Text & "/DBFilesClient" & "/map.dbc")
             'Alert(dtMaps.Rows.Count() - 2 & " Maps Loaded", Core.AlertNewLine.AddCRLF)
 
             For counter As Integer = 0 To dtMaps.Rows.Count() - 2
@@ -197,7 +201,7 @@ Public Class MaNGOSExtractor
 
             Alert("Loading Areas: ", Core.AlertNewLine.AddCRLF)
 
-            dtAreaTable = loadDBCtoDataTable(txtOutputFolder.Text & "\DBFilesClient" & "\AreaTable.dbc")
+            dtAreaTable = loadDBCtoDataTable(txtOutputFolder.Text & "/DBFilesClient" & "/AreaTable.dbc")
             'Alert(dtAreaTable.Rows.Count() - 2 & " Areas Loaded", Core.AlertNewLine.AddCRLF)
 
             For counter As Integer = 0 To dtAreaTable.Rows.Count() - 2
@@ -210,7 +214,7 @@ Public Class MaNGOSExtractor
             Dim dictLiquidType As New Dictionary(Of Integer, Integer)
 
             Alert("Loading Liquid Types: ", Core.AlertNewLine.AddCRLF)
-            dtLiquidType = loadDBCtoDataTable(txtOutputFolder.Text & "\DBFilesClient" & "\LiquidType.dbc")
+            dtLiquidType = loadDBCtoDataTable(txtOutputFolder.Text & "/DBFilesClient" & "/LiquidType.dbc")
             'Alert(dtLiquidType.Rows.Count() - 2 & " Liquids Loaded", Core.AlertNewLine.AddCRLF)
 
 
@@ -229,14 +233,14 @@ Public Class MaNGOSExtractor
             Dim ADTfilename As String = ""
             Dim MapFilename As String = ""
 
-            If My.Computer.FileSystem.DirectoryExists(txtOutputFolder.Text & "maps\") = False Then
-                Directory.CreateDirectory(txtOutputFolder.Text & "maps\")
+            If My.Computer.FileSystem.DirectoryExists(txtOutputFolder.Text & "maps/") = False Then
+                Directory.CreateDirectory(txtOutputFolder.Text & "maps/")
             End If
             For Each thisMap As KeyValuePair(Of Integer, String) In dictMaps
                 Alert(" Extracting..." & thisMap.Value, AlertNewLine.AddCRLF)
                 For x As Integer = 0 To ADT_RES
                     For y As Integer = 0 To ADT_RES
-                        ADTfilename = txtOutputFolder.Text & "World\Maps\" & thisMap.Value & "\" & thisMap.Value & "_" & x & "_" & y & ".adt"
+                        ADTfilename = txtOutputFolder.Text & "World/maps/" & thisMap.Value & "/" & thisMap.Value & "_" & x & "_" & y & ".adt"
                         If My.Computer.FileSystem.FileExists(ADTfilename) = True Then
                             Alert("Reading from: " & ADTfilename, Core.AlertNewLine.AddCRLF)
                             MapKey = thisMap.Key.ToString() '"000"
@@ -249,7 +253,7 @@ Public Class MaNGOSExtractor
 
 
                             'ADTReader.Program.Dump(ADTfilename)
-                            MapFilename = txtOutputFolder.Text & "maps\" & MapKey.Substring(0, 3) & MapY.Substring(0, 2) & MapX.Substring(0, 2) & ".map"
+                            MapFilename = txtOutputFolder.Text & "maps/" & MapKey.Substring(0, 3) & MapY.Substring(0, 2) & MapX.Substring(0, 2) & ".map"
                             ADTReader.Program.ConvertADT(ADTfilename, MapFilename, x, y, dictMaps, dictAreaTable, dictLiquidType)
                             'Alert(" Writing to: " & MapFilename, Core.AlertNewLine.AddCRLF)
                             'ConvertADT(ADTfilename, MapFilename, dictMaps, dictAreaTable, dictLiquidType)
@@ -460,7 +464,7 @@ Public Class MaNGOSExtractor
         End If
 
         'Now that we have all the DBC's extracted and patched, we need to check the export options and export data
-        txtOutputFolder.Text = txtOutputFolder.Text & "\WDBFiles"
+        txtOutputFolder.Text = txtOutputFolder.Text & "/WDBFiles"
         If txtOutputFolder.Text.EndsWith("\") = False Then txtOutputFolder.Text = txtOutputFolder.Text & "\"
         If My.Computer.FileSystem.DirectoryExists(txtOutputFolder.Text) = False Then
             Directory.CreateDirectory(txtOutputFolder.Text)
@@ -469,14 +473,14 @@ Public Class MaNGOSExtractor
 
         'If chkCSV.Checked = True Or chkSQL.Checked = True Then
         'Now that we have all the DBC's extracted and patched, we need to check the export options and export data
-        myFolders = New System.IO.DirectoryInfo(txtBaseFolder.Text & "\CACHE\WDB\engb")
+        myFolders = New System.IO.DirectoryInfo(txtBaseFolder.Text & "/CACHE/WDB/engb")
         For Each file As System.IO.FileInfo In myFolders.GetFiles("*.WDB")
             Dim dbcDataTable As New DataTable
 
             'Load the entire DBC into a DataTable to be processed by both exports
             '                If chkCSV.Checked = True Or chkSQL.Checked = True Then
             Alert("Loading WBC " & file.Name & " into memory", Core.AlertNewLine.AddCRLF)
-            loadDBCtoDataTable(txtBaseFolder.Text & "\CACHE\WDB\engb" & "\" & file.Name, dbcDataTable)
+            loadDBCtoDataTable(txtBaseFolder.Text & "/CACHE/WDB/engb" & "/" & file.Name, dbcDataTable)
 #If _MyType <> "Console" Then
             Application.DoEvents()
 #Else

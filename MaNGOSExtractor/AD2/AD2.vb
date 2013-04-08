@@ -147,14 +147,14 @@ Module AD2
                 Exit Sub
             End If
 
-            ReadWarcraftExe(strInputFolder & "\Wow.exe")
+            ReadWarcraftExe(strInputFolder & "/Wow.exe")
             If Core.FullVersion <> "" Then
                 Alert("Warcraft Version v" & Core.FullVersion & " Build " & Core.BuildNo, Core.AlertNewLine.AddCRLF)
             End If
 
             If blnExtract = True Then
                 'Set the Top level as {Wow Folder}\data
-                myFolders = New System.IO.DirectoryInfo(strInputFolder & "\data")
+                myFolders = New System.IO.DirectoryInfo(strInputFolder & "/Data")
 
                 'Add the Data folder to the collection before we start walking down the tree
                 colFolders.Add(myFolders, myFolders.FullName)
@@ -176,7 +176,10 @@ Module AD2
                     Next
                 Next
 
-                If strOutputFolder.EndsWith("\") = False Then strOutputFolder = strOutputFolder & "\"
+                If strOutputFolder.EndsWith("\") = False And strOutputFolder.EndsWith("/") = False Then
+                    strOutputFolder = strOutputFolder & "/"
+                End If
+
                 If My.Computer.FileSystem.DirectoryExists(strOutputFolder) = False Then
                     Directory.CreateDirectory(strOutputFolder)
                 End If
