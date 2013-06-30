@@ -1,7 +1,7 @@
 ﻿Imports System
+Imports System.Data
 Imports System.IO
 Imports MangosExtractor.Core
-Imports System.Data
 
 Public Class MaNGOSExtractor
     ''' <summary>
@@ -10,7 +10,7 @@ Public Class MaNGOSExtractor
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub btnStartDBC_Click(sender As Object, e As EventArgs) Handles btnStartDBC.Click
+    Private Sub BtnStartDbcClick(sender As Object, e As EventArgs) Handles btnStartDBC.Click
         lstMainLog.Items.Clear()
         Core.alertlist = lstMainLog
         Me.Cursor = System.Windows.Forms.Cursors.WaitCursor
@@ -56,11 +56,11 @@ Public Class MaNGOSExtractor
                     Else
                         colMainFiles.Add(file.FullName, file.FullName)
                     End If
-#If _MyType <> "Console" Then
+                    #If _MyType <> "Console" Then
                     Application.DoEvents()
-#Else
-                Threading.Thread.Sleep(0)
-#End If
+                    #Else
+                    Threading.Thread.Sleep(0)
+                    #End If
                 Next
             Next
 
@@ -82,11 +82,11 @@ Public Class MaNGOSExtractor
                 Catch ex As Exception
                     Alert(ex.Message, Core.AlertNewLine.AddCRLF)
                 End Try
-#If _MyType <> "Console" Then
+                #If _MyType <> "Console" Then
                 Application.DoEvents()
-#Else
+                #Else
                 Threading.Thread.Sleep(0)
-#End If
+                #End If
             Next
 
             For Each strItem As DictionaryEntry In colMainFiles
@@ -96,11 +96,11 @@ Public Class MaNGOSExtractor
                 Catch ex As Exception
                     Alert(ex.Message, Core.AlertNewLine.AddCRLF)
                 End Try
-#If _MyType <> "Console" Then
+                #If _MyType <> "Console" Then
                 Application.DoEvents()
-#Else
+                #Else
                 Threading.Thread.Sleep(0)
-#End If
+                #End If
             Next
 
             For Each strItem As DictionaryEntry In colUpdateFiles
@@ -111,11 +111,11 @@ Public Class MaNGOSExtractor
                 Catch ex As Exception
                     Alert(ex.Message, Core.AlertNewLine.AddCRLF)
                 End Try
-#If _MyType <> "Console" Then
+                #If _MyType <> "Console" Then
                 Application.DoEvents()
-#Else
+                #Else
                 Threading.Thread.Sleep(0)
-#End If
+                #End If
             Next
             Alert("Extraction Finished", Core.AlertNewLine.AddCRLF)
         End If
@@ -133,11 +133,11 @@ Public Class MaNGOSExtractor
                 'Catch ex As Exception
                 '    Alert(ex.Message, Core.AlertNewLine.AddCRLF)
                 'End Try
-#If _MyType <> "Console" Then
+                #If _MyType <> "Console" Then
                 Application.DoEvents()
-#Else
+                #Else
                 Threading.Thread.Sleep(0)
-#End If
+                #End If
             Next
 
             For Each strItem As DictionaryEntry In colMainFiles
@@ -152,11 +152,11 @@ Public Class MaNGOSExtractor
                 'Catch ex As Exception
                 '    Alert(ex.Message, Core.AlertNewLine.AddCRLF)
                 'End Try
-#If _MyType <> "Console" Then
+                #If _MyType <> "Console" Then
                 Application.DoEvents()
-#Else
+                #Else
                 Threading.Thread.Sleep(0)
-#End If
+                #End If
             Next
 
             For Each strItem As DictionaryEntry In colUpdateFiles
@@ -172,11 +172,11 @@ Public Class MaNGOSExtractor
                 'Catch ex As Exception
                 '    Alert(ex.Message, Core.AlertNewLine.AddCRLF)
                 'End Try
-#If _MyType <> "Console" Then
+                #If _MyType <> "Console" Then
                 Application.DoEvents()
-#Else
+                #Else
                 Threading.Thread.Sleep(0)
-#End If
+                #End If
             Next
         End If
 
@@ -258,11 +258,11 @@ Public Class MaNGOSExtractor
                             'Alert(" Writing to: " & MapFilename, Core.AlertNewLine.AddCRLF)
                             'ConvertADT(ADTfilename, MapFilename, dictMaps, dictAreaTable, dictLiquidType)
                         End If
-#If _MyType <> "Console" Then
-                            Application.DoEvents()
-#Else
-                Threading.Thread.Sleep(0)
-#End If
+                        #If _MyType <> "Console" Then
+                        Application.DoEvents()
+                        #Else
+                        Threading.Thread.Sleep(0)
+                        #End If
                     Next
                 Next
             Next
@@ -282,11 +282,11 @@ Public Class MaNGOSExtractor
                 'Catch ex As Exception
                 '    Alert(ex.Message, Core.AlertNewLine.AddCRLF)
                 'End Try
-#If _MyType <> "Console" Then
+                #If _MyType <> "Console" Then
                 Application.DoEvents()
-#Else
+                #Else
                 Threading.Thread.Sleep(0)
-#End If
+                #End If
             Next
 
             For Each strItem As DictionaryEntry In colMainFiles
@@ -301,11 +301,11 @@ Public Class MaNGOSExtractor
                 'Catch ex As Exception
                 '    Alert(ex.Message, Core.AlertNewLine.AddCRLF)
                 'End Try
-#If _MyType <> "Console" Then
+                #If _MyType <> "Console" Then
                 Application.DoEvents()
-#Else
+                #Else
                 Threading.Thread.Sleep(0)
-#End If
+                #End If
             Next
 
             For Each strItem As DictionaryEntry In colUpdateFiles
@@ -321,11 +321,11 @@ Public Class MaNGOSExtractor
                 'Catch ex As Exception
                 '    Alert(ex.Message, Core.AlertNewLine.AddCRLF)
                 'End Try
-#If _MyType <> "Console" Then
+                #If _MyType <> "Console" Then
                 Application.DoEvents()
-#Else
+                #Else
                 Threading.Thread.Sleep(0)
-#End If
+                #End If
             Next
         End If
 
@@ -342,11 +342,11 @@ Public Class MaNGOSExtractor
                 'Catch ex As Exception
                 '    Alert(ex.Message, Core.AlertNewLine.AddCRLF)
                 'End Try
-#If _MyType <> "Console" Then
+                #If _MyType <> "Console" Then
                 Application.DoEvents()
-#Else
+                #Else
                 Threading.Thread.Sleep(0)
-#End If
+                #End If
             Next
 
             For Each strItem As DictionaryEntry In colMainFiles
@@ -361,11 +361,11 @@ Public Class MaNGOSExtractor
                 'Catch ex As Exception
                 '    Alert(ex.Message, Core.AlertNewLine.AddCRLF)
                 'End Try
-#If _MyType <> "Console" Then
+                #If _MyType <> "Console" Then
                 Application.DoEvents()
-#Else
+                #Else
                 Threading.Thread.Sleep(0)
-#End If
+                #End If
             Next
 
             For Each strItem As DictionaryEntry In colUpdateFiles
@@ -381,20 +381,20 @@ Public Class MaNGOSExtractor
                 'Catch ex As Exception
                 '    Alert(ex.Message, Core.AlertNewLine.AddCRLF)
                 'End Try
-#If _MyType <> "Console" Then
+                #If _MyType <> "Console" Then
                 Application.DoEvents()
-#Else
+                #Else
                 Threading.Thread.Sleep(0)
-#End If
+                #End If
             Next
         End If
 
 
 
 
-        If chkCSV.Checked = True Or chkSQL.Checked = True Or chkExportXML.Checked = True Or chkExportMD.Checked = True Then
+        If chkCSV.Checked = True Or chkSQL.Checked = True Or chkExportXML.Checked = True Or chkExportMD.Checked = True Or chkExportH.Checked = True Then
             'Now that we have all the DBC's extracted and patched, we need to check the export options and export data
-            ExportDBCFiles(txtBaseFolder.Text, txtOutputFolder.Text, chkCSV.Checked, chkSQL.Checked, chkExportXML.Checked, chkExportMD.Checked)
+            ExportDBCFiles(txtBaseFolder.Text, txtOutputFolder.Text, chkCSV.Checked, chkSQL.Checked, chkExportXML.Checked, chkExportMD.Checked, chkExportH.Checked)
             Alert("Finished Exporting", Core.AlertNewLine.AddCRLF)
         End If
 
@@ -420,7 +420,7 @@ Public Class MaNGOSExtractor
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub MaNGOSExtractor_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Private Sub MaNgosExtractorLoad(sender As Object, e As EventArgs) Handles Me.Load
         Me.Text = "MaNGOSExtractor" & Core.MaNGOSExtractorCore.Version()
         Core.runAsGui = True
         Core.alertlist = lstMainLog
@@ -446,7 +446,7 @@ Public Class MaNGOSExtractor
 
     End Sub
 
-    Private Sub brnWDB_Click(sender As Object, e As EventArgs) Handles brnWDB.Click
+    Private Sub BrnWdbClick(sender As Object, e As EventArgs) Handles brnWDB.Click
         lstMainLog.Items.Clear()
         Core.alertlist = lstMainLog
         Me.Cursor = System.Windows.Forms.Cursors.WaitCursor
@@ -481,22 +481,22 @@ Public Class MaNGOSExtractor
             '                If chkCSV.Checked = True Or chkSQL.Checked = True Then
             Alert("Loading WBC " & file.Name & " into memory", Core.AlertNewLine.AddCRLF)
             loadDBCtoDataTable(txtBaseFolder.Text & "/CACHE/WDB/engb" & "/" & file.Name, dbcDataTable)
-#If _MyType <> "Console" Then
+            #If _MyType <> "Console" Then
             Application.DoEvents()
-#Else
-                    Threading.Thread.Sleep(0)
-#End If
+            #Else
+            Threading.Thread.Sleep(0)
+            #End If
 
             'End If
 
             ' If chkSQL.Checked = True Then
             Alert("Creating SQL for " & file.Name, Core.AlertNewLine.AddCRLF)
             exportSQL(txtOutputFolder.Text & "\" & file.Name, dbcDataTable, txtBaseFolder.Text)
-#If _MyType <> "Console" Then
+            #If _MyType <> "Console" Then
             Application.DoEvents()
-#Else
-                    Threading.Thread.Sleep(0)
-#End If
+            #Else
+            Threading.Thread.Sleep(0)
+            #End If
         Next
         Alert("Finished Exporting", Core.AlertNewLine.AddCRLF)
         'End If
@@ -504,17 +504,18 @@ Public Class MaNGOSExtractor
         brnWDB.Enabled = True
     End Sub
 
-    Private Sub btnSelectBaseFolder_Click(sender As Object, e As EventArgs) Handles btnSelectBaseFolder.Click
+    Private Sub BtnSelectBaseFolderClick(sender As Object, e As EventArgs) Handles btnSelectBaseFolder.Click
         FolderBrowserDialog1.SelectedPath = txtBaseFolder.Text
         If FolderBrowserDialog1.ShowDialog = Windows.Forms.DialogResult.OK Then
             txtBaseFolder.Text = FolderBrowserDialog1.SelectedPath
         End If
     End Sub
 
-    Private Sub btnSelectOutputFolder_Click(sender As Object, e As EventArgs) Handles btnSelectOutputFolder.Click
+    Private Sub BtnSelectOutputFolderClick(sender As Object, e As EventArgs) Handles btnSelectOutputFolder.Click
         FolderBrowserDialog1.SelectedPath = txtOutputFolder.Text
         If FolderBrowserDialog1.ShowDialog = Windows.Forms.DialogResult.OK Then
             txtOutputFolder.Text = FolderBrowserDialog1.SelectedPath
         End If
     End Sub
+
 End Class

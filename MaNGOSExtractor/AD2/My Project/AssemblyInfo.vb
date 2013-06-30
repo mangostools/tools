@@ -9,10 +9,10 @@ Imports System.Runtime.InteropServices
 ' Review the values of the assembly attributes
 
 <Assembly: AssemblyTitle("AD2")> 
-<Assembly: AssemblyDescription("")> 
-<Assembly: AssemblyCompany("MaNGOS Foundation")> 
+<Assembly: AssemblyDescription("Console Based Extractor")> 
+<Assembly: AssemblyCompany("getMaNGOS")> 
 <Assembly: AssemblyProduct("AD2")> 
-<Assembly: AssemblyCopyright("Copyright © MaNGOS Foundation")> 
+<Assembly: AssemblyCopyright("Copyright © getMaNGOS")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.4.0.2")> 
-<Assembly: AssemblyFileVersion("1.4.0.2")> 
+<Assembly: AssemblyVersion("1.4.0.4")> 
+<Assembly: AssemblyFileVersion("1.4.0.4")> 

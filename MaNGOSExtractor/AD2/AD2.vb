@@ -19,6 +19,7 @@ Module AD2
             Console.WriteLine("-c create .CSV file for each .DBC, requires -o switch")
             Console.WriteLine("-x create .XML file for each .DBC, requires -o switch")
             Console.WriteLine("-m create .MD file for each .DBC, requires -o switch")
+            Console.WriteLine("-h create .H files for each .DBC, requires -o switch")
             End
         Else
             Dim strExtractionLevel As String = ""
@@ -31,6 +32,7 @@ Module AD2
             Dim blnExportToCSV As Boolean = False
             Dim blnExportToXML As Boolean = False
             Dim blnExportToMD As Boolean = False
+            Dim blnExportToH As Boolean = False
             For Commands As Integer = 0 To intMaxCommands
                 Select Case My.Application.CommandLineArgs(Commands)
                     Case "-e"
@@ -114,6 +116,12 @@ Module AD2
                             Console.WriteLine("Output Folder: *ERROR* - Folder '" & strOutputFolder & "' could not be found")
                             blnCMDError = True
                         End If
+                    Case "-h"
+                        blnExportToH = True
+                        If System.IO.Directory.Exists(strOutputFolder) = False Then
+                            Console.WriteLine("Output Folder: *ERROR* - Folder '" & strOutputFolder & "' could not be found")
+                            blnCMDError = True
+                        End If
                     Case Else
                         Console.WriteLine("Command={0}", My.Application.CommandLineArgs(Commands))
                 End Select
@@ -124,6 +132,9 @@ Module AD2
                 Console.WriteLine("*ERROR* -o {output folder} is required")
                 blnCMDError = True
             ElseIf blnExportToCSV = True And strOutputFolder = "" And blnExtract = False Then
+                Console.WriteLine("*ERROR* -o {output folder} is required")
+                blnCMDError = True
+            ElseIf blnExportToH = True And strOutputFolder = "" Then
                 Console.WriteLine("*ERROR* -o {output folder} is required")
                 blnCMDError = True
             ElseIf blnExtract = True And strOutputFolder = "" Then
@@ -218,8 +229,8 @@ Module AD2
 
 
             'Pass the Parameters to the export routine
-            If blnExportToSQL = True Or blnExportToCSV = True Or blnExportToXML = True Or blnExportToMD = True Then
-                ExportDBCFiles(strInputFolder, strOutputFolder, blnExportToCSV, blnExportToSQL, blnExportToXML, blnExportToMD)
+            If blnExportToSQL = True Or blnExportToCSV = True Or blnExportToXML = True Or blnExportToMD = True Or blnExportToH = True Then
+                ExportDBCFiles(strInputFolder, strOutputFolder, blnExportToCSV, blnExportToSQL, blnExportToXML, blnExportToMD, blnExportToH)
                 Alert("Export Finished", Core.AlertNewLine.AddCRLF)
             End If
 

@@ -1,6 +1,6 @@
 ﻿Imports System.IO
 Imports System.Text
-Imports MpqLib
+'Imports MpqLib
 Imports System.Data
 Imports System.Reflection
 
@@ -702,7 +702,7 @@ Namespace Core
             Else
                 intMaxcols = entireRow.Length - 1
             End If
-            Dim ColType(intMaxcols / 4) As String
+            Dim colType(intMaxcols / 4) As String
             'Dim ColType(intMaxcols) As String
 
             If intMaxcols > 0 Then
@@ -1000,7 +1000,7 @@ Namespace Core
         ''' <param name="ExportSQL"></param>
         ''' <param name="ExportXML"></param>
         ''' <remarks></remarks>
-        Public Sub ExportDBCFiles(ByRef BaseFolder As String, ByRef OutputFolder As String, ByRef ExportCSV As Boolean, ByRef ExportSQL As Boolean, ByRef ExportXML As Boolean, ByRef ExportMD As Boolean)
+        Public Sub ExportDBCFiles(ByRef BaseFolder As String, ByRef OutputFolder As String, ByRef ExportCSV As Boolean, ByRef ExportSQL As Boolean, ByRef ExportXML As Boolean, ByRef ExportMD As Boolean, ByRef ExportH As Boolean)
             'Now that we have all the DBC's extracted and patched, we need to check the export options and export data
             If OutputFolder.EndsWith("\") = False Then OutputFolder = OutputFolder & "\"
             If My.Computer.FileSystem.DirectoryExists(OutputFolder & "DBFilesClient\") = False Then
@@ -1028,7 +1028,7 @@ Namespace Core
                 Application.DoEvents()
 #End If
                 'Load the entire DBC into a DataTable to be processed by all exports
-                If ExportCSV = True Or ExportSQL = True Or ExportXML = True Or ExportMD = True Then
+                If ExportCSV = True Or ExportSQL = True Or ExportXML = True Or ExportMD = True Or ExportH = True Then
                     Alert("", Core.AlertNewLine.AddCRLF)
                     Alert(fileItem.Value, Core.AlertNewLine.NoCRLF)
                     dbcDataTable = loadDBCtoDataTable(OutputFolder & "\DBFilesClient" & "\" & fileItem.Value)
@@ -1040,6 +1040,14 @@ Namespace Core
                     Core.exportSQL(OutputFolder & "\DBFilesClient" & "\" & fileItem.Value, dbcDataTable, BaseFolder)
                     Alert("", Core.AlertNewLine.NoCRLF)
                 End If
+
+                'Export to h Files
+                If ExportH = True Then
+                    Alert("Creating .h for " & fileItem.Value, Core.AlertNewLine.AddCRLF)
+                    Core.exportH(OutputFolder & "\DBFilesClient" & "\" & fileItem.Value, dbcDataTable, BaseFolder)
+                    Alert("", Core.AlertNewLine.NoCRLF)
+                End If
+
 
                 'Export to CSV
                 If ExportCSV = True Then
